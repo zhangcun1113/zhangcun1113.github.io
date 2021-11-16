@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>张不胖</title>
+  
+  
+  <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
+  
+  <link href="https://blog.zhangcun.store/"/>
+  <updated>2021-11-09T09:09:05.592Z</updated>
+  <id>https://blog.zhangcun.store/</id>
+  
+  <author>
+    <name>张存</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>shell 脚本监控公司外网ip 并实现邮件报警</title>
+    <link href="https://blog.zhangcun.store/2021/11/09/shell-jiao-ben-jian-kong-gong-si-wai-wang-ip-bing-shi-xian-you-jian-bao-jing/"/>
+    <id>https://blog.zhangcun.store/2021/11/09/shell-jiao-ben-jian-kong-gong-si-wai-wang-ip-bing-shi-xian-you-jian-bao-jing/</id>
+    <published>2021-11-09T09:02:33.000Z</published>
+    <updated>2021-11-09T09:09:05.592Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;#!/bin/bash
+new_ip=`curl ifconfig.me`    #获取新公网ip
+old_ip=`cat /root/ip`     #查看旧ip
+mail_sender=1776803208@qq.com  </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu 安装发送邮件 heirloom-mailx</title>
+    <link href="https://blog.zhangcun.store/2021/11/09/ubuntu-an-zhuang-fa-song-you-jian-heirloom-mailx/"/>
+    <id>https://blog.zhangcun.store/2021/11/09/ubuntu-an-zhuang-fa-song-you-jian-heirloom-mailx/</id>
+    <published>2021-11-09T08:47:37.000Z</published>
+    <updated>2021-11-09T08:57:07.829Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;前言&lt;br&gt;ubuntu使用heirloom-mailx命令发送邮件。遇到一些坑，记录一下安装和配置的过程。    &lt;/p&gt;
+&lt;p&gt;安装&lt;br&gt;安装命令：    &lt;/p&gt;
+&lt;p&gt;sudo apt install</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>详解几种Linux 查询外网出口IP命令的方法</title>
+    <link href="https://blog.zhangcun.store/2021/11/09/xiang-jie-ji-chong-linux-cha-xun-wai-wang-chu-kou-ip-ming-ling-de-fang-fa/"/>
+    <id>https://blog.zhangcun.store/2021/11/09/xiang-jie-ji-chong-linux-cha-xun-wai-wang-chu-kou-ip-ming-ling-de-fang-fa/</id>
+    <published>2021-11-09T08:20:27.000Z</published>
+    <updated>2021-11-09T08:24:12.106Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h6 id=&quot;Curl-纯文本格式输出&quot;&gt;&lt;a href=&quot;#Curl-纯文本格式输出&quot; class=&quot;headerlink&quot; title=&quot;Curl 纯文本格式输出:&quot;&gt;&lt;/a&gt;Curl 纯文本格式输出:&lt;/h6&gt;&lt;p&gt;curl icanhazip.com&lt;br&gt;curl</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>内网穿透无需公网IP的工具Holer</title>
+    <link href="https://blog.zhangcun.store/2021/11/09/nei-wang-chuan-tou-wu-xu-gong-wang-ip-de-gong-ju-holer/"/>
+    <id>https://blog.zhangcun.store/2021/11/09/nei-wang-chuan-tou-wu-xu-gong-wang-ip-de-gong-ju-holer/</id>
+    <published>2021-11-09T08:16:23.000Z</published>
+    <updated>2021-11-09T08:19:17.659Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Holer是一个免费开源的内网穿透工具，它可以将局域网服务器代理到公网的内网穿透工具，支持转发基于TCP协议的报文。&lt;/p&gt;
+&lt;p&gt;Holer地址：&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【shell】shell脚本实现监控端口，端口不存在自动重启</title>
+    <link href="https://blog.zhangcun.store/2021/11/09/shell-shell-jiao-ben-shi-xian-jian-kong-duan-kou-duan-kou-bu-cun-zai-zi-dong-chong-qi/"/>
+    <id>https://blog.zhangcun.store/2021/11/09/shell-shell-jiao-ben-shi-xian-jian-kong-duan-kou-duan-kou-bu-cun-zai-zi-dong-chong-qi/</id>
+    <published>2021-11-09T08:11:00.000Z</published>
+    <updated>2021-11-09T08:12:49.734Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;服务总是自动挂掉，为解决运维人员不能及时重启，所以写个定时脚本，一分钟监控一次端口是否占用，不占用说明服务挂了，自动重启服务。&lt;/p&gt;
+&lt;p&gt;脚本，以8080端口为例&lt;/p&gt;
+&lt;p&gt;#vim </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Dockerfile命令详解</title>
+    <link href="https://blog.zhangcun.store/2021/11/05/dockerfile-ming-ling-xiang-jie/"/>
+    <id>https://blog.zhangcun.store/2021/11/05/dockerfile-ming-ling-xiang-jie/</id>
+    <published>2021-11-05T08:15:42.000Z</published>
+    <updated>2021-11-05T08:16:00.281Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;使用docker就会避免不了的要做各种镜像，就会用到dockerfile，记录一下dockerfile的主要命令    &lt;/p&gt;
+&lt;p&gt;1、主要组成部分   </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>你只是他们其中的一个</title>
+    <link href="https://blog.zhangcun.store/2021/11/05/ni-shi-ta-men-qi-zhong-de-yi-ge/"/>
+    <id>https://blog.zhangcun.store/2021/11/05/ni-shi-ta-men-qi-zhong-de-yi-ge/</id>
+    <published>2021-11-05T07:20:39.000Z</published>
+    <updated>2021-11-05T07:41:38.002Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;条件太好的男生和漂亮的女生&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;note warning&quot;&gt;&lt;p&gt;很多都是没有空窗期的&lt;/p&gt;&lt;/div&gt;    
+
+&lt;div class=&quot;note</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>redis设置密码</title>
+    <link href="https://blog.zhangcun.store/2021/11/04/redis-she-zhi-mi-ma/"/>
+    <id>https://blog.zhangcun.store/2021/11/04/redis-she-zhi-mi-ma/</id>
+    <published>2021-11-04T03:29:45.000Z</published>
+    <updated>2021-11-04T03:31:00.997Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;redis安装过程    &lt;/p&gt;
+&lt;p&gt;$ wget &lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx负载均衡中4层代理和7层代理对比</title>
+    <link href="https://blog.zhangcun.store/2021/11/04/nginx-fu-zai-jun-heng-zhong-4-ceng-dai-li-he-7-ceng-dai-li-dui-bi/"/>
+    <id>https://blog.zhangcun.store/2021/11/04/nginx-fu-zai-jun-heng-zhong-4-ceng-dai-li-he-7-ceng-dai-li-dui-bi/</id>
+    <published>2021-11-04T03:27:11.000Z</published>
+    <updated>2021-11-04T03:27:31.537Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;1.4层代理和7层代理什么意思？&lt;/p&gt;
+&lt;p&gt;这里的层是OSI 7层网络模型，OSI 模型是从上往下的，越底层越接近硬件，越往上越接近软件，这七层模型分别是物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。&lt;/p&gt;
+&lt;p&gt;4层是指传输层的 tcp / udp</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>nginx四层、七层负载均衡配置示例</title>
+    <link href="https://blog.zhangcun.store/2021/11/04/nginx-si-ceng-qi-ceng-fu-zai-jun-heng-pei-zhi-shi-li/"/>
+    <id>https://blog.zhangcun.store/2021/11/04/nginx-si-ceng-qi-ceng-fu-zai-jun-heng-pei-zhi-shi-li/</id>
+    <published>2021-11-04T03:21:04.000Z</published>
+    <updated>2021-11-04T03:24:43.475Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;所谓四层就是基于IP+端口的负载均衡，通过虚拟IP+端口接收请求，然后再分配到真实的服务器；七层通过虚拟的URL或主机名接收请求，然后再分配到真实的服务器七层就是基于URL等应用层信息的负载均衡。    &lt;/p&gt;
+&lt;p&gt;七层负载&lt;br&gt;#定义   </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu20.04开机运行自定义脚本</title>
+    <link href="https://blog.zhangcun.store/2021/11/04/ubuntu20-04-kai-ji-yun-xing-zi-ding-yi-jiao-ben/"/>
+    <id>https://blog.zhangcun.store/2021/11/04/ubuntu20-04-kai-ji-yun-xing-zi-ding-yi-jiao-ben/</id>
+    <published>2021-11-04T03:08:10.000Z</published>
+    <updated>2021-11-04T03:11:13.839Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;1.简介&lt;br&gt;基于 Debian 的 Linux 系统默认支持 rc-local.service 服务，这个服务主要用来在系统启动时运行用户自定义的脚本命令等。&lt;/p&gt;
+&lt;p&gt;2.配置&lt;br&gt;要想使用 rc-local.service</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>从ifconfig输出中提取MAC地址</title>
+    <link href="https://blog.zhangcun.store/2021/11/03/cong-ifconfig-shu-chu-zhong-ti-qu-mac-di-zhi/"/>
+    <id>https://blog.zhangcun.store/2021/11/03/cong-ifconfig-shu-chu-zhong-ti-qu-mac-di-zhi/</id>
+    <published>2021-11-03T08:55:23.000Z</published>
+    <updated>2021-11-03T08:56:27.855Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;环境 Ubuntu 20.04&lt;/p&gt;
+&lt;p&gt;ifconfig eth0 | grep -o -E</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux命令行显示主机名和当前目录</title>
+    <link href="https://blog.zhangcun.store/2021/11/03/linux-ming-ling-xing-xian-shi-zhu-ji-ming-he-dang-qian-mu-lu/"/>
+    <id>https://blog.zhangcun.store/2021/11/03/linux-ming-ling-xing-xian-shi-zhu-ji-ming-he-dang-qian-mu-lu/</id>
+    <published>2021-11-03T07:11:15.000Z</published>
+    <updated>2021-11-03T07:12:46.822Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在开发中linux</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>以指定用户启动和进入docker容器</title>
+    <link href="https://blog.zhangcun.store/2021/11/03/yi-zhi-ding-yong-hu-qi-dong-he-jin-ru-docker-rong-qi/"/>
+    <id>https://blog.zhangcun.store/2021/11/03/yi-zhi-ding-yong-hu-qi-dong-he-jin-ru-docker-rong-qi/</id>
+    <published>2021-11-03T06:26:00.000Z</published>
+    <updated>2021-11-03T06:27:33.328Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;第一次用run创建并启动容器，运行命令&lt;/p&gt;
+&lt;p&gt;　　docker run -it -u user_name –name container_name -d image_name</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux安装库时报错error: command ‘x86_64-linux-gnu-gcc‘ failed with exit status 1</title>
+    <link href="https://blog.zhangcun.store/2021/11/03/linux-an-zhuang-ku-shi-bao-cuo-error-command-x86-64-linux-gnu-gcc-failed-with-exit-status-1/"/>
+    <id>https://blog.zhangcun.store/2021/11/03/linux-an-zhuang-ku-shi-bao-cuo-error-command-x86-64-linux-gnu-gcc-failed-with-exit-status-1/</id>
+    <published>2021-11-03T02:52:15.000Z</published>
+    <updated>2021-11-03T02:53:36.181Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在Ubuntu18.04上安装nameko时报错：&lt;/p&gt;
+&lt;p&gt;error: command ‘x86_64-linux-gnu-gcc’ failed with exit status 1&lt;/p&gt;
+&lt;p&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>etcd 下载链接</title>
+    <link href="https://blog.zhangcun.store/2021/11/03/etcd-xia-zai-lian-jie/"/>
+    <id>https://blog.zhangcun.store/2021/11/03/etcd-xia-zai-lian-jie/</id>
+    <published>2021-11-03T02:47:40.000Z</published>
+    <updated>2021-11-03T02:47:41.425Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[tcp] WEB服务,Linux下的内核参数调优</title>
+    <link href="https://blog.zhangcun.store/2021/11/03/tcp-web-fu-wu-linux-xia-de-nei-he-can-shu-diao-you/"/>
+    <id>https://blog.zhangcun.store/2021/11/03/tcp-web-fu-wu-linux-xia-de-nei-he-can-shu-diao-you/</id>
+    <published>2021-11-03T02:41:52.000Z</published>
+    <updated>2021-11-03T02:45:23.989Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;前言:&lt;br&gt;web类应用一般会部署像nginx、tomcat、php等应用程序，使用默认的内核参数设置满足大部分场景，如果优化内核参数，也可以释放不少服务器性能，尤其是在高并发下   </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>如何进入docker 使用root用户的方式</title>
+    <link href="https://blog.zhangcun.store/2021/11/03/ru-he-jin-ru-docker-shi-yong-root-yong-hu-de-fang-shi/"/>
+    <id>https://blog.zhangcun.store/2021/11/03/ru-he-jin-ru-docker-shi-yong-root-yong-hu-de-fang-shi/</id>
+    <published>2021-11-03T02:34:06.000Z</published>
+    <updated>2021-11-03T02:34:08.824Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;docker exec -it –user root &lt;container id&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>dockerfile文件中给debian设置中文支持</title>
+    <link href="https://blog.zhangcun.store/2021/11/03/dockerfile-wen-jian-zhong-gei-debian-she-zhi-zhong-wen-zhi-chi/"/>
+    <id>https://blog.zhangcun.store/2021/11/03/dockerfile-wen-jian-zhong-gei-debian-she-zhi-zhong-wen-zhi-chi/</id>
+    <published>2021-11-03T02:30:23.000Z</published>
+    <updated>2021-11-03T02:30:30.230Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;#设置字体库&lt;br&gt;RUN apt-get clean &amp;amp;&amp;amp; apt-get update&lt;/p&gt;
+&lt;p&gt;RUN apt-get install -y locales&lt;/p&gt;
+&lt;p&gt;RUN localedef -c -f UTF-8 -i zh_CN</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>通过Dockerfile 文件为linux images 添加新用户</title>
+    <link href="https://blog.zhangcun.store/2021/11/02/tong-guo-dockerfile-wen-jian-wei-linux-images-tian-jia-xin-yong-hu/"/>
+    <id>https://blog.zhangcun.store/2021/11/02/tong-guo-dockerfile-wen-jian-wei-linux-images-tian-jia-xin-yong-hu/</id>
+    <published>2021-11-02T09:49:41.000Z</published>
+    <updated>2021-11-02T09:50:39.999Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;要求：&lt;br&gt;（１）增加一个新用户，名为mynewuser&lt;br&gt;（２）让这个用户有root权限&lt;br&gt;（３）设置其密码为mynewpassword&lt;br&gt;（４）container启动后以mynewuser登录,并且直接到mynewuser的home目录下&lt;/p&gt;
+&lt;p&gt;将</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
