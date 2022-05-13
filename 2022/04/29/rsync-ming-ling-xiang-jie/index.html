@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html>
+  <!-- meta/link... -->
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>rsync命令详解 | 又瘦了三斤</title>
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+    <script>
+        var themeModelId = '';
+        if (themeModelId) {
+            localStorage.setItem('modelId', themeModelId);
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/yuang01/live2d-widget@latest/autoload.js"></script>
+    <script>
+        var live2dOpen = eval('true') || false;
+        if (!live2dOpen) {
+            localStorage.setItem('waifu-display', 1609323474481);
+        }
+    </script>
+  
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/js/shareJs/share.min.css">
+
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+    
+
+    <!-- import link -->
+    
+        
+            
+        
+            
+        
+    
+    <!-- import script -->
+    
+        
+            
+        
+            
+        
+    
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="又瘦了三斤" type="application/atom+xml">
+</head>
+
+  
+  <!-- 依赖于jquery和vue -->
+  <script src="/js/jquery3.5.1.js"></script>
+  <script src="/js/vue2.6.11.js"></script>
+  
+  <body>
+    <!-- 预加载动画 -->
+    <!-- 页面预加载动画 -->
+
+    
+    <!-- 判断是否为暗黑风格 -->
+    <!-- 判断是否为黑夜模式 -->
+<script>
+  let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+  if (isDark) {
+    $(document.body).addClass('darkModel');
+  }
+</script>
+
+    <!-- 头部导航等 -->
+    
+<header class="header " id="navHeader"
+  style="position: fixed;
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <div class="drawer-box-icon">
+    <i class="fa fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  </div>
+  
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo" src="/medias/logo.png" alt="logo">
+      <h3 class="drawer-box-head_title">又瘦了三斤</h3>
+      <h5 class="drawer-box-head_desc"></h5>
+    </div>
+    
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/" class="drawer-menu-item-link">
+                  
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">首页</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/archives" class="drawer-menu-item-link">
+                  
+                    <i class="fa fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">归档</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/tags" class="drawer-menu-item-link">
+                  
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/categories" class="drawer-menu-item-link">
+                  
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/about" class="drawer-menu-item-link">
+                  
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  
+                  <span class="name">关于</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/friends" class="drawer-menu-item-link">
+                  
+                  <span class="name">友情链接</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(6)">
+                  <span>
+                    
+                      <i class="fa fa-link"></i>
+                    
+                    <span class="name">更多</span>
+                  </span>
+                  <i class="fa fa-chevron-left arrow " :class="{'icon-rotate': isOpen(6)}" aria-hidden="true"></i>
+                </a>
+                <ul class="drawer-sub-menu" v-if="isOpen(6)">
+                  
+                  <li>
+                    <a href="/gallery">
+                      
+                      <i class="fa fa-music" style="margin-top: -20px;"></i>
+                      
+                      <span>图库</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="http://baidu.com">
+                      
+                      <i class="fa fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>百度</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://github.com/zhangcun1113/hexo-theme-bamboo">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span>Github</span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+      openArr: [],
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      isOpen(index) {
+        if (this.openArr.includes(index)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      openOrCloseMenu(curIndex) {
+        const index = this.openArr.indexOf(curIndex);
+        if (index !== -1) {
+          this.openArr.splice(index, 1);
+        } else {
+          this.openArr.push(curIndex);
+        }
+      },
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%;overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+
+    </div>
+    <div class="blog-title" id="author-avatar">
+      
+        <div class="avatar">
+          <img src="/medias/logo.png" alt="logo">
+        </div>
+      
+      <a href="/" class="logo">又瘦了三斤</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/" class="menu-item-link" title="首页">
+                  
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">首页</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/archives" class="menu-item-link" title="归档">
+                  
+                    <i class="fa fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">归档</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/tags" class="menu-item-link" title="标签">
+                  
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/categories" class="menu-item-link" title="分类">
+                  
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/about" class="menu-item-link" title="关于">
+                  
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  
+                  <span class="name">关于</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/friends" class="menu-item-link" title="友情链接">
+                  
+                  <span class="name">友情链接</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="javascript:;" class="menu-item-link" title="更多">
+                  
+                    <i class="fa fa-link"></i>
+                  
+                  <span class="name">更多</span>
+                  <i class="fa fa-chevron-down arrow" aria-hidden="true"></i>
+                </a>
+                <ul class="sub-menu">
+                  
+                  <li>
+                    <a href="/gallery">
+                      
+                      <i class="fa fa-music" style="margin-top: -20px;"></i>
+                      
+                      <span>图库</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="http://baidu.com">
+                      
+                      <i class="fa fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>百度</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+      </ul>
+      
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fa fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <!-- <div class="close" style="overflow: hidden;">
+          <i class="fa fa-close" aria-hidden="true" style="float:right;" @click.self="cancelDialogVisible()"></i>
+        </div> -->
+        <h2>
+          <span>
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <span class="title">本地搜索</span>
+          </span>
+          <i class="fa fa-close close" pointer style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i>
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="请输入关键字"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/zhangcun1113/hexo-theme-bamboo" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+
+    <!-- 当头部导航设置为背景透明的时候  -->
+    
+      <script src="/js/header/index.js" data-pjax></script>
+    
+</header>
+
+    <!-- 需要在上面加载的js -->
+    <script>
+    function loadScript(src, cb) {
+        setTimeout(function () {
+            var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+            var script = document.createElement('script');
+            script.setAttribute('type', 'text/javascript');
+            if (cb) script.onload = cb;
+            script.setAttribute('src', src);
+            HEAD.appendChild(script);
+        });
+    }
+
+    //https://github.com/filamentgroup/loadCSS
+    var loadCSS = function (href, before, media, attributes) {
+        var doc = window.document;
+        var ss = doc.createElement("link");
+        var ref;
+        if (before) {
+            ref = before;
+        }
+        else {
+            var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+            ref = refs[refs.length - 1];
+        }
+        var sheets = doc.styleSheets;
+        if (attributes) {
+            for (var attributeName in attributes) {
+                if (attributes.hasOwnProperty(attributeName)) {
+                    ss.setAttribute(attributeName, attributes[attributeName]);
+                }
+            }
+        }
+        ss.rel = "stylesheet";
+        ss.href = href;
+        ss.media = "only x";
+        function ready(cb) {
+            if (doc.body) {
+                return cb();
+            }
+            setTimeout(function () {
+                ready(cb);
+            });
+        }
+        ready(function () {
+            ref.parentNode.insertBefore(ss, (before ? ref : ref.nextSibling));
+        });
+        var onloadcssdefined = function (cb) {
+            var resolvedHref = ss.href;
+            var i = sheets.length;
+            while (i--) {
+                if (sheets[i].href === resolvedHref) {
+                    return cb();
+                }
+            }
+            setTimeout(function () {
+                onloadcssdefined(cb);
+            });
+        };
+        function loadCB() {
+            if (ss.addEventListener) {
+                ss.removeEventListener("load", loadCB);
+            }
+            ss.media = media || "all";
+        }
+        if (ss.addEventListener) {
+            ss.addEventListener("load", loadCB);
+        }
+        ss.onloadcssdefined = onloadcssdefined;
+        onloadcssdefined(loadCB);
+        return ss;
+    };
+    
+</script>
+ 
+
+<!-- 轮播图所需要的js -->
+<script src="/js/swiper/swiper.min.js"></script>
+<script src="/js/swiper/vue-awesome-swiper.js"></script>
+<script src="/js/swiper/swiper.animate1.0.3.min.js"></script>
+
+
+  <script src="/js/vue-typed-js/index.js"></script>
+
+
+<!-- 首页的公告滚动插件的js需要重新加载 -->
+<script src="/js/vue-seamless-scroll/index.js"></script>
+
+<!-- 打字机效果js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
+
+    <!-- 内容区域 -->
+    <div id="safearea">
+      <main class="main" id="pjax-container" style="margin-top: 0;">
+        
+ <!-- prismjs 代码高亮 -->
+ 
+    
+    <link href="/js/prism/prism-line-numbers.css" rel="stylesheet">
+    
+        <link href="/js/prism/prism.min.css" rel="stylesheet">
+    
+
+    <style>
+        pre[class*="language-"] {
+            overflow-y: hidden;
+        }
+        .line-numbers .line-numbers-rows {
+            border: none;
+        }
+    </style>
+  
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+<!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/10.jpg" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        rsync命令详解
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fa fa-calendar"></i> 发表于：2022-04-29 |
+        </span>
+      
+
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fa fa-file-text-o"></i> 字数统计: 5.7k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fa fa-clock-o"></i> 阅读时长: 25分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fa fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+<div class="row justify-position">
+  <div class="main-content">
+    <article class="post post-detail">
+      
+      <div class="post-content">
+        <p>rsync 简介<br>rsync（remote synchronize）是一个远程数据同步工具，可通过 LAN/WAN 快速同步多台主机之间的文件。也可以使用 rsync 同步本地硬盘中的不同目录。<br>rsync 是用于替代 rcp 的一个工具，rsync 使用所谓的 rsync算法 进行数据同步，这种算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。 您可以参考 How Rsync Works A Practical Overview 进一步了解 rsync 的运作机制。</p>
+<p>rsync 的初始作者是 Andrew Tridgell 和 Paul Mackerras，目前由 <a target="_blank" rel="noopener" href="http://rsync.samba.org/">http://rsync.samba.org</a> 维护。</p>
+<p>rsync 支持大多数的类 Unix 系统，无论是 Linux、Solaris 还是 BSD上 都经过了良好的测试。 CentOS系统默认就安装了 rsync 软件包。 此外，在 windows 平台下也有相应的版本，如 cwrsync 和DeltaCopy 等。<br>rsync 具有如下的基本特性：</p>
+<p>可以镜像保存整个目录树和文件系统</p>
+<p>可以很容易做到保持原来文件的权限、时间、软硬链接等<br>无须特殊权限即可安装</p>
+<p>优化的流程，文件传输效率高</p>
+<p>可以使用 rsh、ssh 方式来传输文件，当然也可以通过直接的 socket 连接</p>
+<p>支持匿名传输，以方便进行网站镜象</p>
+<p>在使用 rsync 进行远程同步时，可以使用两种方式：远程 Shell 方式（建议使用 ssh，用户验证由 ssh 负责）和 C/S 方式（即客户连接远程 rsync 服务器，用户验证由 rsync 服务器负责）。</p>
+<p>无论本地同步目录还是远程同步数据，首次运行时将会把全部文件拷贝一次，以后再运行时将只拷贝有变化的文件（对于新文件）或文件的变化部分（对于原有文件）。<br>本节重点介绍 rsync 客户命令的使用，有关 rsync 服务器的配置和使用请参见下节。</p>
+<p>rsync 在首次复制时没有速度优势，速度不如 tar，因此当数据量很大时您可以考虑先使用 tar 进行首次复制，然后再使用 rsync 进行数据同步。</p>
+<p>镜像、备份和归档</p>
+<p>实施备份的两种情况：</p>
+<p>需保留备份历史归档：在备份时保留历史的备份归档，是为了在系统出现错误后能恢复到从前正确的状态。这可以使用完全备份和增量备份来完成。</p>
+<p>可以使用 tar 命令保存归档文件。</p>
+<p>为了提高备份效率，也可以使用 rsync 结合 tar 来完成。</p>
+<p>无需保留备份历史归档：若无需从历史备份恢复到正确状态，则只备份系统最“新鲜”的状态即可。这可以简单地使用 rsync 同步来完成。此时通常称为镜像。镜像可以分为两种：</p>
+<p>被镜像的目录在各个主机上保持相同的位置。此时一般是为了实施负载均衡而对多个主机进行同步镜像。例如：将主机 A 的 /srv/www 目录同步到主机 B 的 /srv/www 目录等。</p>
+<p>被镜像的目录在各个主机上不保持相同的位置。例如：主机 A 和主机 B 都运行着各自的业务，同时又互为镜像备份。此时主机 A 的 /srv/www 目录同步到主机 B 的 /backups/hosta/www 目录；主机 B 的 /srv/www 目录同步到主机 A 的 /backups/hostb/www 目录等。</p>
+<p>rsync 命令<br>rsync 是一个功能非常强大的工具，其命令也有很多功能选项。rsync 的命令格式为：</p>
+<pre><code>1）本地使用：
+rsync [OPTION...] SRC... [DEST]
+
+2）通过远程 Shell 使用：
+拉: rsync [OPTION...] [USER@]HOST:SRC... [DEST]
+推: rsync [OPTION...] SRC... [USER@]HOST:DEST
+
+3）访问 rsync 服务器:
+拉: rsync [OPTION...] [USER@]HOST::SRC... [DEST]
+推: rsync [OPTION...] SRC... [USER@]HOST::DEST
+拉: rsync [OPTION...] rsync://[USER@]HOST[:PORT]/SRC... [DEST]
+推: rsync [OPTION...] SRC... rsync://[USER@]HOST[:PORT]/DEST
+其中：
+
+SRC: 是要复制的源位置
+DEST: 是复制目标位置
+若本地登录用户与远程主机上的用户一致，可以省略 USER@
+使用远程 shell 同步时，主机名与资源之间使用单个冒号“:”作为分隔符
+使用 rsync 服务器同步时，主机名与资源之间使用两个冒号“::”作为分隔符
+当访问 rsync 服务器时也可以使用 rsync:// URL
+“拉”复制是指从远程主机复制文件到本地主机
+“推”复制是指从本地主机复制文件到远程主机
+当进行“拉”复制时，若指定一个 SRC 且省略 DEST，则只列出资源而不进行复制
+下面列出常用选项：
+
+选项    说明
+-a, ––archive    归档模式，表示以递归方式传输文件，并保持所有文件属性，等价于 -rlptgoD (注意不包括 -H)
+-r, ––recursive    对子目录以递归模式处理
+-l, ––links    保持符号链接文件
+-H, ––hard-links    保持硬链接文件
+-p, ––perms    保持文件权限
+-t, ––times    保持文件时间信息
+-g, ––group    保持文件属组信息
+-o, ––owner    保持文件属主信息 (super-user only)
+-D    保持设备文件和特殊文件 (super-user only)
+-z, ––compress    在传输文件时进行压缩处理
+––exclude=PATTERN    指定排除一个不需要传输的文件匹配模式
+––exclude-from=FILE    从 FILE 中读取排除规则
+––include=PATTERN    指定需要传输的文件匹配模式
+––include-from=FILE    从 FILE 中读取包含规则
+––copy-unsafe-links    拷贝指向SRC路径目录树以外的链接文件
+––safe-links    忽略指向SRC路径目录树以外的链接文件（默认）
+––existing    仅仅更新那些已经存在于接收端的文件，而不备份那些新创建的文件
+––ignore-existing    忽略那些已经存在于接收端的文件，仅备份那些新创建的文件
+-b, ––backup    当有变化时，对目标目录中的旧版文件进行备份
+––backup-dir=DIR    与 -b 结合使用，将备份的文件存到 DIR 目录中
+––link-dest=DIR    当文件未改变时基于 DIR 创建硬链接文件
+––delete    删除那些接收端还有而发送端已经不存在的文件
+––delete-before    接收者在传输之前进行删除操作 (默认)
+––delete-during    接收者在传输过程中进行删除操作
+––delete-after    接收者在传输之后进行删除操作
+––delete-excluded    在接收方同时删除被排除的文件
+-e, ––rsh=COMMAND    指定替代 rsh 的 shell 程序
+––ignore-errors    即使出现 I/O 错误也进行删除
+––partial    保留那些因故没有完全传输的文件，以是加快随后的再次传输
+––progress    在传输时显示传输过程
+-P    等价于 ––partial ––progress
+––delay-updates    将正在更新的文件先保存到一个临时目录（默认为 “.~tmp~”），待传输完毕再更新目标文件
+-v, ––verbose    详细输出模式
+-q, ––quiet    精简输出模式
+-h, ––human-readable    输出文件大小使用易读的单位（如，K，M等）
+-n, ––dry-run    显示哪些文件将被传输
+––list-only    仅仅列出文件而不进行复制
+––rsyncpath=PROGRAM    指定远程服务器上的 rsync 命令所在路径
+––password-file=FILE    从 FILE 中读取口令，以避免在终端上输入口令，通常在 cron 中连接 rsync 服务器时使用
+-4, ––ipv4    使用 IPv4
+-6, ––ipv6    使用 IPv6
+––version    打印版本信息
+––help    显示帮助信息
+若使用普通用户身份运行 rsync 命令，同步后的文件的属主将改变为这个普通用户身份。
+
+若使用超级用户身份运行 rsync 命令，同步后的文件的属主将保持原来的用户身份。
+
+rsync 的基本使用
+在本地磁盘同步数据
+
+# rsync -a --delete /home /backups
+# rsync -a --delete /home/ /backups/home.0
+在指定复制源时，路径是否有最后的 “/” 有不同的含义，例如：
+
+/home ： 表示将整个 /home 目录复制到目标目录
+/home/ ： 表示将 /home 目录中的所有内容复制到目标目录
+使用基于 ssh 的 rsync 远程同步数据
+同步静态主机表文件
+
+# 执行“推”复制同步（centos5 是可解析的远程主机名）
+[root@soho ~]# rsync /etc/hosts centos5:/etc/hosts
+
+# 执行“拉”复制同步（soho 是可解析的远程主机名）
+[root@centos5 ~]# rsync soho:/etc/hosts /etc/hosts
+同步用户的环境文件
+
+# 执行“推”复制同步
+[osmond@soho ~]$ rsync ~/.bash* centos5:
+
+# 执行“拉”复制同步
+[osmond@cnetos5 ~]$ rsync soho:~/.bash* .
+同步站点根目录
+
+# 执行“推”复制同步
+[osmond@soho ~]$ rsync -avz --delete /var/www root@192.168.0.101:/var/www
+
+# 执行“拉”复制同步
+[osmond@cnetos5 ~]$ rsync -avz --delete root@192.168.0.55:/var/www /var/www
+使用基于 ssh 的 rsync 同步数据可以使用 -e ssh 参数，当前的 CentOS 默认指定使用 ssh 作为远程Shell。若您在其他系统上执行 rsync 命令，为确保使用 ssh 作为远程 Shell，请添加 -e ssh 参数。
+
+通常 rsync 命令在后台以 cron 任务形式执行，为了避免从终端上输入口令需要设置 ssh。ssh 的设置方法请参考 安全登录守护进程。
+
+使用 rsync 从远程 rsync 服务器同步数据
+下面以镜像 CentOS 和 Ubuntu 的软件库为例来说明。
+您可以到如下站点查找离自己最近的提供 rsync 服务的镜像站点
+
+CentOS — http://www.centos.org/modules/tinycontent/index.php?id=13
+
+Ubuntu — https://launchpad.net/ubuntu/+archivemirrors
+
+然后执行类似如下命令：
+
+rsync -aqzH --delete --delay-updates \
+rsync://mirror.centos.net.cn/centos /var/www/mirror/centos
+rsync -azH --progress --delete --delay-updates \
+rsync://ubuntu.org.cn/ubuntu /var/www/mirror/ubuntu/
+rsync -azH --progress --delete --delay-updates \
+rsync://ubuntu.org.cn/ubuntu-cn /var/www/mirror/ubuntu-cn/
+为了每天不断更新，可以安排一个 cron 任务：
+
+# crontab -e
+# mirror centos at 0:10AM everyday
+10 0 * * * rsync -aqzH --delete --delay-updates rsync://mirror.centos.net.cn/centos /var/www/mirror/centos/
+# mirror ubuntu at 2:10AM everyday
+10 2 * * * rsync -azH --progress --delete --delay-updates rsync://ubuntu.org.cn/ubuntu /var/www/mirror/ubuntu/
+# mirror ubuntu-cn at 4:10AM everyday
+10 4 * * * rsync -azH --progress --delete --delay-updates rsync://ubuntu.org.cn/ubuntu-cn /var/www/mirror/ubuntu-cn/
+如果您安装了自己的匿名 rsync 服务器请相应地更改 rsync URL。有关如何配置匿名 rsync 服务器的内容请参见下节。
+
+筛选 rsync 的传输目标
+使用 --exclude/--include 选项
+
+可以使用 ––exclude 选项排除源目录中要传输的文件；同样地，也可以使用 ––include 选项指定要传输的文件。
+例如：下面的 rsync 命令将 192.168.0.101 主机上的 /www 目录（不包含 /www/logs 和 /www/conf子目录）复制到本地的 /backup/www/ 。
+
+# rsync -vzrtopg --delete --exclude &quot;logs/&quot; --exclude &quot;conf/&quot; --progress \
+backup@192.168.0.101:/www/ /backup/www/
+又如：下面的 rsync 命令仅复制目录结构而忽略掉目录中的文件。
+
+# rsync -av --include &#39;*/&#39; --exclude &#39;*&#39; \
+backup@192.168.0.101:/www/ /backup/www-tree/
+选项 ––include 和 ––exclude 都不能使用间隔符。例如：
+
+--exclude &quot;logs/&quot; --exclude &quot;conf/&quot;
+不能写成
+
+--exclude &quot;logs/ conf/&quot;
+使用 --exclude-from/--include-from 选项
+当 include/exclude 的规则较复杂时，可以将规则写入规则文件。使用规则文件可以灵活地选择传输哪些文件（include）以及忽略哪些文件（exclude）。
+
+若文件/目录在剔除列表中，则忽略传输
+
+若文件/目录在包含列表中，则传输之
+
+若文件/目录未被提及，也传输之
+
+在 rsync 的命令行中使用 ––exclude-from=FILE 或 ––include-from=FILE 读取规则文件。
+规则文件 FILE 的书写约定：
+
+每行书写一条规则 RULE
+
+以 # 或 ; 开始的行为注释行
+
+包含（include）和排除（exclude）规则的语法如下：
+
+include PATTERN 或简写为 + PATTERN
+
+exclude PATTERN 或简写为 - PATTERN
+
+PATTERN 的书写规则如下：
+
+以 / 开头：匹配被传输的跟路径上的文件或目录
+
+以 / 结尾：匹配目录而非普通文件、链接文件或设备文件
+
+使用通配符
+
+*：匹配非空目录或文件（遇到 / 截止）
+
+**：匹配任何路径（包含 / ）
+
+?：匹配除了 / 的任意单个字符
+
+[：匹配字符集中的任意一个字符，如 [a-z] 或 [[:alpha:]]
+
+可以使用转义字符 \ 将上述通配符还原为字符本身含义
+
+下面给出几个使用规则的例子：
+例1：
+
+# 不传输所有后缀为 .o 的文件
+- *.o
+
+# 不传输传输根目录下名为 foo 的文件或目录
+- /foo
+
+# 不传输名为 foo 的目录
+- foo/
+
+# 不传输 /foo 目录下的名为 bar 的文件或目录
+- /foo/bar
+例2：
+
+# 传输所有目录和C语言源文件并禁止传输其他文件
++ */
++ *.c
+- *
+例3：
+
+# 仅传输 foo 目录和其下的 bar.c 文件
++ foo/
++ foo/bar.c
+- *
+将规则写入规则文件之后，如何在命令行上使用它呢？下面给出一个例子：
+首先将下面的规则存入名为 www-rsync-rules 的文件
+
+# 不传输 logs 目录
+- logs/
+
+# 不传输后缀为 .tmp 的文件
+- *.tmp
+
+# 传输 Apache 虚拟主机文档目录（/*/ 匹配域名）
++ /srv/www/
++ /srv/www/*/
++ /srv/www/*/htdocs/
++ /srv/www/*/htdocs/**
+
+# 传输每个用户的 public_html 目录（/*/ 匹配用户名）
++ /home/
++ /home/*/
++ /home/*/public_html/
++ /home/*/public_html/**
+# 禁止传输其他
+- *
+然后即可使用类似如下的 rsync 命令：
+
+rsync -av --delete --exclude-from=www-rsync-rules / remotehost:/dest/dir
+rsync 应用示例
+使用 rsync 镜像
+
+使用 rsync 对目录做镜像实际上就是做无历史归档的完全备份。下面给出一个镜像远程 Web 站点例子。
+笔者在 dreamhost 上维护了3个 Dokuwiki 站点。为了备份这3个站点笔者使用 rsync 进行镜像。远程站点的目录结构如下：
+
+~
+|-- sinosmond.com
+| `-- dokuwiki
+|-- smartraining.cn
+| `-- dokuwiki
+`-- symfony-project.cn
+`-- dokuwiki
+每个 Dokuwiki 的目录结构如下：
+
+dokuwiki
+|-- bin
+|-- inc
+|-- conf --- 存放配置文件的目录
+| |-- acl.auth.php --- 访问控制配置文件 ★
+| |-- local.php --- 本地配置文件 ★
+| |-- users.auth.php --- 用户口令文件 ★
+| `-- ………………
+|-- data --- 存放数据的目录
+| |-- attic --- 存放WIKI版本信息 ★
+| |-- cache --- 存放数据缓存
+| |-- index --- 存放站内索引
+| |-- locks --- 存放编辑页面时的锁定文件
+| |-- media --- 存放图片等 ★
+| |-- meta --- 存放 meta 以便系统读取这些信息生成页面 ★
+| `-- pages --- 存放 wiki 页面 ★
+`-- lib
+|-- plugins --- 存放插件的目录 ☆
+|-- tpl --- 存放模版的目录 ☆
+`-- ………………
+为了减少网络流量，只同步标有 ★ 的目录或文件。若在站点运行过程中新安装了插件或更换了模板，也应该同步标有 ☆ 的目录。为此编写如下的规则文件 /root/bin/backup/dw-exclude.txt：
+
+- dokuwiki/bin/
+- dokuwiki/inc/
+- dokuwiki/data/cache/
+- dokuwiki/data/locks/
+- dokuwiki/data/index/
++ dokuwiki/conf/acl.auth.php
++ dokuwiki/conf/local.php
++ dokuwiki/conf/users.auth.php
+- dokuwiki/conf/*
++ dokuwiki/lib/plugins/
+
+# 不同步系统默认安装的插件
+- dokuwiki/lib/plugins/acl/
+- dokuwiki/lib/plugins/config/
+- dokuwiki/lib/plugins/importoldchangelog/
+- dokuwiki/lib/plugins/importoldindex/
+- dokuwiki/lib/plugins/info/
+- dokuwiki/lib/plugins/plugin/
+- dokuwiki/lib/plugins/revert/
+- dokuwiki/lib/plugins/usermanager/
+- dokuwiki/lib/plugins/action.php
+- dokuwiki/lib/plugins/admin.php
+- dokuwiki/lib/plugins/syntax.php
++ dokuwiki/lib/tpl
+
+# 不同步系统默认安装的模板
+- dokuwiki/lib/tpl/default/
+- dokuwiki/lib/*
+- dokuwiki/COPYING
+- dokuwiki/doku.php
+- dokuwiki/feed.php
+- dokuwiki/index.php
+- dokuwiki/install*
+- dokuwiki/README
+- dokuwiki/VERSION
+下面是同步脚本 /root/bin/backup/rsync-dw.sh
+
+#!/bin/bash
+#####################################
+# mirror dokuwiki website
+# $1 --- domain (ex: smartraining.cn)
+# $2 --- full or update
+#####################################
+# declare some variable
+RmtUser=osmond
+RmtIP=208.113.163.110
+RmtPath=$1/dokuwiki
+BackupRoot=/backups/$1
+Excludes=&quot;--exclude-from=/root/bin/backup/dw-exclude.txt&quot;
+
+# use rsync for mirror
+if [ &quot;$2&quot; == &quot;full&quot; ]
+then
+
+[ -d /backups/$1 ] || mkdir -p /backups/$1
+excludesfile=&quot;/tmp/first-excludes&quot;
+cat &gt; $&#123;excludesfile&#125; &lt;&lt; EOF
++ dokuwiki/data/cache/_dummy
+- dokuwiki/data/cache/*
++ dokuwiki/data/locks/_dummy
+- dokuwiki/data/locks/*
++ dokuwiki/data/index/_dummy
+- dokuwiki/data/index/*
+EOF
+/usr/bin/rsync -avzP --exclude-from=$&#123;excludesfile&#125; \
+$RmtUser@$RmtIP:$RmtPath $BackupRoot
+
+else
+/usr/bin/rsync -avzP --delete $Excludes \
+$RmtUser@$RmtIP:$RmtPath $BackupRoot
+
+fi
+首次备份可以使用类似如下的命令（为了在本地保留一个完整复本）：
+
+# /root/bin/backup/rsync-dw.sh smartraining.cn full
+# /root/bin/backup/rsync-dw.sh sinosmond.com full
+# /root/bin/backup/rsync-dw.sh symfony-project.cn full
+可以安排 cron 任务以便日后更新：
+
+# crontab -e
+05 1 * * * /root/bin/backup/rsync-dw.sh smartraining.cn
+25 1 * * * /root/bin/backup/rsync-dw.sh sinosmond.com
+45 1 * * * /root/bin/backup/rsync-dw.sh symfony-project.cn
+普通型增量备份
+使用 rsync 可以做增量备份。rsync 提供了 -b ––backup-dir 选项，使用这个选项可以将有变化的文件进行更新同时将其旧版本保存在指定的目录中，从而实现增量备份。 下面是对 /home 进行增量备份的步骤说明：
+
+# 第0次备份
+# 首先复制 /home 目录的内容到备份目录 /backups/daily/home.0，
+# rsync -a /home/ /backups/daily/home.0
+# /backups/daily/home.0 总是同步到最新的状态，可以每隔一段时间（如一周）
+# 对其内容进行打包压缩生成归档文件（完全备份）存在 /backups/archive/。
+
+# 第1次备份（此为核心操作）
+# 将 /home 目录的内容同步到目录 /backups/daily/home.0，
+# 并将有变化的文件的旧版本保存到 /backups/daily/home.1，
+# 若每天执行一次，则目录 /backups/daily/home.1 保存了有变化文件一天前的状态。
+# rsync -a --delete -b --backup-dir=/backups/daily/home.1 /home/ /backups/daily/home.0
+
+# 第2次备份
+# 将备份目录 /backups/daily/home.1 更名为 /backups/daily/home.2
+# mv /backups/daily/home.1 /backups/daily/home.2
+# 执行第1次备份的核心操作
+
+# 第n次备份
+# 将早先的备份目录 /backups/daily/home.n 到 /backups/daily/home.1
+# 依次更名为 /backups/daily/home.(n+1) 到 /backups/daily/home.2
+# 执行第1次备份的核心操作
+下面给出一个增量备份示例脚本。
+
+#!/bin/bash
+#========================
+# 您可以安排 cron 任务执行本脚本
+# &gt; crontab -e
+#
+# daily : 1 1 * * * /path/to/script/rsync-backup.sh
+#========================
+mydate=&quot;`date &#39;+%Y%m%d.%H%M&#39;`&quot;
+
+# Define rmt location
+RmtUser=root
+RmtHost=192.168.0.55
+RmtPath=/home/
+BackupSource=&quot;$&#123;RmtUser&#125;@$&#123;RmtHost&#125;:$&#123;RmtPath&#125;&quot;
+#BackupSource=&quot;/home/&quot;             # 若进行本地备份则用本地路径替换上面的行
+# Define location of backup
+BackupRoot=&quot;/backups/$RmtHost/&quot;
+# BackupRoot=&quot;/backups/localhost/&quot; # 若进行本地备份则用本地路径替换上面的行
+LogFile=&quot;$&#123;BackupRoot&#125;/backup.log&quot;
+ExcludeList=&quot;/root/backup/backup-exclude-list.txt&quot;
+BackupName=&#39;home&#39;
+BackupNum=&quot;7&quot;                      # 指定保留多少个增量备份（适用于每周生成归档文件）
+#BackupNum=&quot;31&quot;                    # 指定保留多少个增量备份（适用于每月生成归档文件）
+
+# 定义函数检查目录 $1 是否存在，若不存在创建之
+checkDir() &#123;
+    if [ ! -d &quot;$&#123;BackupRoot&#125;/$1&quot; ] ; then
+        mkdir -p &quot;$&#123;BackupRoot&#125;/$1&quot;
+    fi
+&#125;
+# 定义函数实现目录滚动
+# $1 -&gt; 备份路径
+# $2 -&gt; 备份名称
+# $3 -&gt; 增量备份的数量
+rotateDir() &#123;
+    for i in `seq $(($3 - 1)) -1 1`
+    do
+        if [ -d &quot;$1/$2.$i&quot; ] ; then
+            /bin/rm -rf &quot;$1/$2.$((i + 1))&quot;
+            mv &quot;$1/$2.$i&quot; &quot;$1/$2.$((i + 1))&quot;
+        fi
+    done
+&#125;
+
+# 调用函数 checkDir ，确保目录存在
+checkDir &quot;archive&quot;
+checkDir &quot;daily&quot;
+
+#======= Backup Begin =================
+# S1: Rotate daily.
+rotateDir &quot;$&#123;BackupRoot&#125;/daily&quot; &quot;$BackupName&quot; &quot;$BackupNum&quot;
+
+checkDir &quot;daily/$&#123;BackupName&#125;.0/&quot;
+checkDir &quot;daily/$&#123;BackupName&#125;.1/&quot;
+
+mv $&#123;LogFile&#125; $&#123;BackupRoot&#125;/daily/$&#123;BackupName&#125;.1/
+
+cat &gt;&gt; $&#123;LogFile&#125; &lt;&lt;_EOF
+===========================================
+    Backup done on: $mydate
+===========================================
+_EOF
+
+# S2: Do the backup and save difference in $&#123;BackupName&#125;.1
+rsync -av --delete \
+    -b --backup-dir=$&#123;BackupRoot&#125;/daily/$&#123;BackupName&#125;.1 \
+    --exclude-from=$&#123;ExcludeList&#125; \
+    $BackupSource $&#123;BackupRoot&#125;/daily/$&#123;BackupName&#125;.0 \
+    1&gt;&gt; $&#123;LogFile&#125; 2&gt;&amp;1
+
+# S3: Create an archive backup every week
+if [ `date +%w` == &quot;0&quot; ] # 每周日做归档
+# if [ `date +%d` == &quot;01&quot; ] # 每月1日做归档
+then
+    tar -cjf $&#123;BackupRoot&#125;/archive/$&#123;BackupName&#125;-$&#123;mydate&#125;.tar.bz2 \
+      -C $&#123;BackupRoot&#125;/daily/$&#123;BackupName&#125;.0 .
+fi
+您可以适当修该上述脚本中变量：
+
+RmtPath=&quot;$1/&quot;
+#BackupSource=&quot;$1/&quot;
+BackupName=&quot;$1&quot;
+然后传递脚本参数备份其他目录，例如要备份 /www 可以使用如下命令：
+
+./rsync-backup.sh /www
+快照型增量备份
+使用 rsync 可以做快照（Snapshot）型增量备份。每一个快照都相当于一个完全备份。其核心思想是：对有变化的文件进行复制；对无变化的文件创建硬链接以减少磁盘占用。
+下面是对 /home 进行快照型增量备份的步骤说明：
+
+# 第0次备份
+# 首先复制 /home 目录的内容到备份目录 /backups/home.0
+# rsync -a /home/ /backups/home.0
+
+# 第1次备份（此为核心操作）
+# 以硬链接形式复制 /backups/home.0 到 /backups/home.1
+# cp -al /backups/home.0 /backups/home.1
+# 将 /home 目录的内容同步到目录 /backups/home.0
+# （rsync 在发现变化的文件时，先删除之，然后在创建该文件）
+# rsync -a --delete /home/ /backups/home.0
+
+# 第2次备份
+# 将备份目录 /backups/home.1 更名为 /backups/home.2
+# mv /backups/home.1 /backups/home.2
+# 执行第1次备份的核心操作
+
+# 第n次备份
+# 将早先的备份目录 /backups/home.n 到 /backups/home.1
+# 依次更名为 /backups/home.(n+1) 到 /backups/home.2
+# 执行第1次备份的核心操作
+rsync 2.5.6 版本之后提供了 ––link-dest 选项，如下两条核心操作命令：
+
+cp -al /backups/home.0 /backups/home.1
+rsync -a --delete /home/ /backups/home.0
+可以简化为如下的一条命令：
+
+rsync -a --delete --link-dest=/backups/home.1 /home/ /backups/home.0
+下面给出一个快照型增量备份示例脚本，该脚本来自http://www.mikerubel.org/computers/rsync_snapshots/contributed/peter_schneider-kamp
+
+#!/bin/bash
+# ----------------------------------------------------------------------
+# mikes handy rotating-filesystem-snapshot utility
+# ----------------------------------------------------------------------
+# RCS info: $Id: make_snapshot.sh,v 1.6 2002/04/06 04:20:00 mrubel Exp $
+# ----------------------------------------------------------------------
+# this needs to be a lot more general, but the basic idea is it makes
+# rotating backup-snapshots of /home whenever called
+# ----------------------------------------------------------------------
+
+# ------------- system commands used by this script --------------------
+ID=&#39;/usr/bin/id&#39;;
+ECHO=&#39;/bin/echo&#39;;
+
+MOUNT=&#39;/bin/mount&#39;;
+RM=&#39;/bin/rm&#39;;
+MV=&#39;/bin/mv&#39;;
+CP=&#39;/bin/cp&#39;;
+TOUCH=&#39;/usr/bin/touch&#39;;
+
+RSYNC=&#39;/usr/bin/rsync&#39;;
+
+# ------------- file locations -----------------------------------------
+
+MOUNT_DEVICE=/dev/hdb1;
+SNAPSHOT_RW=/root/snapshots;
+EXCLUDES=/etc/snapshot_exclude;
+
+# ------------- backup configuration------------------------------------
+
+BACKUP_DIRS=&quot;/etc /home&quot;
+NUM_OF_SNAPSHOTS=3
+BACKUP_INTERVAL=hourly
+
+# ------------- the script itself --------------------------------------
+
+# make sure we&#39;re running as root
+if (( `$ID -u` != 0 )); then &#123; $ECHO &quot;Sorry, must be root. Exiting...&quot;; exit; &#125; fi
+
+echo &quot;Starting snapshot on &quot;`date`
+
+# attempt to remount the RW mount point as RW; else abort
+$MOUNT -o remount,rw $MOUNT_DEVICE $SNAPSHOT_RW ;
+if (( $? )); then
+&#123;
+    $ECHO &quot;snapshot: could not remount $SNAPSHOT_RW readwrite&quot;;
+    exit;
+&#125;
+fi;
+
+# rotating snapshots
+for BACKUP_DIR in $BACKUP_DIRS
+do
+    NUM=$NUM_OF_SNAPSHOTS
+    # step 1: delete the oldest snapshot, if it exists:
+    if [ -d $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_INTERVAL&#125;.$NUM ] ; then \
+    $RM -rf $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_INTERVAL&#125;.$NUM ; \
+    fi ;
+    NUM=$(($NUM-1))
+    # step 2: shift the middle snapshots(s) back by one, if they exist
+    while [[ $NUM -ge 1 ]]
+    do
+        if [ -d $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_INTERVAL&#125;.$NUM ] ; then \
+            $MV $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_INTERVAL&#125;.$NUM $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_IN&#125;
+        fi;
+        NUM=$(($NUM-1))
+    done
+
+    # step 3: make a hard-link-only (except for dirs) copy of the latest snapshot,
+    # if that exists
+    if [ -d $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_INTERVAL&#125;.0 ] ; then \
+        $CP -al $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_INTERVAL&#125;.0 $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_INTERVAL&#125;
+    fi;
+    # step 4: rsync from the system into the latest snapshot (notice that
+    # rsync behaves like cp --remove-destination by default, so the destination
+    # is unlinked first. If it were not so, this would copy over the other
+    # snapshot(s) too!
+    $RSYNC \
+        -va --delete --delete-excluded \
+        --exclude-from=&quot;$EXCLUDES&quot; \
+        $&#123;BACKUP_DIR&#125;/ $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_INTERVAL&#125;.0 ;
+    # step 5: update the mtime of $&#123;BACKUP_INTERVAL&#125;.0 to reflect the snapshot time
+    $TOUCH $&#123;SNAPSHOT_RW&#125;$&#123;BACKUP_DIR&#125;/$&#123;BACKUP_INTERVAL&#125;.0 ;
+done
+
+# now remount the RW snapshot mountpoint as readonly
+
+$MOUNT -o remount,ro $MOUNT_DEVICE $SNAPSHOT_RW ;
+if (( $? )); then
+&#123;
+    $ECHO &quot;snapshot: could not remount $SNAPSHOT_RW readonly&quot;;
+    exit;
+&#125; fi;
+</code></pre>
+
+      </div>
+      <div class="post-tags-categories">
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>张存</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2022/04/29/rsync-ming-ling-xiang-jie/" target="_blank" title="rsync命令详解">https://blog.zhangcun.store/2022/04/29/rsync-ming-ling-xiang-jie/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2022/04/29/rsync-ssh-rsync-yuan-cheng-tong-bu-bei-fen-shu-ju/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div class="title-text">【rsync+ssh】rsync远程同步备份数据</div>
+      </div>
+      
+      <!-- <div class="content">
+        rsync连接远程主机进行同步或备份时有两种途径：1.使用远程shell程序（如ssh或rsh）进行连接2.使用TCP直
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2022/04/29/docker-bu-shu-shi-yong-de-xiao-gong-ju/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div class="title-text">docker部署实用的小工具</div>
+      </div>
+      <!-- <div class="content">
+        1、Portainer 容器页面管理工具，初次访问需要设置密码，浏览器访问端口是9000
+docker run --it
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+      <div id="appDonate" class="post-donate">
+  <div id="donate_board" class="donate_bar center" ref="donate">
+    <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏" @click="showDialogDrawer()"></a>
+  </div>
+  <transition name="fade">
+    <div 
+      class="donate-box-mask"
+      v-cloak 
+      v-if="visible"
+      @click="cancelDialogDrawer()"
+    >
+    </div>
+  </transition>
+  <transition name="bounce">
+    <div class="donate-box" v-cloak v-if="visible">
+      <div class="donate-box_close">
+        <i class="fa fa-times" aria-hidden="true" @click="cancelDialogDrawer" pointer></i>
+      </div>
+      <div class="donate-box_title">
+        <h4>
+          你的赏识是我前进的动力
+        </h4>
+      </div>
+      <div class="donate-box_tab">
+        <div class="Alipay" pointer :class="{'active': tabActive === 'Alipay'}" @click="changeTabActive('Alipay')">
+          支付宝
+        </div>
+        <div class="WeChatpay" pointer :class="{'active': tabActive === 'WeChatpay'}" @click="changeTabActive('WeChatpay')">
+          微信
+        </div>
+      </div>
+      <div class="donate-box_img">
+        <div class="AlipayImg" v-if="tabActive === 'Alipay'">
+          <img src="/medias/zfb.jpg" alt="支付宝打赏" />
+        </div> 
+        <div class="WeChatpayImg" v-if="tabActive === 'WeChatpay'">
+          <img src="/medias/wx.jpg" alt="微信打赏" />
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDonate',
+    data: {
+      visible: false,
+      tabActive: 'Alipay',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        // function getScroll() {
+        //   return {
+        //     left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+        //     top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        //   };
+        // }
+        this.top = $(document).scrollTop() // or getScroll().top
+        // console.log('aa', $('.main-content'));
+        body.style.cssText = 'overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+      changeTabActive(name) {
+        this.tabActive = name;
+      }
+    },
+    created() {}
+  })
+</script>
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        
+          <div class="toc-open-close">本文目录</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+  <!-- js在scripts目录下的的toc.ejs里面 -->
+  
+
+  <script>
+    function openBtnClickFn () {
+      let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+      let open = eval('' || 'true');
+      openOrCloseBtn.click(function() {
+        if (open === true) {
+          $(".toc-aside").css({'width': 0, 'padding': 0});
+          $(".toc-content").css({'width': 0});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+          $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+          open = false;
+        } else {
+          $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+          $(".toc-content").css({'width': '300px'});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+          $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+          open = true;
+        }
+      });
+    };
+    openBtnClickFn();
+    document.addEventListener('pjax:complete', function () {
+      openBtnClickFn();
+    })
+  </script>
+
+
+  
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;" :style="{'background-color': bgColor ? bgColor : 'transparent'}">
+    <transition-group tag="ul" :name="names">
+        <li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+            <img :src="image" class="bg-swiper-img">
+        </li>
+    </transition-group>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#appBgSwiper',
+        data: {
+            names: '' || 'fade' || 'fade', // translate-fade fade
+            mark: 0,
+            img: [],
+            bgColor: '',
+            time: null
+        },
+        methods: {   //添加方法
+            change(i, m) {
+                if (i > m) {
+                    // this.names = 'fade';
+                } else if (i < m) {
+                    // this.names = 'fade';
+                } else {
+                    return;
+                }
+                this.mark = i;
+            },
+            prev() {
+                // this.names = 'fade';
+                this.mark--;
+                if (this.mark === -1) {
+                    this.mark = 3;
+                    return
+                }
+            },
+            next() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            autoPlay() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            play() {
+                let bgImgDelay = '' || '180000'
+                let delay = parseInt(bgImgDelay) || 180000;
+                this.time = setInterval(this.autoPlay, delay);
+            },
+            enter() {
+                clearInterval(this.time);
+            },
+            leave() {
+                this.play();
+            }
+        },
+        created() {
+            this.play()
+        },
+        beforeDestroy() {
+            clearInterval(this.time);
+        },
+        mounted() {
+            let prop = ''|| '';
+            let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://') 
+            if (isImg) {
+                let img = prop.split(',');
+                let configRoot = '/'
+                let arrImg = [];
+                img.forEach(el => {
+                    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+			        var objExp = new RegExp(Expression);
+
+                    if(objExp.test(el)) {
+                        // http or https
+                        arrImg.push(el);
+                    } else {
+                        // 非http or https开头
+                        // 本地文件
+                        let firstStr = el.charAt(0);
+                        if (firstStr == '/') {
+                            el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+                        }
+                        el = configRoot + el;
+                        arrImg.push(el);
+                    }
+                })
+                this.img = arrImg;
+            } else {
+                this.bgColor = prop;
+            }
+        }
+    })
+</script>
+
+<style>
+    .bg-swiper-box {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .bg-swiper-img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+      </main>
+    </div>
+
+    <!-- 页脚 -->
+    
+  
+  <div class="footer bg-color">
+    <div class="footer-main">
+      
+        
+          <div class="link">
+            
+              
+                <a href="/atom.xml" class="social">
+                  
+                    <i class="fa fa-rss" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="mailto:1776803208@qq.com" class="social">
+                  
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a target="_blank" rel="noopener" href="https://github.com/zhangcun1113/hexo-theme-bamboo" class="social">
+                  
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1730241541" class="social">
+                  
+                    <i class="fa fa-qq" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+          </div>
+        
+      
+        
+          <div class="footer-copyright">
+            <p>Copyright © 2001 - 2022 <a href="https://blog.zhangcun.store">zhangcun</a> </p>
+
+          </div>
+        
+      
+        
+          
+            <!-- 不蒜子统计 -->
+            <!-- 不蒜子统计 -->
+<span id="busuanzi_container_site_pv">
+      <i class="fa fa-eye" aria-hidden="true"></i>本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
+</span>
+<span class="post-meta-divider">|</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+      <i class="fa fa-users" aria-hidden="true"></i>本站访客数：<span id="busuanzi_value_site_uv"></span> 人
+</span>
+
+          
+        
+      
+        
+          <div class="footer-custom">
+            
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+
+    <!-- 渲染暗黑按钮 -->
+    
+      <div class="dark">
+  <div class="dark-content">
+    <i class="fa fa-moon-o" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+    
+    <!-- 渲染回到顶部按钮 -->
+    
+      <div class="goTop top-btn-color" pointer>
+  <i class="fa fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+    
+    <!-- 渲染左下角音乐播放器 -->
+    
+      <link rel="stylesheet" href="/js/aplayer/APlayer@1.10.1.min.css">
+<style>
+.aplayer .aplayer-lrc p {
+  
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px !important;
+}
+
+.aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  font-size: 15px;
+  color: #22b1eb;
+}
+
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0px !important;
+}
+
+
+</style>
+<meting-js  
+  class=""
+  server="tencent"
+  type="playlist"
+  id="8062553743"
+  fixed='true'
+  autoplay='true'
+  theme='#22b1eb'
+  loop='all'
+  order='random'
+  preload='auto'
+  volume='0.7'
+  list-folded='true'
+>
+</meting-js>
+
+<!-- <style>
+  #aplayer {
+    position: fixed;
+    left: 0;
+    bottom: 300px;
+  }
+</style> -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    
+
+    <!-- 图片放大 -->
+    
+      <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+    
+
+    <!-- 百度解析 -->
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <!-- 背景彩带 -->
+    
+    
+    <script src="/js/app.js" data-pjax></script>
+    
+    <!-- 文章目录所需js -->
+<link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+
+<script>
+  var headerEl = 'h2, h3, h4',  //headers 
+      content = '.post-detail',//文章容器
+      idArr = {};  //标题数组以确定是否增加索引id
+      //add #id
+  var option = {
+    // Where to render the table of contents.
+    tocSelector: '.toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: content,
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: headerEl,
+    scrollSmooth: true,
+    scrollSmoothOffset: -80,
+    headingsOffset: -($(window).height() * 0.4 - 45),
+    positionFixedSelector: '.toc-main',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  }
+  if ($('.toc').length > 0) {
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    tocbot.init(option);
+    
+  }
+
+
+  document.addEventListener('pjax:send', function () {
+    if ($('.toc').length) {
+      tocbot.destroy();
+    }
+  });
+
+  document.addEventListener('pjax:complete', function () {
+    if ($('.toc').length) {
+      tocbot.init(option);
+    }
+  });
+
+  
+</script>
+
+<style>
+.is-position-fixed {
+  position:sticky !important;
+  top: 74px;
+}
+.toc-main ul {
+  counter-reset: show-list;
+}
+.toc-main ul li::before {
+  content: counter(item)".";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top:0;
+}
+/* .toc > .toc-list {
+  padding-left: 35px;
+}
+.toc>.toc-list li {
+  list-style: decimal;
+}
+.toc-list {
+  padding-left: 25px;
+} */
+</style> 
+
+<!-- 渲染issues标签里的内容 -->
+<script>
+  function loadIssuesJS() {
+    if ($(".post-detail").find(".issues-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/issues/index.js');
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof IssuesAPI == "undefined") {
+      loadIssuesJS();
+    }
+  })
+</script>
+
+<!-- 输入框打字特效 -->
+<!-- 输入框打字特效 -->
+
+  <script src="/js/activate-power-mode.js"></script>
+  <script>
+    POWERMODE.colorful = true;  // 打开随机颜色特效
+    POWERMODE.shake = false;    // 关闭输入框抖动
+    document.body.addEventListener('input', POWERMODE);//监听打字事件
+  </script>
+
+
+<!-- markdown代码一键复制功能 -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.css">
+  <script src="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+  <script src="/js/clipboard/clipboard.min.js"></script>
+  <div id="appCopy">
+  </div>
+  <script data-pjax>
+    var vm = new Vue({
+      el: '#appCopy',
+      data: {
+      },
+      computed: {
+      },
+      mounted() {
+        const that = this;
+        var copy = '复制';
+        /* code */
+        var initCopyCode = function () {
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fa fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+              return trigger.nextElementSibling;
+            }
+          });
+        }
+        initCopyCode();
+        $('.btn-copy').unbind('click').bind('click', function () {
+          doSomething();
+        })
+        $(document).unbind('keypress').bind('keypress', function (e) {
+          if (e.ctrlKey && e.keyCode == 67) {
+            doSomething();
+            // 返回false, 防止重复触发copy事件  
+            // return false;
+          }
+        })
+        //  监听 ctrl + c事件  
+        // $(document).unbind('keypress').bind('keypress', function (e) {
+        //   if (e.ctrlKey && e.keyCode == 67) {
+        //     doSomething();
+        //     // 返回false, 防止重复触发copy事件  
+        //     return false;
+        //   }
+        // })
+
+        // // 鼠标右键的复制事件  
+        // $(document).unbind('copy').bind('copy', function (e) {
+        //   doSomething();
+        // });
+
+        function doSomething() {
+          that.$notify({
+            title: "成功",
+            content: "代码已复制，请遵守相关授权协议。",
+            type: 'success'
+          })
+        }
+      },
+      methods: {
+      },
+      created() { }
+    })
+  </script>
+
+
+<!-- 图片懒加载 -->
+<script src="/js/lazyload/lazyload@1.9.1.js"></script>
+<script data-pjax>
+  $(function () {
+    $("div.lazyload, img.lazyload, a.lazyload").lazyload(
+      {
+        effect: "show",
+        placeholder: "https://img10.360buyimg.com/ddimg/jfs/t1/159345/8/2271/222193/5ff7b36fEe49f5663/a95287c20385127f.gif"    //图片未加载出来时显示的占位图
+      }
+    );
+  });
+</script>
+
+<!-- 卡片滚动动画 -->
+   
+
+<!-- 评论所需js -->
+
+    
+        <script type="text/javascript">
+    var bamboo = {};
+    bamboo.utterance = {};
+    
+    function check_utterance() {
+        let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+        if (isDark) {
+            bamboo.utterance.Theme = 'github-dark';
+        } else {
+            bamboo.utterance.Theme = 'github-light';
+        }
+
+        return document.getElementById("gitment-container");
+    }
+    comment_el = '#gitment-container';
+    load_utterance = function () {
+        if ($(comment_el).length) {
+            // 匿名函数，防止污染全局变量
+            const HEAD = check_utterance();
+            
+            var utterances = document.createElement('script');
+            utterances.type = 'text/javascript';
+            utterances.async = true;
+            utterances.setAttribute('issue-term','pathname')
+            utterances.setAttribute('theme', bamboo.utterance.Theme)
+            utterances.setAttribute('repo','')
+            utterances.crossorigin = 'anonymous';
+            utterances.src = 'https://utteranc.es/client.js';
+            // content 是要插入评论的地方
+            document.getElementById('gitment-container').appendChild(utterances);
+            
+        }
+    }
+
+    function dark_utterance() {
+        const HEAD = check_utterance();
+        if (!HEAD) return;
+        const message = {
+            type: 'set-theme',
+            theme: bamboo.utterance.Theme
+        };
+        const utteranceIframe = document.querySelector('iframe');
+        utteranceIframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+
+    $(document).ready(load_utterance);
+    document.addEventListener('pjax:complete', function () {
+        load_utterance();
+    });
+
+    $('.dark').click(function() {
+        setTimeout(() => {
+            dark_utterance();
+        });
+    })
+    
+</script>
+
+<style>
+    .utterances {
+        max-width: inherit!important;
+    }
+</style>
+    
+
+
+<!-- 鼠标点击特效 -->
+<!-- 爱心点击 -->
+
+	
+		<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
+		<script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+		<script src="/js/cursor/explosion.min.js"></script>
+	
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" data-pjax></script>
+
+
+    <!-- pjax -->
+    
+
+<!-- pjax -->
+
+
+  <script src="/js/pjax@0.2.8/index.js"></script>
+  
+    <!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script>
+      window.ShowLoading = function() {
+        $(".loading-circle").css("display", "block");
+      };
+      window.HideLoading = function() {
+        $(".loading-circle").css("display", "none");
+      }
+    </script>
+  
+	<script>
+    document.addEventListener('pjax:complete', function () {
+      window.HideLoading();
+    })
+    document.addEventListener('pjax:send', function () {
+      window.ShowLoading();
+    })
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+    })
+	</script>
+</div>
+
+  
+
+  <script>
+    var pjax = new Pjax({
+      elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([no-pjax])',   // 拦截正常带链接的 a 标签
+      selectors: ["#pjax-container","title"],                                   // 根据实际需要确认重载区域
+      cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+      timeout: 5000
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+
+    })
+    
+    document.addEventListener('pjax:complete', function () {
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.location.href = e.triggerElement.href;
+    })
+    
+    // 刷新不从顶部开始
+    document.addEventListener("DOMContentLoaded", function () {
+      history.scrollRestoration = 'auto';
+    })
+  </script>
+
+
+
+  </body>
+</html>
