@@ -1238,6 +1238,169 @@
             <span class="post-time">2022-04-26</span>
           </div>
           <div class="post-title">
+            <a class="post-title-link" href="/2022/04/26/nginx-zhong-ru-he-xian-zhi-mou-ge-ip-tong-yi-shi-jian-duan-de-fang-wen-ci-shu-he-bing-fa-shu/">Nginx中如何限制某个IP同一时间段的访问次数和并发数</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/26/nginx-zhong-ru-he-xian-zhi-mou-ge-ip-tong-yi-shi-jian-duan-de-fang-wen-ci-shu-he-bing-fa-shu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            最近一个项目为了防止刷票，需要对nginx  设置能限制某个IP某一时间段的访问次数 具体修改如下：
+
+ 
+
+nginx.conf 配置修改
+
+在 http &#123;
+
+&#125;
+
+里面加上
+
+
+limit_req_zone $bi
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/26/nginx-zhong-ru-he-xian-zhi-mou-ge-ip-tong-yi-shi-jian-duan-de-fang-wen-ci-shu-he-bing-fa-shu/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/26/nginx-zhong-ru-he-xian-zhi-mou-ge-ip-tong-yi-shi-jian-duan-de-fang-wen-ci-shu-he-bing-fa-shu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-26</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/26/mysql-xiu-gai-zui-da-lian-jie-shu-wait-timeout-shi-jian/">mysql修改最大连接数&amp;wait_timeout时间</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/26/mysql-xiu-gai-zui-da-lian-jie-shu-wait-timeout-shi-jian/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            show processlist;
+查看连接数，可以发现有很多连接处于sleep状态，这些其实是暂时没有用的，所以可以kill掉
+
+show variables like &quot;max_connections&quot;;
+查看最大连
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/26/mysql-xiu-gai-zui-da-lian-jie-shu-wait-timeout-shi-jian/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/26/mysql-xiu-gai-zui-da-lian-jie-shu-wait-timeout-shi-jian/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-26</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/26/zabbix-jian-kong-docker-rong-qi/">zabbix监控docker容器</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/26/zabbix-jian-kong-docker-rong-qi/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+             1、环境说明
+ 
+ 由于最近zabbix进行过一次迁移，所以zabbix-server系列采用docker方式安装，参考zabbix官网：https://github.com/zabbix/zabbix-docker。为适应本地环境和需求
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/26/zabbix-jian-kong-docker-rong-qi/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/26/zabbix-jian-kong-docker-rong-qi/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-26</span>
+          </div>
+          <div class="post-title">
             <a class="post-title-link" href="/2022/04/26/zabbix-zi-fa-xian-shi-shi-jian-kong-docker-rong-qi-ji-rong-qi-zhong-ge-ge-fu-wu-de-zhuang-tai-xian-shang-ye-wu-zhan-shi/">zabbix自发现实时监控docker容器及容器中各个服务的状态线上业务展示</a>
           </div>
           <div class="post-meta">
@@ -1268,7 +1431,7 @@
         </div>
         <div class="post-more">
           <a href="/2022/04/26/zabbix-zi-fa-xian-shi-shi-jian-kong-docker-rong-qi-ji-rong-qi-zhong-ge-ge-fu-wu-de-zhuang-tai-xian-shang-ye-wu-zhan-shi/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1281,7 +1444,7 @@
       </div>
     </article>
   
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1320,7 +1483,7 @@
         </div>
         <div class="post-more">
           <a href="/2022/04/26/qi-dong-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1333,7 +1496,7 @@
       </div>
     </article>
   
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1374,7 +1537,7 @@ de
         </div>
         <div class="post-more">
           <a href="/2022/04/26/ubuntu20-geng-huan-ruan-jian-yuan/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1387,7 +1550,7 @@ de
       </div>
     </article>
   
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1428,7 +1591,7 @@ find与|xargs是黄金搭档，-t参数指定目标目录
         </div>
         <div class="post-more">
           <a href="/2022/04/26/find-ming-ling-jie-he-cp-de-shi-yong/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1441,7 +1604,7 @@ find与|xargs是黄金搭档，-t参数指定目标目录
       </div>
     </article>
   
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1481,7 +1644,7 @@ find与|xargs是黄金搭档，-t参数指定目标目录
         </div>
         <div class="post-more">
           <a href="/2022/04/26/mysql-cha-kan-dang-qian-shi-shi-lian-jie-shu/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1494,7 +1657,7 @@ find与|xargs是黄金搭档，-t参数指定目标目录
       </div>
     </article>
   
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1534,7 +1697,7 @@ service docker stop
         </div>
         <div class="post-more">
           <a href="/2022/04/26/dong-tai-xiu-gai-docker-rong-qi-huan-jing-bian-liang-env/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1547,7 +1710,7 @@ service docker stop
       </div>
     </article>
   
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1585,177 +1748,13 @@ jenkins.plugins.publish_over.BapPublisherException: Failed to add SSH key. Messa
         </div>
         <div class="post-more">
           <a href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
           <a href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-26</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/">docker镜像常用操作的基本命令</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            1.拉取/下载镜像
-
-docker pull 镜像名称       （可以从网易云镜像中心获取要下载的镜像）
-
- 
-
-2.查看已经下载的镜像
-
-docker images
-
- 
-
-3.删除本地镜像
-
-docker rmi 镜像标识     
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-25</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/25/linux-she-zhi-history-ming-ling-xian-shi-xing-shu-yi-ji-shi-jian/">Linux设置history命令显示行数以及时间</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/25/linux-she-zhi-history-ming-ling-xian-shi-xing-shu-yi-ji-shi-jian/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            Linux和unix上都提供了history命令，可以查询以前执行的命令历史记录
-但是，这个记录并不包含时间项目
-因此只能看到命令，但是不知道什么时间执行的
-如何让history记录时间呢？  
-
-解决方案 
-注意：本方法只对bash-3.
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/25/linux-she-zhi-history-ming-ling-xian-shi-xing-shu-yi-ji-shi-jian/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/25/linux-she-zhi-history-ming-ling-xian-shi-xing-shu-yi-ji-shi-jian/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-25</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/25/jie-jue-ubuntu-xi-tong-she-zhi-da-bu-kai/">解决Ubuntu系统设置打不开</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/25/jie-jue-ubuntu-xi-tong-she-zhi-da-bu-kai/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            今天把Ubuntu从16.04更新到16.10之后卸载了些软件，之后蛋疼的发现系统设置打不开了，真是欲哭无泪。去网上搜了下发现是我之前由于卸载了iBus导致的，虽然我不懂为什么iBus和Ubuntu之间的关系为什么会如此紧密，但是既然发生了
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/25/jie-jue-ubuntu-xi-tong-she-zhi-da-bu-kai/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/25/jie-jue-ubuntu-xi-tong-she-zhi-da-bu-kai/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         

@@ -6,7 +6,7 @@
   <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
   
   <link href="https://blog.zhangcun.store/"/>
-  <updated>2022-05-17T14:25:13.291Z</updated>
+  <updated>2022-05-17T15:43:40.761Z</updated>
   <id>https://blog.zhangcun.store/</id>
   
   <author>
@@ -15,6 +15,75 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 docker 搭建 openvpn，创建、删除用户证书</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/shi-yong-docker-da-jian-openvpn-chuang-jian-shan-chu-yong-hu-zheng-shu/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/shi-yong-docker-da-jian-openvpn-chuang-jian-shan-chu-yong-hu-zheng-shu/</id>
+    <published>2022-05-17T15:37:06.000Z</published>
+    <updated>2022-05-17T15:43:40.761Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;我自己的配置，服务器：ubuntu16.04 + docker 17.12.0-ce；客户端：win10 + openvpn2.4.5&lt;/p&gt;
+&lt;p&gt;1 在 dockerhub 上搜索 openvpn，&lt;/p&gt;
+&lt;p&gt;2 在 terminal 配置环境变量，Pick a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>docker-compose入门示例：一键部署 Nginx+Tomcat+Mysql</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/docker-compose-ru-men-shi-li-yi-jian-bu-shu-nginx-tomcat-mysql/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/docker-compose-ru-men-shi-li-yi-jian-bu-shu-nginx-tomcat-mysql/</id>
+    <published>2022-05-17T15:23:56.000Z</published>
+    <updated>2022-05-17T15:27:04.060Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;整体环境配置&lt;/p&gt;
+&lt;p&gt;整体环境的配置，如果一个一个 Dockerfile 去写，那么是相当麻烦的，好在 Docker 有一个名为 Docker-Compose 的工具提供，我们可以使用它一次性完成整体环境的配置： &lt;/p&gt;
+&lt;p&gt;首先我们看看</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>alpine中设置时区（Dockerfile版）</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/alpine-zhong-she-zhi-shi-qu-dockerfile-ban/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/alpine-zhong-she-zhi-shi-qu-dockerfile-ban/</id>
+    <published>2022-05-17T15:19:41.000Z</published>
+    <updated>2022-05-17T15:20:06.181Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;FROM alpine:3.12
+ENV TZ Asia/Shanghai
+RUN apk -U upgrade &amp;amp;&amp;amp; apk add tzdata &amp;amp;&amp;amp; cp</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>ubuntu修改pip的官方源为豆瓣源</title>
@@ -415,71 +484,6 @@ http://hub-mirror.c.163.com
         
     <summary type="html">&lt;p&gt;在安装docker时通常是默认安装的系统盘目录/var/lib/docker，而该目录通常是比较小的，一旦镜像过多就可能出现docker无法运行的情况，这时进行docker目录的迁移就可以很好地解决问题。&lt;/p&gt;
 &lt;p&gt;docker目录的迁移其实非常简单，有以下两种方法可以</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>dockerfile和构建缓存</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/dockerfile-he-gou-jian-huan-cun/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/dockerfile-he-gou-jian-huan-cun/</id>
-    <published>2022-05-09T10:39:24.000Z</published>
-    <updated>2022-05-09T10:41:33.175Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;镜像缓存&lt;/p&gt;
-&lt;p&gt;1.镜像缓存：在构建或者下载镜像时候，当镜像层已经存在的时候，直接使用使用缓存， 不需要进行重新构建镜像，如果我们希望在构建镜像时不使用缓存，可以在 docker build 命令中加上 –no-cache 参数。如果我们改变 Dockerfile</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Docker-可视化管理工具总结-推荐使用Portainer</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/docker-ke-shi-hua-guan-li-gong-ju-zong-jie-tui-jian-shi-yong-portainer/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/docker-ke-shi-hua-guan-li-gong-ju-zong-jie-tui-jian-shi-yong-portainer/</id>
-    <published>2022-05-09T09:59:36.000Z</published>
-    <updated>2022-05-09T10:07:49.665Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;对于初学docker的小白，一款好的可视化工具有助于快速掌握docker基本形态和概念，下面针对docker可视化工具做些总结&lt;/p&gt;
-&lt;p&gt;ui-for-docker#&lt;br&gt;UI For Docker是一个使用Docker Remote</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>frp+openvpn+docker实现内网穿透</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/frp-openvpn-docker-shi-xian-nei-wang-chuan-tou/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/frp-openvpn-docker-shi-xian-nei-wang-chuan-tou/</id>
-    <published>2022-05-09T08:59:48.000Z</published>
-    <updated>2022-05-09T09:00:33.082Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;公网服务器上部署frp服务端&lt;br&gt;假设我们的公网服务器的地址anywebsites.f3322.net，ubuntu</summary>
         
       
     

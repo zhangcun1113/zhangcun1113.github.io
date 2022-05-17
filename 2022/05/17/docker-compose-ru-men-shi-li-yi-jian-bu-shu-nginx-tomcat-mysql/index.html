@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>归档 | 又瘦了三斤</title>
+  <title>docker-compose入门示例：一键部署 Nginx+Tomcat+Mysql | 又瘦了三斤</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -613,268 +613,537 @@
     <!-- 内容区域 -->
     <div id="safearea">
       <main class="main" id="pjax-container" style="margin-top: 0;">
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="lazyload archive-header" data-original="https://pic1.zhimg.com/80/v2-1414b3a4b205e19060db18a20d08723a_1440w.jpg?source=1940ef5c" >
-  <div class="archive-header-title">
-    archive
-  </div>
-  <div class="archive-header-desc">
+        
+ <!-- prismjs 代码高亮 -->
+ 
+    
+    <link href="/js/prism/prism-line-numbers.css" rel="stylesheet">
+    
+        <link href="/js/prism/prism.min.css" rel="stylesheet">
+    
+
+    <style>
+        pre[class*="language-"] {
+            overflow-y: hidden;
+        }
+        .line-numbers .line-numbers-rows {
+            border: none;
+        }
+    </style>
   
-  <span class="title" id="archive-header-desc"></span>
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+<!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/12.jpg" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        docker-compose入门示例：一键部署 Nginx+Tomcat+Mysql
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fa fa-calendar"></i> 发表于：2022-05-17 |
+        </span>
+      
+
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fa fa-file-text-o"></i> 字数统计: 936 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fa fa-clock-o"></i> 阅读时长: 3分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fa fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+<div class="row justify-position">
+  <div class="main-content">
+    <article class="post post-detail">
+      
+      <div class="post-content">
+        <p>整体环境配置</p>
+<p>整体环境的配置，如果一个一个 Dockerfile 去写，那么是相当麻烦的，好在 Docker 有一个名为 Docker-Compose 的工具提供，我们可以使用它一次性完成整体环境的配置： </p>
+<p>首先我们看看 docker-compose.yml 配置文件的内容：</p>
+<pre><code>version: &quot;3&quot;
+services:
+  mysql:
+    container_name: mysql
+    image: 192.168.1.30:5000/mysql:5.7                            #从私有仓库拉镜像
+    restart: always                      
+    volumes:
+      - ./mysql/data/:/var/lib/mysql/                             #映射mysql的数据目录到宿主机，保存数据
+      - ./mysql/conf/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf #把mysql的配置文件映射到容器的相应目录
+    ports:
+      - &quot;6033:3306&quot;
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+  nginx:
+    container_name: nginx
+    restart: always
+    image: 192.168.1.30:5000/nginx
+    ports:
+      - 80:80
+      - 443:443
+      - 5050:5050
+      - 4040:4040
+    volumes:
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf            #映射nginx的配置文件到容器里
+      - ./nginx/logs/:/var/log/nginx/
+      - ./nginx/data/:/var/share/nginx/html/                     #映射nginx的网页目录到容器里
+    links:
+      - tomcat:t1                                                #连接 tomcat镜像
+  tomcat:
+    container_name: tomcat
+    restart: always
+    image: 192.168.1.30:5000/tomcat
+    ports:
+      - 8080:8080
+      - 8009:8009
+    volumes:
+      - ./tomcat/conf/server.xml:/usr/local/tomcat/conf/server.xml  #映射 tomcat的配置文件到容器里
+  - ./tomcat/webapps/web:/usr/local/tomcat/webapps/web          #映射一个web服务
+  - ./tomcat/logs/:/usr/local/tomcat/logs/
+links:
+  - mysql:m1                                                    #连接数据库镜像
+  
+</code></pre>
+<p>一共设置了三个 service，分别是 mysql, nginx, tomcat，其中，需要注意的地方是它们的 volumes 以及 links。</p>
+<p>mysql 环境配置</p>
+<p>首先看看最简单的 mysql，它没有设置 links，因为是其他容器来连接它，不需要设置links。但是 mysql 的 volumes 最为重要，如果不设置 volumes 的话，每一次 docker 重启，或者 mysql 的 container 重启，database 数据就会啥都没有了。所以 mysql 的 volumes设置了mysql 产生的 data 文件需要映射到宿主机的./mysql/data 目录下，这个目录可以自己定，mysql 的配置文件从宿主机的./mysql/conf/mysqld.conf 读取，内容可自己配置好。<br>nginx 环境配置 </p>
+<p>它也设置了 volumes和links，这个地方的 links，建立了与 tomcat 容器的连接，因为nginx 负责监听 80 端口，tomcat 负责监听 8080 端口，nginx 接收到动态网页需要由 tomcat 来处理，就要转发到 8080端口。docker 的环境下，nginx 直接将请求转发到 8080，tomcat 是不会转发的。所以用llinks，这里的值为 t1，为名字。<br>在 nginx.conf文件中，要加上如下配置：</p>
+<p>在http端中加</p>
+<pre><code>upstream backend &#123;                 #后台负载均衡容器及端口，本例为一个，t1 tomcat容器的名字
+
+　　server t1:8080;                      
+
+&#125;
+
+在server加   
+
+　　location / &#123;       
+
+　　　　proxy_pass http://backend$request_uri;       
+
+　　　　proxy_set_header  Host $host:$server_port;       
+
+　　　　proxy_set_header  X-Real-IP  $remote_addr;       
+
+　　　　client_max_body_size  10m;   
+
+　　&#125;
+</code></pre>
+<p>tomcat 环境配置</p>
+<pre><code>volumes:
+  - ./tomcat/conf/server.xml:/usr/local/tomcat/conf/server.xml  #映射 tomcat的配置文件到容器里
+  - ./tomcat/webapps/web:/usr/local/tomcat/webapps/web          #映射一个web服务
+</code></pre>
+<p>该server.xml文件提前在宿主机配置好，包括web网页；同时把web映射到容器的相应目录。</p>
+<p>最后执行如下命令：</p>
+<pre><code>docker-compose  up 或者 docker-compose  -f   *.yaml文件名
+</code></pre>
+<p>创建容器。如果没有出现错误，创建成功。</p>
+<p>一般的错误，都是因为挂载目录有错误，有的是写错了，有的是映射到容器中的相应目录不正确，关于容器的目录我总结如下：</p>
+<pre><code>mysql：:/etc/mysql/mysql.conf.d/mysqld.cnf 为配置文件位置
+
+nginx: :/etc/nginx/nginx.conf 为配置文件位置，/var/share/nginx/html/  为nginx的网页目录
+
+tomcat: :/usr/local/tomcat/conf/server.xml  为tomcat的配置文件位置，/usr/local/tomcat/webapps 为网页站点目录
+</code></pre>
+<p>通过以上我们不只可以一键创建一个mysql，nginx, tomcat 的动静分离网站环境，同时我们对 docker-compose 有了一定的了解，使我们轻松完成docker-compose  的入门学习。</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>张存</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2022/05/17/docker-compose-ru-men-shi-li-yi-jian-bu-shu-nginx-tomcat-mysql/" target="_blank" title="docker-compose入门示例：一键部署 Nginx+Tomcat+Mysql">https://blog.zhangcun.store/2022/05/17/docker-compose-ru-men-shi-li-yi-jian-bu-shu-nginx-tomcat-mysql/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2022/05/17/shi-yong-docker-da-jian-openvpn-chuang-jian-shan-chu-yong-hu-zheng-shu/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div class="title-text">使用 docker 搭建 openvpn，创建、删除用户证书</div>
+      </div>
+      
+      <!-- <div class="content">
+        我自己的配置，服务器：ubuntu16.04 + docker 17.12.0-ce；客户端：win10 + openv
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2022/05/17/alpine-zhong-she-zhi-shi-qu-dockerfile-ban/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div class="title-text">alpine中设置时区（Dockerfile版）</div>
+      </div>
+      <!-- <div class="content">
+        FROM alpine:3.12
+ENV TZ Asia/Shanghai
+RUN apk -U upgrade &am
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+      <div id="appDonate" class="post-donate">
+  <div id="donate_board" class="donate_bar center" ref="donate">
+    <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏" @click="showDialogDrawer()"></a>
+  </div>
+  <transition name="fade">
+    <div 
+      class="donate-box-mask"
+      v-cloak 
+      v-if="visible"
+      @click="cancelDialogDrawer()"
+    >
+    </div>
+  </transition>
+  <transition name="bounce">
+    <div class="donate-box" v-cloak v-if="visible">
+      <div class="donate-box_close">
+        <i class="fa fa-times" aria-hidden="true" @click="cancelDialogDrawer" pointer></i>
+      </div>
+      <div class="donate-box_title">
+        <h4>
+          你的赏识是我前进的动力
+        </h4>
+      </div>
+      <div class="donate-box_tab">
+        <div class="Alipay" pointer :class="{'active': tabActive === 'Alipay'}" @click="changeTabActive('Alipay')">
+          支付宝
+        </div>
+        <div class="WeChatpay" pointer :class="{'active': tabActive === 'WeChatpay'}" @click="changeTabActive('WeChatpay')">
+          微信
+        </div>
+      </div>
+      <div class="donate-box_img">
+        <div class="AlipayImg" v-if="tabActive === 'Alipay'">
+          <img src="/medias/zfb.jpg" alt="支付宝打赏" />
+        </div> 
+        <div class="WeChatpayImg" v-if="tabActive === 'WeChatpay'">
+          <img src="/medias/wx.jpg" alt="微信打赏" />
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDonate',
+    data: {
+      visible: false,
+      tabActive: 'Alipay',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        // function getScroll() {
+        //   return {
+        //     left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+        //     top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        //   };
+        // }
+        this.top = $(document).scrollTop() // or getScroll().top
+        // console.log('aa', $('.main-content'));
+        body.style.cssText = 'overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+      changeTabActive(name) {
+        this.tabActive = name;
+      }
+    },
+    created() {}
+  })
+</script>
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        
+          <div class="toc-open-close">本文目录</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+  <!-- js在scripts目录下的的toc.ejs里面 -->
+  
+
   <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
+    function openBtnClickFn () {
+      let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+      let open = eval('' || 'true');
+      openOrCloseBtn.click(function() {
+        if (open === true) {
+          $(".toc-aside").css({'width': 0, 'padding': 0});
+          $(".toc-content").css({'width': 0});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+          $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+          open = false;
+        } else {
+          $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+          $(".toc-content").css({'width': '300px'});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+          $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+          open = true;
+        }
+      });
+    };
+    openBtnClickFn();
+    document.addEventListener('pjax:complete', function () {
+      openBtnClickFn();
+    })
+  </script>
+
+
+  
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;" :style="{'background-color': bgColor ? bgColor : 'transparent'}">
+    <transition-group tag="ul" :name="names">
+        <li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+            <img :src="image" class="bg-swiper-img">
+        </li>
+    </transition-group>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#appBgSwiper',
+        data: {
+            names: '' || 'fade' || 'fade', // translate-fade fade
+            mark: 0,
+            img: [],
+            bgColor: '',
+            time: null
+        },
+        methods: {   //添加方法
+            change(i, m) {
+                if (i > m) {
+                    // this.names = 'fade';
+                } else if (i < m) {
+                    // this.names = 'fade';
+                } else {
+                    return;
+                }
+                this.mark = i;
+            },
+            prev() {
+                // this.names = 'fade';
+                this.mark--;
+                if (this.mark === -1) {
+                    this.mark = 3;
+                    return
+                }
+            },
+            next() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            autoPlay() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            play() {
+                let bgImgDelay = '' || '180000'
+                let delay = parseInt(bgImgDelay) || 180000;
+                this.time = setInterval(this.autoPlay, delay);
+            },
+            enter() {
+                clearInterval(this.time);
+            },
+            leave() {
+                this.play();
+            }
+        },
+        created() {
+            this.play()
+        },
+        beforeDestroy() {
+            clearInterval(this.time);
+        },
+        mounted() {
+            let prop = ''|| '';
+            let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://') 
+            if (isImg) {
+                let img = prop.split(',');
+                let configRoot = '/'
+                let arrImg = [];
+                img.forEach(el => {
+                    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+			        var objExp = new RegExp(Expression);
+
+                    if(objExp.test(el)) {
+                        // http or https
+                        arrImg.push(el);
+                    } else {
+                        // 非http or https开头
+                        // 本地文件
+                        let firstStr = el.charAt(0);
+                        if (firstStr == '/') {
+                            el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+                        }
+                        el = configRoot + el;
+                        arrImg.push(el);
+                    }
+                })
+                this.img = arrImg;
+            } else {
+                this.bgColor = prop;
+            }
+        }
+    })
 </script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
 
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="/">
-  </video>
-  <div class="video-header-title">
-    archive
-  </div>
-  <div class="video-header-desc">
-  
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-      
-  </div>
-  <div class="mask-box"></div>
-</div>
+<style>
+    .bg-swiper-box {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .bg-swiper-img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
-<!-- hash算法 -->
-
-
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
-        
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2022">2022</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/29/zai-portainer-shang-tian-jia-qi-ta-zhu-ji-shang-de-docker/" class="post-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-29</span>
-              </div>
-              <a class="post-title" href="/2022/04/29/zai-portainer-shang-tian-jia-qi-ta-zhu-ji-shang-de-docker/">在Portainer上添加其他主机上的docker</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/29/hexo-bu-shu-chu-xian-cuo-wu-err-error-spawn-failed-jie-jue-fang-shi/" class="post-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-29</span>
-              </div>
-              <a class="post-title" href="/2022/04/29/hexo-bu-shu-chu-xian-cuo-wu-err-error-spawn-failed-jie-jue-fang-shi/">Hexo部署出现错误err: Error: Spawn failed解决方式</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/29/rsync-ssh-rsync-yuan-cheng-tong-bu-bei-fen-shu-ju/" class="post-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-29</span>
-              </div>
-              <a class="post-title" href="/2022/04/29/rsync-ssh-rsync-yuan-cheng-tong-bu-bei-fen-shu-ju/">【rsync+ssh】rsync远程同步备份数据</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/29/rsync-ming-ling-xiang-jie/" class="post-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-29</span>
-              </div>
-              <a class="post-title" href="/2022/04/29/rsync-ming-ling-xiang-jie/">rsync命令详解</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/29/docker-bu-shu-shi-yong-de-xiao-gong-ju/" class="post-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-29</span>
-              </div>
-              <a class="post-title" href="/2022/04/29/docker-bu-shu-shi-yong-de-xiao-gong-ju/">docker部署实用的小工具</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/29/ubuntu-xi-tong-an-zhuang-zhong-wen-zhi-chi-zhong-wen-utf-8/" class="post-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-29</span>
-              </div>
-              <a class="post-title" href="/2022/04/29/ubuntu-xi-tong-an-zhuang-zhong-wen-zhi-chi-zhong-wen-utf-8/">Ubuntu系统安装中文支持，中文UTF-8</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/29/docker-pi-liang-chong-qi-rong-qi-fu-wu/" class="post-img lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-29</span>
-              </div>
-              <a class="post-title" href="/2022/04/29/docker-pi-liang-chong-qi-rong-qi-fu-wu/">docker批量重启容器服务</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/27/ubuntu-qu-dong-nvidia-geng-xin-yu-shuo-ming/" class="post-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-27</span>
-              </div>
-              <a class="post-title" href="/2022/04/27/ubuntu-qu-dong-nvidia-geng-xin-yu-shuo-ming/">Ubuntu驱动nvidia更新与说明</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/27/jie-jue-driver-library-version-mismatch/" class="post-img lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-27</span>
-              </div>
-              <a class="post-title" href="/2022/04/27/jie-jue-driver-library-version-mismatch/">解决Driver/library version mismatch</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/27/docker-shan-chu-zhuang-tai-wei-exited-de-rong-qi/" class="post-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-27</span>
-              </div>
-              <a class="post-title" href="/2022/04/27/docker-shan-chu-zhuang-tai-wei-exited-de-rong-qi/">docker删除状态为Exited的容器</a>
-            </div>
-          </li>
-        
-      </ul>
-    </div>
-  </section>
-  
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/7/">上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/archives/page/9/">9</a><a class="page-number" href="/archives/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/36/">36</a><a class="extend next" rel="next" href="/archives/page/9/">下一页</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/page/7/"
-         class="page-nav-pre">
-         <i class="fa fa-angle-left"></i><span class="ml-5">上一页</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">8 / 36</div>
-    </div>
-    
-      <a href="/archives/page/9/"
-         class="page-nav-next">
-          <span class="mr-5">下一页</span><i class="fa fa-angle-right"></i>
-      </a>
-      
-  </div>
-
-</div>
       </main>
     </div>
 

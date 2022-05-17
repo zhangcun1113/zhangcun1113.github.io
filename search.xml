@@ -4,6 +4,45 @@
   
     
     <entry>
+      <title>使用 docker 搭建 openvpn，创建、删除用户证书</title>
+      <link href="/2022/05/17/shi-yong-docker-da-jian-openvpn-chuang-jian-shan-chu-yong-hu-zheng-shu/"/>
+      <url>/2022/05/17/shi-yong-docker-da-jian-openvpn-chuang-jian-shan-chu-yong-hu-zheng-shu/</url>
+      
+        <content type="html"><![CDATA[<p>我自己的配置，服务器：ubuntu16.04 + docker 17.12.0-ce；客户端：win10 + openvpn2.4.5</p><p>1 在 dockerhub 上搜索 openvpn，</p><p>2 在 terminal 配置环境变量，Pick a name for the $OVPN_DATA data volume container，输入以下命令</p><pre><code>export OVPN_DATA=openvpn_data</code></pre><p>3 创建一个数据卷存储配置文件和证书等文件</p><pre><code>docker volume create --name $OVPN_DATA</code></pre><p>4 Initialize the $OVPN_DATA container that will hold the configuration files and certificates. The container will prompt for a passphrase to protect the private key used by the newly generated certificate authority.</p><p>初始化配置文件到数据卷中。</p><pre><code>//docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM//VPN.SERVERNAME.COM 表示openvpn服务器的ip地址，使用udp协议docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://140.143.167.220</code></pre><p>初始化配置，并保存授权密码</p><pre><code>docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki</code></pre><p>5 开启 openvpn 容器</p><pre><code>docker run -v $OVPN_DATA:/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN --name=openvpn kylemanna/openvpn</code></pre><p>6 生成用户证书，如果需要生成多个用户证书可以执行多次该命令</p><pre><code>//不需要密码，如果需要用户连接时输入密码将最后的 nopass 去掉//docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full CLIENTNAME nopassdocker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full tencent nopass</code></pre><p>说明：安全做法应该加上访问密码，用户连接时输入密码比较安全。防止证书被盗后随意链接。用法如下</p><pre><code>docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full tencentGenerating a 2048 bit RSA private key................................................................................................................................................................................................................+++................................................................................+++writing new private key to &#39;/etc/openvpn/pki/private/tencent.key.XXXXBFnjfh&#39; Enter PEM pass phrase:      //用户连接密码Verifying - Enter PEM pass phrase:-----Using configuration from /usr/share/easy-rsa/openssl-1.0.cnfEnter pass phrase for /etc/openvpn/pki/private/ca.key:      //上一步输入的授权密码Check that the request matches the signatureSignature okThe Subject&#39;s Distinguished Name is as followscommonName            :ASN.1 12:&#39;tencent&#39;Certificate is to be certified until Mar  3 10:00:03 2028 GMT (3650 days)Write out database with 1 new entriesData Base Updated </code></pre><p>7 将用户证书导出到本地文件</p><pre><code>//docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient CLIENTNAME &gt; CLIENTNAME.ovpndocker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient tencent &gt; tencent.ovpn</code></pre><p>8 在 win10 系统上安装 openvpn 客户端软件，将导出的文件 tencent.ovpn 放到 openvpn 的配置文件夹中，默认是 C:\Program Files\OpenVPN\config</p><p>运行 openvpn 客户端软件，链接</p><p>使用 ip 查询网站可以看到，没有连接前 和 连接后的 ip 不一样了！！</p><p>二、删除用户证书</p><p>在某些时候，不想让某些用户使用了。可以删除用户证书。</p><p>例如：删除上面创建的 tencent 用户证书</p><p>1 删除用户证书</p><pre><code>docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa revoke tencentPlease confirm you wish to revoke the certificate with the following subject:subject= commonName                = tencentType the word &#39;yes&#39; to continue, or any other input to abort. Continue with revocation: yesUsing configuration from /usr/share/easy-rsa/openssl-1.0.cnfEnter pass phrase for /etc/openvpn/pki/private/ca.key:Revoking Certificate DC3DA3513871192FE8085FDB56B38F47.Data Base UpdatedIMPORTNT!!!Revocation was successful. You must run gen-crl and upload a CRL to yourinfrastructure in order to prevent the revoked cert from being accepted.</code></pre><p>2 更新证书数据库</p><pre><code>docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa gen-crl update-db</code></pre><p>3 将 openvpn 容器重启</p><pre><code>docker restart openvpn</code></pre><p>至此用户 tencent 的证书删除完毕。可以验证他不能链接了！！！</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>docker-compose入门示例：一键部署 Nginx+Tomcat+Mysql</title>
+      <link href="/2022/05/17/docker-compose-ru-men-shi-li-yi-jian-bu-shu-nginx-tomcat-mysql/"/>
+      <url>/2022/05/17/docker-compose-ru-men-shi-li-yi-jian-bu-shu-nginx-tomcat-mysql/</url>
+      
+        <content type="html"><![CDATA[<p>整体环境配置</p><p>整体环境的配置，如果一个一个 Dockerfile 去写，那么是相当麻烦的，好在 Docker 有一个名为 Docker-Compose 的工具提供，我们可以使用它一次性完成整体环境的配置： </p><p>首先我们看看 docker-compose.yml 配置文件的内容：</p><pre><code>version: &quot;3&quot;services:  mysql:    container_name: mysql    image: 192.168.1.30:5000/mysql:5.7                            #从私有仓库拉镜像    restart: always                          volumes:      - ./mysql/data/:/var/lib/mysql/                             #映射mysql的数据目录到宿主机，保存数据      - ./mysql/conf/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf #把mysql的配置文件映射到容器的相应目录    ports:      - &quot;6033:3306&quot;    environment:      - MYSQL_ROOT_PASSWORD=123456  nginx:    container_name: nginx    restart: always    image: 192.168.1.30:5000/nginx    ports:      - 80:80      - 443:443      - 5050:5050      - 4040:4040    volumes:      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf            #映射nginx的配置文件到容器里      - ./nginx/logs/:/var/log/nginx/      - ./nginx/data/:/var/share/nginx/html/                     #映射nginx的网页目录到容器里    links:      - tomcat:t1                                                #连接 tomcat镜像  tomcat:    container_name: tomcat    restart: always    image: 192.168.1.30:5000/tomcat    ports:      - 8080:8080      - 8009:8009    volumes:      - ./tomcat/conf/server.xml:/usr/local/tomcat/conf/server.xml  #映射 tomcat的配置文件到容器里  - ./tomcat/webapps/web:/usr/local/tomcat/webapps/web          #映射一个web服务  - ./tomcat/logs/:/usr/local/tomcat/logs/links:  - mysql:m1                                                    #连接数据库镜像  </code></pre><p>一共设置了三个 service，分别是 mysql, nginx, tomcat，其中，需要注意的地方是它们的 volumes 以及 links。</p><p>mysql 环境配置</p><p>首先看看最简单的 mysql，它没有设置 links，因为是其他容器来连接它，不需要设置links。但是 mysql 的 volumes 最为重要，如果不设置 volumes 的话，每一次 docker 重启，或者 mysql 的 container 重启，database 数据就会啥都没有了。所以 mysql 的 volumes设置了mysql 产生的 data 文件需要映射到宿主机的./mysql/data 目录下，这个目录可以自己定，mysql 的配置文件从宿主机的./mysql/conf/mysqld.conf 读取，内容可自己配置好。<br>nginx 环境配置 </p><p>它也设置了 volumes和links，这个地方的 links，建立了与 tomcat 容器的连接，因为nginx 负责监听 80 端口，tomcat 负责监听 8080 端口，nginx 接收到动态网页需要由 tomcat 来处理，就要转发到 8080端口。docker 的环境下，nginx 直接将请求转发到 8080，tomcat 是不会转发的。所以用llinks，这里的值为 t1，为名字。<br>在 nginx.conf文件中，要加上如下配置：</p><p>在http端中加</p><pre><code>upstream backend &#123;                 #后台负载均衡容器及端口，本例为一个，t1 tomcat容器的名字　　server t1:8080;                      &#125;在server加   　　location / &#123;       　　　　proxy_pass http://backend$request_uri;       　　　　proxy_set_header  Host $host:$server_port;       　　　　proxy_set_header  X-Real-IP  $remote_addr;       　　　　client_max_body_size  10m;   　　&#125;</code></pre><p>tomcat 环境配置</p><pre><code>volumes:  - ./tomcat/conf/server.xml:/usr/local/tomcat/conf/server.xml  #映射 tomcat的配置文件到容器里  - ./tomcat/webapps/web:/usr/local/tomcat/webapps/web          #映射一个web服务</code></pre><p>该server.xml文件提前在宿主机配置好，包括web网页；同时把web映射到容器的相应目录。</p><p>最后执行如下命令：</p><pre><code>docker-compose  up 或者 docker-compose  -f   *.yaml文件名</code></pre><p>创建容器。如果没有出现错误，创建成功。</p><p>一般的错误，都是因为挂载目录有错误，有的是写错了，有的是映射到容器中的相应目录不正确，关于容器的目录我总结如下：</p><pre><code>mysql：:/etc/mysql/mysql.conf.d/mysqld.cnf 为配置文件位置nginx: :/etc/nginx/nginx.conf 为配置文件位置，/var/share/nginx/html/  为nginx的网页目录tomcat: :/usr/local/tomcat/conf/server.xml  为tomcat的配置文件位置，/usr/local/tomcat/webapps 为网页站点目录</code></pre><p>通过以上我们不只可以一键创建一个mysql，nginx, tomcat 的动静分离网站环境，同时我们对 docker-compose 有了一定的了解，使我们轻松完成docker-compose  的入门学习。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>alpine中设置时区（Dockerfile版）</title>
+      <link href="/2022/05/17/alpine-zhong-she-zhi-shi-qu-dockerfile-ban/"/>
+      <url>/2022/05/17/alpine-zhong-she-zhi-shi-qu-dockerfile-ban/</url>
+      
+        <content type="html"><![CDATA[<pre><code>FROM alpine:3.12ENV TZ Asia/ShanghaiRUN apk -U upgrade &amp;&amp; apk add tzdata &amp;&amp; cp /usr/share/zoneinfo/$&#123;TZ&#125; /etc/localtime &amp;&amp; echo $&#123;TZ&#125; &gt; /etc/timezoneCMD [&quot;date&quot;]</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ubuntu修改pip的官方源为豆瓣源</title>
       <link href="/2022/05/17/ubuntu-xiu-gai-pip-de-guan-fang-yuan-wei-dou-ban-yuan/"/>
       <url>/2022/05/17/ubuntu-xiu-gai-pip-de-guan-fang-yuan-wei-dou-ban-yuan/</url>
