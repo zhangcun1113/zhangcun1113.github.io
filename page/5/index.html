@@ -1238,6 +1238,425 @@
             <span class="post-time">2022-05-06</span>
           </div>
           <div class="post-title">
+            <a class="post-title-link" href="/2022/05/06/docker-zhong-pi-liang-shan-chu-tag-wei-none-de-jing-xiang/">docker中批量删除 tag为none的镜像</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/06/docker-zhong-pi-liang-shan-chu-tag-wei-none-de-jing-xiang/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            添加定时任务，批量删除tag 为none 的镜像  ，释放磁盘空间
+[root@weifeng]:~# crontab -l
+00 */4 * * * /usr/bin/docker rmi `docker images|grep none
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/06/docker-zhong-pi-liang-shan-chu-tag-wei-none-de-jing-xiang/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/06/docker-zhong-pi-liang-shan-chu-tag-wei-none-de-jing-xiang/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-06</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/05/06/dockerfile-she-zhi-shi-qu/">Dockerfile设置时区</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/06/dockerfile-she-zhi-shi-qu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            在docker container 中不能自动识别宿主机的时区，可通过安装tzdata软件包，配置TZ环境变量识别正确时区．
+使用tzdata设置时区dpkg-reconfigure tzdata
+
+# for ubuntu 
+RUN ap
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/06/dockerfile-she-zhi-shi-qu/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/06/dockerfile-she-zhi-shi-qu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-06</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/05/06/acme-sheng-cheng-tong-pei-fu-ssl-zheng-shu/">acme生成通配符ssl证书</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/06/acme-sheng-cheng-tong-pei-fu-ssl-zheng-shu/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            acme生成通配符ssl证书
+1.安装acme
+wget https://get.acme.sh | sh
+安装完成后的目录在/root/.acme.sh/下面.
+直接使用 cd /root/.acme.sh 命令 进入.acme.sh目录
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/06/acme-sheng-cheng-tong-pei-fu-ssl-zheng-shu/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/06/acme-sheng-cheng-tong-pei-fu-ssl-zheng-shu/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-06</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/05/06/ubuntu-an-zhuang-python2-7-he-dui-ying-de-pip2/">ubuntu 安装Python2.7 和对应的pip2</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/06/ubuntu-an-zhuang-python2-7-he-dui-ying-de-pip2/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            1，先看看系统中是不是有python2 和pip2
+
+命令
+
+whereis python2.7    #查看系统中所有Python2.7所在的位置
+whereis pip2    #查看系统中所有pip2所在的位置
+which pytho
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/06/ubuntu-an-zhuang-python2-7-he-dui-ying-de-pip2/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/06/ubuntu-an-zhuang-python2-7-he-dui-ying-de-pip2/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-06</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/05/06/docker-mysql-ke-hu-duan-ssl-connection-error-error-1425f102-ssl-routines-unsupported-protocol/">docker mysql客户端：SSL connection error: error:1425F102:SSL routines: unsupported protocol</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/06/docker-mysql-ke-hu-duan-ssl-connection-error-error-1425f102-ssl-routines-unsupported-protocol/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            docker mysql 客户端报错
+[root@1317c0f71d3d /]# mysql -h192.168.102.11 -P3306 -uroot -p123456                    
+mysql: [Warn
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/06/docker-mysql-ke-hu-duan-ssl-connection-error-error-1425f102-ssl-routines-unsupported-protocol/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/06/docker-mysql-ke-hu-duan-ssl-connection-error-error-1425f102-ssl-routines-unsupported-protocol/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-06</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/05/06/mysql-jin-jie-cha-xun-select-yu-ju-de-gao-ji-yong-fa/">Mysql 进阶查询 (select 语句的高级用法)</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/06/mysql-jin-jie-cha-xun-select-yu-ju-de-gao-ji-yong-fa/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            前言
+
+在mysql 中，可以使用SELECT 语句来查询数据，查询数据是指从数据库中根据需求，使用不同的查询方式来获取不同的数据，是使用频率最高，最重要的操作。
+
+今天给大家带来查询语句的高级语法
+
+一、按关键字排序
+1、使用order 
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/06/mysql-jin-jie-cha-xun-select-yu-ju-de-gao-ji-yong-fa/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/06/mysql-jin-jie-cha-xun-select-yu-ju-de-gao-ji-yong-fa/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-06</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/05/06/elasticsearch-ji-qun-zhuang-tai-cha-xun/">Elasticsearch- 集群状态查询</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/06/elasticsearch-ji-qun-zhuang-tai-cha-xun/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            1. 查看ES集群健康状态
+
+curl -XGET &#39;http://localhost:8200/_cluster/health?pretty&#39;
+结果：
+&#123;
+  &quot;cluster_name&quot; :
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/06/elasticsearch-ji-qun-zhuang-tai-cha-xun/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/06/elasticsearch-ji-qun-zhuang-tai-cha-xun/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-06</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/05/06/ansible-shi-zhan-zhi-nginx-dai-li-tomcat-ji-qun/">ansible 实战 之nginx代理tomcat集群</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/06/ansible-shi-zhan-zhi-nginx-dai-li-tomcat-ji-qun/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            实验环境：
+操作系统 contos7.4
+node 192.168.137.130 ansible
+node1 192.168.137.131 nginx
+node2 192.168.137.132 tomcatA
+node3 192.16
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/06/ansible-shi-zhan-zhi-nginx-dai-li-tomcat-ji-qun/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/06/ansible-shi-zhan-zhi-nginx-dai-li-tomcat-ji-qun/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-06</span>
+          </div>
+          <div class="post-title">
             <a class="post-title-link" href="/2022/05/06/ubuntu-cha-kan-ci-pan-io-qing-kuang/">Ubuntu - 查看磁盘IO情况</a>
           </div>
           <div class="post-meta">
@@ -1339,416 +1758,11 @@ iostat
       </div>
     </article>
   
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/rabbitmq-management-api-returned-status-code-500/">rabbitmq: Management API returned status code 500</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/06/rabbitmq-management-api-returned-status-code-500/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            docker启动rabbitmq，浏览器可以正常访问。
-打开channel与Exchange模块提示信息：
-Management API returned status code 500
-解决办法：
-docker进入容器，修改配置，重启容器
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/06/rabbitmq-management-api-returned-status-code-500/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/06/rabbitmq-management-api-returned-status-code-500/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/openvpn-ke-hu-duan-zheng-shu-he-bing-dao-pei-zhi-wen-jian-zhong/">OpenVPN客户端证书合并到配置文件中</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/06/openvpn-ke-hu-duan-zheng-shu-he-bing-dao-pei-zhi-wen-jian-zhong/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            这里只讲OpenVPN客户端证书合并到配置文件中，避免文件太多，管理不便！
-生成的客户端证书和配置文件，客户端需要的一共有5个文件：ca.crt、client.crt、client.key、ta.key(如果不开启tls-auth，则无需该
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/06/openvpn-ke-hu-duan-zheng-shu-he-bing-dao-pei-zhi-wen-jian-zhong/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/06/openvpn-ke-hu-duan-zheng-shu-he-bing-dao-pei-zhi-wen-jian-zhong/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/docker-bu-shu-rabbitmq-yu-dao-de-wen-ti/">Docker部署rabbitmq遇到的问题</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/06/docker-bu-shu-rabbitmq-yu-dao-de-wen-ti/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            1.背景Docker部署rabbitmq遇到的如下两个问题
-问题一：访问交换机时报错
-Management API returned status code 500
-问题二：访问channel时报错
-Stats in management 
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/06/docker-bu-shu-rabbitmq-yu-dao-de-wen-ti/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/06/docker-bu-shu-rabbitmq-yu-dao-de-wen-ti/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-05</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/05/dockerfile-shi-yong-oraclejdk-chuang-jian-zi-ding-yi-tomcat8-jing-xiang/">Dockerfile使用OracleJDK创建自定义tomcat8镜像</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/05/dockerfile-shi-yong-oraclejdk-chuang-jian-zi-ding-yi-tomcat8-jing-xiang/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            我们默认下载的tomcat镜像是用的openjdk ，但是我们有些项目必须使用oraclejdk 那就不能使用官方的tomcat镜像，只能重新自定义一个镜像
-Dockerfile文件
-
-复制代码
-FROM centos:7
-
-#把java与
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/05/dockerfile-shi-yong-oraclejdk-chuang-jian-zi-ding-yi-tomcat8-jing-xiang/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/05/dockerfile-shi-yong-oraclejdk-chuang-jian-zi-ding-yi-tomcat8-jing-xiang/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-05</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/05/ubuntu20-04-an-zhuang-mysql/">Ubuntu20.04安装Mysql</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/05/ubuntu20-04-an-zhuang-mysql/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            如何在Ubuntu 20.04上安装 Mysql    1. Mysql安装    # update the package index on your server if you’ve not done so recently    su
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/05/ubuntu20-04-an-zhuang-mysql/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/05/ubuntu20-04-an-zhuang-mysql/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-05</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/05/linux-shell-cha-kan-wu-li-cpu-ge-shu-he-shu-luo-ji-cpu-ge-shu/">Linux Shell查看物理CPU个数、核数、逻辑CPU个数</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/05/linux-shell-cha-kan-wu-li-cpu-ge-shu-he-shu-luo-ji-cpu-ge-shu/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            Linux Shell常用命令：
-======================================
-复制代码#总核数 = 物理CPU个数 X 每颗物理CPU的核数#总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/05/linux-shell-cha-kan-wu-li-cpu-ge-shu-he-shu-luo-ji-cpu-ge-shu/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/05/linux-shell-cha-kan-wu-li-cpu-ge-shu-he-shu-luo-ji-cpu-ge-shu/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-05</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/05/set-o-vi/">set -o vi</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/05/set-o-vi/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            大家都知道，shell命令行有两种编辑模式emacs-mode和vi-mode。我个人比较喜欢用vi-mode。这样在敲命令的时候就不用把手移到方向键上去。非常方便。使用 “set -o vi” 启用vi-mode，使用 “set -o e
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/05/set-o-vi/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/05/set-o-vi/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-05</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/05/linux-xi-tong-li-de-jia-mi-ya-suo-fang-shi/">Linux系统里的加密压缩方式</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/05/linux-xi-tong-li-de-jia-mi-ya-suo-fang-shi/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            Linux下zip加密压缩
-zip -q -r -P password zipfile.zip sourcefiles.txt
-password 是加密密码
-zipfile.zip 是生成的压缩文件
-sourcefiles.txt 是被压缩
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/05/linux-xi-tong-li-de-jia-mi-ya-suo-fang-shi/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/05/linux-xi-tong-li-de-jia-mi-ya-suo-fang-shi/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
 </section>
 <!-- 翻页 -->
 
   <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
   </nav> -->
   <div class="page-nav">
     
@@ -1758,7 +1772,7 @@ sourcefiles.txt 是被压缩
       </a>
     
     <div class="page-info">
-        <div class="page-info-text">5 / 35</div>
+        <div class="page-info-text">5 / 36</div>
     </div>
     
       <a href="/page/6/"

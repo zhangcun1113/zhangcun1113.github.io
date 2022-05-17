@@ -6,7 +6,7 @@
   <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
   
   <link href="https://blog.zhangcun.store/"/>
-  <updated>2022-05-13T08:45:58.467Z</updated>
+  <updated>2022-05-17T14:25:13.291Z</updated>
   <id>https://blog.zhangcun.store/</id>
   
   <author>
@@ -15,6 +15,190 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu修改pip的官方源为豆瓣源</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/ubuntu-xiu-gai-pip-de-guan-fang-yuan-wei-dou-ban-yuan/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/ubuntu-xiu-gai-pip-de-guan-fang-yuan-wei-dou-ban-yuan/</id>
+    <published>2022-05-17T14:24:43.000Z</published>
+    <updated>2022-05-17T14:25:13.291Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;ubuntu修改pip的官方源为豆瓣源&lt;br&gt;编辑配置文件, 如果没有就新建一份&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mkdir ~/.pip
+vim ~/.pip/pip.conf
+
+然后编辑pip.conf，输入
+
+[global]
+index-url =</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Too many open files in system</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/too-many-open-files-in-system/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/too-many-open-files-in-system/</id>
+    <published>2022-05-17T14:21:46.000Z</published>
+    <updated>2022-05-17T14:22:17.434Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;如果系统报错 Too many open files in system  检查措施如下：
+
+……1:  :   :   ulimit -n或者ulimit -a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu 18.04更换源</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/ubuntu-18-04-geng-huan-yuan/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/ubuntu-18-04-geng-huan-yuan/</id>
+    <published>2022-05-17T14:19:14.000Z</published>
+    <updated>2022-05-17T14:19:58.028Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;sudo cp /etc/apt/sources.list  /etc/apt/sources.list.bak      //备份&lt;/p&gt;
+&lt;p&gt;sudo vim /etc/apt/sources.list     </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>删除pip安装缓存</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/shan-chu-pip-an-zhuang-huan-cun/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/shan-chu-pip-an-zhuang-huan-cun/</id>
+    <published>2022-05-17T13:58:15.000Z</published>
+    <updated>2022-05-17T13:58:53.761Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;指定–no-cache-dir确保安装不缓存&lt;br&gt;如果pip版本在6.0以上，可以在安装时使用–no-cache-dir参数，查看pip版本&lt;/p&gt;
+&lt;p&gt;pip</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>报错：Zabbix数据库版本与当前需求不匹配</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/bao-cuo-zabbix-shu-ju-ku-ban-ben-yu-dang-qian-xu-qiu-bu-pi-pei/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/bao-cuo-zabbix-shu-ju-ku-ban-ben-yu-dang-qian-xu-qiu-bu-pi-pei/</id>
+    <published>2022-05-17T13:54:29.000Z</published>
+    <updated>2022-05-17T13:55:33.171Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;报错：The Zabbix database version does not match current requirements. Your database version: 5000000. Required version: 4000000. Please</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>zabbix docker-compose 运行配置</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/zabbix-docker-compose-yun-xing-pei-zhi/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/zabbix-docker-compose-yun-xing-pei-zhi/</id>
+    <published>2022-05-17T13:17:53.000Z</published>
+    <updated>2022-05-17T13:18:29.476Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;zabbix docker-compose 运行配置&lt;br&gt;网上看到一堆使用docker-compose 运行zabbix ，都不台好用，或者因为版本问题，以下是一个整理的&lt;br&gt;docker-compose</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>通过docker-compose一键部署zabbix监控平台</title>
+    <link href="https://blog.zhangcun.store/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/"/>
+    <id>https://blog.zhangcun.store/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/</id>
+    <published>2022-05-17T13:08:45.000Z</published>
+    <updated>2022-05-17T13:14:39.336Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;通过docker启动zabbix监控平台已经很方便了，下面我们可以使用一种更加方便的方式启动，那就是docker的compose功能。&lt;/p&gt;
+&lt;p&gt;当然，首先我们还是得需要有一个docker的环境，至于安装方式这里就不说了。在我的博客docker分类中有写安装方式。&lt;/p</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于docker的elasticsearch 7.5.1 搭建</title>
+    <link href="https://blog.zhangcun.store/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/"/>
+    <id>https://blog.zhangcun.store/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/</id>
+    <published>2022-05-13T09:36:27.000Z</published>
+    <updated>2022-05-13T09:55:46.338Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Es数据库（单节点）&lt;/p&gt;
+&lt;p&gt;1.1.1拉取ES docker 镜像&lt;/p&gt;
+&lt;p&gt;docker  pull elasticsearch:7.5.1&lt;/p&gt;
+&lt;p&gt;1.1.2创建ES绑定数据卷&lt;/p&gt;
+&lt;p&gt;mkdir</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Docker容器的重启策略及docker run的--restart选项详解</title>
@@ -296,196 +480,6 @@ http://hub-mirror.c.163.com
         
         
     <summary type="html">&lt;p&gt;公网服务器上部署frp服务端&lt;br&gt;假设我们的公网服务器的地址anywebsites.f3322.net，ubuntu</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用seccomp强化Docker和Kubernetes安全</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/shi-yong-seccomp-qiang-hua-docker-he-kubernetes-an-quan/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/shi-yong-seccomp-qiang-hua-docker-he-kubernetes-an-quan/</id>
-    <published>2022-05-09T08:57:43.000Z</published>
-    <updated>2022-05-09T08:57:51.308Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;使用seccomp强化Docker和Kubernetes安全&lt;br&gt;关于容器安全性存在很多误解-许多人认为容器默认情况下是安全的，不幸的是，这不是事实。有很多工具可以帮助您提高容器的安全性，从而也可以提高Docker和Kubernetes的安全性。强化它们的方法之一是应用适</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux修改文件句柄数及vm.max_map_count、stack size的大小</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/linux-xiu-gai-wen-jian-ju-bing-shu-ji-vm-max-map-count-stack-size-de-da-xiao/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/linux-xiu-gai-wen-jian-ju-bing-shu-ji-vm-max-map-count-stack-size-de-da-xiao/</id>
-    <published>2022-05-09T08:50:51.000Z</published>
-    <updated>2022-05-09T08:50:53.812Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;一、修改文件句柄数
-1.1.查看当前大小
-ulimit -a
-
-1.2.临时修改
-ulimit -n 4096
-
-
-
-1.3.永久修改
-vim</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>docker容器创建指定网关和网段</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/docker-rong-qi-chuang-jian-zhi-ding-wang-guan-he-wang-duan/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/docker-rong-qi-chuang-jian-zhi-ding-wang-guan-he-wang-duan/</id>
-    <published>2022-05-09T08:44:43.000Z</published>
-    <updated>2022-05-09T08:46:55.963Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;docker容器创建指定网关和网段&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;创建bridge时手动指定ip
-
-$ docker network create -d bridge --gateway 172.200.0.1 --subnet 172.200.0.0/16</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>dockerfile ubuntu镜像设置时区错误解决</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/dockerfile-ubuntu-jing-xiang-she-zhi-shi-qu-cuo-wu-jie-jue/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/dockerfile-ubuntu-jing-xiang-she-zhi-shi-qu-cuo-wu-jie-jue/</id>
-    <published>2022-05-09T06:07:00.000Z</published>
-    <updated>2022-05-09T06:07:04.409Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;只针对ubuntu
-之前打镜像时 都是直接在dockerfile 里进行设置 /etc/timezone and</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>docker 容器重启策略</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/docker-rong-qi-chong-qi-ce-lue/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/docker-rong-qi-chong-qi-ce-lue/</id>
-    <published>2022-05-09T06:04:06.000Z</published>
-    <updated>2022-05-09T06:04:11.133Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;--restart=</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Dockerfile 时区设置</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/dockerfile-shi-qu-she-zhi/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/dockerfile-shi-qu-she-zhi/</id>
-    <published>2022-05-09T06:02:40.000Z</published>
-    <updated>2022-05-09T06:02:42.899Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;Dockerfile 时区设置
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN echo &amp;#39;Asia/Shanghai&amp;#39;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu下安装卸载python3.8的过程</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/ubuntu-xia-an-zhuang-xie-zai-python3-8-de-guo-cheng/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/ubuntu-xia-an-zhuang-xie-zai-python3-8-de-guo-cheng/</id>
-    <published>2022-05-09T06:00:26.000Z</published>
-    <updated>2022-05-09T06:00:30.677Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;一、Python 3.8 安装
-在 Ubuntu 16.04 中，python3 的默认版本为 3.5：
-
-
-$ python3 -V
-Python 3.5.2
-本文以在 Ubuntu 16.04 中安装为例，方法同样适用于 Ubuntu 18.04</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>pip install --no-cache-dir ；pip install --no-cache；docker --no-cache</title>
-    <link href="https://blog.zhangcun.store/2022/05/09/pip-install-no-cache-dir-pip-install-no-cache-docker-no-cache/"/>
-    <id>https://blog.zhangcun.store/2022/05/09/pip-install-no-cache-dir-pip-install-no-cache-docker-no-cache/</id>
-    <published>2022-05-09T05:57:07.000Z</published>
-    <updated>2022-05-09T05:57:18.454Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;docker build -t testXXX .</summary>
         
       
     

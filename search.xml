@@ -4,6 +4,110 @@
   
     
     <entry>
+      <title>ubuntu修改pip的官方源为豆瓣源</title>
+      <link href="/2022/05/17/ubuntu-xiu-gai-pip-de-guan-fang-yuan-wei-dou-ban-yuan/"/>
+      <url>/2022/05/17/ubuntu-xiu-gai-pip-de-guan-fang-yuan-wei-dou-ban-yuan/</url>
+      
+        <content type="html"><![CDATA[<p>ubuntu修改pip的官方源为豆瓣源<br>编辑配置文件, 如果没有就新建一份</p><pre><code>mkdir ~/.pipvim ~/.pip/pip.conf然后编辑pip.conf，输入[global]index-url = http://pypi.douban.com/simpletrusted-host = pypi.douban.com</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Too many open files in system</title>
+      <link href="/2022/05/17/too-many-open-files-in-system/"/>
+      <url>/2022/05/17/too-many-open-files-in-system/</url>
+      
+        <content type="html"><![CDATA[<pre><code>如果系统报错 Too many open files in system  检查措施如下：……1:  :   :   ulimit -n或者ulimit -a #查看当前系统允许打开的最大文件数（软限制的文件数，相当于是警告但系统仍然能登陆，还有个硬限制，文件数到了这个值系统就登录不进去了）cat /etc/security/limits.conf   #打开这个文件能看到以下信息，可以修改            *        soft     nofile        1024    #软限制打开文件的最大数            *        hard    nofile        10240   #硬限制打开文件的最大数            *        soft    noproc        1024   #软限制打开进程的最大数            *        hard    noproc        10240   #硬限制打开文件的最大数echo &quot;session    required    /lib/security/pam_limits.so&quot; &gt;&gt; /etc/pam.d/loginecho &quot;session     required      /lib/security/$ISA/pam_limits.so&quot; &gt;&gt; /etc/pam.d/system-auth 主要用这种方法……2.................:  :  :  lsof|wc -l   #检查当前系统已经打开的文件数   cat /proc/sys/fs/file-max   #查看系统设定的最大打开文件数，将两个数比较下，如果已经打开的比规定的多，那就执行下面操作：：：：echo 一倍的数值 &gt;/proc/sys/fs/file-max   这样的话报错就没有了，但只是临时生效，系统重启失效vi /etc/sysctl.conf   #在最后一行添加fs.file-max = 一倍的数值    sysctl -p   #重启生效ulimit -a   #查看各个功能有无限制数据段长度：ulimit -d unlimited    #设置为无限制最大内存大小：ulimit -m unlimited    #设置为无限制堆栈大小：ulimit -s unlimited    #设置为无限制CPU 时间：ulimit -t unlimited    #设置为无限制虚拟内存：ulimit -v unlimited    #设置为无限制</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ubuntu 18.04更换源</title>
+      <link href="/2022/05/17/ubuntu-18-04-geng-huan-yuan/"/>
+      <url>/2022/05/17/ubuntu-18-04-geng-huan-yuan/</url>
+      
+        <content type="html"><![CDATA[<p>sudo cp /etc/apt/sources.list  /etc/apt/sources.list.bak      //备份</p><p>sudo vim /etc/apt/sources.list      //修改</p><pre><code>##阿里云源deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse##中科大源deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiversedeb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiversedeb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiversedeb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiversedeb https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiversedeb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiversedeb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiversedeb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiversedeb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiversedeb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse##清华源deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiversedeb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiversedeb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiversedeb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiversedeb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiversedeb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiversesudo apt-get update</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>删除pip安装缓存</title>
+      <link href="/2022/05/17/shan-chu-pip-an-zhuang-huan-cun/"/>
+      <url>/2022/05/17/shan-chu-pip-an-zhuang-huan-cun/</url>
+      
+        <content type="html"><![CDATA[<p>指定–no-cache-dir确保安装不缓存<br>如果pip版本在6.0以上，可以在安装时使用–no-cache-dir参数，查看pip版本</p><p>pip -V</p><p>pip命令格式：</p><p>如果pip版本在6.0以下，可以使用如下命令升级pip版本</p><p>pip install -U pip</p><p>删除已缓存文件，根据各自不同的操作系统，删除对应目录缓存文件</p><pre><code>Linux and Unix~/.cache/pip # and it respects the XDG_CACHE_HOME directory.OS X~/Library/Caches/pipWindows%LocalAppData%\pip\Cachehttps://stackoverflow.com/questions/9510474/removing-pips-cach</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>报错：Zabbix数据库版本与当前需求不匹配</title>
+      <link href="/2022/05/17/bao-cuo-zabbix-shu-ju-ku-ban-ben-yu-dang-qian-xu-qiu-bu-pi-pei/"/>
+      <url>/2022/05/17/bao-cuo-zabbix-shu-ju-ku-ban-ben-yu-dang-qian-xu-qiu-bu-pi-pei/</url>
+      
+        <content type="html"><![CDATA[<p>报错：The Zabbix database version does not match current requirements. Your database version: 5000000. Required version: 4000000. Please contact your system administrator.</p><p>问题原因：</p><p>当前数据库版本与所需数据库版本不一致；</p><p>解决方法：</p><p>登录数据库，修改数据库版本的mandatory值至4000000</p><pre><code>MariaDB [(none)]&gt; use zabbix;Reading table information for completion of table and column namesYou can turn off this feature to get a quicker startup with -ADatabase changedMariaDB [zabbix]&gt; select version();+----------------+| version()      |+----------------+| 5.5.68-MariaDB |+----------------+1 row in set (0.00 sec)MariaDB [zabbix]&gt; update dbversion set mandatory=4000000;Query OK, 1 row affected (0.00 sec)Rows matched: 1  Changed: 1  Warnings: 0MariaDB [zabbix]&gt; flush privileges;Query OK, 0 rows affected (0.00 sec)MariaDB [zabbix]&gt; select version();</code></pre><p>重启zabbix-server端即可</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>zabbix docker-compose 运行配置</title>
+      <link href="/2022/05/17/zabbix-docker-compose-yun-xing-pei-zhi/"/>
+      <url>/2022/05/17/zabbix-docker-compose-yun-xing-pei-zhi/</url>
+      
+        <content type="html"><![CDATA[<p>zabbix docker-compose 运行配置<br>网上看到一堆使用docker-compose 运行zabbix ，都不台好用，或者因为版本问题，以下是一个整理的<br>docker-compose ，可以参考</p><p>docker-compose<br> <br>    version: “3”</p><pre><code>services:  mysql-server:    image: mysql:5.7.16    container_name: mysql-server    command: --character-set-server=utf8  --interactive_timeout=120 --wait_timeout=120 --log_warnings=1  --collation-server=utf8_bin --sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION --lower_case_table_names=1    restart: always     environment:      - MYSQL_DATABASE=zabbix      - MYSQL_USER=zabbix      - MYSQL_PASSWORD=zabbix      - MYSQL_ROOT_PASSWORD=zabbix    ports:      - 3306:3306    volumes:      - /data/mysql:/var/lib/mysql      - /etc/localtime:/etc/localtime      - /etc/timezone:/etc/timezone  zabbix-server-mysql:    image: zabbix/zabbix-server-mysql:5.0.0    container_name: zabbix-server-mysql    ulimits:       nproc: 65535       nofile:        soft: 20000        hard: 40000    privileged: true    cap_add:      - ALL    restart: always    environment:      - DB_SERVER_HOST=mysql-server      - MYSQL_USER=zabbix      - ZBX_CACHESIZE=4096M      - MYSQL_PASSWORD=zabbix      - MYSQL_DATABASE=zabbix      - MYSQL_ROOT_PASSWORD=zabbix    ports:      - 10051:10051    sysctls:     - net.ipv4.ip_local_port_range=1024 65000     - net.ipv4.conf.all.accept_redirects=0     - net.ipv4.conf.all.secure_redirects=0     - net.ipv4.conf.all.send_redirects=0    links:      - mysql-server:mysql    depends_on:      - mysql-server    volumes:      - /etc/localtime:/etc/localtime      - /etc/timezone:/etc/timezone      - zabbix-server-conf:/etc/zabbix      - zabbix-server-alertscripts:/usr/lib/zabbix/alertscripts</code></pre><p>​    </p><pre><code>  zabbix-web:    image: zabbix/zabbix-web-nginx-mysql:5.0.0    environment:      - DB_SERVER_HOST=mysql-server      - MYSQL_USER=zabbix      - PHP_TZ=Asia/Shanghai      - MYSQL_PASSWORD=zabbix      - MYSQL_DATABASE=zabbix      - MYSQL_ROOT_PASSWORD=zabbix    restart: always    ports:      - 80:8080    volumes:      - /etc/localtime:/etc/localtime      - /etc/timezone:/etc/timezone    links:      - mysql-server:mysql      - zabbix-server-mysql:zabbix-server    depends_on:      - mysql-server      - zabbix-server-mysql  zabbix-agent:    image: zabbix/zabbix-agent    privileged: true    restart: always    cap_add:     - ALL    volumes:     - /etc/timezone:/etc/timezone    environment:      ZBX_SERVER_HOST: zabbix-server-mysql    ports:      - &#39;10050:10050&#39;volumes:  zabbix-server-conf:  zabbix-server-alertscripts:</code></pre><p>启动<br>docker-compose up -d</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>通过docker-compose一键部署zabbix监控平台</title>
+      <link href="/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/"/>
+      <url>/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/</url>
+      
+        <content type="html"><![CDATA[<p>通过docker启动zabbix监控平台已经很方便了，下面我们可以使用一种更加方便的方式启动，那就是docker的compose功能。</p><p>当然，首先我们还是得需要有一个docker的环境，至于安装方式这里就不说了。在我的博客docker分类中有写安装方式。</p><p>下面，我们直接利用docker环境安装compose功能。<br>compose的安装很方式有多种，下面我们使用二进制方式进行安装。</p><p>下载地址为<a href="https://github.com/docker/compose/releases">https://github.com/docker/compose/releases</a></p><p>具体命令为：</p><pre><code>curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-composechmod +x /usr/local/bin/docker-compose</code></pre><p>输入docker-compose可以显示帮助信息表示安装成功。</p><p>下面我们就可以通过编写docker-compose.yml文件来部署服务了。</p><p>首先创建一个yml文件的存放位置，在创建一个yml文件</p><p>mkdir -p /data2/zabbix</p><p>cd /data2/zabbix/</p><p>vim docker-compose.yml</p><p>注意：yml文件的名称是固定的。</p><p>yml文件内容：可以直接复制使用，也可简单修改在使用</p><pre><code>version: &#39;3&#39;services:  zabbix-web-nginx-mysql:    image: zabbix/zabbix-web-nginx-mysql:centos-5.2-latest    restart: always    environment:      - DB_SERVER_HOST=zabbix-mysql      - MYSQL_DATABASE=zabbix      - MYSQL_USER=zabbix      - MYSQL_PASSWORD=zabbix      - MYSQL_ROOT_PASSWORD=123qwe      - ZBX_SERVER_HOST=zabbix-server-mysql    ports:      - 8080:8080    volumes:      - /etc/localtime:/etc/localtime      - /data2/zabbix/fonts/DejaVuSans.ttf:/usr/share/zabbix/assets/fonts/DejaVuSans.ttf    networks:      - zbx_net    depends_on:      - zabbix-server-mysql      - zabbix-mysql  zabbix-mysql:    image: mysql:8.0.23    restart: always    ports:      - 3306:3306    environment:      - MYSQL_DATABASE=zabbix      - MYSQL_USER=zabbix      - MYSQL_PASSWORD=zabbix      - MYSQL_ROOT_PASSWORD=123qwe    command:      - mysqld      - --default-authentication-plugin=mysql_native_password      - --character-set-server=utf8      - --collation-server=utf8_bin    volumes:      - /etc/localtime:/etc/localtime      - /data2/zabbix/db:/var/lib/mysql    networks:      - zbx_net  zabbix-java-gateway:    image: zabbix/zabbix-java-gateway:centos-5.2-latest    restart: always    volumes:      - /etc/localtime:/etc/localtime    networks:      - zbx_net  zabbix-server-mysql:    image: zabbix/zabbix-server-mysql:centos-5.2-latest    restart: always    volumes:      - zabbix-server-vol:/etc/zabbix      - /data2/zabbix/alertscripts:/usr/lib/zabbix/alertscripts      - /etc/localtime:/etc/localtime    ports:      - 10051:10051    environment:      - DB_SERVER_HOST=zabbix-mysql      - MYSQL_DATABASE=zabbix      - MYSQL_USER=zabbix      - MYSQL_PASSWORD=zabbix      - MYSQL_ROOT_PASSWORD=123qwe      - ZBX_JAVAGATEWAY=zabbix-java-gateway      - ZBX_JAVAGATEWAY_ENABLE=true      - ZBX_JAVAGATEWAYPORT=10052    depends_on:      - zabbix-mysql    networks:      - zbx_net  zabbix-agent:    image: zabbix/zabbix-agent:centos-5.2-latest    restart: always    ports:      - 10050:10050    environment:      - ZBX_HOSTNAME=Zabbix server      - ZBX_SERVER_HOST=zabbix-server-mysql      - ZBX_SERVER_PORT=10051    networks:      - zbx_netnetworks:  zbx_net:    driver: bridgevolumes:  zabbix-server-vol:</code></pre><p>创建完yml文件，我们还需要把文件中用到的目录创建出来<br>mkdir alertscripts db fonts</p><p>进入到fonts目录，下载中文语言包文件<br>cd fonts<br>wget <a href="https://dl.cactifans.com/zabbix_docker/msty.ttf">https://dl.cactifans.com/zabbix_docker/msty.ttf</a><br>mv msty.ttf DejaVuSans.ttf</p><p>当准备工作都完成了，接下来我们就运行这个文件，看看是否能一键安装zabbix监控平台<br>运行docker-compose.yml文件的方式：（在yml文件所在目录运行）<br>docker-compose up -d<br>1<br>结果如下：</p><pre><code>Creating network &quot;zabbix_zbx_net&quot; with driver &quot;bridge&quot;Creating volume &quot;zabbix_zabbix-server-vol&quot; with default driverPulling zabbix-web-nginx-mysql (zabbix/zabbix-web-nginx-mysql:centos-5.2-latest)...centos-5.2-latest: Pulling from zabbix/zabbix-web-nginx-mysqlDigest: sha256:9a84a6b86dd748d3f3843efd1f744d1f3e3fc9bd39105470239aae6a81cd51f5Status: Downloaded newer image for zabbix/zabbix-web-nginx-mysql:centos-5.2-latestCreating zabbix_zabbix-mysql_1        ... doneCreating zabbix_zabbix-agent_1        ... doneCreating zabbix_zabbix-java-gateway_1 ... doneCreating zabbix_zabbix-server-mysql_1 ... doneCreating zabbix_zabbix-web-nginx-mysql_1 ... done</code></pre><p>查看容器启动状态命令：</p><p>docker-compose ps</p><p>查看容器启动日志：</p><p>docker-compose logs</p><p>查看容器启动的进程：</p><p>docker-compose top</p><p>容器停止、启动、删除、构建命令：</p><p>docker-compose stop</p><p>docker-compose start</p><p>docker-compose down</p><p>docker-compose up -d</p><p>注：-d参数为后台运行</p><p>接下来可以通过浏览器访问登录页面，默认账号密码：Admin、zabbix</p><p>我们要修改一下配置，将ip更换为容器名称，不然会检测不到</p><p>稍微等待一会，会发现监控成功</p><p>将文字调整为中文页面</p><p>到此可以看到显示页面为中文。<br>部署部分内容到此为止</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>基于docker的elasticsearch 7.5.1 搭建</title>
+      <link href="/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/"/>
+      <url>/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/</url>
+      
+        <content type="html"><![CDATA[<p>Es数据库（单节点）</p><p>1.1.1拉取ES docker 镜像</p><p>docker  pull elasticsearch:7.5.1</p><p>1.1.2创建ES绑定数据卷</p><p>mkdir /root/ES/config/</p><p>mkdir /root/ES/data/</p><p>chmod 777 /root/ES/data</p><p>1.1.3创建ES主节点</p><p>es.yml</p><p>vi /root/ES/config/es.yml</p><p><code>cluster.name: elasticsearch-cluster</code></p><p><code>node.name: master</code></p><p><code>network.host: 0.0.0.0</code></p><p><code>network.publish_host: 192.168.2.124 #本机ip</code></p><p><code>http.port: 9200</code></p><p><code>transport.tcp.port: 9300</code></p><p><code>http.cors.enabled: true</code></p><p><code>http.cors.allow-origin: &quot;*&quot;</code></p><p><code>node.master: true</code></p><p><code>node.data: true</code></p><p><code>discovery.seed_hosts: [&quot;192.168.2.124:9300&quot;] #所有主从节点ip:port</code></p><p><code>cluster.initial_master_nodes: [&quot;master&quot;]</code></p><p>1.1.4 ES启动命令</p><p><code>docker run -e ES_JAVA_OPTS=&quot;-Xms256m -Xmx256m&quot; -d -p 9200:9200 -p 9300:9300  -v /root/ES/config/es.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v /root/ES/data:/usr/share/elasticsearch/data  --name ES 2bd69c322e98</code></p><p>1.1.5 验证安装成功</p><p>登录<a href="http://192.168.2.124:9200，若正常登录则证明es安装成功">http://192.168.2.124:9200，若正常登录则证明es安装成功</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker容器的重启策略及docker run的--restart选项详解</title>
       <link href="/2022/05/13/docker-rong-qi-de-chong-qi-ce-lue-ji-docker-run-de-restart-xuan-xiang-xiang-jie/"/>
       <url>/2022/05/13/docker-rong-qi-de-chong-qi-ce-lue-ji-docker-run-de-restart-xuan-xiang-xiang-jie/</url>
@@ -199,7 +303,7 @@
     
     
     <entry>
-      <title>dockerfile ubuntu镜像设置时区错误解决</title>
+      <title>dockerfile ubuntu镜像设置时区错误解决（ubuntu18.04）</title>
       <link href="/2022/05/09/dockerfile-ubuntu-jing-xiang-she-zhi-shi-qu-cuo-wu-jie-jue/"/>
       <url>/2022/05/09/dockerfile-ubuntu-jing-xiang-she-zhi-shi-qu-cuo-wu-jie-jue/</url>
       
