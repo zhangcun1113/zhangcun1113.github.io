@@ -4,6 +4,110 @@
   
     
     <entry>
+      <title>docker-compose 部署 jenkins</title>
+      <link href="/2022/05/19/docker-compose-bu-shu-jenkins/"/>
+      <url>/2022/05/19/docker-compose-bu-shu-jenkins/</url>
+      
+        <content type="html"><![CDATA[<pre><code>一. docker-compose.yamlversion: &#39;3&#39;services:  jenkins:    image: &#39;jenkinsci/blueocean&#39;    container_name: jenkins    restart: always    ports:      - &#39;8099:8080&#39;      - &#39;50000:50000&#39;    volumes:      - &#39;/var/jenkins_home:/var/jenkins_home&#39;二. 命令同目录下执行docker-compose up -d三. 问题3.1 jenkinsci/blueocean与jenkins/jenkins区别</code></pre><p>   jenkinsci/blueocean image(来自 the Docker Hub repository)。 该镜像包含当前的长期支持 (LTS) 的Jenkins版本 （可以投入使用） ，捆绑了所有Blue Ocean插件和功能。这意味着你不需要单独安装Blue Ocean插件。（推荐）</p><pre><code>jenkins/jenkins 只包含基础的镜像，需要自己手动去安装插件，可理解为基础版本。3.2 权限问题/var/jenkins_home 没权限执行如下指令，对宿主机目录进行授权chown -R 1000:1000 /var/jenkins_home (或者自定义一个路径)3.3 初始化账户密码在上面目录中寻找/secrets/initialAdminPassword文件，查看其中密码即可</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>禁止用户使用 sudo su 命令进入root 模式</title>
+      <link href="/2022/05/19/jin-zhi-yong-hu-shi-yong-sudo-su-ming-ling-jin-ru-root-mo-shi/"/>
+      <url>/2022/05/19/jin-zhi-yong-hu-shi-yong-sudo-su-ming-ling-jin-ru-root-mo-shi/</url>
+      
+        <content type="html"><![CDATA[<pre><code>1. 修改 /etc/sudoers 的权限, 用来写入文件# chmod 777 /etc/sudoers2. 修改sudo 可以执行的命令vim /etc/sudoers  # 打开 sudo 控制文件apuser ALL=(ALL:ALL) ALL,!/bin/su   # 在文件结尾, 追加此内容:wq # 保存并退出! 取反的意思追加的内容意思就是所有用户, 所有组都不允许使用 /bin/su 命令如果想要普通用户, 使用指定的命令就直接使用 &quot;,&quot; 分割 在 &quot;!/bin/su&quot; 后面追加即可如果不想让普通用户使用, 只需要在指定命令的开头写入 ! 取反即可写入命令时必须写绝对路径3. 将文件的权限修改回来# chmod 0440 /etc/sudoers</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ubuntu远程利用邮箱客户端发送邮件</title>
+      <link href="/2022/05/19/ubuntu-yuan-cheng-li-yong-you-xiang-ke-hu-duan-fa-song-you-jian/"/>
+      <url>/2022/05/19/ubuntu-yuan-cheng-li-yong-you-xiang-ke-hu-duan-fa-song-you-jian/</url>
+      
+        <content type="html"><![CDATA[<pre><code>添加软件源并安装部分软件库缺失这个软件，阿里云的库里面有，添加源 sudo vim /etc/apt/sources.list # 打开源地址列表 deb http://cz.archive.ubuntu.com/ubuntu xenial main universe # 在文件末端添加此行，添加阿里云软件源 sudo apt update # 更新库 sudo apt install heirloom-mailx -y # 安装heirloom-mailx  配置vim /etc/s-nail.rc  # 在最后加上：set from=&quot;xxxxx@163.com&quot; #发件地址set smtp=&quot;smtp.163.com&quot; #smtp服务器set smtp-auth-user=&quot;xxxxxx@163.com&quot; #登录发件地址set smtp-auth-password=&quot;xxxx&quot; #授权码set smtp-auth=login #登录方式，默认是login，也可以改成CRAM-MD5或PLAIN方式常用的设置n：不读入设置文件(本系统中是/etc/s-nail.rc)（这个文件允许用户使用外部邮件传输代理而不是使用系统自带的sendmail发送邮件）。s：设置邮件的主题信息。c：使用一个抄送列表。b：使用一个密送列表。echo &quot;内容&quot;|s-nail -s &quot;主题&quot; xxxx@163.com,xxxx@outlook.com #多个邮箱用逗号隔开#或者：s-nail -s &quot;邮件主题&quot; xxx@163.com &lt; result.txtps:加参数v可以看到mail输出的详细信息s-nail -vs &quot;邮件主题&quot; xxx@163.com &lt; result.txt#发送带附件邮件s-nail -a 附件 -s &quot;主题&quot; 收件地址 &lt; 文件(邮件正文.txt)s-nail -a /xxx.tar.gz -s &quot;主题&quot; xxx@163.com &lt; ./xxx.txt#shell 当编辑器,编辑完内容后按Ctrl-D结束s-nail -s &#39;主题‘ xxx@163.com</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux限制普通用户命令,sudo 限制普通用户权限(示例代码)</title>
+      <link href="/2022/05/19/linux-xian-zhi-pu-tong-yong-hu-ming-ling-sudo-xian-zhi-pu-tong-yong-hu-quan-xian-shi-li-dai-ma/"/>
+      <url>/2022/05/19/linux-xian-zhi-pu-tong-yong-hu-ming-ling-sudo-xian-zhi-pu-tong-yong-hu-quan-xian-shi-li-dai-ma/</url>
+      
+        <content type="html"><![CDATA[<pre><code>限制用户sudo所能执行的命令linux是多用户多任务的分时操作系统,共享该系统的用户往往不只一个。但由于root账户密码的敏感性和root账号的无限制权限, 有必要通过useradd创建一些普通用户, 只让他们拥有不完全的权限; 如有必要，再来申请执行一些root权限的指令。sudo就是来解决这个需求的。sudo命令的执行流程是: 当前用户转换到root, 然后以root身份执行命令, 执行完成后, 直接退回到当前用户.需要注意的是: 执行sudo时输入的密码, 是当前用户的密码, 并非root密码.赋予用户sudo操作的权限[[email protected] ~]# visudo#在99行下面添加以下内容zhang ALL=(ALL) ALL#如果是命令使用下面的方式：zhang ALL=(ALL) /bin/touch(多个权限用“，”分开，ALL所有权限，NOPASSWD: ALL免密码)注：一般常用sudo命令来临时获得root权限执行一些特权命令。这很方便，但是也有一个问题： 普通用户可以通过sudo命令完成用户的增删和密码的更改，甚至是对root用户的密码更改！！！如：[email protected]$:sudo passwd rootInput the new UNIX pass word:这样就可以直接越过root直接修改root的密码。这是非常危险的。解决办法1、 groupadd admin 创建一个admin用户组，后边在设置权限时会用到2、usermod -a -G admin [用户] 将用户添加到admin组3、在这里可以通过 /etc/sudoers 文件限制$:sudo visudo注意，这命令在最后修改sudoers文件中，也要加以限制，否则还可以通过这个命令恢复。在这个文件中修改默认的以下两行：%admin ALL=(ALL) ALL%sudo ALL=(ALL) ALL为以下：%admin ALL=/usr/sbin/,/sbin/,/usr/bin/,!/usr/bin/passwd,!/usr/sbin/visudo,!/usr/sbin/useradd,!/usr/sbin/userdel%sudo ALL=/usr/sbin/,/sbin/,/usr/bin/,!/usr/bin/passwd,!/usr/sbin/visudo,!/usr/sbin/useradd,!/usr/sbin/userdel</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vim的补充及文件输入输出管理</title>
+      <link href="/2022/05/19/vim-de-bu-chong-ji-wen-jian-shu-ru-shu-chu-guan-li/"/>
+      <url>/2022/05/19/vim-de-bu-chong-ji-wen-jian-shu-ru-shu-chu-guan-li/</url>
+      
+        <content type="html"><![CDATA[<pre><code>一、vim的功能补充  1.可视化操作      a、在vim中不能使用鼠标框选，若要操作某一区域，需要进入可视化模式（ctrl+v），按上|下|左|右操作即可      b、可视化模式下批量添加字符            将光标停在所要操作的行的第1列---&gt;移动光标选择要添加字符的列---&gt;“I”进入插入模式---&gt;编辑要插入的字符             ---&gt;&quot;ESC&quot;退出即可添加成功                               2.vim中字符的替换        %s/word1/word2/g           ##全文将word1替换成word2        2，15s/word1/word2/g    ##在2-15行之间将word1替换成word2          g                                       ##全文替换，没有g表示只替换每行的第一个         例：将1-10行中的bin全部替换成hello，使用1，10s/bin/hello/g，更改前如下：                                     更改后如下：                      3.vim中字符的查找          /关键字                  ##全文匹配关键字                          n                       ##向下匹配关键字               N                      ##向上匹配关键字              例：匹配关键字：/sbin                       4.vim中光标的移动               G                      ##快速移动到最后一行             ：n                     ##快速移动到第n行               gg                     ##快速移动到第一行  5.vim中同时编辑多个文件             ：sp filename           ##同一vim下打开新文件             ：ctrl+w  上            ##光标进入上面窗口编辑             ：ctrl+w  下            ##光标进入下面窗口编辑                           6.插入模式             i                     ##在光标所在位置插入字符             I                     ##在光标所在行行首插入字符            o                     ##在光标所在行的下一行插入字符            O                     ##在光标所在行的上一行插入字符            s                     ##删除光标所在字符并插入字符            S                     ##删除光标所在行并插入字符            a                     ##在光标所在字符的下一个字符处插入字符            A                     ##在光标所在行行尾插入字符  7.退出模式          ：q                    ##对文件不做任何操作，退出          ：q！                  ##对文件内容有操作，但不保存退出          ：wq                   ##对文件保存并退出          ：wq！                 ##强制对文件保存退出，只针对root用户或文件所有人生效         ：w filename           ##相当于另存新件        ：ZZ                   ##对文件有操作，保存退出；对文件没有操作，直接退出二、文件输入输出管理  1.输入输出的定义        输入：用鼠标、键盘等硬件在系统中录入的字符        输出：系统接受到功能字符，经过进程处理产生的字符       注意：系统输出结果有两种：编号1的正确输出和编号2的错误输出，输出结果被系统默认输出到字符设备  2.如何管理输出       a、非交互式多行录入          例如运行程序，自动更改密码                            b、重定向输出                &gt;            ##重定向正确输出              2&gt;           ##重定向错误输出              &amp;&gt;           ##重定向所有输出             2&gt;&amp;1        #把错误输出转换为正确输出                              c、追加           注意：重定向会覆盖原文件，若在原文件后追加，使用以下命令             &gt;&gt;           ##追加正确输出            2&gt;&gt;         ##追加错误输出            &amp;&gt;&gt;        ##追加所有输出       d、管道命令            管道符 |          ##只有编号为1的输出（即正确输出）可通过管道            注意：管道符将输入变为输出，但不会保存！如需要保存，使用以下命令           输出结果  |   tee filename              </code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux禁止普通用户使用某些命令</title>
+      <link href="/2022/05/18/linux-jin-zhi-pu-tong-yong-hu-shi-yong-mou-xie-ming-ling/"/>
+      <url>/2022/05/18/linux-jin-zhi-pu-tong-yong-hu-shi-yong-mou-xie-ming-ling/</url>
+      
+        <content type="html"><![CDATA[<p>1.例如xiaowei这个普通用户禁止使用rm命令怎么实现。</p><p>默认情况下普通用户都是有rm命令权限的，我看到这个第一也是想到了利用visudo来做，但是没有实现，且这个用户是已经存在的用户，尝试一会儿没有实现。后面又想到了setfacl这个命令，实现过程如下：</p><p>首先在CentOS7中/bin 目录是/usr/bin的快捷方式，这里设置一个就可以了</p><pre><code>①找到rm命令的位置[root@db01 ~]# which rmalias rm=&#39;rm -i&#39;    /usr/bin/rm②设置特殊权限[root@db01 ~]# setfacl -m u:xiaowei:r /usr/bin/rm ③用普通用户xiaowei登录测试，rm命令已经不能使用了[root@db01 ~]# su - xiaowei Last login: Tue Jan 26 19:10:09 CST 2021 from 10.0.0.1 on pts/2 [xiaowei@db01 ~]$ touch a.txt[xiaowei@db01 ~]$ rm a.txt -bash: /bin/rm: Permission denied [xiaowei@db01 ~]$ \rm a.txt -bash: /bin/rm: Permission denied另外假设要排除的命令很多，这种方法有点不适用，visudo应该能实现，后续再补上。</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>docker-compose运行elasticsearch+elastichd</title>
+      <link href="/2022/05/18/docker-compose-yun-xing-elasticsearch-elastichd/"/>
+      <url>/2022/05/18/docker-compose-yun-xing-elasticsearch-elastichd/</url>
+      
+        <content type="html"><![CDATA[<pre><code>ersion: &#39;3&#39;ervices: elasticsearch:   image: elasticsearch:7.5.1   container_name: elasticsearch   networks:   - net-es   volumes:   - ./data/:/usr/share/elasticsearch/data　　   #这里将elasticsearch的数据文件映射本地，以保证下次如果删除了容器还有数据   environment:   - discovery.type=single-node   ports:   - &quot;9200:9200&quot; elastichd:   image: containerize/elastichd:latest   container_name: elasticsearch-hd   networks:   - net-es   ports:     - &quot;9800:9800&quot;   depends_on:     - &quot;elasticsearch&quot;   links:     - &quot;elasticsearch:demo&quot;这里要注意，es和eshd要在相同网络才能被linksetworks: net-es:   external: false</code></pre><p>安装ik分词器</p><pre><code>./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.5.1/elasticsearch-analysis-ik-7.5.1.zip</code></pre><p>查看容器ip</p><pre><code>docker inspect elasticsearch | grep IPAddress</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mysqldump 导出提示Couldn&#39;t execute SELECT COLUMN_NAME...</title>
+      <link href="/2022/05/18/mysqldump-dao-chu-ti-shi-couldn-t-execute-select-column-name/"/>
+      <url>/2022/05/18/mysqldump-dao-chu-ti-shi-couldn-t-execute-select-column-name/</url>
+      
+        <content type="html"><![CDATA[<p>mysqldump 导出提示Couldn’t execute SELECT COLUMN_NAME…</p><pre><code>mysqldump命令：　　导出数据库：mysqldump -h ip -u root -p dbname &gt; db.sql;　　导出数据库中的某个表：mysqldump -h ip -u root -p dbname tablename &gt; tablename.sql;错误提示：　　mysqldump: Couldn&#39;t execute &#39;SELECT COLUMN_NAME, JSON_EXTRACT(HISTOGRAM, &#39;$.&quot;number-of-buckets-specified&quot;&#39;) FROM information_schema.COLUMN_STATISTICS原因：　　因为新版的mysqldump默认启用了一个新标志，通过- -column-statistics=0来禁用他解决方法：　　mysqldump --column-statistics=0 -h ip -u root -p dbname &gt; db.sql;</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用 docker 搭建 openvpn，创建、删除用户证书</title>
       <link href="/2022/05/17/shi-yong-docker-da-jian-openvpn-chuang-jian-shan-chu-yong-hu-zheng-shu/"/>
       <url>/2022/05/17/shi-yong-docker-da-jian-openvpn-chuang-jian-shan-chu-yong-hu-zheng-shu/</url>
