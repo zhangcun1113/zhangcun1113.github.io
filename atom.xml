@@ -6,7 +6,7 @@
   <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
   
   <link href="https://blog.zhangcun.store/"/>
-  <updated>2022-05-19T13:15:20.120Z</updated>
+  <updated>2022-05-31T06:41:27.795Z</updated>
   <id>https://blog.zhangcun.store/</id>
   
   <author>
@@ -15,6 +15,120 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>企业异地组网：docker-compose 搭建 openvpn</title>
+    <link href="https://blog.zhangcun.store/2022/05/31/qi-ye-yi-di-zu-wang-docker-compose-da-jian-openvpn/"/>
+    <id>https://blog.zhangcun.store/2022/05/31/qi-ye-yi-di-zu-wang-docker-compose-da-jian-openvpn/</id>
+    <published>2022-05-31T03:24:54.000Z</published>
+    <updated>2022-05-31T06:41:27.795Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;前言
+因为总公司跟分公司不在同一个地区，需要构建一个虚拟局域网把两个公司的网络组合一起，达到网络互通的目的。对比一番后，选择选择了免费开源的openvpn的方案。本文介绍如何通过docker-compose 构建openvpn</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>zabbix命令之：zabbix_get命令</title>
+    <link href="https://blog.zhangcun.store/2022/05/31/zabbix-ming-ling-zhi-zabbix-get-ming-ling/"/>
+    <id>https://blog.zhangcun.store/2022/05/31/zabbix-ming-ling-zhi-zabbix-get-ming-ling/</id>
+    <published>2022-05-31T03:09:12.000Z</published>
+    <updated>2022-05-31T03:09:42.859Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt; zabbix_get命令是在server端用来检查agent端的一个命令，在添加完主机或者触发器后，不能正常获得数据，可以用zabbix_get来检查能否采集到数据，以便判断问题症结所在。
+ zabbix_get 参数说明：
+ -s --host：</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>docker-compose部署ELK</title>
+    <link href="https://blog.zhangcun.store/2022/05/31/docker-compose-bu-shu-elk-1/"/>
+    <id>https://blog.zhangcun.store/2022/05/31/docker-compose-bu-shu-elk-1/</id>
+    <published>2022-05-31T03:01:25.000Z</published>
+    <updated>2022-05-31T03:06:44.686Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;kibana.yml
+
+[root@topcheer config]# cat kibana.yml
+server.host: &amp;quot;0.0.0.0&amp;quot;
+elasticsearch.url:</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux中监控CPU、内存和磁盘状态的shell脚本。（centos7）</title>
+    <link href="https://blog.zhangcun.store/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/"/>
+    <id>https://blog.zhangcun.store/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/</id>
+    <published>2022-05-30T03:33:41.000Z</published>
+    <updated>2022-05-30T03:37:01.109Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;　这篇博客中所写的脚本，在实际工作中并没有什么卵用，工作中并不会用到这种脚本去监控。不过自己写一遍，可以让初学者对CPU、内存、磁盘等一些基础知识和基础命令更加了解。
+
+1、利用vmstat工具监控CPU详细信息，然后基于/proc/stat计算CPU利用率</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>win10开启多用户同时远程登录</title>
+    <link href="https://blog.zhangcun.store/2022/05/30/win10-kai-qi-duo-yong-hu-tong-shi-yuan-cheng-deng-lu/"/>
+    <id>https://blog.zhangcun.store/2022/05/30/win10-kai-qi-duo-yong-hu-tong-shi-yuan-cheng-deng-lu/</id>
+    <published>2022-05-30T03:24:27.000Z</published>
+    <updated>2022-05-30T03:24:29.174Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>docker-compose 部署 jenkins</title>
@@ -372,119 +486,6 @@ index-url =</summary>
         
     <summary type="html">&lt;p&gt;指定–no-cache-dir确保安装不缓存&lt;br&gt;如果pip版本在6.0以上，可以在安装时使用–no-cache-dir参数，查看pip版本&lt;/p&gt;
 &lt;p&gt;pip</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>报错：Zabbix数据库版本与当前需求不匹配</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/bao-cuo-zabbix-shu-ju-ku-ban-ben-yu-dang-qian-xu-qiu-bu-pi-pei/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/bao-cuo-zabbix-shu-ju-ku-ban-ben-yu-dang-qian-xu-qiu-bu-pi-pei/</id>
-    <published>2022-05-17T13:54:29.000Z</published>
-    <updated>2022-05-17T13:55:33.171Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;报错：The Zabbix database version does not match current requirements. Your database version: 5000000. Required version: 4000000. Please</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>zabbix docker-compose 运行配置</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/zabbix-docker-compose-yun-xing-pei-zhi/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/zabbix-docker-compose-yun-xing-pei-zhi/</id>
-    <published>2022-05-17T13:17:53.000Z</published>
-    <updated>2022-05-17T13:18:29.476Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;zabbix docker-compose 运行配置&lt;br&gt;网上看到一堆使用docker-compose 运行zabbix ，都不台好用，或者因为版本问题，以下是一个整理的&lt;br&gt;docker-compose</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>通过docker-compose一键部署zabbix监控平台</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/</id>
-    <published>2022-05-17T13:08:45.000Z</published>
-    <updated>2022-05-17T13:14:39.336Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;通过docker启动zabbix监控平台已经很方便了，下面我们可以使用一种更加方便的方式启动，那就是docker的compose功能。&lt;/p&gt;
-&lt;p&gt;当然，首先我们还是得需要有一个docker的环境，至于安装方式这里就不说了。在我的博客docker分类中有写安装方式。&lt;/p</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基于docker的elasticsearch 7.5.1 搭建</title>
-    <link href="https://blog.zhangcun.store/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/"/>
-    <id>https://blog.zhangcun.store/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/</id>
-    <published>2022-05-13T09:36:27.000Z</published>
-    <updated>2022-05-13T09:55:46.338Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Es数据库（单节点）&lt;/p&gt;
-&lt;p&gt;1.1.1拉取ES docker 镜像&lt;/p&gt;
-&lt;p&gt;docker  pull elasticsearch:7.5.1&lt;/p&gt;
-&lt;p&gt;1.1.2创建ES绑定数据卷&lt;/p&gt;
-&lt;p&gt;mkdir</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Docker容器的重启策略及docker run的--restart选项详解</title>
-    <link href="https://blog.zhangcun.store/2022/05/13/docker-rong-qi-de-chong-qi-ce-lue-ji-docker-run-de-restart-xuan-xiang-xiang-jie/"/>
-    <id>https://blog.zhangcun.store/2022/05/13/docker-rong-qi-de-chong-qi-ce-lue-ji-docker-run-de-restart-xuan-xiang-xiang-jie/</id>
-    <published>2022-05-13T08:38:38.000Z</published>
-    <updated>2022-05-13T08:45:58.467Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;1.Docker容器的重启策略&lt;/p&gt;
-&lt;p&gt;Docker容器的重启策略是面向生产环境的一个启动策略，在开发过程中可以忽略该策略。&lt;/p&gt;
-&lt;p&gt;Docker容器的重启都是由Docker守护进程完成的，因此与守护进程息息相关。&lt;/p&gt;
-&lt;p&gt;Docker容器的重启策略如下：</summary>
         
       
     

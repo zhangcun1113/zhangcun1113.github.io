@@ -4,6 +4,71 @@
   
     
     <entry>
+      <title>企业异地组网：docker-compose 搭建 openvpn</title>
+      <link href="/2022/05/31/qi-ye-yi-di-zu-wang-docker-compose-da-jian-openvpn/"/>
+      <url>/2022/05/31/qi-ye-yi-di-zu-wang-docker-compose-da-jian-openvpn/</url>
+      
+        <content type="html"><![CDATA[<pre><code>前言因为总公司跟分公司不在同一个地区，需要构建一个虚拟局域网把两个公司的网络组合一起，达到网络互通的目的。对比一番后，选择选择了免费开源的openvpn的方案。本文介绍如何通过docker-compose 构建openvpn 实现企业异地组网。特别说明，此方案的服务器必须有公网IP或者域名，如果都没有，可以先查一下内网穿透相关知识。环境介绍- 这里是列表文本服务端 CentOS 7.6- 客户端 Windows 10openvpn 目录手动创建如下目录：image.pngdata 用于存放openvpn配置client 存放生成客户端配置文件docker-compose.ymlversion: &#39;2&#39;services:   openvpn:     container_name: openvpn     image: kylemanna/openvpn     volumes:      - &quot;./data:/etc/openvpn&quot;     ports:      - &#39;1194:1194/udp&#39;     cap_add:      - NET_ADMIN     restart: always     privileged: true配置openvpn# 请把后面的 udp 改成自己的网址docker-compose run --rm openvpn ovpn_genconfig -u udp://vpn.nuomiphp.com# 生成密钥文件，输入密钥和CA名称docker-compose run --rm openvpn ovpn_initpki# 启动服务docker-compose up -d如果需要更多定制配置：#生成配置文件#-d 取消默认配置     -c 打开c2c模式     -u 指定当前IP#-s 划分服务器子网     -C 指定算法docker-compose run --rm  openvpn  ovpn_genconfig -d -c -C &#39;AES-256-CBC&#39; -u udp://vpn.nuomiphp.com -s 192.168.1.0/24用户操作添加用户1.生成证书#生成一个叫test的用户，输入密钥docker-compose run --rm  openvpn easyrsa build-client-full test nopassor 如果生成的用户需要输入密码则把后面的nopass去掉：docker-compose run --rm  openvpn easyrsa build-client-full test2.导出test用户证书到client文件夹里docker-compose run --rm openvpn ovpn_getclient test &gt; ./client/test.ovpn删除用户//删除用户证书docker-compose run --rm  openvpn easyrsa revoke user//更新证书数据库docker-compose run --rm  openvpn easyrsa gen-crl update-db//重启openvpn容器docker restart  openvpn 客户端下载及安装，此链接需要翻墙https://openvpn.net/community-downloads/本文以windows客户端演示1.启动客户端，选择FILEimage.png2.把刚才生成的./client/test.ovpn下载到本地，然后导入即可优化改进为了减少工作量，方便快速配置，可以使用如下两个增添用户的脚本。OpenVPN 创建用户脚本：#!/bin/bashread -p &quot;please your username: &quot; NAMEOVPN_DATA=&quot;openvpn-data&quot;LOCALIP=&quot;IP&quot;docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full $NAME nopassdocker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient $NAME &gt; /data/openvpn/conf/&quot;$NAME&quot;.ovpn#修改端口(可选)sed -i &quot;s/$LOCALIP 1194/$LOCALIP 1194/g&quot; /data/openvpn/conf/&quot;$NAME&quot;.ovpn#压缩(可选)echo &quot;comp-lzo&quot; &gt;&gt; /data/openvpn/conf/&quot;$NAME&quot;.ovpndocker restart openvpnecho &quot;CA saved to /data/openvpn/conf/$NAME.ovpn&quot;OpenVPN 删除用户脚本，次基本基于docker，需要自行改造成docker-compose：#!/bin/bashread -p &quot;Delete username: &quot; DNAMEOVPN_DATA=&quot;openvpn-data&quot;docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa revoke $DNAMEdocker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa gen-crldocker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn rm -f /etc/openvpn/pki/reqs/&quot;$DNAME&quot;.reqdocker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn rm -f /etc/openvpn/pki/private/&quot;$DNAME&quot;.keydocker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn rm -f /etc/openvpn/pki/issued/&quot;$DNAME&quot;.crt#删除相关用户conf(可选)docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn rm -f /data/openvpn/conf/&quot;$DNAME&quot;docker restart openvpnecho &quot;Deleted $DNAME</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>zabbix命令之：zabbix_get命令</title>
+      <link href="/2022/05/31/zabbix-ming-ling-zhi-zabbix-get-ming-ling/"/>
+      <url>/2022/05/31/zabbix-ming-ling-zhi-zabbix-get-ming-ling/</url>
+      
+        <content type="html"><![CDATA[<pre><code> zabbix_get命令是在server端用来检查agent端的一个命令，在添加完主机或者触发器后，不能正常获得数据，可以用zabbix_get来检查能否采集到数据，以便判断问题症结所在。 zabbix_get 参数说明： -s --host： 指定客户端主机名或者IP -p --port：客户端端口，默认10050 -I --source-address：指定源IP，写上zabbix server的ip地址即可，一般留空，服务器如果有多ip的时候，你指定一个。 -k --key：你想获取的key 至于使用长参数还是短的，自己选，我经常使用-s而不是-host， 如果不知道key参数可以使用 zabbix_agentd -p 寻找自己想要找的参数 [root@host~]# zabbix_agentd -p | grep system.cpu.load system.cpu.load[all,avg1]                     [d|0.040000] 如果不知道zabbix_get在什么路径，可以使用find / -name zabbix_get查找 [root@host ~]# find / -name zabbix_get /usr/local/zabbix/bin/zabbix_get /data/tools/zabbix-4.0.3/src/zabbix_get /data/tools/zabbix-4.0.3/src/zabbix_get/zabbix_get 案例： [root@zabbix ~]# zabbix_get -s 192.168.1.7 -p 10050 -k system.cpu.load[all,avg1]    0.000000</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>docker-compose部署ELK</title>
+      <link href="/2022/05/31/docker-compose-bu-shu-elk-1/"/>
+      <url>/2022/05/31/docker-compose-bu-shu-elk-1/</url>
+      
+        <content type="html"><![CDATA[<pre><code>kibana.yml[root@topcheer config]# cat kibana.ymlserver.host: &quot;0.0.0.0&quot;elasticsearch.url: http://elasticsearch01:9200xpack:  apm.ui.enabled: false  graph.enabled: false  ml.enabled: false  monitoring.enabled: false  reporting.enabled: false  security.enabled: false  grokdebugger.enabled: false  searchprofiler.enabled: false[root@topcheer config]#logstash的conf[root@topcheer pipeline]# cat logstash-test.confinput &#123;    file &#123;        path =&gt; [&quot;/usr/share/logstash/pipeline/logs/test.log&quot;]        start_position =&gt; &quot;beginning&quot;    &#125;&#125;output &#123;   elasticsearch &#123; hosts =&gt; [&quot;elasticsearch01:9200&quot;] &#125;&#125;[root@topcheer pipeline]#别的配置都没有变，然后新增docker-compose.yml[root@topcheer config]# cat docker-compose.ymlversion: &#39;2&#39;services:  elasticsearch01: #服务名称（不是容器名,名称最好不要含有特殊字符，碰到过用下划线时运行出错）    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.3    container_name: elasticsearch01 #容器名称     volumes: #挂载文件      - ./elasticsearch/logs/:/usr/share/logs/      - /elk/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro    ports:      - &quot;9200:9200&quot; #暴露的端口信息和docker run -d -p 80:80一样      - &quot;9300:9300&quot;    environment: #设置镜像变量，它可以保存变量到镜像里面      ES_JAVA_OPTS: &quot;-Xmx512m -Xms512m&quot;    networks: #加入指定网络      - elk  logstash_test:    image: docker.elastic.co/logstash/logstash:6.4.3    container_name: logstash01    volumes:      - /elk/config/logstash/config/:/usr/share/logstash/config/:ro      - /elk/config/logstash/pipeline/:/usr/share/logstash/pipeline/    ports:      - &quot;5044:5044&quot;      - &quot;9600:9600&quot;    environment:      LS_JAVA_OPTS: &quot;-Xmx512m -Xms512m&quot;    networks:      - elk    depends_on: #标签解决了容器的依赖、启动先后的问题      - elasticsearch01  kibana_test:    image: docker.elastic.co/kibana/kibana:6.4.3    container_name: kibana01    volumes:      - /elk/config/kibana.yml:/usr/share/kibana/config/kibana.yml    ports:      - &quot;5601:5601&quot;    networks:      - elk    depends_on:      - elasticsearch01networks:  elk:    driver: bridge[root@topcheer config]#然后执行docker-compose up -d[root@topcheer config]# docker-compose ps     Name                    Command               State                       Ports---------------------------------------------------------------------------------------------------------elasticsearch01   /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcpkibana01          /usr/local/bin/kibana-docker     Up      0.0.0.0:5601-&gt;5601/tcplogstash01        /usr/local/bin/docker-entr ...   Up      0.0.0.0:5044-&gt;5044/tcp, 0.0.0.0:9600-&gt;9600/tcp</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux中监控CPU、内存和磁盘状态的shell脚本。（centos7）</title>
+      <link href="/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/"/>
+      <url>/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/</url>
+      
+        <content type="html"><![CDATA[<pre><code>　这篇博客中所写的脚本，在实际工作中并没有什么卵用，工作中并不会用到这种脚本去监控。不过自己写一遍，可以让初学者对CPU、内存、磁盘等一些基础知识和基础命令更加了解。1、利用vmstat工具监控CPU详细信息，然后基于/proc/stat计算CPU利用率进行监控，超过80报警并提取出占用cpu最高的前十进程。vmstat是Linux系统监控工具，使用vmstat命令可以得到关于进程、内存、内存分页、堵塞IO、traps及CPU活动的信息。r：运行队列中的进程数；b：等待IO的进程数。swpd：已用虚拟内存大小（k）；free：空闲内存大小；buff：已用缓冲大小；cache：已用缓存大小。si：每秒从交换区写入内存的大小（kb/s）；so：每秒从内存写入交换分区的大小。bi：每秒读取的块数；bo每秒写入的块数。in：每秒中断数，包括时钟中断；cs：每秒上下文切换数。us(user time)：用户进程执行消耗cpu时间；sy(system time)：系统进程执行消耗cpu时间；id：空闲时间（包括IO等待时间）；wa：等待IO时间。/proc/stat：    这个文件包含了所有CPU活动的信息，该文件中的所有值都是从系统启动开始累计到当前时刻。可以利用其中信息计算cpu的利用率。每行每个参数的意思为（以第一行为例，单位：jiffies，1jiffies=0.01秒）：user（62124）：从系统启动开始累计到当前时刻，用户态的CPU时间，不包含 nice值为负进程。nice（11）：从系统启动开始累计到当前时刻。system（47890）：从系统启动开始累计到当前时刻，nice值为负的进程所占用的CPU时间。idle（8715270）：从系统启动开始累计到当前时刻，除硬盘IO等待时间以外其它等待时间。iowait（84729）：从系统启动开始累计到当前时刻，硬盘IO等待时间。irq（0）：从系统启动开始累计到当前时刻，硬中断时间。softirq（1483）：从系统启动开始累计到当前时刻，软中断时间。CPU时间=user+nice+system+idle+iowait+irq+softirq。CPU利用率=(idle2-idle1)/(cpu2-cpu1)*100。ps aux：显示其他用户启动的进程（a）查看系统中属于自己的进程（x）启动这个进程的用户和启动时间 （u）代码如下：复制代码#!/bin/bash#CPU_us=$(vmstat | awk &#39;&#123;print $13&#125;&#39; | sed -n &#39;$p&#39;)CPU_sy=$(vmstat | awk &#39;&#123;print $14&#125;&#39; | sed -n &#39;$p&#39;)CPU_id=$(vmstat | awk &#39;&#123;print $15&#125;&#39; | sed -n &#39;$p&#39;)CPU_wa=$(vmstat | awk &#39;&#123;print $16&#125;&#39; | sed -n &#39;$p&#39;)CPU_st=$(vmstat | awk &#39;&#123;print $17&#125;&#39; | sed -n &#39;$p&#39;)CPU1=`cat /proc/stat | grep &#39;cpu &#39; | awk &#39;&#123;print $2&quot; &quot;$3&quot; &quot;$4&quot; &quot;$5&quot; &quot;$6&quot; &quot;$7&quot; &quot;$8&#125;&#39;`sleep 5CPU2=`cat /proc/stat | grep &#39;cpu &#39; | awk &#39;&#123;print $2&quot; &quot;$3&quot; &quot;$4&quot; &quot;$5&quot; &quot;$6&quot; &quot;$7&quot; &quot;$8&#125;&#39;`IDLE1=`echo $CPU1 | awk &#39;&#123;print $4&#125;&#39;`IDLE2=`echo $CPU2 | awk &#39;&#123;print $4&#125;&#39;`CPU1_TOTAL=`echo $CPU1 | awk &#39;&#123;print $1+$2+$3+$4+$5+$6+$7&#125;&#39;`CPU2_TOTAL=`echo $CPU2 | awk &#39;&#123;print $1+$2+$3+$4+$5+$6+$7&#125;&#39;`IDLE=`echo &quot;$IDLE2-$IDLE1&quot; | bc`CPU_TOTAL=`echo &quot;$CPU2_TOTAL-$CPU1_TOTAL&quot; | bc`#echo -e &quot;IDLE2:$IDLE2\nIDLE1:$IDLE1\nCPU2:$CPU2_TOTAL\nCPU1:$CPU1_TOTAL&quot;#echo -e        &quot;IDLE:$IDLE\nCPU:$CPU_TOTAL&quot;RATE=`echo &quot;scale=4;($CPU_TOTAL-$IDLE)/$CPU_TOTAL*100&quot; | bc | awk &#39;&#123;printf &quot;%.2f&quot;,$1&#125;&#39;`echo -e &quot;us=$CPU_us\tsy=$CPU_sy\tid=$CPU_id\twa=$CPU_wa\tst=$CPU_st&quot;echo &quot;CPU_RATE:$&#123;RATE&#125;%&quot;CPU_RATE=`echo $RATE | cut -d. -f1`#echo   &quot;CPU_RATE:$CPU_RATE&quot;if      [ $CPU_RATE -ge 80 ]then    echo &quot;CPU Warn&quot;        ps aux | grep -v USER | sort -rn -k3 | headfi复制代码 2、利用free工具监控内存利用率，超过80报警并提取出占用内存最高的前十进程。代码如下：复制代码#!/bin/bash#total=$(free -m | sed -n &#39;2p&#39; | awk &#39;&#123;print $2&#125;&#39;)used=$(free -m | sed -n &#39;2p&#39; | awk &#39;&#123;print $3&#125;&#39;)free=$(free -m | sed -n &#39;2p&#39; | awk &#39;&#123;print $4&#125;&#39;)shared=$(free -m | sed -n &#39;2p&#39; | awk &#39;&#123;print $5&#125;&#39;)buff=$(free -m | sed -n &#39;2p&#39; | awk &#39;&#123;print $6&#125;&#39;)cached=$(free -m | sed -n &#39;2p&#39; | awk &#39;&#123;print $7&#125;&#39;)rate=`echo &quot;scale=2;$used/$total&quot; | bc | awk -F. &#39;&#123;print $2&#125;&#39;`echo -e &quot;total\tused\tfree\tshared\tbuffer\tavailable&quot;echo -e &quot;$&#123;total&#125;M\t$&#123;used&#125;M\t$&#123;free&#125;M\t$&#123;shared&#125;M\t$&#123;buff&#125;M\t$&#123;cached&#125;M\nrate:$&#123;rate&#125;%&quot;if    [ $rate -ge 80 ]then    echo &quot;Memory Warn&quot;    ps aux | grep -v USER | sort -rn -k4 | headfi复制代码3、利用df命令监控磁盘利用率，超过80报警。df ：显示磁盘分区上的可使用的磁盘空间。　　-h 以更易读的方式显示；　　-P 使用POSIX的输出格式。复制代码#!/bin/bash#DEV=`df -hP | grep &#39;^/dev/*&#39; | cut -d&#39; &#39; -f1 | sort`for I in $DEVdo dev=`df -Ph | grep $I | awk &#39;&#123;print $1&#125;&#39;`size=`df -Ph | grep $I | awk &#39;&#123;print $2&#125;&#39;`used=`df -Ph | grep $I | awk &#39;&#123;print $3&#125;&#39;`free=`df -Ph | grep $I | awk &#39;&#123;print $4&#125;&#39;`rate=`df -Ph | grep $I | awk &#39;&#123;print $5&#125;&#39;`mount=`df -Ph | grep $I | awk &#39;&#123;print $6&#125;&#39;`echo -e &quot;$I:\tsize:$size\tused:$used\tfree:$free\trate:$rate\tmount:$mount&quot;F=`echo $rate | awk -F% &#39;&#123;print $1&#125;&#39;`if [ $F -ge 80 ]；then    echo &quot;$mount Warn&quot;    else echo &quot;It&#39;s OK&quot;fidone复制代码CPU物理信息查看物理cpu个数：　　cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l查看cpu核数：　　cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq查看逻辑cpu个数：　　cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>win10开启多用户同时远程登录</title>
+      <link href="/2022/05/30/win10-kai-qi-duo-yong-hu-tong-shi-yuan-cheng-deng-lu/"/>
+      <url>/2022/05/30/win10-kai-qi-duo-yong-hu-tong-shi-yuan-cheng-deng-lu/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/Perfect886/article/details/118526972">https://blog.csdn.net/Perfect886/article/details/118526972</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>docker-compose 部署 jenkins</title>
       <link href="/2022/05/19/docker-compose-bu-shu-jenkins/"/>
       <url>/2022/05/19/docker-compose-bu-shu-jenkins/</url>
