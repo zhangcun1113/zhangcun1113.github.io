@@ -4,6 +4,71 @@
   
     
     <entry>
+      <title>zabbix-get安装使用</title>
+      <link href="/2022/06/15/zabbix-get-an-zhuang-shi-yong/"/>
+      <url>/2022/06/15/zabbix-get-an-zhuang-shi-yong/</url>
+      
+        <content type="html"><![CDATA[<pre><code>安装一般在zabbix-server上安装，如果在其他机器上安装的话可能会无法访问agentrpm -ivh http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpmyum install epel-releaseyum install zabbix-get使用agent编辑配置文件在zabbix-agent机器上编辑/etc/zabbix_agentd.conf增加一行UserParameter=login-user1,who|wc -l或者打开附属配置文件：在/etc/zabbix/zabbix_agentd.d目录下新增test.conf编辑test.conf并加入以下内容：UserParameter=login-user,uptime  | awk -F &#39; &#39; &#39;&#123;print $6&#125;&#39;UserParameter=login-user2,uptime以上两种方法都可以获得登录人数，现在为了测试，两种方法同时使用然后重启zabbix-agent：systemctl restart zabbix-agent执行zabbix_get命令在zabbix-server上执行：zabbix_get -s 192.168.88.142 -p 10050 -k login-userzabbix_get -s 192.168.88.142 -p 10050 -k login-user1zabbix_get -s 192.168.88.142 -p 10050 -k login-user2  | awk -F &#39; &#39; &#39;&#123;print $6&#125;&#39;</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nginx：配置静态资源304缓存</title>
+      <link href="/2022/06/15/nginx-pei-zhi-jing-tai-zi-yuan-304-huan-cun/"/>
+      <url>/2022/06/15/nginx-pei-zhi-jing-tai-zi-yuan-304-huan-cun/</url>
+      
+        <content type="html"><![CDATA[<pre><code>location ~ \.(jpg|png|jpeg|gif)$  &#123;        expires 30d;        root   /data/www/wizzer.cn/;&#125; location ~ \.(js|css)$  &#123;        expires 2h;        root   /data/www/wizzer.cn/;&#125;</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>zabbix 报错整理</title>
+      <link href="/2022/06/15/zabbix-bao-cuo-zheng-li/"/>
+      <url>/2022/06/15/zabbix-bao-cuo-zheng-li/</url>
+      
+        <content type="html"><![CDATA[<pre><code> 1.first network error, wait for 15 secondszabbix-server日志中：Zabbix agent item &quot;ITERM NAME&quot; on host &quot;HOSTNAME&quot; failed: first network error, wait for 15 seconds在zabbix-server 的web界面，看到一个自定义iterm报错，报错内容ZBX_NOTSUPPORTED: Timeout while executing a shell script.然后我到服务器上手动执行这个自定义的UserParameter，看了一下执行的时间大概在6s左右。但是，zabbix_server.conf的超时时间Timeout默认为4.增大Timeout时间间隔。Timeout=30修改完配置文件重启zabbix-server后，notSupported的iterm become supportd了。然后日志中也不在把上述报错了。</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>NVIDIA驱动失效简单解决方案：NVIDIA-SMI has failed because it couldn‘t communicate with the NVIDIA driver.</title>
+      <link href="/2022/06/15/nvidia-qu-dong-shi-xiao-jian-dan-jie-jue-fang-an-nvidia-smi-has-failed-because-it-couldn-t-communicate-with-the-nvidia-driver/"/>
+      <url>/2022/06/15/nvidia-qu-dong-shi-xiao-jian-dan-jie-jue-fang-an-nvidia-smi-has-failed-because-it-couldn-t-communicate-with-the-nvidia-driver/</url>
+      
+        <content type="html"><![CDATA[<p>前言： 以下方法，不需要重装驱动，简单快捷。适用于Ubuntu系统下，之前已经安装过驱动，但驱动失效的问题。<br>如果此方法仍然无法解决问题，可参考Ubuntu下安装nvidia显卡驱动，重装驱动。</p><p>前段时间刚装了驱动：Ubuntu下安装nvidia显卡驱动</p><p>但是最近准备用GPU跑模型时，提示cuda 不存在。前段时间刚装的驱动，怎么会不存在呢？</p><pre><code>第一步，打开终端，先用nvidia-smi查看一下，发现如下报错：NVIDIA-SMI has failed because it couldn&#39;t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.第二步，使用nvcc -V检查驱动和cuda。nvcc: NVIDIA (R) Cuda compiler driverCopyright (c) 2005-2018 NVIDIA CorporationBuilt on Sat_Aug_25_21:08:01_CDT_2018Cuda compilation tools, release 10.0, V10.0.130发现驱动是存在的，于是进行下一步第三步，查看已安装驱动的版本信息ls /usr/src | grep nvidia1比如我的驱动版本是：nvidia-450.57第四步，依次输入以下命令sudo apt-get install dkmssudo dkms install -m nvidia -v 450.57等待安装完成后，再次输入nvidia-smi，查看GPU使用状态：最后，我们熟悉的页面又回来了！问题得以解决！</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS7使用Yum命令安装中文语言包</title>
+      <link href="/2022/06/15/centos7-shi-yong-yum-ming-ling-an-zhuang-zhong-wen-yu-yan-bao/"/>
+      <url>/2022/06/15/centos7-shi-yong-yum-ming-ling-an-zhuang-zhong-wen-yu-yan-bao/</url>
+      
+        <content type="html"><![CDATA[<p>检查已安装的语言包<br>查看系统是否有安装中文语言包 （列出所有可用的公共语言环境的名称，包含有zh_CN）</p><pre><code>[root@localhost ~]# locale -a |grep &quot;zh_CN&quot;zh_CNzh_CN.gb18030zh_CN.gb2312zh_CN.gbkzh_CN.utf8</code></pre><p>若发现以上几项，说明系统已安装中文语言包，无需再安装</p><p>{语言代号}_{国家代号}.{字符集}</p><pre><code>zh是中文的代号、CN是中国的代号、gb18030,gb2312,utf8是语言字符集</code></pre><p>安装语言包</p><pre><code>  [root@localhost ~]# yum groupinstall &quot;fonts&quot;  </code></pre><p>配置使用语言包</p><pre><code>[root@localhost ~]# cat /etc/locale.conf LANG=en_US.UTF-8[root@localhost ~]# cp /etc/locale.conf /etc/locale.conf.bak[root@localhost ~]# vim /etc/locale.conf    # 修改后原英文错误信息会变成中文信息LANG=&quot;zh_CN.GB18030&quot;LANGUAGE=&quot;zh_CN.GB18030:zh_CN.GB2312:zh_CN&quot;SUPPORTED=&quot;zh_CN.UTF-8:zh_CN:zh:en_US.UTF-8:en_US:en&quot;SYSFONT=&quot;lat0-sun16&quot;[root@localhost ~]# localectl set-locale LANG=zh_CN.UTF-8[root@localhost ~]# export.UTF8    # 将系统语言临时设置为中文，export方式不需要重新登录，或者直接reboot重启系统[root@localhost ~]# echo $LANG    # 查看当前使用的系统语言zh_CN.UTF8</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>企业异地组网：docker-compose 搭建 openvpn</title>
       <link href="/2022/05/31/qi-ye-yi-di-zu-wang-docker-compose-da-jian-openvpn/"/>
       <url>/2022/05/31/qi-ye-yi-di-zu-wang-docker-compose-da-jian-openvpn/</url>
@@ -4337,7 +4402,7 @@
       <link href="/2021/10/18/ubuntu-16-04-an-zhuang-nfs/"/>
       <url>/2021/10/18/ubuntu-16-04-an-zhuang-nfs/</url>
       
-        <content type="html"><![CDATA[<p>Ubuntu 20.04系统上NFS的安装与使用</p><p>摘要：本文介绍了NFS服务器的安装过程、配置文件和常用命令行工具，以及NFS客户端上如何安装常用工具，介绍如何挂载共享目录，并通过实验进行验证。</p><p>一、服务器端：</p><p>1.1安装NFS服务：</p><p>#执行以下命令安装NFS服务器，</p><p>#apt会自动安装nfs-common、rpcbind等13个软件包</p><p>sudo apt install nfs-kernel-server</p><p>1.2编写配置文件：</p><p>#编辑/etc/exports 文件：</p><p>sudo vi /etc/exports</p><p>#/etc/exports文件的内容如下：</p><p>/tmp *(rw,sync,no_subtree_check,no_root_squash)</p><p>/data *(rw,sync,no_subtree_check,no_root_squash)</p><p>/logs *(rw,sync,no_subtree_check,no_root_squash)</p><p>1.3创建共享目录</p><p>#在服务器端创建/tmp /data和/logs共享目录</p><p>sudo mkdir -p /tmp</p><p>sudo mkdir -p /data</p><p>sudo mkdir -p /logs</p><p>1.4重启nfs服务：</p><p>sudo service nfs-kernel-server restart</p><p>1.5常用命令工具：</p><p>#在安装NFS服务器时，已包含常用的命令行工具，无需额外安装。</p><p>#显示已经mount到本机nfs目录的客户端机器。</p><p>sudo showmount -e localhost</p><p>#将配置文件中的目录全部重新export一次！无需重启服务。</p><p>sudo exportfs -rv</p><p>#查看NFS的运行状态</p><p>sudo nfsstat</p><p>#查看rpc执行信息，可以用于检测rpc运行情况</p><p>sudo rpcinfo</p><p>#查看网络端口，NFS默认是使用111端口。</p><p>sudo netstat -tu -4</p><p>二、客户端：</p><p>2.1安装客户端工具：</p><p>#在需要连接到NFS服务器的客户端机器上，</p><p>#需要执行以下命令，安装nfs-common软件包。</p><p>#apt会自动安装nfs-common、rpcbind等12个软件包</p><p>sudo apt install nfs-common</p><p>2.2查看NFS服务器上的共享目录</p><p>#显示指定的（192.168.3.167）NFS服务器上export出来的目录</p><p>sudo showmount -e 192.168.3.167</p><p>2.3创建本地挂载目录</p><p>sudo mkdir -p /mnt/data</p><p>sudo mkdir -p /mnt/logs</p><p>2.4挂载共享目录</p><p>#将NFS服务器192.168.3.167上的目录，挂载到本地的/mnt/目录下</p><p>sudo mount -t nfs 192.168.3.167:/data /mnt/data</p><p>sudo mount -t nfs 192.168.3.167:/logs /mnt/logs</p><p>#注：在没有安装nfs-common或者nfs-kernel-server软件包的机器上，</p><p>#直接执行showmount、exportfs、nfsstat、rpcinfo等命令时，</p><p>#系统会给出友好的提示，</p><p>#比如直接showmount会提示需要执行sudo apt install nfs-common命令，</p><p>#比如直接rpcinfo会提示需要执行sudo apt install rpcbind命令。</p><p>实验附图：</p><p>1-在没有安装nfs相关软件包的机器上，直接执行nfsstat和rpcinfo命令时，会给出安装提示</p><p>2-在没有安装nfs相关软件包的机器上，直接执行exportfs和showmount命令时，会给出的安装提示</p><p>3-在NFS服务器上使用apt命令，安装nfs-kernel-server软件包，系统提示同时安装nfs-common,rpcinfo等13个软件包</p><p>4-完成NFS服务器端的安装以后，查看etc下exports文件的默认内容</p><p>5-查看NFS服务器端的目录，创建共享目录，重启nfs服务</p><p>6-在NFS服务器端查看共享出来的目录</p><p>7-重启NFS服务，查看服务器端的共享目录，查看NFS的状态，以及RPC信息</p><p>8-在客户端192.168.3.166机器上，查看NFS服务器167上的共享目录</p><p>9-在客户端192.168.3.166上使用mount命令挂载NFS服务器167上的共享目录，查看目录中的内容</p><p>【结束】</p><p>参考链接：</p><p>超全面的NFS详解</p><p><a href="http://server.51cto.com/sManage-150923.htm">http://server.51cto.com/sManage-150923.htm</a> </p><p>ubuntu 16.04 nfs服务的搭建 </p><p><a href="http://www.cnblogs.com/MoreExcellent/p/7222895.html">http://www.cnblogs.com/MoreExcellent/p/7222895.html</a>  </p>]]></content>
+        <content type="html"><![CDATA[<p>Ubuntu 20.04系统上NFS的安装与使用</p><p>摘要：本文介绍了NFS服务器的安装过程、配置文件和常用命令行工具，以及NFS客户端上如何安装常用工具，介绍如何挂载共享目录，并通过实验进行验证。</p><p>一、服务器端：</p><p>1.1安装NFS服务：</p><p>#执行以下命令安装NFS服务器，</p><p>#apt会自动安装nfs-common、rpcbind等13个软件包</p><p>sudo apt install nfs-kernel-server</p><p>1.2编写配置文件：</p><p>#编辑/etc/exports 文件：</p><p>sudo vi /etc/exports</p><p>#/etc/exports文件的内容如下：</p><p>/tmp *(rw,sync,no_subtree_check,no_root_squash)</p><p>/data *(rw,sync,no_subtree_check,no_root_squash)</p><p>/logs *(rw,sync,no_subtree_check,no_root_squash)</p><p>1.3创建共享目录</p><p>#在服务器端创建/tmp /data和/logs共享目录</p><p>sudo mkdir -p /tmp</p><p>sudo mkdir -p /data</p><p>sudo mkdir -p /logs</p><p>1.4重启nfs服务：</p><p>sudo service nfs-kernel-server restart</p><p>1.5常用命令工具：</p><p>#在安装NFS服务器时，已包含常用的命令行工具，无需额外安装。</p><p>#显示已经mount到本机nfs目录的客户端机器。</p><p>sudo showmount -e localhost</p><p>#将配置文件中的目录全部重新export一次！无需重启服务。</p><p>sudo exportfs -rv</p><p>#查看NFS的运行状态</p><p>sudo nfsstat</p><p>#查看rpc执行信息，可以用于检测rpc运行情况</p><p>sudo rpcinfo</p><p>#查看网络端口，NFS默认是使用111端口。</p><p>sudo netstat -tu -4</p><p>二、客户端：</p><p>2.1安装客户端工具：</p><p>#在需要连接到NFS服务器的客户端机器上，</p><p>#需要执行以下命令，安装nfs-common软件包。</p><p>#apt会自动安装nfs-common、rpcbind等12个软件包</p><p>sudo apt install nfs-common</p><p>2.2查看NFS服务器上的共享目录</p><p>#显示指定的（192.168.3.167）NFS服务器上export出来的目录</p><p>sudo showmount -e 192.168.3.167</p><p>2.3创建本地挂载目录</p><p>sudo mkdir -p /mnt/data</p><p>sudo mkdir -p /mnt/logs</p><p>2.4挂载共享目录</p><p>#将NFS服务器192.168.3.167上的目录，挂载到本地的/mnt/目录下</p><p>sudo mount -t nfs 192.168.3.167:/data /mnt/data</p><p>sudo mount -t nfs 192.168.3.167:/logs /mnt/logs</p><p>#注：在没有安装nfs-common或者nfs-kernel-server软件包的机器上，</p><p>#直接执行showmount、exportfs、nfsstat、rpcinfo等命令时，</p><p>#系统会给出友好的提示，</p><p>#比如直接showmount会提示需要执行sudo apt install nfs-common命令，</p><p>#比如直接rpcinfo会提示需要执行sudo apt install rpcbind命令。</p><p>实验附图：</p><p>1-在没有安装nfs相关软件包的机器上，直接执行nfsstat和rpcinfo命令时，会给出安装提示</p><p>2-在没有安装nfs相关软件包的机器上，直接执行exportfs和showmount命令时，会给出的安装提示</p><p>3-在NFS服务器上使用apt命令，安装nfs-kernel-server软件包，系统提示同时安装nfs-common,rpcinfo等13个软件包</p><p>4-完成NFS服务器端的安装以后，查看etc下exports文件的默认内容</p><p>5-查看NFS服务器端的目录，创建共享目录，重启nfs服务</p><p>6-在NFS服务器端查看共享出来的目录</p><p>7-重启NFS服务，查看服务器端的共享目录，查看NFS的状态，以及RPC信息</p><p>8-在客户端192.168.3.166机器上，查看NFS服务器167上的共享目录</p><p>9-在客户端192.168.3.166上使用mount命令挂载NFS服务器167上的共享目录，查看目录中的内容</p><p> mac挂载: sudo mount -o resvport -o nolock -t nfs x.x.x.x:/xxxx  xxxxx</p><p>【结束】</p><p>参考链接：</p><p>超全面的NFS详解</p><p><a href="http://server.51cto.com/sManage-150923.htm">http://server.51cto.com/sManage-150923.htm</a> </p><p>ubuntu 16.04 nfs服务的搭建 </p><p><a href="http://www.cnblogs.com/MoreExcellent/p/7222895.html">http://www.cnblogs.com/MoreExcellent/p/7222895.html</a></p>]]></content>
       
       
       

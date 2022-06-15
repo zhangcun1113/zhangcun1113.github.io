@@ -6,7 +6,7 @@
   <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
   
   <link href="https://blog.zhangcun.store/"/>
-  <updated>2022-05-31T06:41:27.795Z</updated>
+  <updated>2022-06-15T10:24:08.196Z</updated>
   <id>https://blog.zhangcun.store/</id>
   
   <author>
@@ -15,6 +15,128 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>zabbix-get安装使用</title>
+    <link href="https://blog.zhangcun.store/2022/06/15/zabbix-get-an-zhuang-shi-yong/"/>
+    <id>https://blog.zhangcun.store/2022/06/15/zabbix-get-an-zhuang-shi-yong/</id>
+    <published>2022-06-15T10:21:52.000Z</published>
+    <updated>2022-06-15T10:24:08.196Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;安装
+一般在zabbix-server上安装，如果在其他机器上安装的话可能会无法访问agent
+
+rpm -ivh</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx：配置静态资源304缓存</title>
+    <link href="https://blog.zhangcun.store/2022/06/15/nginx-pei-zhi-jing-tai-zi-yuan-304-huan-cun/"/>
+    <id>https://blog.zhangcun.store/2022/06/15/nginx-pei-zhi-jing-tai-zi-yuan-304-huan-cun/</id>
+    <published>2022-06-15T09:18:07.000Z</published>
+    <updated>2022-06-15T09:18:36.033Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;location ~ \.(jpg|png|jpeg|gif)$  &amp;#123;
+
+        expires 30d;
+
+        root   /data/www/wizzer.cn/;
+
+&amp;#125;
+
+ 
+
+location ~</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>zabbix 报错整理</title>
+    <link href="https://blog.zhangcun.store/2022/06/15/zabbix-bao-cuo-zheng-li/"/>
+    <id>https://blog.zhangcun.store/2022/06/15/zabbix-bao-cuo-zheng-li/</id>
+    <published>2022-06-15T09:11:58.000Z</published>
+    <updated>2022-06-15T09:12:29.688Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt; 1.first network error, wait for 15 seconds
+zabbix-server日志中：
+
+Zabbix agent item &amp;quot;ITERM NAME&amp;quot; on host</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>NVIDIA驱动失效简单解决方案：NVIDIA-SMI has failed because it couldn‘t communicate with the NVIDIA driver.</title>
+    <link href="https://blog.zhangcun.store/2022/06/15/nvidia-qu-dong-shi-xiao-jian-dan-jie-jue-fang-an-nvidia-smi-has-failed-because-it-couldn-t-communicate-with-the-nvidia-driver/"/>
+    <id>https://blog.zhangcun.store/2022/06/15/nvidia-qu-dong-shi-xiao-jian-dan-jie-jue-fang-an-nvidia-smi-has-failed-because-it-couldn-t-communicate-with-the-nvidia-driver/</id>
+    <published>2022-06-15T09:06:17.000Z</published>
+    <updated>2022-06-15T09:09:59.334Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;前言：</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS7使用Yum命令安装中文语言包</title>
+    <link href="https://blog.zhangcun.store/2022/06/15/centos7-shi-yong-yum-ming-ling-an-zhuang-zhong-wen-yu-yan-bao/"/>
+    <id>https://blog.zhangcun.store/2022/06/15/centos7-shi-yong-yum-ming-ling-an-zhuang-zhong-wen-yu-yan-bao/</id>
+    <published>2022-06-15T08:56:57.000Z</published>
+    <updated>2022-06-15T08:57:49.137Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;检查已安装的语言包&lt;br&gt;查看系统是否有安装中文语言包 （列出所有可用的公共语言环境的名称，包含有zh_CN）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[root@localhost ~]# locale -a |grep</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>企业异地组网：docker-compose 搭建 openvpn</title>
@@ -368,124 +490,6 @@ ervices:
     <summary type="html">&lt;p&gt;整体环境配置&lt;/p&gt;
 &lt;p&gt;整体环境的配置，如果一个一个 Dockerfile 去写，那么是相当麻烦的，好在 Docker 有一个名为 Docker-Compose 的工具提供，我们可以使用它一次性完成整体环境的配置： &lt;/p&gt;
 &lt;p&gt;首先我们看看</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>alpine中设置时区（Dockerfile版）</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/alpine-zhong-she-zhi-shi-qu-dockerfile-ban/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/alpine-zhong-she-zhi-shi-qu-dockerfile-ban/</id>
-    <published>2022-05-17T15:19:41.000Z</published>
-    <updated>2022-05-17T15:20:06.181Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;FROM alpine:3.12
-ENV TZ Asia/Shanghai
-RUN apk -U upgrade &amp;amp;&amp;amp; apk add tzdata &amp;amp;&amp;amp; cp</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu修改pip的官方源为豆瓣源</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/ubuntu-xiu-gai-pip-de-guan-fang-yuan-wei-dou-ban-yuan/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/ubuntu-xiu-gai-pip-de-guan-fang-yuan-wei-dou-ban-yuan/</id>
-    <published>2022-05-17T14:24:43.000Z</published>
-    <updated>2022-05-17T14:25:13.291Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;ubuntu修改pip的官方源为豆瓣源&lt;br&gt;编辑配置文件, 如果没有就新建一份&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mkdir ~/.pip
-vim ~/.pip/pip.conf
-
-然后编辑pip.conf，输入
-
-[global]
-index-url =</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Too many open files in system</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/too-many-open-files-in-system/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/too-many-open-files-in-system/</id>
-    <published>2022-05-17T14:21:46.000Z</published>
-    <updated>2022-05-17T14:22:17.434Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;如果系统报错 Too many open files in system  检查措施如下：
-
-……1:  :   :   ulimit -n或者ulimit -a</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu 18.04更换源</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/ubuntu-18-04-geng-huan-yuan/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/ubuntu-18-04-geng-huan-yuan/</id>
-    <published>2022-05-17T14:19:14.000Z</published>
-    <updated>2022-05-17T14:19:58.028Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;sudo cp /etc/apt/sources.list  /etc/apt/sources.list.bak      //备份&lt;/p&gt;
-&lt;p&gt;sudo vim /etc/apt/sources.list     </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>删除pip安装缓存</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/shan-chu-pip-an-zhuang-huan-cun/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/shan-chu-pip-an-zhuang-huan-cun/</id>
-    <published>2022-05-17T13:58:15.000Z</published>
-    <updated>2022-05-17T13:58:53.761Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;指定–no-cache-dir确保安装不缓存&lt;br&gt;如果pip版本在6.0以上，可以在安装时使用–no-cache-dir参数，查看pip版本&lt;/p&gt;
-&lt;p&gt;pip</summary>
         
       
     
