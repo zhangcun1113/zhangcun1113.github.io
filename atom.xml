@@ -6,7 +6,7 @@
   <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
   
   <link href="https://blog.zhangcun.store/"/>
-  <updated>2022-06-15T10:24:08.196Z</updated>
+  <updated>2022-06-16T09:34:22.643Z</updated>
   <id>https://blog.zhangcun.store/</id>
   
   <author>
@@ -15,6 +15,294 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多主机多节点docker-compose部署elasticsearch集群</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/duo-zhu-ji-duo-jie-dian-docker-compose-bu-shu-elasticsearch-ji-qun/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/duo-zhu-ji-duo-jie-dian-docker-compose-bu-shu-elasticsearch-ji-qun/</id>
+    <published>2022-06-16T09:31:13.000Z</published>
+    <updated>2022-06-16T09:34:22.643Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;1、创建服务文件夹路径
+
+[root@ip-172-93-1-78 deploy]# mkdir  elasticsearch
+[root@ip-172-93-1-78 deploy]# cd</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Elasticsearch OutOfMemoryError Java堆空间</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/elasticsearch-outofmemoryerror-java-dui-kong-jian/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/elasticsearch-outofmemoryerror-java-dui-kong-jian/</id>
+    <published>2022-06-16T09:05:51.000Z</published>
+    <updated>2022-06-16T09:06:10.136Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;我正在运行一个8核，32g RAM弹性搜索节点，5个碎片，4亿个(小)文件。 一切都运行良好，直到我运行防攻击搜索，然后碎片开始失败与： java.lang.OutOfMemoryError: Java heap space 我已经改变了堆大小：</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux修改文件句柄数及vm.max_map_count、stack size</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/linux-xiu-gai-wen-jian-ju-bing-shu-ji-vm-max-map-count-stack-size/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/linux-xiu-gai-wen-jian-ju-bing-shu-ji-vm-max-map-count-stack-size/</id>
+    <published>2022-06-16T09:03:48.000Z</published>
+    <updated>2022-06-16T09:04:51.240Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;一、修改文件句柄数
+1.1.查看当前大小
+ulimit -a
+
+
+1.2.临时修改
+ulimit -n 4096
+
+
+1.3.永久修改
+vim</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>同时查看所有docker容器的日志</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/tong-shi-cha-kan-suo-you-docker-rong-qi-de-ri-zhi/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/tong-shi-cha-kan-suo-you-docker-rong-qi-de-ri-zhi/</id>
+    <published>2022-06-16T09:00:42.000Z</published>
+    <updated>2022-06-16T12:30:15.555Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;我目前使用docker作为后端，当我第一次用
+
+启动时
+docker-compose</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我要自学网</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/wo-yao-zi-xue-wang/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/wo-yao-zi-xue-wang/</id>
+    <published>2022-06-16T08:56:00.000Z</published>
+    <updated>2022-06-16T08:56:01.803Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ps查看完整程序执行路径</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/ps-cha-kan-wan-zheng-cheng-xu-zhi-xing-lu-jing/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/ps-cha-kan-wan-zheng-cheng-xu-zhi-xing-lu-jing/</id>
+    <published>2022-06-16T08:52:57.000Z</published>
+    <updated>2022-06-16T08:53:56.688Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在linux下查看进程大家都会想到用 &lt;code&gt;ps -ef|grep ***&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;可是看到的不是全路径，怎么看全路径呢？&lt;/p&gt;
+&lt;p&gt;每个进程启动之后在 /proc下面有一个于pid对应的路径&lt;/p&gt;
+&lt;p&gt;例如：ps -ef|grep</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ubantu批量下载依赖包+apt命令list</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/ubantu-pi-liang-xia-zai-yi-lai-bao-apt-ming-ling-list/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/ubantu-pi-liang-xia-zai-yi-lai-bao-apt-ming-ling-list/</id>
+    <published>2022-06-16T08:49:43.000Z</published>
+    <updated>2022-06-16T08:50:11.003Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;apt install aptitude
+
+aptitude --download-only install docker.io
+
+默认下载地址
+
+/var/cache/apt/archives/
+
+ 
+
+sudo apt-get install</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP 499 状态码 nginx下 499错误</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/http-499-zhuang-tai-ma-nginx-xia-499-cuo-wu/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/http-499-zhuang-tai-ma-nginx-xia-499-cuo-wu/</id>
+    <published>2022-06-16T08:45:26.000Z</published>
+    <updated>2022-06-16T08:47:58.798Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;日志记录中HTTP状态码出现499错误有多种情况，我遇到的一种情况是nginx反代到一个永远打不开的后端，就这样了，日志状态记录是499、发送字节数是0。
+
+老是有用户反映网站系统时好时坏，因为线上的产品很长时间没有修改，所以前端程序的问题基本上可以排除，于</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>搬瓦工搭建 ShadowSocks 翻墙（VPN）- 更换密码</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/ban-wa-gong-da-jian-shadowsocks-fan-qiang-vpn-geng-huan-mi-ma/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/ban-wa-gong-da-jian-shadowsocks-fan-qiang-vpn-geng-huan-mi-ma/</id>
+    <published>2022-06-16T08:42:56.000Z</published>
+    <updated>2022-06-16T08:43:10.730Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在 搬瓦工搭建 ShadowSocks 翻墙（VPN） 一文中的 “三、安装 SSR 脚本” 步骤结束后的打印信息：&lt;/p&gt;
+&lt;p&gt;INFO: loading config from</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Slurm 20.02.3 集群添加gpu节点</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/</id>
+    <published>2022-06-16T08:39:08.000Z</published>
+    <updated>2022-06-16T08:39:31.712Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;为slurm集群增加GPU节点
+
+1</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>slurm集群安装</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/slurm-ji-qun-an-zhuang/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/slurm-ji-qun-an-zhuang/</id>
+    <published>2022-06-16T08:32:02.000Z</published>
+    <updated>2022-06-16T08:33:51.257Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;环境：三台物理机，os均为ubuntu-18-04 LTS，hostname分别为tian-609-06、tian-609-07、tian-609-08。其中tian-609-06作为控制节点和计算节点，其他节点作为计算节点。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>docker部署skywalking并接入java服务</title>
+    <link href="https://blog.zhangcun.store/2022/06/16/docker-bu-shu-skywalking-bing-jie-ru-java-fu-wu/"/>
+    <id>https://blog.zhangcun.store/2022/06/16/docker-bu-shu-skywalking-bing-jie-ru-java-fu-wu/</id>
+    <published>2022-06-16T07:24:20.000Z</published>
+    <updated>2022-06-16T07:47:57.339Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;项目结构&lt;/p&gt;
+&lt;p&gt;制作docker-compose.yml并在控制台输入命令：docker-compose up -d</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>zabbix-get安装使用</title>
@@ -200,296 +488,6 @@ Zabbix agent item &amp;quot;ITERM NAME&amp;quot; on host</summary>
 [root@topcheer config]# cat kibana.yml
 server.host: &amp;quot;0.0.0.0&amp;quot;
 elasticsearch.url:</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>linux中监控CPU、内存和磁盘状态的shell脚本。（centos7）</title>
-    <link href="https://blog.zhangcun.store/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/"/>
-    <id>https://blog.zhangcun.store/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/</id>
-    <published>2022-05-30T03:33:41.000Z</published>
-    <updated>2022-05-30T03:37:01.109Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;　这篇博客中所写的脚本，在实际工作中并没有什么卵用，工作中并不会用到这种脚本去监控。不过自己写一遍，可以让初学者对CPU、内存、磁盘等一些基础知识和基础命令更加了解。
-
-1、利用vmstat工具监控CPU详细信息，然后基于/proc/stat计算CPU利用率</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>win10开启多用户同时远程登录</title>
-    <link href="https://blog.zhangcun.store/2022/05/30/win10-kai-qi-duo-yong-hu-tong-shi-yuan-cheng-deng-lu/"/>
-    <id>https://blog.zhangcun.store/2022/05/30/win10-kai-qi-duo-yong-hu-tong-shi-yuan-cheng-deng-lu/</id>
-    <published>2022-05-30T03:24:27.000Z</published>
-    <updated>2022-05-30T03:24:29.174Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>docker-compose 部署 jenkins</title>
-    <link href="https://blog.zhangcun.store/2022/05/19/docker-compose-bu-shu-jenkins/"/>
-    <id>https://blog.zhangcun.store/2022/05/19/docker-compose-bu-shu-jenkins/</id>
-    <published>2022-05-19T13:14:08.000Z</published>
-    <updated>2022-05-19T13:15:20.120Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;一. docker-compose.yaml
-version: &amp;#39;3&amp;#39;
-services:
-  jenkins:
-    image: &amp;#39;jenkinsci/blueocean&amp;#39;
-    container_name:</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>禁止用户使用 sudo su 命令进入root 模式</title>
-    <link href="https://blog.zhangcun.store/2022/05/19/jin-zhi-yong-hu-shi-yong-sudo-su-ming-ling-jin-ru-root-mo-shi/"/>
-    <id>https://blog.zhangcun.store/2022/05/19/jin-zhi-yong-hu-shi-yong-sudo-su-ming-ling-jin-ru-root-mo-shi/</id>
-    <published>2022-05-19T08:10:54.000Z</published>
-    <updated>2022-05-19T08:11:04.814Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;1. 修改 /etc/sudoers 的权限, 用来写入文件
-# chmod 777 /etc/sudoers
-2. 修改sudo 可以执行的命令
-vim /etc/sudoers  # 打开 sudo 控制文件
-apuser ALL=(ALL:ALL)</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu远程利用邮箱客户端发送邮件</title>
-    <link href="https://blog.zhangcun.store/2022/05/19/ubuntu-yuan-cheng-li-yong-you-xiang-ke-hu-duan-fa-song-you-jian/"/>
-    <id>https://blog.zhangcun.store/2022/05/19/ubuntu-yuan-cheng-li-yong-you-xiang-ke-hu-duan-fa-song-you-jian/</id>
-    <published>2022-05-19T08:08:38.000Z</published>
-    <updated>2022-05-19T08:09:46.974Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;添加软件源并安装
-部分软件库缺失这个软件，阿里云的库里面有，添加源
- sudo vim /etc/apt/sources.list # 打开源地址列表
- deb http://cz.archive.ubuntu.com/ubuntu xenial main</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>linux限制普通用户命令,sudo 限制普通用户权限(示例代码)</title>
-    <link href="https://blog.zhangcun.store/2022/05/19/linux-xian-zhi-pu-tong-yong-hu-ming-ling-sudo-xian-zhi-pu-tong-yong-hu-quan-xian-shi-li-dai-ma/"/>
-    <id>https://blog.zhangcun.store/2022/05/19/linux-xian-zhi-pu-tong-yong-hu-ming-ling-sudo-xian-zhi-pu-tong-yong-hu-quan-xian-shi-li-dai-ma/</id>
-    <published>2022-05-19T08:07:13.000Z</published>
-    <updated>2022-05-19T08:07:46.362Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;限制用户sudo所能执行的命令
-
-linux是多用户多任务的分时操作系统,共享该系统的用户往往不只一个。
-
-但由于root账户密码的敏感性和root账号的无限制权限, 有必要通过useradd创建一些普通用户, 只让他们拥有不完全的权限;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>vim的补充及文件输入输出管理</title>
-    <link href="https://blog.zhangcun.store/2022/05/19/vim-de-bu-chong-ji-wen-jian-shu-ru-shu-chu-guan-li/"/>
-    <id>https://blog.zhangcun.store/2022/05/19/vim-de-bu-chong-ji-wen-jian-shu-ru-shu-chu-guan-li/</id>
-    <published>2022-05-19T08:04:08.000Z</published>
-    <updated>2022-05-19T08:05:55.689Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;一、vim的功能补充
-  1.可视化操作
-      a、在vim中不能使用鼠标框选，若要操作某一区域，需要进入可视化模式（ctrl+v），按上|下|左|右操作即可
-
-      b、可视化模式下批量添加字符
-
-           </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux禁止普通用户使用某些命令</title>
-    <link href="https://blog.zhangcun.store/2022/05/18/linux-jin-zhi-pu-tong-yong-hu-shi-yong-mou-xie-ming-ling/"/>
-    <id>https://blog.zhangcun.store/2022/05/18/linux-jin-zhi-pu-tong-yong-hu-shi-yong-mou-xie-ming-ling/</id>
-    <published>2022-05-17T16:10:10.000Z</published>
-    <updated>2022-05-17T16:12:27.446Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;1.例如xiaowei这个普通用户禁止使用rm命令怎么实现。&lt;/p&gt;
-&lt;p&gt;默认情况下普通用户都是有rm命令权限的，我看到这个第一也是想到了利用visudo来做，但是没有实现，且这个用户是已经存在的用户，尝试一会儿没有实现。后面又想到了setfacl这个命令，实现过程如下：</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>docker-compose运行elasticsearch+elastichd</title>
-    <link href="https://blog.zhangcun.store/2022/05/18/docker-compose-yun-xing-elasticsearch-elastichd/"/>
-    <id>https://blog.zhangcun.store/2022/05/18/docker-compose-yun-xing-elasticsearch-elastichd/</id>
-    <published>2022-05-17T16:04:05.000Z</published>
-    <updated>2022-05-17T16:05:09.428Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;ersion: &amp;#39;3&amp;#39;
-ervices:
- elasticsearch:
-   image: elasticsearch:7.5.1
-   container_name: elasticsearch
-   networks:
-   -</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>mysqldump 导出提示Couldn&#39;t execute SELECT COLUMN_NAME...</title>
-    <link href="https://blog.zhangcun.store/2022/05/18/mysqldump-dao-chu-ti-shi-couldn-t-execute-select-column-name/"/>
-    <id>https://blog.zhangcun.store/2022/05/18/mysqldump-dao-chu-ti-shi-couldn-t-execute-select-column-name/</id>
-    <published>2022-05-17T16:01:51.000Z</published>
-    <updated>2022-05-17T16:02:07.649Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;mysqldump 导出提示Couldn’t execute SELECT COLUMN_NAME…&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mysqldump命令：
-
-　　导出数据库：mysqldump -h ip -u root -p dbname &amp;gt;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用 docker 搭建 openvpn，创建、删除用户证书</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/shi-yong-docker-da-jian-openvpn-chuang-jian-shan-chu-yong-hu-zheng-shu/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/shi-yong-docker-da-jian-openvpn-chuang-jian-shan-chu-yong-hu-zheng-shu/</id>
-    <published>2022-05-17T15:37:06.000Z</published>
-    <updated>2022-05-17T15:43:40.761Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;我自己的配置，服务器：ubuntu16.04 + docker 17.12.0-ce；客户端：win10 + openvpn2.4.5&lt;/p&gt;
-&lt;p&gt;1 在 dockerhub 上搜索 openvpn，&lt;/p&gt;
-&lt;p&gt;2 在 terminal 配置环境变量，Pick a</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>docker-compose入门示例：一键部署 Nginx+Tomcat+Mysql</title>
-    <link href="https://blog.zhangcun.store/2022/05/17/docker-compose-ru-men-shi-li-yi-jian-bu-shu-nginx-tomcat-mysql/"/>
-    <id>https://blog.zhangcun.store/2022/05/17/docker-compose-ru-men-shi-li-yi-jian-bu-shu-nginx-tomcat-mysql/</id>
-    <published>2022-05-17T15:23:56.000Z</published>
-    <updated>2022-05-17T15:27:04.060Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;整体环境配置&lt;/p&gt;
-&lt;p&gt;整体环境的配置，如果一个一个 Dockerfile 去写，那么是相当麻烦的，好在 Docker 有一个名为 Docker-Compose 的工具提供，我们可以使用它一次性完成整体环境的配置： &lt;/p&gt;
-&lt;p&gt;首先我们看看</summary>
         
       
     

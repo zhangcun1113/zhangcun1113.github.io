@@ -4,6 +4,162 @@
   
     
     <entry>
+      <title>多主机多节点docker-compose部署elasticsearch集群</title>
+      <link href="/2022/06/16/duo-zhu-ji-duo-jie-dian-docker-compose-bu-shu-elasticsearch-ji-qun/"/>
+      <url>/2022/06/16/duo-zhu-ji-duo-jie-dian-docker-compose-bu-shu-elasticsearch-ji-qun/</url>
+      
+        <content type="html"><![CDATA[<pre><code>1、创建服务文件夹路径[root@ip-172-93-1-78 deploy]# mkdir  elasticsearch[root@ip-172-93-1-78 deploy]# cd elasticsearch/[root@ip-172-93-1-78 elasticsearch]# ls[root@ip-172-93-1-78 elasticsearch]# pwd/data/deploy/elasticsearch[root@ip-172-93-1-78 elasticsearch]# mkdir logs data2、编写docker-compose文件内容[root@ip-172-93-1-78 elasticsearch]# vim docker-compose.ymlversion: &#39;3&#39;services:  elasticsearch:                    # 服务名称    image: elasticsearch:7.1.1      # 使用的镜像    container_name: elasticsearch   # 容器名称    restart: always                 # 失败自动重启策略    environment:      - node.name=node-44                   # 节点名称，集群模式下每个节点名称唯一      - network.publish_host=192.168.1.44  # 用于集群内各机器间通信,对外使用，其他机器访问本机器的es服务，一般为本机宿主机IP      - network.host=0.0.0.0                # 设置绑定的ip地址，可以是ipv4或ipv6的，默认为0.0.0.0，即本机      - discovery.seed_hosts=192.168.1.44,192.168.1.45,192.168.1.46          # es7.0之后新增的写法，写入候选主节点的设备地址，在开启服务后，如果master挂了，哪些可以被投票选为主节点      - cluster.initial_master_nodes=192.168.1.44,192.168.1.45,192.168.1.46  # es7.0之后新增的配置，初始化一个新的集群时需要此配置来选举master      - cluster.name=es-cluster     # 集群名称，相同名称为一个集群， 三个es节点须一致      # - http.cors.enabled=true    # 是否支持跨域，是：true // 这里设置不起作用，但是可以将此文件映射到宿主机进行修改，然后重启，解决跨域      # - http.cors.allow-origin=&quot;*&quot; # 表示支持所有域名      // 这里设置不起作用，但是可以将此文件映射到宿主机进行修改，然后重启，解决跨域      - bootstrap.memory_lock=true  # 内存交换的选项，官网建议为true      - &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot; # 设置内存，如内存不足，可以尝试调低点    ulimits:        # 栈内存的上限      memlock:        soft: -1    # 不限制        hard: -1    # 不限制    volumes:      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml  # 将容器中es的配置文件映射到本地，设置跨域， 否则head插件无法连接该节点      - ./data:/usr/share/elasticsearch/data  # 存放数据的文件， 注意：这里的esdata为 顶级volumes下的一项。    ports:      - 9200:9200    # http端口，可以直接浏览器访问      - 9300:9300    # es集群之间相互访问的端口，jar之间就是通过此端口进行tcp协议通信，遵循tcp协议。编写elasticsearch.yml文件[root@ip-172-93-1-78 elasticsearch]# vim elasticsearch.ymlbootstrap.memory_lock: falsecluster.name: &quot;es-server&quot;node.name: node1 node.master: truenode.data: truenetwork.host: 0.0.0.0http.port: 9200path.logs: /usr/share/elasticsearch/logshttp.cors.enabled: truehttp.cors.allow-origin: &quot;*&quot;xpack.security.audit.enabled: true编写jvm配置文件[root@ip-172-93-1-78 elasticsearch]# cat conf/jvm.options -Djna.nosys=true # turn off a JDK optimization that throws away stack traces for common# exceptions because stack traces are important for debugging-XX:-OmitStackTraceInFastThrow # flags to configure Netty-Dio.netty.noUnsafe=true-Dio.netty.noKeySetOptimization=true-Dio.netty.recycler.maxCapacityPerThread=0 # log4j 2-Dlog4j.shutdownHookEnabled=false-Dlog4j2.disable.jmx=true -Djava.io.tmpdir=$&#123;ES_TMPDIR&#125; ## heap dumps # generate a heap dump when an allocation from the Java heap fails# heap dumps are created in the working directory of the JVM-XX:+HeapDumpOnOutOfMemoryError # specify an alternative path for heap dumps; ensure the directory exists and# has sufficient space-XX:HeapDumpPath=data # specify an alternative path for JVM fatal error logs-XX:ErrorFile=logs/hs_err_pid%p.log ## JDK 8 GC logging 8:-XX:+PrintGCDetails8:-XX:+PrintGCDateStamps8:-XX:+PrintTenuringDistribution8:-XX:+PrintGCApplicationStoppedTime8:-Xloggc:logs/gc.log8:-XX:+UseGCLogFileRotation8:-XX:NumberOfGCLogFiles=328:-XX:GCLogFileSize=64m # JDK 9+ GC logging9-:-Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m# due to internationalization enhancements in JDK 9 Elasticsearch need to set the provider to COMPAT otherwise# time/date parsing will break in an incompatible way for some date patterns and locals9-:-Djava.locale.providers=COMPAT # temporary workaround for C2 bug with JDK 10 on hardware with AVX-51210-:-XX:UseAVX=2启动elasticsearch服务[root@ip-172-93-1-78 elasticsearch]# cat conf/jvm.options -Djna.nosys=true # turn off a JDK optimization that throws away stack traces for common# exceptions because stack traces are important for debugging-XX:-OmitStackTraceInFastThrow # flags to configure Netty-Dio.netty.noUnsafe=true-Dio.netty.noKeySetOptimization=true-Dio.netty.recycler.maxCapacityPerThread=0 # log4j 2-Dlog4j.shutdownHookEnabled=false-Dlog4j2.disable.jmx=true -Djava.io.tmpdir=$&#123;ES_TMPDIR&#125; ## heap dumps # generate a heap dump when an allocation from the Java heap fails# heap dumps are created in the working directory of the JVM-XX:+HeapDumpOnOutOfMemoryError # specify an alternative path for heap dumps; ensure the directory exists and# has sufficient space-XX:HeapDumpPath=data # specify an alternative path for JVM fatal error logs-XX:ErrorFile=logs/hs_err_pid%p.log ## JDK 8 GC logging 8:-XX:+PrintGCDetails8:-XX:+PrintGCDateStamps8:-XX:+PrintTenuringDistribution8:-XX:+PrintGCApplicationStoppedTime8:-Xloggc:logs/gc.log8:-XX:+UseGCLogFileRotation8:-XX:NumberOfGCLogFiles=328:-XX:GCLogFileSize=64m # JDK 9+ GC logging9-:-Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m# due to internationalization enhancements in JDK 9 Elasticsearch need to set the provider to COMPAT otherwise# time/date parsing will break in an incompatible way for some date patterns and locals9-:-Djava.locale.providers=COMPAT # temporary workaround for C2 bug with JDK 10 on hardware with AVX-51210-:-XX:UseAVX=2</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Elasticsearch OutOfMemoryError Java堆空间</title>
+      <link href="/2022/06/16/elasticsearch-outofmemoryerror-java-dui-kong-jian/"/>
+      <url>/2022/06/16/elasticsearch-outofmemoryerror-java-dui-kong-jian/</url>
+      
+        <content type="html"><![CDATA[<pre><code>我正在运行一个8核，32g RAM弹性搜索节点，5个碎片，4亿个(小)文件。 一切都运行良好，直到我运行防攻击搜索，然后碎片开始失败与： java.lang.OutOfMemoryError: Java heap space 我已经改变了堆大小： 导出ES_HEAP_SIZE = 16g(也可以将ES_MAX_MEM和ES_MIN_MEM相同) 也改变了弹性搜索的yml文件： bootstrap.相关专题：ElasticSearch我正在运行一个8核，32g RAM弹性搜索节点，5个碎片，4亿个(小)文件。一切都运行良好，直到我运行防攻击搜索，然后碎片开始失败与：java.lang.OutOfMemoryError: Java heap space我已经改变了堆大小：导出ES_HEAP_SIZE = 16g(也可以将ES_MAX_MEM和ES_MIN_MEM相同)也改变了弹性搜索的yml文件：bootstrap.mlockall: true甚至(安装文件推荐)：sudo sysctl -w vm.max_map_count=262144重启服务依然没有没有影响，还是java.lang.OutOfMemoryError：Java堆空间任何其他建议？除了不运行查询？查询是：https://localhost:9200/my_index_name/_search?search_type=count&#123;  &quot;aggs&quot;: &#123;    &quot;distinct_hostname&quot;: &#123;      &quot;cardinality&quot;: &#123;        &quot;field&quot;: &quot;hostname&quot;      &#125;    &#125;  &#125;&#125;我想我发现了错误。我使用’服务’来运行弹性搜索，因此我的环境变量被剥离了。我必须使用相应的env变量(特别是ES_HEAP_SIZE = 16g)更新/ etc / default / elasticsearch文件。到目前为止，它运行良好，应用程序不会出错。</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux修改文件句柄数及vm.max_map_count、stack size</title>
+      <link href="/2022/06/16/linux-xiu-gai-wen-jian-ju-bing-shu-ji-vm-max-map-count-stack-size/"/>
+      <url>/2022/06/16/linux-xiu-gai-wen-jian-ju-bing-shu-ji-vm-max-map-count-stack-size/</url>
+      
+        <content type="html"><![CDATA[<pre><code>一、修改文件句柄数1.1.查看当前大小ulimit -a1.2.临时修改ulimit -n 40961.3.永久修改vim /etc/security/limits.conf*　　soft　　nofile　　65536*　　hard　　nofile　　65536重新登录后生效二、修改max user processes进程数2.1.临时修改ulimit -u 655362.1.永久修改vim /etc/security/limits.conf*　　soft　　nproc 65536*　　hard　　nproc 65536三、调整vm.max_map_count的大小max_map_count文件包含限制一个进程可以拥有的VMA(虚拟内存区域)的数量报错“max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]”3.1.查看当前值sysctl -a|grep vm.max_map_count3.2.临时修改sysctl -w vm.max_map_count=2621443.3.永久修改vim /etc/sysctl.confvm.max_map_count=262144sysctl -p四、调整stack size的大小查看：ulimit -a,默认是8192，即8M临时修改ulimit -s 1024永久修改vi /etc/security/limits.confsoft stack 1024hard stack 1024注意：nofilenofile表示单个进程可以打开的最大文件句柄数（默认值，软限制：1024，硬限制：4096）/proc/sys/fs/file-max表示整个系统内核可以分配的最大文件句柄数（默认值约为物理内存转换成kb的值/10），如需修改执行命令：echo‘fs.file-max=104857600’ &gt;&gt; /etc/sysctl.conf &amp;&amp; sysctl -q -p/proc/sys/fs/file-nr表示整个系统内核的文件句柄统计数据（只读），包含三个值，1：整个系统内核已分配的文件句柄数，2：整个系统内核已分配但未使用的文件句柄数（一般情况下为0），3：整个系统内核可以分配的最大文件句柄数（等于file-max）/proc/sys/fs/nr_open表示单个进程可以分配的最大文件句柄数（默认值为1048576），如需修改执行命令：echo‘fs.nr_open=2097152’ &gt;&gt; /etc/sysctl.conf &amp;&amp; sysctl -q -pnofile的值不能超过nr_open的值，如果配置文件中nofile的硬限制的值超过nr_open的值将会导致无法登录系统单个进程可以打开的最大文件句柄数由nofile和file-max同时约束，假如一个进程已打开的文件句柄数小于nofile，但整个系统内核所有进程打开的文件句柄数已经达到file-max，此时这个进程也不能再打开文件句柄了nprocnproc表示单个用户创建的进程数（默认值，软限制：threads-max/2，硬限制：threads-max/2），线程的实现其实是一个轻量级的进程，所以线程也算进程/proc/sys/kernel/threads-max表示整个系统内核可以分配的最大线程数，如需修改执行命令：echo‘kernel.threads-max=1048576’ &gt;&gt; /etc/sysctl.conf &amp;&amp; sysctl -q -p/proc/sys/kernel/pid_max表示整个系统内核可以分配的最大进程ID（默认值为32768，2个字节的最大值），也就是说，整个系统内核最多只能分配pid_max个进程或线程，如需修改执行命令：echo‘kernel.pid_max=1048576’ &gt;&gt; /etc/sysctl.conf &amp;&amp; sysctl -q -p/proc/sys/vm/max_map_count表示单个进程可以分配的内存映射区域的最大数量（默认值为65530），由于java中每创建一个线程需要分配2个内存映射区域，并且jvm本身也要占用部分内存映射区域，所以java程序理论上最多可以创建的线程数为略小于max_map_count/2（实际上还受jvm参数-Xms、-Xmx、-Xss以及操作系统物理内存的影响），如需修改执行命令：echo‘vm.max_map_count=2097152’ &gt;&gt; /etc/sysctl.conf &amp;&amp; sysctl -q -p单个进程可以创建的线程数由nproc、threads-max、pid_max、max_map_count以及系统资源同时约束，达到其中一个的上限就不能再创建线程了CentOS7中/etc/security/limits.d/20-nproc.conf（CentOS6是90-nproc.conf）会覆盖/etc/security/limits.conf中的nproc配置，前提条件是，(20|90)-nproc.conf和limits.conf的domain相同或者(20|90)-nproc.conf比limits.conf的domain更具体，优先级从高到低分别为：/etc/security/limits.d/(20|90)-nproc.conf中domain为具体用户的配置/etc/security/limits.conf中domain为具体用户的配置/etc/security/limits.d/(20|90)-nproc.conf中domain为通配符（）的配置/etc/security/limits.conf中domain为通配符（）的配置注意事项domain中具体用户比通配符（*）优先级高软限制不能大于硬限制，如果配置文件中软限制设置的比硬限制高，则软限制会使用硬限制的值，通过ulimit命令设置软限制不能超过硬限制。root用户可以通过ulimit命令降低和提高硬限制（nofile的值不能超过nr_open的值）。非root用户可以通过ulimit命令降低硬限制，但不可以通过ulimit命令提高硬限制。</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>同时查看所有docker容器的日志</title>
+      <link href="/2022/06/16/tong-shi-cha-kan-suo-you-docker-rong-qi-de-ri-zhi/"/>
+      <url>/2022/06/16/tong-shi-cha-kan-suo-you-docker-rong-qi-de-ri-zhi/</url>
+      
+        <content type="html"><![CDATA[<pre><code>我目前使用docker作为后端，当我第一次用启动时docker-compose up我一次得到所有4个码头工人的日志输出，所以我可以看到他们在请求进来时如何相互交互。看起来像这样，一个请求从nginx到couchdbhttp://i.imgur.com/E4GQ43F.png现在的问题是我在GCE上运行负载均衡，当新VM启动时，它会自动启动docker并正常运行，我希望能够访问负载均衡的VM并查看实时日志，但我不能让docker允许我这种风格，当我使用日志时，它给我正常的所有白色字体，没有标签来自它。使用docker events  什么都不做，它不会返回任何信息。    tldr;获取视图的最佳方式是什么，与运行时获得的日志输出相同＆＃34; docker-compose up＆＃34;5 个答案:如果使用docker-compose，请使用docker-compose logs --tail=0 --follow而不是docker logs --tail=0 --follow这将获得我最初寻找的输出。您可以使用以下命令查看所有正在运行的容器的日志docker ps -q | xargs -L 1 docker logs理论上，如果xargs与--follow一起运行，而xargs的数量大于正在运行的容器的数量，那么这对-P &lt;count&gt;也可能适用。我使用此变量的变体来尾部（-跟随）所有日志，并指示当时哪个日志在尾部。此bash包括stdout和stderr。请注意，之后您可能需要清除*。&#123;log，err&#125;的/ tmp目录。for c in $(docker ps -a --format=&quot;&#123;&#123;.Names&#125;&#125;&quot;)do       docker logs -f $c &gt; /tmp/$c.log 2&gt; /tmp/$c.err &amp;donetail -f /tmp/*.&#123;log,err&#125;希望这会有所帮助。如今，伐木变得如此麻烦，而其他下车的老人都在抱怨...答案 3 :(得分：1)如果使用的是Docker Swarm，则可以通过以下方式找到服务docker service ls获取ID，然后运行docker service logs $ID -f 如果使用tty：true定义服务，则必须使用--raw标志运行。请注意，这不会告诉您哪个容器正在提供输出的日志条目。                 试试“看”这是一个用于 docker 容器的快速而肮脏的 multitail/xtail。#watch &#39;docker ps --format &quot;&#123;&#123;.Names&#125;&#125;&quot; | sort | xargs --verbose --max-args=1 -- docker logs --tail=8 --timestamps&#39;根据需要调整参数“--tail=8”，使所有内容仍然适合一个屏幕。当容器停止和重新启动时，上面列出的“xargs”方法将停止工作。这里的这种“观察”方法没有这个问题。 （但也不是很好。）</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我要自学网</title>
+      <link href="/2022/06/16/wo-yao-zi-xue-wang/"/>
+      <url>/2022/06/16/wo-yao-zi-xue-wang/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://www.51zxw.net/">https://www.51zxw.net</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ps查看完整程序执行路径</title>
+      <link href="/2022/06/16/ps-cha-kan-wan-zheng-cheng-xu-zhi-xing-lu-jing/"/>
+      <url>/2022/06/16/ps-cha-kan-wan-zheng-cheng-xu-zhi-xing-lu-jing/</url>
+      
+        <content type="html"><![CDATA[<p>在linux下查看进程大家都会想到用 <code>ps -ef|grep ***</code></p><p>可是看到的不是全路径，怎么看全路径呢？</p><p>每个进程启动之后在 /proc下面有一个于pid对应的路径</p><p>例如：ps -ef|grep java</p><p>liu    2233  4366  0 18:56 pts/2    00:00:00 java GateWar.war</p><p>ls -l  /proc/2233</p><p>注意cwd，即是你要查找的进程所在路径</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ubantu批量下载依赖包+apt命令list</title>
+      <link href="/2022/06/16/ubantu-pi-liang-xia-zai-yi-lai-bao-apt-ming-ling-list/"/>
+      <url>/2022/06/16/ubantu-pi-liang-xia-zai-yi-lai-bao-apt-ming-ling-list/</url>
+      
+        <content type="html"><![CDATA[<pre><code>apt install aptitudeaptitude --download-only install docker.io默认下载地址/var/cache/apt/archives/ sudo apt-get install package                    　　　　安装软件包sudo apt-get install package - - reinstall 　　　　重新安装软件包sudo apt-get -f install                                　　　　修复安装软件包&quot;-f = ——fix-missing&quot;sudo apt-get remove package                  　　　　删除软件包sudo apt-get remove package - - purge  　　　　删除软件包，包括删除配置文件等sudo apt-get update                                  　　　　更新源及/etc/apt/sources.listsudo apt-get upgrade                                　　　　更新已安装的软件包sudo apt-get dist-upgrade       　　　　　　　　升级系统安装的软件包sudo apt-get dselect-upgrade 　　　　　　　　使用 dselect 升级sudo apt-get build-dep package 　　　　　　　　安装相关的编译环境sudo apt-get clean &amp;&amp; sudo apt-get autoclean 　　清理无用的软件包sudo apt-get check                　　　　　　　　 检查是否有损坏的依赖apt-cache search package     　　　　　　　　搜索软件包apt-cache show package      　　　　　　　　 获取包的相关信息，如说明、大小、版本等apt-cache depends package 　　　　　　　　了解使用依赖apt-cache rdepends package　　　　　　　　是查看该软件包被哪些软件包依赖</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTTP 499 状态码 nginx下 499错误</title>
+      <link href="/2022/06/16/http-499-zhuang-tai-ma-nginx-xia-499-cuo-wu/"/>
+      <url>/2022/06/16/http-499-zhuang-tai-ma-nginx-xia-499-cuo-wu/</url>
+      
+        <content type="html"><![CDATA[<pre><code>日志记录中HTTP状态码出现499错误有多种情况，我遇到的一种情况是nginx反代到一个永远打不开的后端，就这样了，日志状态记录是499、发送字节数是0。老是有用户反映网站系统时好时坏，因为线上的产品很长时间没有修改，所以前端程序的问题基本上可以排除，于是就想着是Get方式调用的接口不稳定，问了相关人员，说没有问题，为了拿到确切证据，于是我问相关人员要了nginx服务器的日志文件（awstats日志），分析后发现日志中很多错误码为499的错误，约占整个日志文件的1%，而它只占全部报错的70%左右（全部报错见下图），那么所有报错加起来就要超过1%了，这个量还是特别大的。499错误是什么？让我们看看NGINX的源码中的定义：ngx_string(ngx_http_error_495_page), /* 495, https certificate error */ngx_string(ngx_http_error_496_page), /* 496, https no certificate */ngx_string(ngx_http_error_497_page), /* 497, http to https */ngx_string(ngx_http_error_404_page), /* 498, canceled */ngx_null_string,                    /* 499, client has closed connection */可以看到，499对应的是 “client has closed connection”。这很有可能是因为服务器端处理的时间过长，客户端“不耐烦”了。Nginx 499错误的原因及解决方法打开Nginx的access.log发现在最后一次的提交是出现了HTTP1.1 499 0 -这样的错误，在百度搜索nginx 499错误，结果都是说客户端主动断开了连接。但经过我的测试这显然不是客户端的问题，因为使用端口+IP直接访问后端服务器不存在此问题，后来测试nginx发现如果两次提交post过快就会出现499的情况，看来是nginx认为是不安全的连接，主动拒绝了客户端的连接.但搜索相关问题一直找不到解决方法，最后终于在google上搜索到一英文论坛上有关于此错误的解决方法： proxy_ignore_client_abort on;Don’t know if this is safe.就是说要配置参数 proxy_ignore_client_abort on;表示代理服务端不要主要主动关闭客户端连接。以此配置重启nginx,问题果然得到解决。只是安全方面稍有欠缺，但比总是出现找不到服务器好多了。还有一种原因是 我后来测试发现 确实是客户端关闭了连接,或者说连接超时 ,无论你设置多少超时时间多没用 原来是php进程不够用了 改善一下php进程数 问题解决 默认测试环境才开5个子进程。日志记录中HTTP状态码出现499错误有多种情况，我遇到的一种情况是nginx反代到一个永远打不开的后端，就这样了，日志状态记录是499、发送字节数是0。老是有用户反映网站系统时好时坏，因为线上的产品很长时间没有修改，所以前端程序的问题基本上可以排除，于是就想着是Get方式调用的接口不稳定，问了相关人员，说没有问题，为了拿到确切证据，于是我问相关人员要了nginx服务器的日志文件（awstats日志），分析后发现日志中很多错误码为499的错误，约占整个日志文件的1%，而它只占全部报错的70%左右（全部报错见下图），那么所有报错加起来就要超过1%了，这个量还是特别大的。499错误是什么？让我们看看NGINX的源码中的定义：ngx_string(ngx_http_error_495_page), /* 495, https certificate error */ngx_string(ngx_http_error_496_page), /* 496, https no certificate */ngx_string(ngx_http_error_497_page), /* 497, http to https */ngx_string(ngx_http_error_404_page), /* 498, canceled */ngx_null_string,                    /* 499, client has closed connection */可以看到，499对应的是 “client has closed connection”。这很有可能是因为服务器端处理的时间过长，客户端“不耐烦”了。Nginx 499错误的原因及解决方法打开Nginx的access.log发现在最后一次的提交是出现了HTTP1.1 499 0 -这样的错误，在百度搜索nginx 499错误，结果都是说客户端主动断开了连接。但经过我的测试这显然不是客户端的问题，因为使用端口+IP直接访问后端服务器不存在此问题，后来测试nginx发现如果两次提交post过快就会出现499的情况，看来是nginx认为是不安全的连接，主动拒绝了客户端的连接.但搜索相关问题一直找不到解决方法，最后终于在google上搜索到一英文论坛上有关于此错误的解决方法：proxy_ignore_client_abort on;Don’t know if this is safe.就是说要配置参数 proxy_ignore_client_abort on;表示代理服务端不要主要主动关闭客户端连接。以此配置重启nginx,问题果然得到解决。只是安全方面稍有欠缺，但比总是出现找不到服务器好多了。还有一种原因是 我后来测试发现 确实是客户端关闭了连接,或者说连接超时 ,无论你设置多少超时时间多没用 原来是php进程不够用了 改善一下php进程数 问题解决 默认测试环境才开5个子进程。</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>搬瓦工搭建 ShadowSocks 翻墙（VPN）- 更换密码</title>
+      <link href="/2022/06/16/ban-wa-gong-da-jian-shadowsocks-fan-qiang-vpn-geng-huan-mi-ma/"/>
+      <url>/2022/06/16/ban-wa-gong-da-jian-shadowsocks-fan-qiang-vpn-geng-huan-mi-ma/</url>
+      
+        <content type="html"><![CDATA[<p>在 搬瓦工搭建 ShadowSocks 翻墙（VPN） 一文中的 “三、安装 SSR 脚本” 步骤结束后的打印信息：</p><p>INFO: loading config from /etc/shadowsocks-python/config.json<br>2019-03-28 05:14:24 INFO loading libcrypto from libcrypto.so.10<br>Starting Shadowsocks success</p><p>Congratulations, Shadowsocks-Python server install completed!<br>看到 VPN 服务的配置信息是不是有点激动呢？有配置那是否意味着更改配置信息就能达到我们的目的呢？</p><p>在终端操作命令</p><pre><code>vi /etc/shadowsocks-python/config.json可以看到&#123;&quot;server&quot;:&quot;0.0.0.0&quot;,&quot;server_port&quot;:11260,&quot;local_address&quot;:&quot;127.0.0.1&quot;,&quot;local_port&quot;:1080,&quot;password&quot;:&quot;123456&quot;,&quot;timeout&quot;:300,&quot;method&quot;:&quot;aes-256-cfb&quot;,&quot;fast_open&quot;:false&#125;</code></pre><p>在看到 password 后，说明我们可以试试修改 password 的值。编辑 /etc/shadowsocks-python/config.json，修改 password 的值为 12345678，保存退出。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Slurm 20.02.3 集群添加gpu节点</title>
+      <link href="/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/"/>
+      <url>/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/</url>
+      
+        <content type="html"><![CDATA[<pre><code>为slurm集群增加GPU节点1 环境准备一个slurm管理节点(186.31.29.21)，一个GPU节点(183.31.28.247)GPU节点的GPU型号为GTX1080Ti，驱动版本为440.100，CUDA版本为10.0，安装了对应的cudnn。其实，slurm对GPU的型号及驱动并不敏感，slurm只是去/dev下面去找硬件设备，然后使其作为slurm的通用资源。 2 修改配置文件管理节点：在slurm.conf中，修改如下两项GresTypes=gpuNodeName= gupnode01 Gres=gpu:1 CPUs=56 RealMemory=256000 Socket=2 State=UNKNOWN第一行是指明通用资源的类型为gpu第二行中，重要的参数是 `Gres=gpu:1`   gpu代表类型，冒号后的数字代表数量，1个GPU就是1，8个就是8。计算节点：计算节点除了要 slurm.conf还需要gres.conf，slurm官方文档说，把 gres.conf中的东西写到slurm.conf中也未尝不可~ NodeName=gpunode01 Name=gpu  File=/dev/nvidia0这一行重要的就是知名节点名字和GPU  File的位置 。3 关闭防火墙、测试要使用gpu节点，一定要关闭防火墙`systemctl stop firewalld`最好也清除并关闭iptables  `iptables -t nat -F`  `iptables -t filter -F` `systemctl stop iptables`最好将selinux关闭，`vi /etc/selinux/config`  将SELINUX改为disable然后我们就可以使用GPU了 这里有个使用python tensorflow-1.14的GPU测试脚本，大家可以拿去试试import tensorflow as tf with tf.device(&#39;/gpu:0&#39;)    v1 = tf.constant([1.0, 2.0, 3.0], shape=[3], name=&#39;v1&#39;)    v2 = tf.constant([1.0, 2.0, 3.0], shape=[3], name=&#39;v2&#39;)    sumV = v1 + v2    with tf.Session() as sess:        print(sess.run(sumV)) 使用slurm  srun运行此脚本，命令为：srun --gres=gpu:1 python3 test_gpu.pyEND</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>slurm集群安装</title>
+      <link href="/2022/06/16/slurm-ji-qun-an-zhuang/"/>
+      <url>/2022/06/16/slurm-ji-qun-an-zhuang/</url>
+      
+        <content type="html"><![CDATA[<p>环境：三台物理机，os均为ubuntu-18-04 LTS，hostname分别为tian-609-06、tian-609-07、tian-609-08。其中tian-609-06作为控制节点和计算节点，其他节点作为计算节点。</p><pre><code>     sudo apt install munge slurm-wlm12、配置/etc/slurm-llnl/slurm.conf文件（所有机器，配置一样）# slurm.conf file generated by configurator easy.html. # Put this file on all nodes of your cluster. # See the slurm.conf man page for more information. # ControlMachine=tian-609-06 #&lt;YOUR-HOST-NAME&gt; #ControlAddr= # #MailProg=/bin/mail MpiDefault=none #MpiParams=ports=#-# ProctrackType=proctrack/pgid ReturnToService=1 SlurmctldPidFile=/var/run/slurm-llnl/slurmctld.pid #SlurmctldPort=6817 SlurmdPidFile=/var/run/slurm-llnl/slurmd.pid #SlurmdPort=6818 SlurmdSpoolDir=/var/lib/slurm-llnl/slurmd SlurmUser=slurm #SlurmdUser=root StateSaveLocation=/var/lib/slurm-llnl/slurmctld SwitchType=switch/none TaskPlugin=task/none # # # TIMERS #KillWait=30 #MinJobAge=300 #SlurmctldTimeout=120 #SlurmdTimeout=300 # # # SCHEDULING FastSchedule=1 SchedulerType=sched/builtin #SchedulerPort=7321 SelectType=select/linear # # # LOGGING AND ACCOUNTING AccountingStorageType=accounting_storage/none #AccountingStoragePass=/var/run/munge/global.socket.2 ClusterName=workstation #&lt;YOUR-HOST-NAME&gt; #JobAcctGatherFrequency=30 JobAcctGatherType=jobacct_gather/none #SlurmctldDebug=3 SlurmctldLogFile=/var/log/slurm-llnl/slurmctld.log #SlurmdDebug=4 SlurmdLogFile=/var/log/slurm-llnl/slurmd.log # # # COMPUTE NODES NodeName=tian-609-06,tian-609-07,tian-609-08 CPUs=48 Sockets=2 CoresPerSocket=12 RealMemory=257731 ThreadsPerCore=2 State=IDLEPartitionName=debug Nodes=tian-609-06,tian-609-07,tian-609-08 Default=YES MaxTime=INFINITE State=UP3、将/etc/hosts中配置对应的hostname和ip（所有机器）4、开启slurmsudo systemctl enable slurmctld（控制节点tian-609-06）sudo service slurmctld start（控制节点tian-609-06）sudo systemctl enable slurmd（计算节点tian-609-[06-08]）sudo service slurmd start（计算节点tian-609-[06-08]）5、将控制节点的/etc/munge/munge.key拷贝至其他机器相同目录，文件所属用户和用户组均为slurm6、开启mungesudo /etc/init.d/munge start（所有节点）7、查看slurm集群状态&gt; sinfo PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELISTdebug*       up   infinite      3   idle tian-609-[06-08]8、执行命令（测试）&gt; srun -N 3 hostnametian-609-07tian-609-08tian-609-06</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>docker部署skywalking并接入java服务</title>
+      <link href="/2022/06/16/docker-bu-shu-skywalking-bing-jie-ru-java-fu-wu/"/>
+      <url>/2022/06/16/docker-bu-shu-skywalking-bing-jie-ru-java-fu-wu/</url>
+      
+        <content type="html"><![CDATA[<p>项目结构</p><p>制作docker-compose.yml并在控制台输入命令：docker-compose up -d (说明：-d代表在后台运行；保证端口9200/9300/8080/11800/12800未被占用；docker-compose没有设置networkt会自动以当前目录生成(xxx_default)，当前目录为skywalking即network=skywalking_default)，即可完成skywalking的制作。</p><pre><code>version: &#39;2&#39;services:  elasticsearch:    image: elasticsearch:6.8.0    container_name: skywalking-es    restart: always    ports:      - 9200:9200      - 9300:9300    environment:      discovery.type: single-node      TZ: Asia/Shanghai  oap:    image: apache/skywalking-oap-server:6.1.0    container_name: skywalking-oap    depends_on:      - elasticsearch    links:      - elasticsearch    restart: always    #前边为外网端口号,后边为容器应用端口号    ports:      - 11800:11800      - 12800:12800    environment:      # 设置时区      TZ: Asia/Shanghai  ui:    image: apache/skywalking-ui:6.4.0    container_name: skywalking-ui    depends_on:      - oap    links:      - oap    restart: always    ports:      - 8080:8080    #设置环境,配置覆盖yml的配置    environment:      collector.ribbon.listOfServers: oap:12800      security.user.admin.password: 123456</code></pre><p>检查是否正确启动elasticsearch和skywalking</p><p>制作Dockerfile生成基础镜像给java服务使用，控制台命令输入：docker build -t centos.skywalking.base:0.0.1 .</p><pre><code>FROM centos:7 WORKDIR /app RUN yum install -y wget &amp;&amp; \    yum install -y java-1.8.0-openjdk ADD http://mirrors.tuna.tsinghua.edu.cn/apache/skywalking/6.4.0/apache-skywalking-apm-6.4.0.tar.gz /app RUN tar -xf apache-skywalking-apm-6.4.0.tar.gz &amp;&amp; \    mv apache-skywalking-apm-bin skywalking RUN ls /app</code></pre><p>java服务接入swalking(多个同理)，Dockerfile制作并在控制台输入：</p><pre><code>1、docker build -t test:0.0.1 .     2、docker run -it -d --net skywalking_default -p 9812:9812 test:0.0.1FROM centos.skywalking.base:0.0.1 COPY /target/app.jar /app/app.jar EXPOSE 9812 ENTRYPOINT java -javaagent:/app/skywalking/agent/skywalking-agent.jar -Dskywalking.agent.service_name=xxxtest -Dskywalking.collector.backend_service=172.19.0.3:11800 -Dserver.port=9812 -jar app.jar</code></pre><p>Dskywalking.agent.service_name=xxx    指定java服务名称</p><p>-Dserver.port=xxx    指定java服务启动端口</p><p>Dskywalking.collector.backend_service=xxx   oap服务收集ip默认为127.0.0.1:11800</p><p>查看启动的oap服务容器的ip，命令：docker inspect skywalking-oap。以下的IPAddress即为oap服务ip</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>zabbix-get安装使用</title>
       <link href="/2022/06/15/zabbix-get-an-zhuang-shi-yong/"/>
       <url>/2022/06/15/zabbix-get-an-zhuang-shi-yong/</url>
