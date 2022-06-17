@@ -4,6 +4,110 @@
   
     
     <entry>
+      <title>crontab每周一执行一次</title>
+      <link href="/2022/06/17/crontab-mei-zhou-yi-zhi-xing-yi-ci/"/>
+      <url>/2022/06/17/crontab-mei-zhou-yi-zhi-xing-yi-ci/</url>
+      
+        <content type="html"><![CDATA[<p>linux定时执行任务命令是我们在日常工作中经常用的，一般情况下，我们都是通过linux的crontab软件来实现，crontab是定时来执行一个命令或者一个脚本;但是如果你临时只执行一次命令的话，那么我们也可以采用at命令，同时可以实现我们的目标。</p><p>先从crontab开始分享，我们一般通过命令 crontab -l 来查看已经定时执行的任务，我们要新增呢，我们在命令行输入</p><p>#crontab -e</p><p>如果第一次执行，他会提示你选择默认编译器，一般我选择vim(vi、nano也可以)</p><p>我举例定时关机说明：</p><p>分 时 日 月 周 命令</p><p>0 1 * * 1 /sbin/shutdown -h now</p><p>这个意思就是在每周一的一点执行 /sbin/shutdown定时关机(root下才可以关机)当然你可以写个脚本，给予执行权限(x)，然后输入脚本的绝对路径，这里也可以定时执行。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nginx 改变错误日志打印级别</title>
+      <link href="/2022/06/17/nginx-gai-bian-cuo-wu-ri-zhi-da-yin-ji-bie/"/>
+      <url>/2022/06/17/nginx-gai-bian-cuo-wu-ri-zhi-da-yin-ji-bie/</url>
+      
+        <content type="html"><![CDATA[<p>Nginx 改变错误日志打印级别</p><p>user  root;<br>worker_processes  2;</p><p>worker_rlimit_nofile 10240;<br>error_log logs/nginx_error.log  crit;</p><p>events{<br>        use epoll;<br>        worker_connections 2048;<br>}</p><p>如果想改变nginx错误日志的打印级别，第四行添加以上字段。</p><p>nginx的error_log类型如下（从左到右：debug最详细 crit最少）： [ debug | info | notice | warn | error | crit ] </p><p>例如：error_log logs/nginx_error.log  crit;</p><p>注意error_log off并不能关闭日志记录功能，它将日志文件写入一个文件名为off的文件中，如果你想关闭错误日志记录功能，应使用以下配置：<br>error_log /dev/null crit;   把存储位置设置到Linux的黑洞中去</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Ubuntu 18.04 编译安装 Python2.7.17</title>
+      <link href="/2022/06/17/ubuntu-18-04-bian-yi-an-zhuang-python2-7-17/"/>
+      <url>/2022/06/17/ubuntu-18-04-bian-yi-an-zhuang-python2-7-17/</url>
+      
+        <content type="html"><![CDATA[<p>1、安装依赖</p><p>sudo apt-get install build-essential checkinstall</p><p>sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev</p><p>2、下载并解压缩</p><pre><code>wget https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tgz</code></pre><p>tar -xvf Python-2.7.17.tgz</p><p>3、编译安装 ，一路回车安装完成</p><pre><code>./configure --enable-optimizations</code></pre><p>make</p><p>sudo checkinstall</p><p>安装位置：/usr/lib/python2.7</p><p>4、安装 PIP</p><pre><code>wget https://bootstrap.pypa.io/get-pip.py</code></pre><p>sudo python get-pip.pytar -xvf Python-2.7.17.tgz</p><p>5、显示版本信息</p><p>python –version</p><p>6、卸载 python</p><p>sudo dpkg -r python</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux上如何查看物理CPU个数，核数，线程数</title>
+      <link href="/2022/06/17/linux-shang-ru-he-cha-kan-wu-li-cpu-ge-shu-he-shu-xian-cheng-shu/"/>
+      <url>/2022/06/17/linux-shang-ru-he-cha-kan-wu-li-cpu-ge-shu-he-shu-xian-cheng-shu/</url>
+      
+        <content type="html"><![CDATA[<pre><code>  首先，看看什么是超线程概念    超线程技术就是利用特殊的硬件指令，把两个逻辑内核模拟成两个物理芯片，让单个处理器都能使用线程级并行计算，进而兼容多线程操作系统和软件，减少了CPU的闲置时间，提高的CPU的运行效率。  超线程技术是在一颗CPU同时执行多个程序而共同分享一颗CPU内的资源，理论上要像两颗CPU一样在同一时间执行两个线程，虽然采用超线程技术能同时执行两个线程，但它并不象两个真正的CPU那样，每个CPU都具有独立的资源。当两个线程都同时需要某一个资源时，其中一个要暂时停止，并让出资源，直到这些资源闲置后才能继续。因此超线程的性能并不等于两颗CPU的性能。         其次，看看物理CPU个数，核数以及线程数的关系    总核数 = 物理CPU个数 * 每颗物理CPU的核数  总逻辑CPU数 = 物理CPU个数 * 每颗物理CPU的核数 * 超线程数    上述公式中，逻辑CPU数即线程数         如何查看CPU物理个数    # grep &#39;physical id&#39; /proc/cpuinfo | sort -u    physical id    : 0  physical id    : 1       如何查看每个物理CPU的核数    # grep &#39;core id&#39; /proc/cpuinfo | sort -u | wc -l    8       如何查看总的逻辑CPU个数    # grep &#39;processor&#39; /proc/cpuinfo | sort -u | wc -l    32  32/8/2=2，可见该CPU支持并已打开超线程。         如何查看CPU的型号    # dmidecode -s processor-version    Intel(R) Xeon(R) CPU E5-2658 @ 2.10GHz  Intel(R) Xeon(R) CPU E5-2658 @ 2.10GHz       关于物理CPU，核数以及超线程的区别    A core is the most basic computational unit of a processor. A processor is made up of one or more cores. Tradition processors had only one core while modern processors have multiple cores.    A core consists of an ALU, CU, and a set of registers.    A core consists of two levels of caches called L1 and L2 which is there in each core.    A processor consists of a cache that is shared by call cores called L3 cache. It is common to all cores.    A processor depending on the architecture can consist of a memory controller and an input/output controller.    Certain processor packages consist of Graphics Processing Units (GPU) as well.    A core that does not have hyper-threading can execute only one instruction at a time while a multicore processor made up of several cores can execute several instructions parallel. If a processor is made up of 4 cores that do not support hyper threading then that processor can execute 4 instructions at the same time.    A core having hyper-threading technology has redundant functional units so that they can execute multiple instructions at a time. For example, a core with 2 threads can execute 2 instructions at the same time hence a processor with 4 such cores can execute 2×4 instructions parallel. These threads are usually called logical cores and the task manager of Windows generally show the number of logical cores but not the physical cores.</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux设置UTC时区</title>
+      <link href="/2022/06/17/linux-she-zhi-utc-shi-qu/"/>
+      <url>/2022/06/17/linux-she-zhi-utc-shi-qu/</url>
+      
+        <content type="html"><![CDATA[<pre><code>设置UTC时区命令ln -sf /usr/share/zoneinfo/UTC /etc/localtime 具体案例：执行前[root@HOST etc]#cd /etc[root@HOST etc]# ll | grep local-rw-r--r--.  1 root root       19 Mar 25  2018 locale.conflrwxrwxrwx   1 root root       35 Mar 12 16:06 localtime -&gt; ../usr/share/zoneinfo/Asia/Shanghai[root@HOST etc]# dateTue Mar 16 14:49:58 CST 2021[root@HOST etc]# ln -sf /usr/share/zoneinfo/UTC /etc/localtime执行后[root@HOST etc]# dateTue Mar 16 06:50:32 UTC 2021[root@HOST etc]# ll | grep local-rw-r--r--.  1 root root       19 Mar 25  2018 locale.conflrwxrwxrwx   1 root root       23 Mar 16 06:50 localtime -&gt; /usr/share/zoneinfo/UTC</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nginx下同域部署多个Vue项目（history路由模式），报404、500错误</title>
+      <link href="/2022/06/17/nginx-xia-tong-yu-bu-shu-duo-ge-vue-xiang-mu-history-lu-you-mo-shi-bao-404-500-cuo-wu/"/>
+      <url>/2022/06/17/nginx-xia-tong-yu-bu-shu-duo-ge-vue-xiang-mu-history-lu-you-mo-shi-bao-404-500-cuo-wu/</url>
+      
+        <content type="html"><![CDATA[<pre><code>一、环境系统: windowsnginx: 1.20.2nodejs: v10.24.0npm: v6.14.11@vue/cli: 4.5.13二、问题描述新建Vue项目的时候，如果选择hash模式的话，地址上都会带一个#号，本人嫌太丑，选择了history模式，到了部署项目的时候，刚好又需要多个项目部署在一起。部署完发现：① js、css文件找不到、② 页面报404、③ 页面报500。三、问题解决1、修改vue项目中的vue.config.js文件a项目增加以下内容：module.exports = &#123;    ...    // 其他内容省略    publicPath: process.env.NODE_ENV === &#39;production&#39; ? &#39;/a&#39; : &#39;/&#39;,    // production 正式环境，development 开发环境&#125;;b项目增加以下内容：module.exports = &#123;    ...    // 其他内容省略    publicPath: process.env.NODE_ENV === &#39;production&#39; ? &#39;/b&#39; : &#39;/&#39;,    // production 正式环境，development 开发环境&#125;;2、修改Nginx的nginx.conf配置文件    server &#123;        listen       12345;        server_name  localhost;        #charset koi8-r;        #access_log  logs/host.access.log  main;        location / &#123;            root   html;      # 只能有一个root，可以有多个alias            index  index.html index.htm;            #下面这一句是重点，意思就是将地址都导向index.html            try_files $uri $uri/ /index.html;        &#125;                location /a &#123;    # a项目            alias html/a;            index index.html index.htm;            #下面这一句是重点，意思就是将地址都导向index.html            try_files $uri $uri/ /a/index.html;        &#125;                location /b &#123;    # b项目            alias html/b;            index index.html index.htm;            #下面这一句是重点，意思就是将地址都导向index.html            try_files $uri $uri/ /b/index.html;        &#125;        #error_page  404              /404.html;        # redirect server error pages to the static page /50x.html        #        error_page   500 502 503 504  /50x.html;        location = /50x.html &#123;            root   html;        &#125;        # proxy the PHP scripts to Apache listening on 127.0.0.1:80        #        #location ~ \.php$ &#123;        #    proxy_pass   http://127.0.0.1;        #&#125;        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000        #        #location ~ \.php$ &#123;        #    root           html;        #    fastcgi_pass   127.0.0.1:9000;        #    fastcgi_index  index.php;        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;        #    include        fastcgi_params;        #&#125;        # deny access to .htaccess files, if Apache&#39;s document root        # concurs with nginx&#39;s one        #        #location ~ /\.ht &#123;        #    deny  all;        #&#125;    &#125;好了，这样配置好后就可以解决以上所有的问题了。</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>apt查看安装包可用版本号</title>
+      <link href="/2022/06/17/apt-cha-kan-an-zhuang-bao-ke-yong-ban-ben-hao/"/>
+      <url>/2022/06/17/apt-cha-kan-an-zhuang-bao-ke-yong-ban-ben-hao/</url>
+      
+        <content type="html"><![CDATA[<p>例如要显示curl可安装的版本号：</p><p>sudo apt-cache madison curl</p><p>如果想看apt能安装哪些跟curl关键词相关的软件，运行以下命令，</p><p>sudo apt-cache search curl</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux tar的排除,Tar命令排除指定目录</title>
+      <link href="/2022/06/17/linux-tar-de-pai-chu-tar-ming-ling-pai-chu-zhi-ding-mu-lu/"/>
+      <url>/2022/06/17/linux-tar-de-pai-chu-tar-ming-ling-pai-chu-zhi-ding-mu-lu/</url>
+      
+        <content type="html"><![CDATA[<pre><code>Tar命令多用于备份，基本用法大家应该都知道一些，那么如何使用tar命令排除指定目录或指定文件的参数你知道吗?举例：# ls 123chinastor1  chinastor2  chinastor3  chinastor4  test1  test2主目录叫123，其下有chinastor1 chinastor2 chinastor3 chinastor4 test1 test2共6个子目录。用tar命令压缩保存一下，但是排除test1和test2两个目录，格式如下：(注意，主目录一定要放在最后！！！)# tar cvf 123.tar --exclude=test1 --exclude=test2 123tar命令参数 t，可以浏览这个tar包，格式如下:# tar tvf 123.tardrwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/drwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/chinastor3/drwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/chinastor2/drwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/chinastor1/drwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/chinastor4/可以看到test1和test2被排除了吧。想要直接tar成一个.tar.gz包的话，加z参数，格式如下：#tar czvf123.tar.gz --exclude=test1 --exclude=test2 123浏览.tar.gz包的命令参数如下：#tar tzvf 123.tar.gzdrwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/drwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/chinastor3/drwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/chinastor2/drwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/chinastor1/drwxrwxr-x chinastor.com/pg811892    0 2014-05-06 06:47 123/chinastor4/如果想排除指定的文件，也是可以的，比如要排除子目录test1下的所有txt文件，格式如下：# tar -zcvf 123.tar.gz --exclude=123/test1/*.txt 123</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>多主机多节点docker-compose部署elasticsearch集群</title>
       <link href="/2022/06/16/duo-zhu-ji-duo-jie-dian-docker-compose-bu-shu-elasticsearch-ji-qun/"/>
       <url>/2022/06/16/duo-zhu-ji-duo-jie-dian-docker-compose-bu-shu-elasticsearch-ji-qun/</url>
