@@ -6,7 +6,7 @@
   <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
   
   <link href="https://blog.zhangcun.store/"/>
-  <updated>2022-06-17T09:00:07.327Z</updated>
+  <updated>2022-06-24T04:55:10.930Z</updated>
   <id>https://blog.zhangcun.store/</id>
   
   <author>
@@ -15,6 +15,160 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>隐藏Nginx版本号的简单方法</title>
+    <link href="https://blog.zhangcun.store/2022/06/24/yin-cang-nginx-ban-ben-hao-de-jian-dan-fang-fa-1/"/>
+    <id>https://blog.zhangcun.store/2022/06/24/yin-cang-nginx-ban-ben-hao-de-jian-dan-fang-fa-1/</id>
+    <published>2022-06-24T04:52:48.000Z</published>
+    <updated>2022-06-24T04:55:10.930Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Nginx默认是显示版本号的，其他人就可以看到你的服务器nginx版本是1.8.0。这样暴露出来的版本号就容易变成攻击者可利用的信息。所以，从安全的角度来说，隐藏版本号会相对安全些！&lt;/p&gt;
+&lt;p&gt;具体步骤如下：&lt;/p&gt;
+&lt;p&gt;1、进入nginx配置文件的目录（此目录根据安</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>python 2安装pip</title>
+    <link href="https://blog.zhangcun.store/2022/06/20/python-2-an-zhuang-pip/"/>
+    <id>https://blog.zhangcun.store/2022/06/20/python-2-an-zhuang-pip/</id>
+    <published>2022-06-20T10:57:21.000Z</published>
+    <updated>2022-06-20T10:58:43.535Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;安装python-pip工具&lt;/p&gt;
+&lt;p&gt;先安装setup-tools&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu 中sendmail 的安装、配置与发送邮件的具体实现</title>
+    <link href="https://blog.zhangcun.store/2022/06/20/ubuntu-zhong-sendmail-de-an-zhuang-pei-zhi-yu-fa-song-you-jian-de-ju-ti-shi-xian/"/>
+    <id>https://blog.zhangcun.store/2022/06/20/ubuntu-zhong-sendmail-de-an-zhuang-pei-zhi-yu-fa-song-you-jian-de-ju-ti-shi-xian/</id>
+    <published>2022-06-20T10:53:52.000Z</published>
+    <updated>2022-06-20T10:55:26.673Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;一、安装软件包
+
+      
+
+ubuntu中sendmail函数可以很方便的发送邮件，ubuntu sendmail先要安装两个包。
+
+必需安装的两个包：
+
+sudo apt-get install sendmail  
+
+sudo apt-get</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>apt安装特定版本软件</title>
+    <link href="https://blog.zhangcun.store/2022/06/20/apt-an-zhuang-te-ding-ban-ben-ruan-jian/"/>
+    <id>https://blog.zhangcun.store/2022/06/20/apt-an-zhuang-te-ding-ban-ben-ruan-jian/</id>
+    <published>2022-06-20T10:52:05.000Z</published>
+    <updated>2022-06-20T10:52:07.555Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;sudo apt install</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux find查找指定文件 按照名称 然后cp拷贝到指定目录且指定文件名</title>
+    <link href="https://blog.zhangcun.store/2022/06/20/linux-find-cha-zhao-zhi-ding-wen-jian-an-zhao-ming-cheng-ran-hou-cp-kao-bei-dao-zhi-ding-mu-lu-qie-zhi-ding-wen-jian-ming/"/>
+    <id>https://blog.zhangcun.store/2022/06/20/linux-find-cha-zhao-zhi-ding-wen-jian-an-zhao-ming-cheng-ran-hou-cp-kao-bei-dao-zhi-ding-mu-lu-qie-zhi-ding-wen-jian-ming/</id>
+    <published>2022-06-20T10:50:16.000Z</published>
+    <updated>2022-06-20T10:50:48.002Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt; 1.先查看了查找文件的指令规范 就是 find指令 
+
+        
+
+Find命令的一般形式为：
+find pathname -options [-print -exec -ok]
+ 
+
+让我们来看看该命令的参数：
+pathname:  </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于本地/Oracle官方jdk构建jdk镜像</title>
+    <link href="https://blog.zhangcun.store/2022/06/20/ji-yu-ben-di-oracle-guan-fang-jdk-gou-jian-jdk-jing-xiang/"/>
+    <id>https://blog.zhangcun.store/2022/06/20/ji-yu-ben-di-oracle-guan-fang-jdk-gou-jian-jdk-jing-xiang/</id>
+    <published>2022-06-20T10:19:00.000Z</published>
+    <updated>2022-06-20T10:19:48.782Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;1、基于本地jdk进行构建&lt;/p&gt;
+&lt;p&gt;目录结构：&lt;/p&gt;
+&lt;p&gt; Dockerfile&lt;/p&gt;
+&lt;p&gt;jdk1.8.0_181.tar.gz&lt;/p&gt;
+&lt;p&gt;Dokcerfile内容如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;FROM</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>crontab每周一执行一次</title>
@@ -352,149 +506,6 @@ docker-compose</summary>
 &lt;p&gt;可是看到的不是全路径，怎么看全路径呢？&lt;/p&gt;
 &lt;p&gt;每个进程启动之后在 /proc下面有一个于pid对应的路径&lt;/p&gt;
 &lt;p&gt;例如：ps -ef|grep</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ubantu批量下载依赖包+apt命令list</title>
-    <link href="https://blog.zhangcun.store/2022/06/16/ubantu-pi-liang-xia-zai-yi-lai-bao-apt-ming-ling-list/"/>
-    <id>https://blog.zhangcun.store/2022/06/16/ubantu-pi-liang-xia-zai-yi-lai-bao-apt-ming-ling-list/</id>
-    <published>2022-06-16T08:49:43.000Z</published>
-    <updated>2022-06-16T08:50:11.003Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;apt install aptitude
-
-aptitude --download-only install docker.io
-
-默认下载地址
-
-/var/cache/apt/archives/
-
- 
-
-sudo apt-get install</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP 499 状态码 nginx下 499错误</title>
-    <link href="https://blog.zhangcun.store/2022/06/16/http-499-zhuang-tai-ma-nginx-xia-499-cuo-wu/"/>
-    <id>https://blog.zhangcun.store/2022/06/16/http-499-zhuang-tai-ma-nginx-xia-499-cuo-wu/</id>
-    <published>2022-06-16T08:45:26.000Z</published>
-    <updated>2022-06-16T08:47:58.798Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;日志记录中HTTP状态码出现499错误有多种情况，我遇到的一种情况是nginx反代到一个永远打不开的后端，就这样了，日志状态记录是499、发送字节数是0。
-
-老是有用户反映网站系统时好时坏，因为线上的产品很长时间没有修改，所以前端程序的问题基本上可以排除，于</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>搬瓦工搭建 ShadowSocks 翻墙（VPN）- 更换密码</title>
-    <link href="https://blog.zhangcun.store/2022/06/16/ban-wa-gong-da-jian-shadowsocks-fan-qiang-vpn-geng-huan-mi-ma/"/>
-    <id>https://blog.zhangcun.store/2022/06/16/ban-wa-gong-da-jian-shadowsocks-fan-qiang-vpn-geng-huan-mi-ma/</id>
-    <published>2022-06-16T08:42:56.000Z</published>
-    <updated>2022-06-16T08:43:10.730Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;在 搬瓦工搭建 ShadowSocks 翻墙（VPN） 一文中的 “三、安装 SSR 脚本” 步骤结束后的打印信息：&lt;/p&gt;
-&lt;p&gt;INFO: loading config from</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Slurm 20.02.3 集群添加gpu节点</title>
-    <link href="https://blog.zhangcun.store/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/"/>
-    <id>https://blog.zhangcun.store/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/</id>
-    <published>2022-06-16T08:39:08.000Z</published>
-    <updated>2022-06-16T08:39:31.712Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;为slurm集群增加GPU节点
-
-1</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>slurm集群安装</title>
-    <link href="https://blog.zhangcun.store/2022/06/16/slurm-ji-qun-an-zhuang/"/>
-    <id>https://blog.zhangcun.store/2022/06/16/slurm-ji-qun-an-zhuang/</id>
-    <published>2022-06-16T08:32:02.000Z</published>
-    <updated>2022-06-16T08:33:51.257Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;环境：三台物理机，os均为ubuntu-18-04 LTS，hostname分别为tian-609-06、tian-609-07、tian-609-08。其中tian-609-06作为控制节点和计算节点，其他节点作为计算节点。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>docker部署skywalking并接入java服务</title>
-    <link href="https://blog.zhangcun.store/2022/06/16/docker-bu-shu-skywalking-bing-jie-ru-java-fu-wu/"/>
-    <id>https://blog.zhangcun.store/2022/06/16/docker-bu-shu-skywalking-bing-jie-ru-java-fu-wu/</id>
-    <published>2022-06-16T07:24:20.000Z</published>
-    <updated>2022-06-16T07:47:57.339Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;项目结构&lt;/p&gt;
-&lt;p&gt;制作docker-compose.yml并在控制台输入命令：docker-compose up -d</summary>
         
       
     

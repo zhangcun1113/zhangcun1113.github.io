@@ -4,6 +4,84 @@
   
     
     <entry>
+      <title>隐藏Nginx版本号的简单方法</title>
+      <link href="/2022/06/24/yin-cang-nginx-ban-ben-hao-de-jian-dan-fang-fa-1/"/>
+      <url>/2022/06/24/yin-cang-nginx-ban-ben-hao-de-jian-dan-fang-fa-1/</url>
+      
+        <content type="html"><![CDATA[<p>Nginx默认是显示版本号的，其他人就可以看到你的服务器nginx版本是1.8.0。这样暴露出来的版本号就容易变成攻击者可利用的信息。所以，从安全的角度来说，隐藏版本号会相对安全些！</p><p>具体步骤如下：</p><p>1、进入nginx配置文件的目录（此目录根据安装时决定），用vim编辑打开</p><pre><code># vim nginx.conf在http &#123;—&#125;里加上server_tokens off; 如：http &#123;……sendfile on;tcp_nopush on;keepalive_timeout 60;tcp_nodelay on;</code></pre><p>    server_tokens off;<br>    …….</p><p>2、编辑php-fpm配置文件，如fastcgi.conf或fcgi.conf（这个配置文件名也可以自定义的，根据具体文件名修改）：</p><pre><code>找到：fastcgi_param SERVER_SOFTWARE nginx/$nginx_version;改为：fastcgi_param SERVER_SOFTWARE nginx;</code></pre><p>3、重新加载nginx配置：</p><pre><code># /etc/init.d/nginx reload</code></pre><p>这样就完全对外隐藏了nginx版本号了，就是出现404、501等页面也不会显示nginx版本。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>python 2安装pip</title>
+      <link href="/2022/06/20/python-2-an-zhuang-pip/"/>
+      <url>/2022/06/20/python-2-an-zhuang-pip/</url>
+      
+        <content type="html"><![CDATA[<p>安装python-pip工具</p><p>先安装setup-tools</p><pre><code>wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg  --no-check-certificate</code></pre><p>chmod +x setuptools-0.6c11-py2.7.egg</p><p>sh setuptools-0.6c11-py2.7.egg</p><p>安装pip</p><pre><code>wget https://pypi.python.org/packages/source/p/pip/pip-1.3.1.tar.gz --no-check-certificate</code></pre><p>cp pip-1.3.1.tar.gz /usr/src/</p><p>tar zxvf pip-1.3.1.tar.gz</p><p>cd pip-1.3.1</p><p>python setup.py install</p><p>ln -s /usr/local/python2.7/bin/pip /usr/bin/pip</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Ubuntu 中sendmail 的安装、配置与发送邮件的具体实现</title>
+      <link href="/2022/06/20/ubuntu-zhong-sendmail-de-an-zhuang-pei-zhi-yu-fa-song-you-jian-de-ju-ti-shi-xian/"/>
+      <url>/2022/06/20/ubuntu-zhong-sendmail-de-an-zhuang-pei-zhi-yu-fa-song-you-jian-de-ju-ti-shi-xian/</url>
+      
+        <content type="html"><![CDATA[<pre><code>一、安装软件包      ubuntu中sendmail函数可以很方便的发送邮件，ubuntu sendmail先要安装两个包。必需安装的两个包：sudo apt-get install sendmail  sudo apt-get install sendmail-cf安装工具包：Ubuntu下使用最常用的mail功能，需要安装mailutils，安装命令：sudo apt-get install mailutils    //centos没有-bash: mail: command not found呵呵，显然mailx没有安装，于是：yum -y install mailx然后whois命令也没有yum -y install jwhois使用带附件的功能，则还需要安装sharutils，安装命令：sudo apt-get install sharutils终端输入命令：ps aux |grep sendmail输出如下：root     20978  0.0  0.3   8300  1940 ?        Ss   06:34   0:00 sendmail: MTA: accepting connections          root     21711  0.0  0.1   3008   776 pts/0    S+   06:51   0:00 grep sendmail 说明sendmail 已经安装成功并启动了 二、配置 # vi /etc/mail/sendmail.mcdnl TRUST_AUTH_MECH(`EXTERNAL DIGEST-MD5 CRAM-MD5 LOGIN PLAIN&#39;)dnldnl define(`confAUTH_MECHANISMS&#39;, `EXTERNAL GS SAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN&#39;)dnl将上面两行的dnl去掉。在sendmail文件中，dnl表示该行为注释行，是无效的，因此通过去除行首的dnl字符串可以开启相应的设置行。sendmail 默认只会为本机用户发送邮件，只有把它扩展到整个Internet，才会成为真正的邮件服务器。 打开sendmail的配置宏文件：/etc/mail/sendmail.mc vim  /etc/mail/sendmail.mcDAEMON_OPTIONS(`Family=inet,  Name=MTA-v4, Port=smtp, Addr=127.0.0.1&#39;)dnl&lt;/span&gt;  把127.0.0.1修改为0.0.0.0  ，表明可以连接到任何服务器。 生成新的配置文件：cd /etc/mail  mv sendmail.cf sendmail.cf-bak     //做一个备份  m4 sendmail.mc &gt; sendmail.cf   //  &quot;&gt;&quot;的左右有空格。若提示错误说明你没有安装sendmail-cf 软件包 三、发送邮件 常用发送邮件方式如下：    1.如何写一般的邮件： mail test@126.com  Cc 编辑抄送对象，Subject:邮件主题,输入回车，邮件正文后，按Ctrl-D结束    2.快速发送方式： echo “邮件正文” | mail -s 邮件主题 test@126.com    3.以文件内容作为邮件正文来发送： mail -s test test@126.com &lt; test.txt    4.发送带附件的邮件： uuencode 附件名称 附件显示名称 | mail -s 邮件主题 发送地址       例如： uuencode test.txt test.txt | mail -s Test test@126.com参考发送例子：  uuencode  1014-0529.txt 1014-0529.txt |mail -s biaoti  邮箱地址   （发送了附件1014-0529.txt，比较常用） mutt -s  nihao    邮箱地址 -a   nihao.txt &lt; nihao.txt 这种经常会被腾讯企业邮箱放到垃圾邮件箱中，一般不用。</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>apt安装特定版本软件</title>
+      <link href="/2022/06/20/apt-an-zhuang-te-ding-ban-ben-ruan-jian/"/>
+      <url>/2022/06/20/apt-an-zhuang-te-ding-ban-ben-ruan-jian/</url>
+      
+        <content type="html"><![CDATA[<p>sudo apt install software=version</p><p>version是软件版本号，software是要安装的软件</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux find查找指定文件 按照名称 然后cp拷贝到指定目录且指定文件名</title>
+      <link href="/2022/06/20/linux-find-cha-zhao-zhi-ding-wen-jian-an-zhao-ming-cheng-ran-hou-cp-kao-bei-dao-zhi-ding-mu-lu-qie-zhi-ding-wen-jian-ming/"/>
+      <url>/2022/06/20/linux-find-cha-zhao-zhi-ding-wen-jian-an-zhao-ming-cheng-ran-hou-cp-kao-bei-dao-zhi-ding-mu-lu-qie-zhi-ding-wen-jian-ming/</url>
+      
+        <content type="html"><![CDATA[<pre><code> 1.先查看了查找文件的指令规范 就是 find指令         Find命令的一般形式为：find pathname -options [-print -exec -ok] 让我们来看看该命令的参数：pathname:   find命令所查找的目录路径。例如用.来表示当前目录，用/来表示系统根目录。-print：    find命令将匹配的文件输出到标准输出。-exec：     find命令对匹配的文件执行该参数所给出的shell命令。相应命令的形式为&#39;command&#39; &#123;&#125; \;，注意&#123;&#125;和\；之间的空格。-ok：    和-exec的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。  find命令选项:-name：按照文件名查找文件。-inum: 按照inode号查找文件-perm：按照文件权限来查找文件。-prune：使用这一选项可以使f i n d命令不在当前指定的目录中查找，如果同时使用-depth选项，那么-prune将被find命令忽略。-user： 按照文件属主来查找文件。-group：按照文件所属的组来查找文件。-mtime -n +n：按照文件的更改时间来查找文件，-n表示文件更改时间距现在n天以内，+n表示文件更改时 间距现在n天以前。Find命令还有-atime和-ctime选项，但它们都和-mtime选项。-nogroup：查找无有效所属组的文件，即该文件所属的组在/etc/groups中不存在。-nouser：查找无有效属主的文件，即该文件的属主在/etc/passwd中不存在。-newer file1 ! -newer file2：查找更改时间比文件file1新但比文件file2旧的文 件。-type查找某一类型的文件，诸如：b - 块设备文件。d - 目录。c - 字符设备文件。p - 管道文件。l - 符号链接文件。f - 普通文件。-size n：[c] 查找文件长度为n块的文件，带有c时表示文件长度以字节计。-depth：在查找文件时，首先查找当前目录中的文件，然后再在其子目录中查找。-fstype：查找位于某一类型文件系统中的文件，这些文件系统类型通常可以在配置文件/etc/fstab中找 到，该配置文件中包含了本系统中有关文件系统的信息。   2. 编写指令   find /var -name &quot;boot.log&quot; -exec cp &#123;&#125;  /var/log/testroad-boot.log \;执行成功！3.遇到问题刚开始的指令是这样的：find /var -name &quot;boot.log&quot; -exec cp &#123;&#125;/var/log/testroad-boot.log\;错误信息： 　　find: missing argument to `-exec&#39;解决办法：增加空格在&#123;&#125;\的中间. 就是因为刚开始忽略了&#123;&#125;\之间的空格，导致执行失败。希望同样问题的朋友会提供帮助.</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>基于本地/Oracle官方jdk构建jdk镜像</title>
+      <link href="/2022/06/20/ji-yu-ben-di-oracle-guan-fang-jdk-gou-jian-jdk-jing-xiang/"/>
+      <url>/2022/06/20/ji-yu-ben-di-oracle-guan-fang-jdk-gou-jian-jdk-jing-xiang/</url>
+      
+        <content type="html"><![CDATA[<p>1、基于本地jdk进行构建</p><p>目录结构：</p><p> Dockerfile</p><p>jdk1.8.0_181.tar.gz</p><p>Dokcerfile内容如下：</p><pre><code>FROM frolvlad/alpine-glibc:alpine-3.8 MAINTAINER youpanpan ADD jdk1.8.0_181.tar.gz /usr/local/ ENV JAVA_HOME /usr/local/jdk1.8.0_181ENV PATH  $&#123;PATH&#125;:$&#123;JAVA_HOME&#125;/binENV CLASSPATH $&#123;JAVA_HOME&#125;/lib/dt.jar:$&#123;JAVA_HOME&#125;/lib/tools.jar</code></pre><p>这里有一个点：因为tar.gz ADD 到/usr/local/后，会自动解压为jdk1.8.0_181，所以这里设置的JAVA_HOME为/usr/local/jdk1.8.8_181</p><p>之前一直以为ADD 到的目录就是JDK的目录，所以写的是/usr/local/jdk1.8.0_181，所以导致后面执行java命令一直出错</p><p>相应的进行构建</p><p>docker build -t localjdk .<br>然后使用镜像运行并执行java -version命令</p><p>docker run -it localjdk java -version</p><p>相应的数出了jdk的版本号，说明构建成功</p><p>2、使用Oracle官方jdk</p><p>参考<a href="https://github.com/frol/docker-alpine-oraclejdk8">https://github.com/frol/docker-alpine-oraclejdk8</a></p><p>除了使用这里的Dockerfile文件外，也可以直接使用frolvlad/alpine-oraclejre8镜像</p><p>这里的jdk版本因为删除了一些不必要的文件所以，镜像大小会有所下降</p><p>使用官方jdk并删除掉一些文件后，镜像大小为165MB，而基于本地jdk的方式会比较大一些，因为没有删掉那些不必要的文件，我们也可以先删除本地jdk中不必要的文件，这样大小应该是和官方下载的jdk镜像差不多。</p><p>有了上述的jdk镜像后，我们就可以基于上述jdk镜像，构建基于java环境的应用程序部署包了</p><p>目录结构：</p><p>Dockerfile</p><p>gs-om-ms.jar</p><p>Dockerfile内容如下：</p><pre><code>FROM jdk:latest ADD gs-om-ms.jar gs-om-ms.jar EXPOSE 8988ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;gs-om-ms.jar&quot;]</code></pre><p>基于上述的jdk镜像，添加程序包，并开放8988端口，接着容器启动后执行java -jar gs-om-ms.jar命令</p><p>这样就启动起来了</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>crontab每周一执行一次</title>
       <link href="/2022/06/17/crontab-mei-zhou-yi-zhi-xing-yi-ci/"/>
       <url>/2022/06/17/crontab-mei-zhou-yi-zhi-xing-yi-ci/</url>
