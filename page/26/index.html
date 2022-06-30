@@ -1235,6 +1235,257 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-02-16</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/02/16/docker-compose-shou-gong-zhi-ding-rong-qi-ip/">docker-compose 手工指定容器IP</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/02/16/docker-compose-shou-gong-zhi-ding-rong-qi-ip/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            docker-compose 手工指定容器IP
+首先明确两点：
+
+1只有自定义网络，才能手工指定每个容器的ip。默认的bridge是不行的！
+
+2 手工设定了网段比如172.19.0.0   不影响docker在host装的网卡docker
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/02/16/docker-compose-shou-gong-zhi-ding-rong-qi-ip/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/02/16/docker-compose-shou-gong-zhi-ding-rong-qi-ip/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-02-11</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/02/11/linux-jie-qu-wen-jian-zhi-ding-xing-shu-zhi-jian-de-nei-rong/">Linux截取文件指定行数之间的内容</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/02/11/linux-jie-qu-wen-jian-zhi-ding-xing-shu-zhi-jian-de-nei-rong/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            
+如果你只想看文件的前100行，可以使用head命令，如head -100  filename
+如果你想查看文件的后100行，可以使用tail命令，如：tail -100  filename 或 tail -n 100  filename
+
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/02/11/linux-jie-qu-wen-jian-zhi-ding-xing-shu-zhi-jian-de-nei-rong/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/02/11/linux-jie-qu-wen-jian-zhi-ding-xing-shu-zhi-jian-de-nei-rong/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-02-11</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/02/11/linux-de-yi-ge-find-ming-ling-pei-he-rm-shan-chu-mou-tian-qian-de-wen-jian/">linux的一个find命令配合rm删除某天前的文件</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/02/11/linux-de-yi-ge-find-ming-ling-pei-he-rm-shan-chu-mou-tian-qian-de-wen-jian/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            语句写法：find 对应目录 -mtime +天数 -name “文件名” -exec rm -rf {} ;
+　例1：　将/usr/local/backups目录下所有10天前带”.”的文件删除
+　　find /usr/local/bac
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/02/11/linux-de-yi-ge-find-ming-ling-pei-he-rm-shan-chu-mou-tian-qian-de-wen-jian/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/02/11/linux-de-yi-ge-find-ming-ling-pei-he-rm-shan-chu-mou-tian-qian-de-wen-jian/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-02-11</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/02/11/linux-zhong-find-cha-zhao-zhi-ding-shi-jian-duan-de-wen-jian-bing-grep-cha-zhao-nei-rong/">linux中find查找指定时间段的文件并grep查找内容</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/02/11/linux-zhong-find-cha-zhao-zhi-ding-shi-jian-duan-de-wen-jian-bing-grep-cha-zhao-nei-rong/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            find . -type f -newermt &#39;2016-01-01 00:00:00&#39; ! -newermt &#39;2016-02-01 12:00:00&#39; -exec grep aaaa &#123;&#1
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/02/11/linux-zhong-find-cha-zhao-zhi-ding-shi-jian-duan-de-wen-jian-bing-grep-cha-zhao-nei-rong/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/02/11/linux-zhong-find-cha-zhao-zhi-ding-shi-jian-duan-de-wen-jian-bing-grep-cha-zhao-nei-rong/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-01-24</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/01/24/mysql-yi-ci-xing-bei-fen-dao-chu-dao-ru-hui-fu-suo-you-shu-ju-ku/">Mysql 一次性备份导出所有数据库</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/01/24/mysql-yi-ci-xing-bei-fen-dao-chu-dao-ru-hui-fu-suo-you-shu-ju-ku/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            导出全部数据库mysqldump -uroot -p –all-databases &gt; sqlfile.sql
+
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/01/24/mysql-yi-ci-xing-bei-fen-dao-chu-dao-ru-hui-fu-suo-you-shu-ju-ku/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/01/24/mysql-yi-ci-xing-bei-fen-dao-chu-dao-ru-hui-fu-suo-you-shu-ju-ku/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
             <span class="post-time">2022-01-24</span>
           </div>
           <div class="post-title">
@@ -1267,7 +1518,7 @@
         </div>
         <div class="post-more">
           <a href="/2022/01/24/docker-compose-qi-dong-rong-qi-hou-zhi-xing-jiao-ben-huo-ming-ling-bu-tui-chu-yun-xing-nei-bu-cheng-xu/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1280,7 +1531,7 @@
       </div>
     </article>
   
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1327,7 +1578,7 @@ vim /etc/security/limits.conf
         </div>
         <div class="post-more">
           <a href="/2022/01/18/ubuntu-yong-jiu-xiu-gai-ulimit-n/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1340,7 +1591,7 @@ vim /etc/security/limits.conf
       </div>
     </article>
   
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1378,7 +1629,7 @@ vim /etc/security/limits.conf
         </div>
         <div class="post-more">
           <a href="/2022/01/17/yi-zhi-ding-yong-hu-qi-dong-he-jin-ru-docker-rong-qi/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1391,7 +1642,7 @@ vim /etc/security/limits.conf
       </div>
     </article>
   
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1427,7 +1678,7 @@ Alpine Linux是一个社区开发的面向安全应用的轻量级Linux发行版
         </div>
         <div class="post-more">
           <a href="/2022/01/17/alpine-yong-hu-chuang-jian-he-guan-li/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1440,7 +1691,7 @@ Alpine Linux是一个社区开发的面向安全应用的轻量级Linux发行版
       </div>
     </article>
   
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1475,7 +1726,7 @@ Alpine Linux是一个社区开发的面向安全应用的轻量级Linux发行版
         </div>
         <div class="post-more">
           <a href="/2022/01/17/bash-sudo-wei-zhao-dao-ming-ling-dui-yu-linux-debian-centos-de-cuo-wu-he-jie-jue-fang-an/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1488,267 +1739,11 @@ Alpine Linux是一个社区开发的面向安全应用的轻量级Linux发行版
       </div>
     </article>
   
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-17</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/01/17/ubuntu18-04-geng-huan-guo-nei-yuan/">Ubuntu18.04更换国内源</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/01/17/ubuntu18-04-geng-huan-guo-nei-yuan/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            打开/etc/apt/sources.list
-
-
-vi /etc/apt/sources.list
-将原有的数据注释掉，换上国内镜像
-
-阿里云源
-
-
-deb http://mirrors.aliyun.com/ubuntu/ bionic
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/01/17/ubuntu18-04-geng-huan-guo-nei-yuan/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/01/17/ubuntu18-04-geng-huan-guo-nei-yuan/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-17</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/01/17/to-run-a-command-as-administrator-user-root-use-sudo-command-see-man-sudo-root-for-detai/">To run a command as administrator (user &#34;root&#34;), use &#34;sudo &lt;command&gt;&#34;. See &#34;man sudo_root&#34; for detai</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/01/17/to-run-a-command-as-administrator-user-root-use-sudo-command-see-man-sudo-root-for-detai/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            touch ~/.sudo_as_admin_successful
-
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/01/17/to-run-a-command-as-administrator-user-root-use-sudo-command-see-man-sudo-root-for-detai/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/01/17/to-run-a-command-as-administrator-user-root-use-sudo-command-see-man-sudo-root-for-detai/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-17</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/01/17/alpine-linux-an-zhuang-sudo-de-zheng-que-zi-shi/">alpine-linux安装sudo的正确姿势</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/01/17/alpine-linux-an-zhuang-sudo-de-zheng-que-zi-shi/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            问题在alpine-linux 3.11.6下su进入root用户直接apk add sudo后，在普通用户下运行sudo xxx输入3次密码后报错：[username] is not in the sudoers file. This i
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/01/17/alpine-linux-an-zhuang-sudo-de-zheng-que-zi-shi/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/01/17/alpine-linux-an-zhuang-sudo-de-zheng-que-zi-shi/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-17</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/01/17/nginx-pei-zhi-jin-zhi-ip-fang-wen/">Nginx配置禁止IP访问</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/01/17/nginx-pei-zhi-jin-zhi-ip-fang-wen/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            时间背景使用Nginx代理服务，请求先到前端的代理服务器，然后由代理服务器的nginx转发请求到后端的服务器。开始默认没有对IP访问做限制，现在要求禁止IP访问，
-大概是一个这样的架构：
-想要禁止IP访问，那么就直接修改后端的web服务器的
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/01/17/nginx-pei-zhi-jin-zhi-ip-fang-wen/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/01/17/nginx-pei-zhi-jin-zhi-ip-fang-wen/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-14</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/01/14/docker-qing-li/">Docker：清理Docker占用的磁盘空间</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/01/14/docker-qing-li/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            Docker：清理Docker占用的磁盘空间
-容器清理
-docker container prune : 仅删除停止运行的容器。
-docker rm -f $(docker ps -aq) : 删除所有容器（包括停止的、正在运行的）。
-do
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/01/14/docker-qing-li/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/01/14/docker-qing-li/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
 </section>
 <!-- 翻页 -->
 
   <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/25/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/27/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/25/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/27/">下一页</a>
   </nav> -->
   <div class="page-nav">
     
@@ -1758,7 +1753,7 @@ do
       </a>
     
     <div class="page-info">
-        <div class="page-info-text">26 / 40</div>
+        <div class="page-info-text">26 / 41</div>
     </div>
     
       <a href="/page/27/"
