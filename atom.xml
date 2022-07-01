@@ -6,7 +6,7 @@
   <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
   
   <link href="https://blog.zhangcun.store/"/>
-  <updated>2022-06-30T08:50:45.817Z</updated>
+  <updated>2022-07-01T07:32:28.269Z</updated>
   <id>https://blog.zhangcun.store/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu下keepalived和nginx实现高可用性负载均衡</title>
+    <link href="https://blog.zhangcun.store/2022/07/01/ubuntu-xia-keepalived-he-nginx-shi-xian-gao-ke-yong-xing-fu-zai-jun-heng/"/>
+    <id>https://blog.zhangcun.store/2022/07/01/ubuntu-xia-keepalived-he-nginx-shi-xian-gao-ke-yong-xing-fu-zai-jun-heng/</id>
+    <published>2022-07-01T07:20:44.000Z</published>
+    <updated>2022-07-01T07:32:28.269Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;概述&lt;br&gt;    1. 前导知识&lt;br&gt;    Ubuntu安装keepalived&lt;br&gt;    Ubuntu安装nginx并配置负载均衡&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;2.</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>kubeadm安装k8s</title>
+    <link href="https://blog.zhangcun.store/2022/07/01/kubeadm-an-zhuang-k8s/"/>
+    <id>https://blog.zhangcun.store/2022/07/01/kubeadm-an-zhuang-k8s/</id>
+    <published>2022-07-01T07:11:08.000Z</published>
+    <updated>2022-07-01T07:11:13.498Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;1、环境说明
+
+复制代码
+操作系统: Ubuntu 18.04
+docker版本: 19.03
+k8s版本: 1.18.2
+etcd版本: 3.4.3
+coredns版本: 1.6.7
+flannel版本: v0.13.0
+复制代码
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>docker-compose ports 与 expose 的区别</title>
@@ -458,57 +511,6 @@ npm: v6.14.11
 &lt;p&gt;sudo apt-cache madison curl&lt;/p&gt;
 &lt;p&gt;如果想看apt能安装哪些跟curl关键词相关的软件，运行以下命令，&lt;/p&gt;
 &lt;p&gt;sudo apt-cache search</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>linux tar的排除,Tar命令排除指定目录</title>
-    <link href="https://blog.zhangcun.store/2022/06/17/linux-tar-de-pai-chu-tar-ming-ling-pai-chu-zhi-ding-mu-lu/"/>
-    <id>https://blog.zhangcun.store/2022/06/17/linux-tar-de-pai-chu-tar-ming-ling-pai-chu-zhi-ding-mu-lu/</id>
-    <published>2022-06-17T06:21:50.000Z</published>
-    <updated>2022-06-17T06:22:16.399Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;Tar命令多用于备份，基本用法大家应该都知道一些，那么如何使用tar命令排除指定目录或指定文件的参数你知道吗?
-
-举例：
-
-# ls 123
-
-chinastor1  chinastor2  chinastor3  chinastor4  test1 </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>多主机多节点docker-compose部署elasticsearch集群</title>
-    <link href="https://blog.zhangcun.store/2022/06/16/duo-zhu-ji-duo-jie-dian-docker-compose-bu-shu-elasticsearch-ji-qun/"/>
-    <id>https://blog.zhangcun.store/2022/06/16/duo-zhu-ji-duo-jie-dian-docker-compose-bu-shu-elasticsearch-ji-qun/</id>
-    <published>2022-06-16T09:31:13.000Z</published>
-    <updated>2022-06-16T09:34:22.643Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;1、创建服务文件夹路径
-
-[root@ip-172-93-1-78 deploy]# mkdir  elasticsearch
-[root@ip-172-93-1-78 deploy]# cd</summary>
         
       
     

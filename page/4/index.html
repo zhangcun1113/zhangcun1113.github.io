@@ -1238,6 +1238,108 @@
             <span class="post-time">2022-06-16</span>
           </div>
           <div class="post-title">
+            <a class="post-title-link" href="/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/">Slurm 20.02.3 集群添加gpu节点</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            为slurm集群增加GPU节点
+
+1 环境准备
+一个slurm管理节点(186.31.29.21)，一个GPU节点(183.31.28.247)
+
+GPU节点的GPU型号为GTX1080Ti，驱动版本为440.100，CUDA版本为10.0
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/06/16/slurm-20-02-3-ji-qun-tian-jia-gpu-jie-dian/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-06-16</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/06/16/slurm-ji-qun-an-zhuang/">slurm集群安装</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/06/16/slurm-ji-qun-an-zhuang/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            环境：三台物理机，os均为ubuntu-18-04 LTS，hostname分别为tian-609-06、tian-609-07、tian-609-08。其中tian-609-06作为控制节点和计算节点，其他节点作为计算节点。
+     s
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/06/16/slurm-ji-qun-an-zhuang/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/06/16/slurm-ji-qun-an-zhuang/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-06-16</span>
+          </div>
+          <div class="post-title">
             <a class="post-title-link" href="/2022/06/16/docker-bu-shu-skywalking-bing-jie-ru-java-fu-wu/">docker部署skywalking并接入java服务</a>
           </div>
           <div class="post-meta">
@@ -1632,108 +1734,6 @@ zh_CN.gb
       <div class="post-img">
         
           <a href="/2022/05/31/zabbix-ming-ling-zhi-zabbix-get-ming-ling/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-31</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/31/docker-compose-bu-shu-elk-1/">docker-compose部署ELK</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/31/docker-compose-bu-shu-elk-1/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            kibana.yml
-
-[root@topcheer config]# cat kibana.yml
-server.host: &quot;0.0.0.0&quot;
-elasticsearch.url: http://elasticsea
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/31/docker-compose-bu-shu-elk-1/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/31/docker-compose-bu-shu-elk-1/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-30</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/">linux中监控CPU、内存和磁盘状态的shell脚本。（centos7）</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            　这篇博客中所写的脚本，在实际工作中并没有什么卵用，工作中并不会用到这种脚本去监控。不过自己写一遍，可以让初学者对CPU、内存、磁盘等一些基础知识和基础命令更加了解。
-
-1、利用vmstat工具监控CPU详细信息，然后基于/proc/sta
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/30/linux-zhong-jian-kong-cpu-nei-cun-he-ci-pan-zhuang-tai-de-shell-jiao-ben-centos7/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         

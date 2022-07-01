@@ -1238,6 +1238,108 @@
             <span class="post-time">2022-04-07</span>
           </div>
           <div class="post-title">
+            <a class="post-title-link" href="/2022/04/07/shell-jiao-ben-pan-duan-duan-kou-shi-fou-da-kai/">shell脚本判断端口是否打开</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/07/shell-jiao-ben-pan-duan-duan-kou-shi-fou-da-kai/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            [root@www zabbix_scripts]# cat check_httpd.sh 
+#!/bin/bash
+a=`lsof -i:80 | wc -l`
+if [ &quot;$a&quot; -gt &quot;0&quot; 
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/07/shell-jiao-ben-pan-duan-duan-kou-shi-fou-da-kai/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/07/shell-jiao-ben-pan-duan-duan-kou-shi-fou-da-kai/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-07</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/07/git-ru-he-she-zhi-shi-yong-dai-li/">git如何设置使用代理</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/07/git-ru-he-she-zhi-shi-yong-dai-li/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            使用命令直接设定socks或者http代理即可。
+socks代理：
+git config –global http.proxy ‘socks5://127.0.0.1:1080’
+git config –global https.proxy
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/07/git-ru-he-she-zhi-shi-yong-dai-li/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/07/git-ru-he-she-zhi-shi-yong-dai-li/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-07</span>
+          </div>
+          <div class="post-title">
             <a class="post-title-link" href="/2022/04/07/shi-yong-nginx-fan-xiang-dai-li-jenkins/">使用nginx反向代理jenkins</a>
           </div>
           <div class="post-meta">
@@ -1630,115 +1732,6 @@ docker container update
       <div class="post-img">
         
           <a href="/2022/03/04/docker-an-zhuang-es7-yu-es-head/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-03-04</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/03/04/es-zhong-an-zhuang-pin-yin-fen-ci-qi/">ES中安装拼音分词器</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/03/04/es-zhong-an-zhuang-pin-yin-fen-ci-qi/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            ES作为最强大的全文检索工具（没有之一），中英文分词几乎是必备功能，下面简单说明下分词器安装步骤（详细步骤网上很多，本文只提供整体思路和步骤）：
-
-下载拼音分词器
-
-拼音分词器：https://github.com/medcl/elasti
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/03/04/es-zhong-an-zhuang-pin-yin-fen-ci-qi/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/03/04/es-zhong-an-zhuang-pin-yin-fen-ci-qi/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-03-04</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/03/04/ubuntu-apt-curl-wget-dai-li-she-zhi/">ubuntu apt curl wget 代理设置</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/03/04/ubuntu-apt-curl-wget-dai-li-she-zhi/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            由于公司内网问题，经常涉及到需要设置网络代理的问题。总结如下：
-
-考虑到经常需要更换密码，一般使用临时代理
-
-===================================
-
-apt代理设置
-
-    
-    $ apt -o A
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/03/04/ubuntu-apt-curl-wget-dai-li-she-zhi/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/03/04/ubuntu-apt-curl-wget-dai-li-she-zhi/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         

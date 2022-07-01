@@ -1235,6 +1235,117 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-27</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/27/docker-shan-chu-zhuang-tai-wei-exited-de-rong-qi/">docker删除状态为Exited的容器</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/27/docker-shan-chu-zhuang-tai-wei-exited-de-rong-qi/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            docker rm $(docker ps -qf status=exited)
+
+
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/27/docker-shan-chu-zhuang-tai-wei-exited-de-rong-qi/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/27/docker-shan-chu-zhuang-tai-wei-exited-de-rong-qi/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-26</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/26/nginx-zhong-ru-he-xian-zhi-mou-ge-ip-tong-yi-shi-jian-duan-de-fang-wen-ci-shu-he-bing-fa-shu/">Nginx中如何限制某个IP同一时间段的访问次数和并发数</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/26/nginx-zhong-ru-he-xian-zhi-mou-ge-ip-tong-yi-shi-jian-duan-de-fang-wen-ci-shu-he-bing-fa-shu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            最近一个项目为了防止刷票，需要对nginx  设置能限制某个IP某一时间段的访问次数 具体修改如下：
+
+ 
+
+nginx.conf 配置修改
+
+在 http &#123;
+
+&#125;
+
+里面加上
+
+
+limit_req_zone $bi
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/26/nginx-zhong-ru-he-xian-zhi-mou-ge-ip-tong-yi-shi-jian-duan-de-fang-wen-ci-shu-he-bing-fa-shu/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/26/nginx-zhong-ru-he-xian-zhi-mou-ge-ip-tong-yi-shi-jian-duan-de-fang-wen-ci-shu-he-bing-fa-shu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
             <span class="post-time">2022-04-26</span>
           </div>
           <div class="post-title">
@@ -1643,119 +1754,6 @@ service docker stop
       <div class="post-img">
         
           <a href="/2022/04/26/dong-tai-xiu-gai-docker-rong-qi-huan-jing-bian-liang-env/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-26</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/">jenkins:配置密钥时报错的解决：Failed to add SSH key. Message invalid privatekey</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            一，报错的现象:
-1,提示信息:
-
-jenkins.plugins.publish_over.BapPublisherException: Failed to add SSH key. Message [invalid privatekey
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-26</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/">docker镜像常用操作的基本命令</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            1.拉取/下载镜像
-
-docker pull 镜像名称       （可以从网易云镜像中心获取要下载的镜像）
-
- 
-
-2.查看已经下载的镜像
-
-docker images
-
- 
-
-3.删除本地镜像
-
-docker rmi 镜像标识     
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         

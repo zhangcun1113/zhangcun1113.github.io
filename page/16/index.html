@@ -1238,6 +1238,106 @@
             <span class="post-time">2022-04-25</span>
           </div>
           <div class="post-title">
+            <a class="post-title-link" href="/2022/04/25/jenkins-publish-over-ssh-exec-command-bu-da-yin-shu-chu/">Jenkins Publish over SSH Exec command 不打印输出</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/25/jenkins-publish-over-ssh-exec-command-bu-da-yin-shu-chu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            勾选：Verbose output in console
+
+根据自身项目情况适当勾选：Exec in pty(模拟一个终端执行脚步)我遇到的问题：勾选Exec in pty ，项目发布结束后，Exec command 中的java -jar
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/25/jenkins-publish-over-ssh-exec-command-bu-da-yin-shu-chu/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/25/jenkins-publish-over-ssh-exec-command-bu-da-yin-shu-chu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-25</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/25/mysql-bei-fen-bing-zi-dong-ya-suo-ming-ling/">mysql备份并自动压缩命令</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/25/mysql-bei-fen-bing-zi-dong-ya-suo-ming-ling/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            #! /bin/bash
+
+mysqldump -uroot -p&#39;password&#39; databasename | gzip &gt; /home/backup/database_`date +%Y%m%d%H%M`.sq
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/25/mysql-bei-fen-bing-zi-dong-ya-suo-ming-ling/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/25/mysql-bei-fen-bing-zi-dong-ya-suo-ming-ling/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-25</span>
+          </div>
+          <div class="post-title">
             <a class="post-title-link" href="/2022/04/25/ji-yu-docker-compose-de-elk-huan-jing-da-jian/">基于docker-compose的ELK环境搭建</a>
           </div>
           <div class="post-meta">
@@ -1641,114 +1741,6 @@ sudo gedit /etc/ssh/sshd_config
       <div class="post-img">
         
           <a href="/2022/04/24/ubuntu-ssh-deng-ru-su-du-tai-man-de-jie-jue-ban-fa/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-24</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/24/docker-an-zhuang-yi-ji-jing-xiang-yuan-she-zhi/">docker安装-以及镜像源设置</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/24/docker-an-zhuang-yi-ji-jing-xiang-yuan-she-zhi/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            首先至少要是centOS7的版本，这是要求
-可以用官方给的命令行全自动安装，如下：
-
-curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-
-这个唯一也是最大的
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/24/docker-an-zhuang-yi-ji-jing-xiang-yuan-she-zhi/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/24/docker-an-zhuang-yi-ji-jing-xiang-yuan-she-zhi/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-24</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/24/cha-kan-linux-xi-tong-nei-cun-cpu-ci-pan-shi-yong-lu-he-xiang-xi-xin-xi/">查看Linux系统内存、CPU、磁盘使用率和详细信息</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/24/cha-kan-linux-xi-tong-nei-cun-cpu-ci-pan-shi-yong-lu-he-xiang-xi-xin-xi/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            一、查看内存占用
-1、free
-# free -m
-
-以MB为单位显示内存使用情况
-
-[root@localhost ~]# free -m
-              total        used        free      
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/24/cha-kan-linux-xi-tong-nei-cun-cpu-ci-pan-shi-yong-lu-he-xiang-xi-xin-xi/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/24/cha-kan-linux-xi-tong-nei-cun-cpu-ci-pan-shi-yong-lu-he-xiang-xi-xin-xi/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         

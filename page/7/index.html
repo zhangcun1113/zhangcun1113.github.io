@@ -1235,6 +1235,108 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-17</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/">通过docker-compose一键部署zabbix监控平台</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            通过docker启动zabbix监控平台已经很方便了，下面我们可以使用一种更加方便的方式启动，那就是docker的compose功能。
+当然，首先我们还是得需要有一个docker的环境，至于安装方式这里就不说了。在我的博客docker分类中
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/17/tong-guo-docker-compose-yi-jian-bu-shu-zabbix-jian-kong-ping-tai/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-05-13</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/">基于docker的elasticsearch 7.5.1 搭建</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            Es数据库（单节点）
+1.1.1拉取ES docker 镜像
+docker  pull elasticsearch:7.5.1
+1.1.2创建ES绑定数据卷
+mkdir /root/ES/config/
+mkdir /root/ES/dat
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/05/13/ji-yu-docker-de-elasticsearch-7-5-1-da-jian/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
             <span class="post-time">2022-05-13</span>
           </div>
           <div class="post-title">
@@ -1652,104 +1754,6 @@ sudo docker run \
       <div class="post-img">
         
           <a href="/2022/05/09/docker-an-zhuang-ldap-phpldapadmin/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/09/docker-an-zhuang-mu-lu-qian-yi/">docker安装目录迁移</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/09/docker-an-zhuang-mu-lu-qian-yi/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            在安装docker时通常是默认安装的系统盘目录/var/lib/docker，而该目录通常是比较小的，一旦镜像过多就可能出现docker无法运行的情况，这时进行docker目录的迁移就可以很好地解决问题。
-docker目录的迁移其实非常简单
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/09/docker-an-zhuang-mu-lu-qian-yi/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/09/docker-an-zhuang-mu-lu-qian-yi/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-09</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/09/dockerfile-he-gou-jian-huan-cun/">dockerfile和构建缓存</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/05/09/dockerfile-he-gou-jian-huan-cun/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            镜像缓存
-1.镜像缓存：在构建或者下载镜像时候，当镜像层已经存在的时候，直接使用使用缓存， 不需要进行重新构建镜像，如果我们希望在构建镜像时不使用缓存，可以在 docker build 命令中加上 –no-cache 参数。如果我们改变 D
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/09/dockerfile-he-gou-jian-huan-cun/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/05/09/dockerfile-he-gou-jian-huan-cun/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
