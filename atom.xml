@@ -6,7 +6,7 @@
   <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
   
   <link href="https://blog.zhangcun.store/"/>
-  <updated>2022-07-01T07:32:28.269Z</updated>
+  <updated>2022-07-26T11:51:56.446Z</updated>
   <id>https://blog.zhangcun.store/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL：sqlite3数据库常用操作</title>
+    <link href="https://blog.zhangcun.store/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/"/>
+    <id>https://blog.zhangcun.store/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/</id>
+    <published>2022-07-26T07:04:00.000Z</published>
+    <updated>2022-07-26T11:51:56.446Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h5 id=&quot;常用数据类型&quot;&gt;&lt;a href=&quot;#常用数据类型&quot; class=&quot;headerlink&quot; title=&quot;常用数据类型&quot;&gt;&lt;/a&gt;常用数据类型&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;NULL - 空值
+INTERGER - 有符号整数类型
+REAL -</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Ubuntu下keepalived和nginx实现高可用性负载均衡</title>
@@ -487,30 +510,6 @@ nginx: 1.20.2
 nodejs: v10.24.0
 npm: v6.14.11
 @vue/cli:</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>apt查看安装包可用版本号</title>
-    <link href="https://blog.zhangcun.store/2022/06/17/apt-cha-kan-an-zhuang-bao-ke-yong-ban-ben-hao/"/>
-    <id>https://blog.zhangcun.store/2022/06/17/apt-cha-kan-an-zhuang-bao-ke-yong-ban-ben-hao/</id>
-    <published>2022-06-17T06:24:50.000Z</published>
-    <updated>2022-06-17T06:25:22.390Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;例如要显示curl可安装的版本号：&lt;/p&gt;
-&lt;p&gt;sudo apt-cache madison curl&lt;/p&gt;
-&lt;p&gt;如果想看apt能安装哪些跟curl关键词相关的软件，运行以下命令，&lt;/p&gt;
-&lt;p&gt;sudo apt-cache search</summary>
         
       
     

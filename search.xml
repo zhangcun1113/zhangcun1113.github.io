@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>SQL：sqlite3数据库常用操作</title>
+      <link href="/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/"/>
+      <url>/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/</url>
+      
+        <content type="html"><![CDATA[<h5 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h5><pre><code>NULL - 空值INTERGER - 有符号整数类型REAL - 浮点数类型TEXT - 字符串（其编码取决于DB的编码）BLOB - 二进制表示(binary large object)，二进制大对象常用操作数据库的常用操作，基本都是四个：增、删、改、查</code></pre><h6 id="增"><a href="#增" class="headerlink" title="增"></a>增</h6><pre><code>-- 新增表CREATE TABLE IF NOT EXISTS &quot;user&quot; (    &quot;id&quot; INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,    &quot;name&quot; TEXT,    &quot;age&quot; INTEGER,    &quot;icon&quot; TEXT);-- 插入记录INSERT INTO user (name, age, icon) VALUES (&quot;Tom&quot;, 23, &quot;Tom_icon&quot;);INSERT INTO user (name, age, icon) VALUES (&quot;Jimi&quot;, 24, &quot;Jimi_icon&quot;);INSERT INTO user (name, age, icon) VALUES (&quot;Jack&quot;, 25, &quot;Jack_icon&quot;);INSERT INTO user (name, age, icon) VALUES (&quot;Mike&quot;, 26, &quot;Mike_icon&quot;);-- 新建表，从已有表导入记录CREATE TABLE IF NOT EXISTS new_user(    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,    name TEXT) INSERT INTO new_user(name) SELECT name FROM user; </code></pre><h6 id="删"><a href="#删" class="headerlink" title="删"></a>删</h6><pre><code>-- 新建一个临时表CREATE TABLE IF NOT EXISTS &quot;user_name&quot; (&quot;name&quot; TEXT);-- 删除表DROP TABLE IF EXISTS user_name;-- 删除记录DELETE FROM user WHERE id = 1;</code></pre><h6 id="改"><a href="#改" class="headerlink" title="改"></a>改</h6><pre><code>-- 修改表ALTER TABLE user RENAME TO new_user;ALTER TABLE new_user RENAME TO user;-- 表结尾增加一列ALTER TABLE &quot;user&quot; ADD COLUMN note TEXT;-- 修改记录UPDATE user SET name = &quot;杰克&quot; WHERE name = &quot;Jack&quot;;UPDATE user SET name = &quot;汤姆&quot; WHERE name = &quot;Tom&quot;;UPDATE user SET icon = &quot;iconxxx&quot; WHERE age &gt;= 25;</code></pre><h6 id="查"><a href="#查" class="headerlink" title="查"></a>查</h6><pre><code> -- 查询 * 表示所有 SELECT * FROM user;-- 查询部分字段SELECT name, age FROM user;-- 条件约束SELECT name FROM user WHERE age &gt;= 25;-- 模糊查询  使用like关键词 %零个或多个SELECT name, icon FROM user WHERE icon LIKE &quot;%icon%&quot;;-- 模糊查询   &quot;_&quot; 一个字符 SELECT name FROM user WHERE name LIKE &quot;汤_&quot;;-- 查询数量SELECT COUNT(*) FROM user;SELECT COUNT(name) FROM user;-- 排序  默认：ASC (ascend)  升序SELECT * FROM user ORDER BY age;-- 降序 DESC (desend) SELECT * FROM user ORDER BY age DESC;-- 分页查询 LIMIT， 查询5条SELECT * FROM user LIMIT 5;-- 前面跳过3条，查询5条SELECT * FROM user LIMIT 3, 5;-- 字段别名SELECT name AS n, age AS a FROM user;-- 表别名SELECT t.name, t.age FROM user AS t;</code></pre><p>    – 表结构<br>    如果想列出该数据库中的所有表，可：</p><pre><code>.tables如果想查看这些表的结构：select * from sqlite_master where type=&quot;table&quot;;默认情况下，不会出现红框中的表头，需要之前设置，命令为：.header on如果只想查看具体一张表的表结构，比如查看emperors表，命令为：select * from sqlite_master where type=&quot;table&quot; and name=&quot;emperors&quot;;另外，也可以这样：sqlite&gt; .schema emperors CREATE TABLE emperors( id integer primary key autoincrement, name text,dynasty text,start_year text);##sqlite3 /home/git/gogs/data/gogs.db  执行更新语句即可，以下哈希对应的密码是 123456update user set passwd=&#39;b4af39cca17a2231fead3c06908d352fd367c123fceb7256caeedf032b0d87c8a00a0e86a72f100362</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Ubuntu下keepalived和nginx实现高可用性负载均衡</title>
       <link href="/2022/07/01/ubuntu-xia-keepalived-he-nginx-shi-xian-gao-ke-yong-xing-fu-zai-jun-heng/"/>
       <url>/2022/07/01/ubuntu-xia-keepalived-he-nginx-shi-xian-gao-ke-yong-xing-fu-zai-jun-heng/</url>

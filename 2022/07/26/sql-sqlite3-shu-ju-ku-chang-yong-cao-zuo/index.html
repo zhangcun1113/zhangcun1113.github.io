@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>归档: 2022 | 又瘦了三斤</title>
+  <title>SQL：sqlite3数据库常用操作 | 又瘦了三斤</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -613,268 +613,546 @@
     <!-- 内容区域 -->
     <div id="safearea">
       <main class="main" id="pjax-container" style="margin-top: 0;">
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="lazyload archive-header" data-original="https://pic1.zhimg.com/80/v2-1414b3a4b205e19060db18a20d08723a_1440w.jpg?source=1940ef5c" >
-  <div class="archive-header-title">
-    archive
-  </div>
-  <div class="archive-header-desc">
+        
+ <!-- prismjs 代码高亮 -->
+ 
+    
+    <link href="/js/prism/prism-line-numbers.css" rel="stylesheet">
+    
+        <link href="/js/prism/prism.min.css" rel="stylesheet">
+    
+
+    <style>
+        pre[class*="language-"] {
+            overflow-y: hidden;
+        }
+        .line-numbers .line-numbers-rows {
+            border: none;
+        }
+    </style>
   
-  <span class="title" id="archive-header-desc"></span>
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+<!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/9.jpg" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        SQL：sqlite3数据库常用操作
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fa fa-calendar"></i> 发表于：2022-07-26 |
+        </span>
+      
+
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fa fa-file-text-o"></i> 字数统计: 644 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fa fa-clock-o"></i> 阅读时长: 3分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fa fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+<div class="row justify-position">
+  <div class="main-content">
+    <article class="post post-detail">
+      
+      <div class="post-content">
+        <h5 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h5><pre><code>NULL - 空值
+INTERGER - 有符号整数类型
+REAL - 浮点数类型
+TEXT - 字符串（其编码取决于DB的编码）
+BLOB - 二进制表示(binary large object)，二进制大对象
+常用操作
+数据库的常用操作，基本都是四个：增、删、改、查
+</code></pre>
+<h6 id="增"><a href="#增" class="headerlink" title="增"></a>增</h6><pre><code>-- 新增表
+CREATE TABLE IF NOT EXISTS &quot;user&quot; (
+    &quot;id&quot; INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    &quot;name&quot; TEXT,
+    &quot;age&quot; INTEGER,
+    &quot;icon&quot; TEXT
+);
+
+-- 插入记录
+INSERT INTO user (name, age, icon) VALUES (&quot;Tom&quot;, 23, &quot;Tom_icon&quot;);
+INSERT INTO user (name, age, icon) VALUES (&quot;Jimi&quot;, 24, &quot;Jimi_icon&quot;);
+INSERT INTO user (name, age, icon) VALUES (&quot;Jack&quot;, 25, &quot;Jack_icon&quot;);
+INSERT INTO user (name, age, icon) VALUES (&quot;Mike&quot;, 26, &quot;Mike_icon&quot;);
+
+-- 新建表，从已有表导入记录
+CREATE TABLE IF NOT EXISTS new_user(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+) 
+
+INSERT INTO new_user(name) SELECT name FROM user; 
+</code></pre>
+<h6 id="删"><a href="#删" class="headerlink" title="删"></a>删</h6><pre><code>-- 新建一个临时表
+CREATE TABLE IF NOT EXISTS &quot;user_name&quot; (&quot;name&quot; TEXT);
+
+-- 删除表
+DROP TABLE IF EXISTS user_name;
+
+-- 删除记录
+DELETE FROM user WHERE id = 1;
+</code></pre>
+<h6 id="改"><a href="#改" class="headerlink" title="改"></a>改</h6><pre><code>-- 修改表
+ALTER TABLE user RENAME TO new_user;
+ALTER TABLE new_user RENAME TO user;
+
+-- 表结尾增加一列
+ALTER TABLE &quot;user&quot; ADD COLUMN note TEXT;
+
+-- 修改记录
+UPDATE user SET name = &quot;杰克&quot; WHERE name = &quot;Jack&quot;;
+UPDATE user SET name = &quot;汤姆&quot; WHERE name = &quot;Tom&quot;;
+
+UPDATE user SET icon = &quot;iconxxx&quot; WHERE age &gt;= 25;
+</code></pre>
+<h6 id="查"><a href="#查" class="headerlink" title="查"></a>查</h6><pre><code> -- 查询 * 表示所有
+ SELECT * FROM user;
+
+-- 查询部分字段
+SELECT name, age FROM user;
+
+-- 条件约束
+SELECT name FROM user WHERE age &gt;= 25;
+
+-- 模糊查询  使用like关键词 %零个或多个
+SELECT name, icon FROM user WHERE icon LIKE &quot;%icon%&quot;;
+
+-- 模糊查询   &quot;_&quot; 一个字符 
+SELECT name FROM user WHERE name LIKE &quot;汤_&quot;;
+
+-- 查询数量
+SELECT COUNT(*) FROM user;
+
+SELECT COUNT(name) FROM user;
+
+-- 排序  默认：ASC (ascend)  升序
+SELECT * FROM user ORDER BY age;
+
+-- 降序 DESC (desend) 
+SELECT * FROM user ORDER BY age DESC;
+
+-- 分页查询 LIMIT， 查询5条
+SELECT * FROM user LIMIT 5;
+
+-- 前面跳过3条，查询5条
+SELECT * FROM user LIMIT 3, 5;
+
+-- 字段别名
+SELECT name AS n, age AS a FROM user;
+
+-- 表别名
+SELECT t.name, t.age FROM user AS t;
+</code></pre>
+<p>    – 表结构<br>    如果想列出该数据库中的所有表，可：</p>
+<pre><code>.tables
+
+如果想查看这些表的结构：
+
+select * from sqlite_master where type=&quot;table&quot;;
+
+默认情况下，不会出现红框中的表头，需要之前设置，命令为：
+
+.header on
+
+如果只想查看具体一张表的表结构，比如查看emperors表，命令为：
+
+select * from sqlite_master where type=&quot;table&quot; and name=&quot;emperors&quot;;
+
+另外，也可以这样：
+
+sqlite&gt; .schema emperors 
+CREATE TABLE emperors( id integer primary key autoincrement, name text,dynasty text,start_year text);
+
+##sqlite3 /home/git/gogs/data/gogs.db
+
+  执行更新语句即可，以下哈希对应的密码是 123456
+
+update user set passwd=&#39;b4af39cca17a2231fead3c06908d352fd367c123fceb7256caeedf032b0d87c8a00a0e86a72f100362
+</code></pre>
+
+      </div>
+      <div class="post-tags-categories">
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>张存</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/" target="_blank" title="SQL：sqlite3数据库常用操作">https://blog.zhangcun.store/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2022/07/01/ubuntu-xia-keepalived-he-nginx-shi-xian-gao-ke-yong-xing-fu-zai-jun-heng/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div class="title-text">Ubuntu下keepalived和nginx实现高可用性负载均衡</div>
+      </div>
+      <!-- <div class="content">
+        概述    1. 前导知识    Ubuntu安装keepalived    Ubuntu安装nginx并配置负载均衡
+
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+      <div id="appDonate" class="post-donate">
+  <div id="donate_board" class="donate_bar center" ref="donate">
+    <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏" @click="showDialogDrawer()"></a>
+  </div>
+  <transition name="fade">
+    <div 
+      class="donate-box-mask"
+      v-cloak 
+      v-if="visible"
+      @click="cancelDialogDrawer()"
+    >
+    </div>
+  </transition>
+  <transition name="bounce">
+    <div class="donate-box" v-cloak v-if="visible">
+      <div class="donate-box_close">
+        <i class="fa fa-times" aria-hidden="true" @click="cancelDialogDrawer" pointer></i>
+      </div>
+      <div class="donate-box_title">
+        <h4>
+          你的赏识是我前进的动力
+        </h4>
+      </div>
+      <div class="donate-box_tab">
+        <div class="Alipay" pointer :class="{'active': tabActive === 'Alipay'}" @click="changeTabActive('Alipay')">
+          支付宝
+        </div>
+        <div class="WeChatpay" pointer :class="{'active': tabActive === 'WeChatpay'}" @click="changeTabActive('WeChatpay')">
+          微信
+        </div>
+      </div>
+      <div class="donate-box_img">
+        <div class="AlipayImg" v-if="tabActive === 'Alipay'">
+          <img src="/medias/zfb.jpg" alt="支付宝打赏" />
+        </div> 
+        <div class="WeChatpayImg" v-if="tabActive === 'WeChatpay'">
+          <img src="/medias/wx.jpg" alt="微信打赏" />
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDonate',
+    data: {
+      visible: false,
+      tabActive: 'Alipay',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        // function getScroll() {
+        //   return {
+        //     left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+        //     top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        //   };
+        // }
+        this.top = $(document).scrollTop() // or getScroll().top
+        // console.log('aa', $('.main-content'));
+        body.style.cssText = 'overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+      changeTabActive(name) {
+        this.tabActive = name;
+      }
+    },
+    created() {}
+  })
+</script>
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        
+          <div class="toc-open-close">本文目录</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+  <!-- js在scripts目录下的的toc.ejs里面 -->
+  
+
   <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
+    function openBtnClickFn () {
+      let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+      let open = eval('' || 'true');
+      openOrCloseBtn.click(function() {
+        if (open === true) {
+          $(".toc-aside").css({'width': 0, 'padding': 0});
+          $(".toc-content").css({'width': 0});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+          $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+          open = false;
+        } else {
+          $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+          $(".toc-content").css({'width': '300px'});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+          $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+          open = true;
+        }
+      });
+    };
+    openBtnClickFn();
+    document.addEventListener('pjax:complete', function () {
+      openBtnClickFn();
+    })
+  </script>
+
+
+  
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;" :style="{'background-color': bgColor ? bgColor : 'transparent'}">
+    <transition-group tag="ul" :name="names">
+        <li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+            <img :src="image" class="bg-swiper-img">
+        </li>
+    </transition-group>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#appBgSwiper',
+        data: {
+            names: '' || 'fade' || 'fade', // translate-fade fade
+            mark: 0,
+            img: [],
+            bgColor: '',
+            time: null
+        },
+        methods: {   //添加方法
+            change(i, m) {
+                if (i > m) {
+                    // this.names = 'fade';
+                } else if (i < m) {
+                    // this.names = 'fade';
+                } else {
+                    return;
+                }
+                this.mark = i;
+            },
+            prev() {
+                // this.names = 'fade';
+                this.mark--;
+                if (this.mark === -1) {
+                    this.mark = 3;
+                    return
+                }
+            },
+            next() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            autoPlay() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            play() {
+                let bgImgDelay = '' || '180000'
+                let delay = parseInt(bgImgDelay) || 180000;
+                this.time = setInterval(this.autoPlay, delay);
+            },
+            enter() {
+                clearInterval(this.time);
+            },
+            leave() {
+                this.play();
+            }
+        },
+        created() {
+            this.play()
+        },
+        beforeDestroy() {
+            clearInterval(this.time);
+        },
+        mounted() {
+            let prop = ''|| '';
+            let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://') 
+            if (isImg) {
+                let img = prop.split(',');
+                let configRoot = '/'
+                let arrImg = [];
+                img.forEach(el => {
+                    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+			        var objExp = new RegExp(Expression);
+
+                    if(objExp.test(el)) {
+                        // http or https
+                        arrImg.push(el);
+                    } else {
+                        // 非http or https开头
+                        // 本地文件
+                        let firstStr = el.charAt(0);
+                        if (firstStr == '/') {
+                            el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+                        }
+                        el = configRoot + el;
+                        arrImg.push(el);
+                    }
+                })
+                this.img = arrImg;
+            } else {
+                this.bgColor = prop;
+            }
+        }
+    })
 </script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
 
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="/">
-  </video>
-  <div class="video-header-title">
-    archive
-  </div>
-  <div class="video-header-desc">
-  
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-      
-  </div>
-  <div class="mask-box"></div>
-</div>
+<style>
+    .bg-swiper-box {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .bg-swiper-img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
-<!-- hash算法 -->
-
-
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
-        
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2022">2022</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/07/gei-linux-de-history-ri-zhi-tian-jia-shi-jian-chuo-he-yong-hu-ming/" class="post-img lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-07</span>
-              </div>
-              <a class="post-title" href="/2022/04/07/gei-linux-de-history-ri-zhi-tian-jia-shi-jian-chuo-he-yong-hu-ming/">给Linux的history日志 添加时间戳和用户名</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/07/shell-jiao-ben-pan-duan-duan-kou-shi-fou-da-kai/" class="post-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-07</span>
-              </div>
-              <a class="post-title" href="/2022/04/07/shell-jiao-ben-pan-duan-duan-kou-shi-fou-da-kai/">shell脚本判断端口是否打开</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/07/git-ru-he-she-zhi-shi-yong-dai-li/" class="post-img lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-07</span>
-              </div>
-              <a class="post-title" href="/2022/04/07/git-ru-he-she-zhi-shi-yong-dai-li/">git如何设置使用代理</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/07/shi-yong-nginx-fan-xiang-dai-li-jenkins/" class="post-img lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-07</span>
-              </div>
-              <a class="post-title" href="/2022/04/07/shi-yong-nginx-fan-xiang-dai-li-jenkins/">使用nginx反向代理jenkins</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/02/shell-pi-liang-jian-ce-duo-tai-fu-wu-qi-de-mou-ge-duan-kou/" class="post-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-02</span>
-              </div>
-              <a class="post-title" href="/2022/04/02/shell-pi-liang-jian-ce-duo-tai-fu-wu-qi-de-mou-ge-duan-kou/">shell 批量检测多台服务器的某个端口</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/02/wei-xin-wang-ye-ban-di-zhi-1/" class="post-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-02</span>
-              </div>
-              <a class="post-title" href="/2022/04/02/wei-xin-wang-ye-ban-di-zhi-1/">微信网页版地址</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/03/10/docker-can-shu-restart-always-de-zuo-yong/" class="post-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">03-10</span>
-              </div>
-              <a class="post-title" href="/2022/03/10/docker-can-shu-restart-always-de-zuo-yong/">docker参数--restart=always的作用</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/03/07/fo-zu-bao-you-yong-bu-dang-ji-yong-wu-bug/" class="post-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">03-07</span>
-              </div>
-              <a class="post-title" href="/2022/03/07/fo-zu-bao-you-yong-bu-dang-ji-yong-wu-bug/">佛祖保佑，永不宕机/永无bug</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/03/07/shi-er-xing-zuo-pa-pa-pa-pai-xing-na-ge-xing-zuo-zui-ai-pa-pa-pa/" class="post-img lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">03-07</span>
-              </div>
-              <a class="post-title" href="/2022/03/07/shi-er-xing-zuo-pa-pa-pa-pai-xing-na-ge-xing-zuo-zui-ai-pa-pa-pa/">十二星座啪啪啪排行，哪个星座最爱啪啪啪？</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/03/07/linux-zhong-de-wen-jian-he-mu-lu-jie-gou-xiang-jie-2/" class="post-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">03-07</span>
-              </div>
-              <a class="post-title" href="/2022/03/07/linux-zhong-de-wen-jian-he-mu-lu-jie-gou-xiang-jie-2/">Linux中的文件和目录结构详解</a>
-            </div>
-          </li>
-        
-      </ul>
-    </div>
-  </section>
-  
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/2022/page/21/">上一页</a><a class="page-number" href="/archives/2022/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2022/page/20/">20</a><a class="page-number" href="/archives/2022/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/archives/2022/page/23/">23</a><a class="page-number" href="/archives/2022/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2022/page/28/">28</a><a class="extend next" rel="next" href="/archives/2022/page/23/">下一页</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/2022/page/21/"
-         class="page-nav-pre">
-         <i class="fa fa-angle-left"></i><span class="ml-5">上一页</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">22 / 28</div>
-    </div>
-    
-      <a href="/archives/2022/page/23/"
-         class="page-nav-next">
-          <span class="mr-5">下一页</span><i class="fa fa-angle-right"></i>
-      </a>
-      
-  </div>
-
-</div>
       </main>
     </div>
 
