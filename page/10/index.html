@@ -1235,10 +1235,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-09</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/docker-xiu-gai-rong-qi-xi-tong-shi-qu/">Docker修改容器系统时区</a>
+            <a class="post-title-link" href="/2022/05/09/dockerfile-ubuntu-jing-xiang-she-zhi-shi-qu-cuo-wu-jie-jue/">dockerfile ubuntu镜像设置时区错误解决（ubuntu18.04）</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1254,27 +1254,26 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/docker-xiu-gai-rong-qi-xi-tong-shi-qu/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+              <a href="/2022/05/09/dockerfile-ubuntu-jing-xiang-she-zhi-shi-qu-cuo-wu-jie-jue/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            下面给大家介绍两种修改容器系统时区的方法有：    1. 在Dockerfile里修改
-#设置镜像的时区（不同操作系统命令不一样， 核心思想是在创建镜像时执行系统时区设定命令）
-ENV TZ=Asia/Shanghai
-RUN ln -sn
+            只针对ubuntu
+之前打镜像时 都是直接在dockerfile 里进行设置 /etc/timezone and /etc/localtime,
+打完镜像后，验证测试过业务服务，但是压根没有去验证时间是否正确，这是个不好的行为，还好也没有对
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/docker-xiu-gai-rong-qi-xi-tong-shi-qu/">
+          <a href="/2022/05/09/dockerfile-ubuntu-jing-xiang-she-zhi-shi-qu-cuo-wu-jie-jue/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/docker-xiu-gai-rong-qi-xi-tong-shi-qu/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+          <a href="/2022/05/09/dockerfile-ubuntu-jing-xiang-she-zhi-shi-qu-cuo-wu-jie-jue/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1286,10 +1285,10 @@ RUN ln -sn
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-09</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/java-lang-outofmemoryerror-java-heap-space-jie-jue-fang-fa/">java.lang.OutOfMemoryError: Java heap space解决方法</a>
+            <a class="post-title-link" href="/2022/05/09/docker-rong-qi-chong-qi-ce-lue/">docker 容器重启策略</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1305,26 +1304,32 @@ RUN ln -sn
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/java-lang-outofmemoryerror-java-heap-space-jie-jue-fang-fa/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+              <a href="/2022/05/09/docker-rong-qi-chong-qi-ce-lue/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            //首先检查程序有没有限入死循环
+            --restart= ：参数指定当容器退出时，所采用的各个策略：
 
-这个问题主要还是由这个问题 java.lang.OutOfMemoryError: Java heap space 引起的。第一次出现这样的的问题以后，引发了其他的问题。在网上一查可能是JAVA的堆栈设置
+Docker容器的重启策略如下：
+
+no，默认策略，在容器退出时不重启容器
+
+on-failure，在容器非正常退出时（退出状态非0），才会重启容器
+
+on-failure
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/java-lang-outofmemoryerror-java-heap-space-jie-jue-fang-fa/">
+          <a href="/2022/05/09/docker-rong-qi-chong-qi-ce-lue/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/java-lang-outofmemoryerror-java-heap-space-jie-jue-fang-fa/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+          <a href="/2022/05/09/docker-rong-qi-chong-qi-ce-lue/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1336,10 +1341,10 @@ RUN ln -sn
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-09</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/mbr-he-gpt-xuan-na-ge/">mbr和gpt选哪个？</a>
+            <a class="post-title-link" href="/2022/05/09/dockerfile-shi-qu-she-zhi/">Dockerfile 时区设置</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1355,24 +1360,26 @@ RUN ln -sn
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/mbr-he-gpt-xuan-na-ge/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+              <a href="/2022/05/09/dockerfile-shi-qu-she-zhi/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            首先不论是MBR还是GPT，都是文件系统的分区方式，只是表示文件在硬盘上的存储方式，这个都由操作系统管理，对用户是完全透明的，所以无论使用哪种，对硬盘都没有任何影响。不过对于总容量小于或等于2TB的硬盘，分区表可以选择MBR，也可以选择GP
+            Dockerfile 时区设置
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo &#39;Asia/Shanghai&#39; &gt;/etc/ti
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/mbr-he-gpt-xuan-na-ge/">
+          <a href="/2022/05/09/dockerfile-shi-qu-she-zhi/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/mbr-he-gpt-xuan-na-ge/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+          <a href="/2022/05/09/dockerfile-shi-qu-she-zhi/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1384,10 +1391,10 @@ RUN ln -sn
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-09</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/jing-gao-yi-root-yong-hu-shen-fen-yun-xing-pip/">警告：以“root”用户身份运行pip</a>
+            <a class="post-title-link" href="/2022/05/09/ubuntu-xia-an-zhuang-xie-zai-python3-8-de-guo-cheng/">Ubuntu下安装卸载python3.8的过程</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1403,24 +1410,30 @@ RUN ln -sn
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/jing-gao-yi-root-yong-hu-shen-fen-yun-xing-pip/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+              <a href="/2022/05/09/ubuntu-xia-an-zhuang-xie-zai-python3-8-de-guo-cheng/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            我正在docker中制作我的pythondjango应用程序的简单图像。但是在构建容器的末尾，它抛出了下一个警告（我正在Ubuntu20.04)上构建它：WARNING: Running pip as the ‘root’ user can
+            一、Python 3.8 安装
+在 Ubuntu 16.04 中，python3 的默认版本为 3.5：
+
+
+$ python3 -V
+Python 3.5.2
+本文以在 Ubuntu 16.04 中安装为例，方法同样适用于 Ubuntu 
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/jing-gao-yi-root-yong-hu-shen-fen-yun-xing-pip/">
+          <a href="/2022/05/09/ubuntu-xia-an-zhuang-xie-zai-python3-8-de-guo-cheng/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/jing-gao-yi-root-yong-hu-shen-fen-yun-xing-pip/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+          <a href="/2022/05/09/ubuntu-xia-an-zhuang-xie-zai-python3-8-de-guo-cheng/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1432,10 +1445,10 @@ RUN ln -sn
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-09</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/docker-alpine-she-zhi-dong-ba-shi-qu/">Docker alpine 设置东八时区</a>
+            <a class="post-title-link" href="/2022/05/09/pip-install-no-cache-dir-pip-install-no-cache-docker-no-cache/">pip install --no-cache-dir ；pip install --no-cache；docker --no-cache</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1451,28 +1464,28 @@ RUN ln -sn
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/docker-alpine-she-zhi-dong-ba-shi-qu/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+              <a href="/2022/05/09/pip-install-no-cache-dir-pip-install-no-cache-docker-no-cache/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            FROM alpine:3.8
+            docker build -t testXXX . --no-cache可以重新拉取数据，不使用已经存在本地的缓存，数据源改变时有用。
 
-RUN echo &#39;http://mirrors.ustc.edu.cn/alpine/v3.5/main&#39; &gt; /etc/apk/repositories
+pip的--no-cache-dir和--no-cache也是一样
 
-&amp;&amp; e
+
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/docker-alpine-she-zhi-dong-ba-shi-qu/">
+          <a href="/2022/05/09/pip-install-no-cache-dir-pip-install-no-cache-docker-no-cache/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/docker-alpine-she-zhi-dong-ba-shi-qu/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+          <a href="/2022/05/09/pip-install-no-cache-dir-pip-install-no-cache-docker-no-cache/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1484,10 +1497,10 @@ RUN echo &#39;http://mirrors.ustc.edu.cn/alpine/v3.5/main&#39; &gt; /etc/apk/rep
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-09</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/docker-zhong-pi-liang-shan-chu-tag-wei-none-de-jing-xiang/">docker中批量删除 tag为none的镜像</a>
+            <a class="post-title-link" href="/2022/05/09/centos6-5-bu-shu-openvpn-zhang-hao-mi-ma-fang-shi-deng-lu/">Centos6.5部署openvpn账号密码方式登录</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1503,26 +1516,38 @@ RUN echo &#39;http://mirrors.ustc.edu.cn/alpine/v3.5/main&#39; &gt; /etc/apk/rep
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/docker-zhong-pi-liang-shan-chu-tag-wei-none-de-jing-xiang/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+              <a href="/2022/05/09/centos6-5-bu-shu-openvpn-zhang-hao-mi-ma-fang-shi-deng-lu/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            添加定时任务，批量删除tag 为none 的镜像  ，释放磁盘空间
-[root@weifeng]:~# crontab -l
-00 */4 * * * /usr/bin/docker rmi `docker images|grep none
+            server端（路由模式）：
+
+一.网络设置
+
+1.开启服务器端路由转发功能
+
+# vi /etc/sysctl.conf
+
+net.ipv4.ip_forward = 1
+
+# sysctl -p
+
+2.设置nat转发:
+
+注：保证×××
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/docker-zhong-pi-liang-shan-chu-tag-wei-none-de-jing-xiang/">
+          <a href="/2022/05/09/centos6-5-bu-shu-openvpn-zhang-hao-mi-ma-fang-shi-deng-lu/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/docker-zhong-pi-liang-shan-chu-tag-wei-none-de-jing-xiang/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+          <a href="/2022/05/09/centos6-5-bu-shu-openvpn-zhang-hao-mi-ma-fang-shi-deng-lu/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1534,10 +1559,10 @@ RUN echo &#39;http://mirrors.ustc.edu.cn/alpine/v3.5/main&#39; &gt; /etc/apk/rep
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-09</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/dockerfile-she-zhi-shi-qu/">Dockerfile设置时区</a>
+            <a class="post-title-link" href="/2022/05/09/docker-compose-huan-jing-bian-liang-pei-zhi/">docker-compose环境变量配置</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1553,28 +1578,29 @@ RUN echo &#39;http://mirrors.ustc.edu.cn/alpine/v3.5/main&#39; &gt; /etc/apk/rep
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/dockerfile-she-zhi-shi-qu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+              <a href="/2022/05/09/docker-compose-huan-jing-bian-liang-pei-zhi/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            在docker container 中不能自动识别宿主机的时区，可通过安装tzdata软件包，配置TZ环境变量识别正确时区．
-使用tzdata设置时区dpkg-reconfigure tzdata
+            变量定义
+docker-compose.yml文件中定义MSA_EXTERNAL_DNS_NAME_OR_IP
 
-# for ubuntu 
-RUN ap
+  identity-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/dockerfile-she-zhi-shi-qu/">
+          <a href="/2022/05/09/docker-compose-huan-jing-bian-liang-pei-zhi/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/dockerfile-she-zhi-shi-qu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+          <a href="/2022/05/09/docker-compose-huan-jing-bian-liang-pei-zhi/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1586,10 +1612,10 @@ RUN ap
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-09</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/acme-sheng-cheng-tong-pei-fu-ssl-zheng-shu/">acme生成通配符ssl证书</a>
+            <a class="post-title-link" href="/2022/05/09/docker-huan-guo-nei-yuan/">Docker 换国内源</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1605,28 +1631,30 @@ RUN ap
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/acme-sheng-cheng-tong-pei-fu-ssl-zheng-shu/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+              <a href="/2022/05/09/docker-huan-guo-nei-yuan/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            acme生成通配符ssl证书
-1.安装acme
-wget https://get.acme.sh | sh
-安装完成后的目录在/root/.acme.sh/下面.
-直接使用 cd /root/.acme.sh 命令 进入.acme.sh目录
+            Docker 换国内源先创建daemon.json文件，系统默认是没有这个文件。
+sudo vim /etc/docker/daemon.json
+
+编辑daemon.json，填入以下内容。
+
+&#123;
+    &quot;regis
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/acme-sheng-cheng-tong-pei-fu-ssl-zheng-shu/">
+          <a href="/2022/05/09/docker-huan-guo-nei-yuan/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/acme-sheng-cheng-tong-pei-fu-ssl-zheng-shu/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+          <a href="/2022/05/09/docker-huan-guo-nei-yuan/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1638,10 +1666,10 @@ wget https://get.acme.sh | sh
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-09</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/ubuntu-an-zhuang-python2-7-he-dui-ying-de-pip2/">ubuntu 安装Python2.7 和对应的pip2</a>
+            <a class="post-title-link" href="/2022/05/09/ubuntu-docker-he-docker-compose-an-zhuang/">Ubuntu Docker 和 docker-compose安装</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1657,30 +1685,28 @@ wget https://get.acme.sh | sh
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/ubuntu-an-zhuang-python2-7-he-dui-ying-de-pip2/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+              <a href="/2022/05/09/ubuntu-docker-he-docker-compose-an-zhuang/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            1，先看看系统中是不是有python2 和pip2
+            一、Ubuntu Docker    1.首先确认Ubuntu已安装CURL
+2.使用官方安装脚本自动安装
+安装命令如下：
 
-命令
-
-whereis python2.7    #查看系统中所有Python2.7所在的位置
-whereis pip2    #查看系统中所有pip2所在的位置
-which pytho
+curl -fsSL https://get.docker.com | bash -s docker --mirr
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/ubuntu-an-zhuang-python2-7-he-dui-ying-de-pip2/">
+          <a href="/2022/05/09/ubuntu-docker-he-docker-compose-an-zhuang/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/ubuntu-an-zhuang-python2-7-he-dui-ying-de-pip2/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+          <a href="/2022/05/09/ubuntu-docker-he-docker-compose-an-zhuang/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1692,10 +1718,10 @@ which pytho
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-05-06</span>
+            <span class="post-time">2022-05-07</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/05/06/docker-mysql-ke-hu-duan-ssl-connection-error-error-1425f102-ssl-routines-unsupported-protocol/">docker mysql客户端：SSL connection error: error:1425F102:SSL routines: unsupported protocol</a>
+            <a class="post-title-link" href="/2022/05/07/shi-yong-docker-bu-shu-filebeat/">使用docker部署filebeat</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1711,26 +1737,25 @@ which pytho
           <div class="post-img-mobile">
             
               
-              <a href="/2022/05/06/docker-mysql-ke-hu-duan-ssl-connection-error-error-1425f102-ssl-routines-unsupported-protocol/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+              <a href="/2022/05/07/shi-yong-docker-bu-shu-filebeat/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            docker mysql 客户端报错
-[root@1317c0f71d3d /]# mysql -h192.168.102.11 -P3306 -uroot -p123456                    
-mysql: [Warn
+            filebeat 是有官方docker镜像的，不过用docker search filebeat 无法搜索到
+在elastic的官网可以找到下载地址 docker pull docker.elastic.co/beats/filebeat:
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/05/06/docker-mysql-ke-hu-duan-ssl-connection-error-error-1425f102-ssl-routines-unsupported-protocol/">
+          <a href="/2022/05/07/shi-yong-docker-bu-shu-filebeat/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/05/06/docker-mysql-ke-hu-duan-ssl-connection-error-error-1425f102-ssl-routines-unsupported-protocol/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+          <a href="/2022/05/07/shi-yong-docker-bu-shu-filebeat/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1741,7 +1766,7 @@ mysql: [Warn
 <!-- 翻页 -->
 
   <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
   </nav> -->
   <div class="page-nav">
     
@@ -1751,7 +1776,7 @@ mysql: [Warn
       </a>
     
     <div class="page-info">
-        <div class="page-info-text">10 / 41</div>
+        <div class="page-info-text">10 / 42</div>
     </div>
     
       <a href="/page/11/"

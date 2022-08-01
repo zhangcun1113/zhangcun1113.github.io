@@ -6,7 +6,7 @@
   <link href="https://blog.zhangcun.store/atom.xml" rel="self"/>
   
   <link href="https://blog.zhangcun.store/"/>
-  <updated>2022-07-26T11:51:56.446Z</updated>
+  <updated>2022-08-01T07:15:58.696Z</updated>
   <id>https://blog.zhangcun.store/</id>
   
   <author>
@@ -17,11 +17,287 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>mysql主从复制主要参数</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/mysql-zhu-cong-fu-zhi-zhu-yao-can-shu/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/mysql-zhu-cong-fu-zhi-zhu-yao-can-shu/</id>
+    <published>2022-08-01T07:14:24.000Z</published>
+    <updated>2022-08-01T07:15:58.696Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;主从复制中的重点参数：&lt;/p&gt;
+&lt;p&gt;log-bin:搭建主从复制，必须开启二进制日志。&lt;/p&gt;
+&lt;p&gt;server-id：在同一组主从结构中的唯一标识（主从上参数不能一致）&lt;/p&gt;
+&lt;p&gt;server-uuid:数据库启动中，自动生成，每台不一样，存放于数据目录auto.</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>彻底终结MySQL同步延迟问题</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/che-di-zhong-jie-mysql-tong-bu-yan-chi-wen-ti/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/che-di-zhong-jie-mysql-tong-bu-yan-chi-wen-ti/</id>
+    <published>2022-08-01T07:08:22.000Z</published>
+    <updated>2022-08-01T08:15:21.992Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在工作中会经常遇到一些MySQL主从同步延迟的问题，这些同步慢的问题，其实原因非常多，可能是因为主从的网络问题导致，可能是因为网络带宽问题导致，可能是因为大事务导致，也可能是因为单线程复制导致的延迟。最近遇到一个很典型的同步延迟问题，将分析过程写出来，希望对广大DBA在排查</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>有道云</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/you-dao-yun/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/you-dao-yun/</id>
+    <published>2022-08-01T07:02:09.000Z</published>
+    <updated>2022-08-01T07:02:11.701Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>开启MySQL远程访问权限 允许远程连接</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/kai-qi-mysql-yuan-cheng-fang-wen-quan-xian-yun-xu-yuan-cheng-lian-jie/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/kai-qi-mysql-yuan-cheng-fang-wen-quan-xian-yun-xu-yuan-cheng-lian-jie/</id>
+    <published>2022-08-01T07:00:40.000Z</published>
+    <updated>2022-08-01T07:00:42.902Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;1、登陆mysql数据库    
+
+   mysql -u root -p
+
+   查看user表
+
+mysql&amp;gt; use mysql;
+Database changed
+mysql&amp;gt; select host,user,password</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据库主从报Got fatal error 1236 from master when reading data from binary log: &#39;Could not open log file&#39;</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/shu-ju-ku-zhu-cong-bao-got-fatal-error-1236-from-master-when-reading-data-from-binary-log-could-not-open-log-file/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/shu-ju-ku-zhu-cong-bao-got-fatal-error-1236-from-master-when-reading-data-from-binary-log-could-not-open-log-file/</id>
+    <published>2022-08-01T06:57:44.000Z</published>
+    <updated>2022-08-01T06:57:48.916Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;数据库主从不同步时报“Got fatal error 1236 from master when reading data from binary log: ‘Could not open log</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>空白项目 · Teambition</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/kong-bai-xiang-mu-teambition/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/kong-bai-xiang-mu-teambition/</id>
+    <published>2022-08-01T06:50:21.000Z</published>
+    <updated>2022-08-01T06:50:24.280Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>云简网络</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/yun-jian-wang-luo/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/yun-jian-wang-luo/</id>
+    <published>2022-08-01T06:40:22.000Z</published>
+    <updated>2022-08-01T06:40:42.253Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;云简网络&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu增加swap交换空间</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/ubuntu-zeng-jia-swap-jiao-huan-kong-jian/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/ubuntu-zeng-jia-swap-jiao-huan-kong-jian/</id>
+    <published>2022-08-01T05:58:48.000Z</published>
+    <updated>2022-08-01T06:14:48.455Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;交换空间swap，打个比方就是你的内存爆满了，系统就会临时把内存里一些暂时不用的数据放到硬盘上，这样内存就会空出来一部分放新的数据。如果需要用之前旧的数据，可以再把它从硬盘上搬回来。本质上交换空间就是硬盘上开辟的一块专门供内存交换数据使用的空间&lt;/p&gt;
+&lt;p&gt;当初服务器装机</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>VMware vSphere 产品文档</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/vmware-vsphere-chan-pin-wen-dang/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/vmware-vsphere-chan-pin-wen-dang/</id>
+    <published>2022-08-01T05:53:52.000Z</published>
+    <updated>2022-08-01T05:53:53.721Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Debian更换软件源</title>
+    <link href="https://blog.zhangcun.store/2022/08/01/debian-geng-huan-ruan-jian-yuan/"/>
+    <id>https://blog.zhangcun.store/2022/08/01/debian-geng-huan-ruan-jian-yuan/</id>
+    <published>2022-08-01T05:50:39.000Z</published>
+    <updated>2022-08-01T05:51:10.527Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;中国科技大学镜像网
+地址
+https://mirrors.ustc.edu.cn/debian/
+
+#备份一下软件源
+
+sudo cp /etc/apt/sources.list /etc/apt/sources.list_bak
+
+一般情况下，将</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chrome 网上应用店 - 扩展程序</title>
+    <link href="https://blog.zhangcun.store/2022/07/27/chrome-wang-shang-ying-yong-dian-kuo-zhan-cheng-xu/"/>
+    <id>https://blog.zhangcun.store/2022/07/27/chrome-wang-shang-ying-yong-dian-kuo-zhan-cheng-xu/</id>
+    <published>2022-07-27T03:17:39.000Z</published>
+    <updated>2022-07-27T03:18:18.895Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Chrome 网上应用店 - 扩展程序&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux/Ubuntu 关机/取消关机/重启命令</title>
+    <link href="https://blog.zhangcun.store/2022/07/27/linux-ubuntu-guan-ji-qu-xiao-guan-ji-chong-qi-ming-ling/"/>
+    <id>https://blog.zhangcun.store/2022/07/27/linux-ubuntu-guan-ji-qu-xiao-guan-ji-chong-qi-ming-ling/</id>
+    <published>2022-07-27T03:10:02.000Z</published>
+    <updated>2022-07-27T03:11:27.113Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h6 id=&quot;关机&quot;&gt;&lt;a href=&quot;#关机&quot; class=&quot;headerlink&quot; title=&quot;关机&quot;&gt;&lt;/a&gt;关机&lt;/h6&gt;&lt;p&gt;halt # 立刻关机&lt;/p&gt;
+&lt;p&gt;poweroff # 立刻关机&lt;/p&gt;
+&lt;p&gt;shutdown -h now # 立刻关机</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>SQL：sqlite3数据库常用操作</title>
     <link href="https://blog.zhangcun.store/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/"/>
     <id>https://blog.zhangcun.store/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/</id>
     <published>2022-07-26T07:04:00.000Z</published>
-    <updated>2022-07-26T11:51:56.446Z</updated>
+    <updated>2022-07-27T03:39:06.975Z</updated>
     
     
       
@@ -208,308 +484,6 @@ log_format #用来定义记录日志的格式（可以定义多种日志格式�
 access_log #用来指定日至文件的路径及使用的何种日志格式记录日志
 
 #    log_format  main </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>隐藏Nginx版本号的简单方法</title>
-    <link href="https://blog.zhangcun.store/2022/06/24/yin-cang-nginx-ban-ben-hao-de-jian-dan-fang-fa-1/"/>
-    <id>https://blog.zhangcun.store/2022/06/24/yin-cang-nginx-ban-ben-hao-de-jian-dan-fang-fa-1/</id>
-    <published>2022-06-24T04:52:48.000Z</published>
-    <updated>2022-06-24T04:55:10.930Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Nginx默认是显示版本号的，其他人就可以看到你的服务器nginx版本是1.8.0。这样暴露出来的版本号就容易变成攻击者可利用的信息。所以，从安全的角度来说，隐藏版本号会相对安全些！&lt;/p&gt;
-&lt;p&gt;具体步骤如下：&lt;/p&gt;
-&lt;p&gt;1、进入nginx配置文件的目录（此目录根据安</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>python 2安装pip</title>
-    <link href="https://blog.zhangcun.store/2022/06/20/python-2-an-zhuang-pip/"/>
-    <id>https://blog.zhangcun.store/2022/06/20/python-2-an-zhuang-pip/</id>
-    <published>2022-06-20T10:57:21.000Z</published>
-    <updated>2022-06-20T10:58:43.535Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;安装python-pip工具&lt;/p&gt;
-&lt;p&gt;先安装setup-tools&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu 中sendmail 的安装、配置与发送邮件的具体实现</title>
-    <link href="https://blog.zhangcun.store/2022/06/20/ubuntu-zhong-sendmail-de-an-zhuang-pei-zhi-yu-fa-song-you-jian-de-ju-ti-shi-xian/"/>
-    <id>https://blog.zhangcun.store/2022/06/20/ubuntu-zhong-sendmail-de-an-zhuang-pei-zhi-yu-fa-song-you-jian-de-ju-ti-shi-xian/</id>
-    <published>2022-06-20T10:53:52.000Z</published>
-    <updated>2022-06-20T10:55:26.673Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;一、安装软件包
-
-      
-
-ubuntu中sendmail函数可以很方便的发送邮件，ubuntu sendmail先要安装两个包。
-
-必需安装的两个包：
-
-sudo apt-get install sendmail  
-
-sudo apt-get</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>apt安装特定版本软件</title>
-    <link href="https://blog.zhangcun.store/2022/06/20/apt-an-zhuang-te-ding-ban-ben-ruan-jian/"/>
-    <id>https://blog.zhangcun.store/2022/06/20/apt-an-zhuang-te-ding-ban-ben-ruan-jian/</id>
-    <published>2022-06-20T10:52:05.000Z</published>
-    <updated>2022-06-20T10:52:07.555Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;sudo apt install</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux find查找指定文件 按照名称 然后cp拷贝到指定目录且指定文件名</title>
-    <link href="https://blog.zhangcun.store/2022/06/20/linux-find-cha-zhao-zhi-ding-wen-jian-an-zhao-ming-cheng-ran-hou-cp-kao-bei-dao-zhi-ding-mu-lu-qie-zhi-ding-wen-jian-ming/"/>
-    <id>https://blog.zhangcun.store/2022/06/20/linux-find-cha-zhao-zhi-ding-wen-jian-an-zhao-ming-cheng-ran-hou-cp-kao-bei-dao-zhi-ding-mu-lu-qie-zhi-ding-wen-jian-ming/</id>
-    <published>2022-06-20T10:50:16.000Z</published>
-    <updated>2022-06-20T10:50:48.002Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt; 1.先查看了查找文件的指令规范 就是 find指令 
-
-        
-
-Find命令的一般形式为：
-find pathname -options [-print -exec -ok]
- 
-
-让我们来看看该命令的参数：
-pathname:  </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基于本地/Oracle官方jdk构建jdk镜像</title>
-    <link href="https://blog.zhangcun.store/2022/06/20/ji-yu-ben-di-oracle-guan-fang-jdk-gou-jian-jdk-jing-xiang/"/>
-    <id>https://blog.zhangcun.store/2022/06/20/ji-yu-ben-di-oracle-guan-fang-jdk-gou-jian-jdk-jing-xiang/</id>
-    <published>2022-06-20T10:19:00.000Z</published>
-    <updated>2022-06-20T10:19:48.782Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;1、基于本地jdk进行构建&lt;/p&gt;
-&lt;p&gt;目录结构：&lt;/p&gt;
-&lt;p&gt; Dockerfile&lt;/p&gt;
-&lt;p&gt;jdk1.8.0_181.tar.gz&lt;/p&gt;
-&lt;p&gt;Dokcerfile内容如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;FROM</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>crontab每周一执行一次</title>
-    <link href="https://blog.zhangcun.store/2022/06/17/crontab-mei-zhou-yi-zhi-xing-yi-ci/"/>
-    <id>https://blog.zhangcun.store/2022/06/17/crontab-mei-zhou-yi-zhi-xing-yi-ci/</id>
-    <published>2022-06-17T08:11:19.000Z</published>
-    <updated>2022-06-17T09:00:07.327Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;linux定时执行任务命令是我们在日常工作中经常用的，一般情况下，我们都是通过linux的crontab软件来实现，crontab是定时来执行一个命令或者一个脚本;但是如果你临时只执行一次命令的话，那么我们也可以采用at命令，同时可以实现我们的目标。&lt;/p&gt;
-&lt;p&gt;先从cr</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx 改变错误日志打印级别</title>
-    <link href="https://blog.zhangcun.store/2022/06/17/nginx-gai-bian-cuo-wu-ri-zhi-da-yin-ji-bie/"/>
-    <id>https://blog.zhangcun.store/2022/06/17/nginx-gai-bian-cuo-wu-ri-zhi-da-yin-ji-bie/</id>
-    <published>2022-06-17T08:06:36.000Z</published>
-    <updated>2022-06-17T08:07:05.811Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Nginx 改变错误日志打印级别&lt;/p&gt;
-&lt;p&gt;user  root;&lt;br&gt;worker_processes  2;&lt;/p&gt;
-&lt;p&gt;worker_rlimit_nofile 10240;&lt;br&gt;error_log logs/nginx_error.log </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu 18.04 编译安装 Python2.7.17</title>
-    <link href="https://blog.zhangcun.store/2022/06/17/ubuntu-18-04-bian-yi-an-zhuang-python2-7-17/"/>
-    <id>https://blog.zhangcun.store/2022/06/17/ubuntu-18-04-bian-yi-an-zhuang-python2-7-17/</id>
-    <published>2022-06-17T08:01:52.000Z</published>
-    <updated>2022-06-17T08:01:55.001Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;1、安装依赖&lt;/p&gt;
-&lt;p&gt;sudo apt-get install build-essential checkinstall&lt;/p&gt;
-&lt;p&gt;sudo apt-get install libreadline-gplv2-dev libncursesw5-dev</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux上如何查看物理CPU个数，核数，线程数</title>
-    <link href="https://blog.zhangcun.store/2022/06/17/linux-shang-ru-he-cha-kan-wu-li-cpu-ge-shu-he-shu-xian-cheng-shu/"/>
-    <id>https://blog.zhangcun.store/2022/06/17/linux-shang-ru-he-cha-kan-wu-li-cpu-ge-shu-he-shu-xian-cheng-shu/</id>
-    <published>2022-06-17T07:42:43.000Z</published>
-    <updated>2022-06-17T07:51:39.657Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;  首先，看看什么是超线程概念
-  
-  超线程技术就是利用特殊的硬件指令，把两个逻辑内核模拟成两个物理芯片，让单个处理器都能使用线程级并行计算，进而兼容多线程操作系统和软件，减少了CPU的闲置时间，提高的CPU的运行效率。
- </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux设置UTC时区</title>
-    <link href="https://blog.zhangcun.store/2022/06/17/linux-she-zhi-utc-shi-qu/"/>
-    <id>https://blog.zhangcun.store/2022/06/17/linux-she-zhi-utc-shi-qu/</id>
-    <published>2022-06-17T07:35:24.000Z</published>
-    <updated>2022-06-17T07:35:47.865Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;设置UTC时区命令
-
-ln -sf /usr/share/zoneinfo/UTC /etc/localtime
- 
-
-具体案例：
-
-执行前
-[root@HOST etc]#cd /etc
-[root@HOST etc]# ll | grep</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx下同域部署多个Vue项目（history路由模式），报404、500错误</title>
-    <link href="https://blog.zhangcun.store/2022/06/17/nginx-xia-tong-yu-bu-shu-duo-ge-vue-xiang-mu-history-lu-you-mo-shi-bao-404-500-cuo-wu/"/>
-    <id>https://blog.zhangcun.store/2022/06/17/nginx-xia-tong-yu-bu-shu-duo-ge-vue-xiang-mu-history-lu-you-mo-shi-bao-404-500-cuo-wu/</id>
-    <published>2022-06-17T07:26:46.000Z</published>
-    <updated>2022-06-17T07:29:36.093Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre&gt;&lt;code&gt;一、环境
-系统: windows
-nginx: 1.20.2
-nodejs: v10.24.0
-npm: v6.14.11
-@vue/cli:</summary>
         
       
     

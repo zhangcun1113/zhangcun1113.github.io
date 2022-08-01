@@ -1235,10 +1235,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-25</span>
+            <span class="post-time">2022-04-26</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/25/zabbix-get-ming-ling-shi-yong-ji-zabbix-nei-zhi-de-yi-xie-can-shu/">zabbix-get命令使用及zabbix内置的一些参数</a>
+            <a class="post-title-link" href="/2022/04/26/find-ming-ling-jie-he-cp-de-shi-yong/">find命令结合cp的使用</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1254,28 +1254,249 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/25/zabbix-get-ming-ling-shi-yong-ji-zabbix-nei-zhi-de-yi-xie-can-shu/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+              <a href="/2022/04/26/find-ming-ling-jie-he-cp-de-shi-yong/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-             一、内置key说明：
- 
-     Zabbix 内置了很多丰富的key，使得咱们再添加linux os模板的时候，已经帮我们把key给定义好，这样我们就能够直接链接模板就可以使用了。
- 
- 我们这边的话列举一些内置key，然后进行一些简
+            用find查找/data目录下，以.txt文件结尾的文件并复制到/tmp下
+
+方法一
+
+find与|xargs是黄金搭档，-t参数指定目标目录
+
+[root@linuxidc ~]# find /data/ -type f -name&qu
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/25/zabbix-get-ming-ling-shi-yong-ji-zabbix-nei-zhi-de-yi-xie-can-shu/">
+          <a href="/2022/04/26/find-ming-ling-jie-he-cp-de-shi-yong/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/25/zabbix-get-ming-ling-shi-yong-ji-zabbix-nei-zhi-de-yi-xie-can-shu/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+          <a href="/2022/04/26/find-ming-ling-jie-he-cp-de-shi-yong/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-26</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/26/mysql-cha-kan-dang-qian-shi-shi-lian-jie-shu/">mysql查看当前实时连接数</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/26/mysql-cha-kan-dang-qian-shi-shi-lian-jie-shu/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            静态查看:
+
+    SHOW PROCESSLIST;  
+    SHOW FULL PROCESSLIST;  
+    SHOW VARIABLES LIKE &#39;%max_connections%&#39;;  
+    S
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/26/mysql-cha-kan-dang-qian-shi-shi-lian-jie-shu/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/26/mysql-cha-kan-dang-qian-shi-shi-lian-jie-shu/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-26</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/26/dong-tai-xiu-gai-docker-rong-qi-huan-jing-bian-liang-env/">动态修改docker容器环境变量env</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/26/dong-tai-xiu-gai-docker-rong-qi-huan-jing-bian-liang-env/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            1、停止容器
+docker stop congtainer id
+2、停止容器服务
+service docker stop
+3、修改 /var/lib/docker/containers/ID/config.v2.json 中的参数
+4、重
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/26/dong-tai-xiu-gai-docker-rong-qi-huan-jing-bian-liang-env/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/26/dong-tai-xiu-gai-docker-rong-qi-huan-jing-bian-liang-env/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-26</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/">jenkins:配置密钥时报错的解决：Failed to add SSH key. Message invalid privatekey</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            一，报错的现象:
+1,提示信息:
+
+jenkins.plugins.publish_over.BapPublisherException: Failed to add SSH key. Message [invalid privatekey
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/26/jenkins-pei-zhi-mi-yao-shi-bao-cuo-de-jie-jue-failed/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+  
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2022-04-26</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/">docker镜像常用操作的基本命令</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              
+              <a href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            1.拉取/下载镜像
+
+docker pull 镜像名称       （可以从网易云镜像中心获取要下载的镜像）
+
+ 
+
+2.查看已经下载的镜像
+
+docker images
+
+ 
+
+3.删除本地镜像
+
+docker rmi 镜像标识     
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/2022/04/26/docker-jing-xiang-chang-yong-cao-zuo-de-ji-ben-ming-ling-1/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1290,7 +1511,7 @@
             <span class="post-time">2022-04-25</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/25/jenkins-publish-over-ssh-exec-command-bu-da-yin-shu-chu/">Jenkins Publish over SSH Exec command 不打印输出</a>
+            <a class="post-title-link" href="/2022/04/25/linux-she-zhi-history-ming-ling-xian-shi-xing-shu-yi-ji-shi-jian/">Linux设置history命令显示行数以及时间</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1306,26 +1527,30 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/25/jenkins-publish-over-ssh-exec-command-bu-da-yin-shu-chu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+              <a href="/2022/04/25/linux-she-zhi-history-ming-ling-xian-shi-xing-shu-yi-ji-shi-jian/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            勾选：Verbose output in console
+            Linux和unix上都提供了history命令，可以查询以前执行的命令历史记录
+但是，这个记录并不包含时间项目
+因此只能看到命令，但是不知道什么时间执行的
+如何让history记录时间呢？  
 
-根据自身项目情况适当勾选：Exec in pty(模拟一个终端执行脚步)我遇到的问题：勾选Exec in pty ，项目发布结束后，Exec command 中的java -jar
+解决方案 
+注意：本方法只对bash-3.
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/25/jenkins-publish-over-ssh-exec-command-bu-da-yin-shu-chu/">
+          <a href="/2022/04/25/linux-she-zhi-history-ming-ling-xian-shi-xing-shu-yi-ji-shi-jian/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/25/jenkins-publish-over-ssh-exec-command-bu-da-yin-shu-chu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+          <a href="/2022/04/25/linux-she-zhi-history-ming-ling-xian-shi-xing-shu-yi-ji-shi-jian/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1340,7 +1565,7 @@
             <span class="post-time">2022-04-25</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/25/mysql-bei-fen-bing-zi-dong-ya-suo-ming-ling/">mysql备份并自动压缩命令</a>
+            <a class="post-title-link" href="/2022/04/25/jie-jue-ubuntu-xi-tong-she-zhi-da-bu-kai/">解决Ubuntu系统设置打不开</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1356,26 +1581,24 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/25/mysql-bei-fen-bing-zi-dong-ya-suo-ming-ling/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+              <a href="/2022/04/25/jie-jue-ubuntu-xi-tong-she-zhi-da-bu-kai/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            #! /bin/bash
-
-mysqldump -uroot -p&#39;password&#39; databasename | gzip &gt; /home/backup/database_`date +%Y%m%d%H%M`.sq
+            今天把Ubuntu从16.04更新到16.10之后卸载了些软件，之后蛋疼的发现系统设置打不开了，真是欲哭无泪。去网上搜了下发现是我之前由于卸载了iBus导致的，虽然我不懂为什么iBus和Ubuntu之间的关系为什么会如此紧密，但是既然发生了
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/25/mysql-bei-fen-bing-zi-dong-ya-suo-ming-ling/">
+          <a href="/2022/04/25/jie-jue-ubuntu-xi-tong-she-zhi-da-bu-kai/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/25/mysql-bei-fen-bing-zi-dong-ya-suo-ming-ling/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+          <a href="/2022/04/25/jie-jue-ubuntu-xi-tong-she-zhi-da-bu-kai/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1390,7 +1613,7 @@ mysqldump -uroot -p&#39;password&#39; databasename | gzip &gt; /home/backup/data
             <span class="post-time">2022-04-25</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/25/ji-yu-docker-compose-de-elk-huan-jing-da-jian/">基于docker-compose的ELK环境搭建</a>
+            <a class="post-title-link" href="/2022/04/25/linux-xia-ming-ling-xing-lian-jie-wifi/">Linux下命令行连接wifi</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1406,25 +1629,32 @@ mysqldump -uroot -p&#39;password&#39; databasename | gzip &gt; /home/backup/data
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/25/ji-yu-docker-compose-de-elk-huan-jing-da-jian/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+              <a href="/2022/04/25/linux-xia-ming-ling-xing-lian-jie-wifi/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            基于docker-compose的ELK环境搭建因为最近学习到了需要利用到ELK的环境，因为昨天自己不小心踩了坑，在这里跟大家分享一下快速搭建的方法。简单易上手。也是记录自己的学习过程，以后也可以用到。
-1、安装Docker具体可参照   
+             查看网络设备
+ 
+ $ iw dev
+ 
+ phy#0
+     Unnamed/non-netdev interface
+         wdev 0x2
+         addr bc:a8:a6:dc:b0:ea
+       
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/25/ji-yu-docker-compose-de-elk-huan-jing-da-jian/">
+          <a href="/2022/04/25/linux-xia-ming-ling-xing-lian-jie-wifi/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/25/ji-yu-docker-compose-de-elk-huan-jing-da-jian/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+          <a href="/2022/04/25/linux-xia-ming-ling-xing-lian-jie-wifi/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1439,7 +1669,7 @@ mysqldump -uroot -p&#39;password&#39; databasename | gzip &gt; /home/backup/data
             <span class="post-time">2022-04-25</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/25/mysql-shu-ju-ku-ya-suo-bei-fen-mysql-bei-fen-ya-suo-ji-hui-fu-shu-ju-ku-fang-fa-zong-jie/">mysql数据库压缩备份_Mysql备份压缩及恢复数据库方法总结</a>
+            <a class="post-title-link" href="/2022/04/25/docker-build-zou-dai-li/">docker build走代理!</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1455,25 +1685,24 @@ mysqldump -uroot -p&#39;password&#39; databasename | gzip &gt; /home/backup/data
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/25/mysql-shu-ju-ku-ya-suo-bei-fen-mysql-bei-fen-ya-suo-ji-hui-fu-shu-ju-ku-fang-fa-zong-jie/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+              <a href="/2022/04/25/docker-build-zou-dai-li/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            一般情况我们通过mysqldump来备份MySQL数据库，并上传至其它备份机器。如果数据库比较大，在备份传输的时候可能会慢，所以我们尽量让备份的文件小一些。
-在写自动备份脚本时，最好把备份结果直接压缩，恢复时也可以直接由压缩备份恢复。下面介
+             docker build -t haha . --build-arg https_proxy=http://192.168.31.16:1013 --build-arg http_proxy=http://192.168.31.16:10
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/25/mysql-shu-ju-ku-ya-suo-bei-fen-mysql-bei-fen-ya-suo-ji-hui-fu-shu-ju-ku-fang-fa-zong-jie/">
+          <a href="/2022/04/25/docker-build-zou-dai-li/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/25/mysql-shu-ju-ku-ya-suo-bei-fen-mysql-bei-fen-ya-suo-ji-hui-fu-shu-ju-ku-fang-fa-zong-jie/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+          <a href="/2022/04/25/docker-build-zou-dai-li/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1488,7 +1717,7 @@ mysqldump -uroot -p&#39;password&#39; databasename | gzip &gt; /home/backup/data
             <span class="post-time">2022-04-25</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/25/shi-yong-docker-compose-an-zhuang-redis-zui-xin-ban-bing-qie-she-zhi-mi-ma/">使用docker-compose 安装Redis最新版，并且设置密码</a>
+            <a class="post-title-link" href="/2022/04/25/linux-you-xiao-shi-yong-docker-logs-cha-kan-ri-zhi/">linux:有效使用docker logs查看日志</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1504,241 +1733,26 @@ mysqldump -uroot -p&#39;password&#39; databasename | gzip &gt; /home/backup/data
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/25/shi-yong-docker-compose-an-zhuang-redis-zui-xin-ban-bing-qie-she-zhi-mi-ma/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+              <a href="/2022/04/25/linux-you-xiao-shi-yong-docker-logs-cha-kan-ri-zhi/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            直接上docker-compose.yml。
-version: &#39;2&#39;
+             在开发基于Docker的应用程序时，能够在日志中查找特定信息并将此数据保存到文件中可以加快故障排除和调试过程。以下是使用日志选项，tail和grep在docker容器的日志数据中查找所需内容的一些提示。
  
-networks:
-  app-tier:
-    driver: bridge
- 
-services:
-  redis:
-    containe
+ 关于开始使用Docker的帖
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/25/shi-yong-docker-compose-an-zhuang-redis-zui-xin-ban-bing-qie-she-zhi-mi-ma/">
+          <a href="/2022/04/25/linux-you-xiao-shi-yong-docker-logs-cha-kan-ri-zhi/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/25/shi-yong-docker-compose-an-zhuang-redis-zui-xin-ban-bing-qie-she-zhi-mi-ma/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-25</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/25/python-kuai-su-da-jian-http-fu-wu/">Python快速搭建HTTP服务</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/25/python-kuai-su-da-jian-http-fu-wu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            什么是HTTP服务?
-通常是由HTTP客户端发起一个请求，建立一个到服务器指定端口（默认是80或其他端口）的TCP连接，用以为用户提供相应的服务。这里的客户端可以是浏览器，postman插件或是请求的命令（curl，wget等）等。
-如何使
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/25/python-kuai-su-da-jian-http-fu-wu/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/25/python-kuai-su-da-jian-http-fu-wu/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-24</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/24/show-table-status-like-table-g-xiang-xi-xin-xi-jie-shao/">show table status like &#39;table&#39;\G 详细信息介绍</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/24/show-table-status-like-table-g-xiang-xi-xin-xi-jie-shao/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-             mysql&gt; show table status like&#39;leyangjun&#39;\G
- *************************** 1. row ***************************
- 
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/24/show-table-status-like-table-g-xiang-xi-xin-xi-jie-shao/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/24/show-table-status-like-table-g-xiang-xi-xin-xi-jie-shao/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-24</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/24/docker-shan-chu-docker-pi-liang-shan-chu-jing-xiang/">docker 删除_docker 批量删除镜像</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/24/docker-shan-chu-docker-pi-liang-shan-chu-jing-xiang/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            准备工作：查看运行中的容器
-
-sudo docker container ls -a 
-sudo docker container ls -a -q
-sudo docker container ls
-准备工作：单独删除命令
-
-docker 
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/24/docker-shan-chu-docker-pi-liang-shan-chu-jing-xiang/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/24/docker-shan-chu-docker-pi-liang-shan-chu-jing-xiang/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-            background-position: center center;">
-          </a>
-        
-      </div>
-    </article>
-  
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-24</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/24/zhi-zuo-yi-ge-pyhton2-7-ubuntu-jing-xiang-shu-xie-dockerfile-yun-xing-yi-ge-web-cheng-xu/">制作一个pyhton2.7 ubuntu 镜像，书写Dockerfile运行一个web程序</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            
-              
-              <a href="/2022/04/24/zhi-zuo-yi-ge-pyhton2-7-ubuntu-jing-xiang-shu-xie-dockerfile-yun-xing-yi-ge-web-cheng-xu/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
-                background-position: center center;">
-              </a>
-            
-          </div>
-          <div class="post-content">
-            运用ubuntu镜像运行一个容器
-docker run -it -d --name=python3.6demo ubuntu
-
-返回一个id
-
-65a616b14344fe6691f5198a68c35899fca02761e554787d
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/24/zhi-zuo-yi-ge-pyhton2-7-ubuntu-jing-xiang-shu-xie-dockerfile-yun-xing-yi-ge-web-cheng-xu/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        
-          <a href="/2022/04/24/zhi-zuo-yi-ge-pyhton2-7-ubuntu-jing-xiang-shu-xie-dockerfile-yun-xing-yi-ge-web-cheng-xu/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+          <a href="/2022/04/25/linux-you-xiao-shi-yong-docker-logs-cha-kan-ri-zhi/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1749,7 +1763,7 @@ docker run -it -d --name=python3.6demo ubuntu
 <!-- 翻页 -->
 
   <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
   </nav> -->
   <div class="page-nav">
     
@@ -1759,7 +1773,7 @@ docker run -it -d --name=python3.6demo ubuntu
       </a>
     
     <div class="page-info">
-        <div class="page-info-text">16 / 41</div>
+        <div class="page-info-text">16 / 42</div>
     </div>
     
       <a href="/page/17/"

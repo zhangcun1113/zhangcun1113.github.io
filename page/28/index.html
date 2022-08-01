@@ -1235,10 +1235,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-14</span>
+            <span class="post-time">2022-01-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/01/14/shell-jiao-ben-jian-kong-linux-xi-tong-cpu-shi-yong-lu/">Shell脚本监控Linux系统CPU使用率</a>
+            <a class="post-title-link" href="/2022/01/24/docker-compose-qi-dong-rong-qi-hou-zhi-xing-jiao-ben-huo-ming-ling-bu-tui-chu-yun-xing-nei-bu-cheng-xu/">docker-compose启动容器后执行脚本或命令不退出 | 运行内部程序</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1254,28 +1254,26 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/01/14/shell-jiao-ben-jian-kong-linux-xi-tong-cpu-shi-yong-lu/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+              <a href="/2022/01/24/docker-compose-qi-dong-rong-qi-hou-zhi-xing-jiao-ben-huo-ming-ling-bu-tui-chu-yun-xing-nei-bu-cheng-xu/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            一、概述通过top或者htop命令。可以看到每一个cpu核心的使用情况，但是服务器的整体cpu使用情况，就无法直观的看到。
-需要通过shell脚本才能实现。
-二、Shell脚本cpu_ck.sh
-#/bin/bash
-#environmen
+            说下我的需求，就是在使用 docker-compose 启动server容器后，执行命令或者执行脚本运行容器内部的进程。
+容器是个基于django框架的web server，通过uwsgi启动，我是这样操作的：
+1.在docker-comp
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/01/14/shell-jiao-ben-jian-kong-linux-xi-tong-cpu-shi-yong-lu/">
+          <a href="/2022/01/24/docker-compose-qi-dong-rong-qi-hou-zhi-xing-jiao-ben-huo-ming-ling-bu-tui-chu-yun-xing-nei-bu-cheng-xu/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/01/14/shell-jiao-ben-jian-kong-linux-xi-tong-cpu-shi-yong-lu/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+          <a href="/2022/01/24/docker-compose-qi-dong-rong-qi-hou-zhi-xing-jiao-ben-huo-ming-ling-bu-tui-chu-yun-xing-nei-bu-cheng-xu/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1287,10 +1285,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-14</span>
+            <span class="post-time">2022-01-18</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/01/14/a-li-yun-qi-ye-qi-ye-you-xiang-guan-li-yuan-zhang-hao-geng-gai-mi-ma-fang-fa/">阿里企业邮箱管理员账号更改密码方法</a>
+            <a class="post-title-link" href="/2022/01/18/ubuntu-yong-jiu-xiu-gai-ulimit-n/">Ubuntu 永久修改 ulimit -n</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1306,25 +1304,36 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/01/14/a-li-yun-qi-ye-qi-ye-you-xiang-guan-li-yuan-zhang-hao-geng-gai-mi-ma-fang-fa/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
+              <a href="/2022/01/18/ubuntu-yong-jiu-xiu-gai-ulimit-n/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            https://www.ali-exmail.cn/ask/220.html
+            设置文件最大打开数 
 
+#系统
+vim /etc/sysctl.conf
+#添加
+fs.file-max = 65535
+ 
+sysctl -p
+ 
+#用户
+vim /etc/security/limits.conf
+#添加
+*      
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/01/14/a-li-yun-qi-ye-qi-ye-you-xiang-guan-li-yuan-zhang-hao-geng-gai-mi-ma-fang-fa/">
+          <a href="/2022/01/18/ubuntu-yong-jiu-xiu-gai-ulimit-n/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/01/14/a-li-yun-qi-ye-qi-ye-you-xiang-guan-li-yuan-zhang-hao-geng-gai-mi-ma-fang-fa/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
+          <a href="/2022/01/18/ubuntu-yong-jiu-xiu-gai-ulimit-n/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1336,10 +1345,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-14</span>
+            <span class="post-time">2022-01-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/01/14/vmware-zhan-yong-443-duan-kou-dao-zhi-httpd-fu-wu-qi-wu-fa-zheng-chang-qi-dong/">VMWare占用443端口，导致httpd服务器无法正常启动</a>
+            <a class="post-title-link" href="/2022/01/17/yi-zhi-ding-yong-hu-qi-dong-he-jin-ru-docker-rong-qi/">以指定用户启动和进入docker容器</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1355,24 +1364,27 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/01/14/vmware-zhan-yong-443-duan-kou-dao-zhi-httpd-fu-wu-qi-wu-fa-zheng-chang-qi-dong/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+              <a href="/2022/01/17/yi-zhi-ding-yong-hu-qi-dong-he-jin-ru-docker-rong-qi/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            ﻿﻿“/etc/httpd/conf/httpd.conf” 1010L, 34442C written[root@kfdev www]# lscgi-bin  error  html  icons  manual  usage[root@
+            第一次用run创建并启动容器，运行命令
+　　docker run -it -u user_name –name container_name -d image_name /bin/bash
+之后可以用exec进入容器，运行命令
+　　dock
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/01/14/vmware-zhan-yong-443-duan-kou-dao-zhi-httpd-fu-wu-qi-wu-fa-zheng-chang-qi-dong/">
+          <a href="/2022/01/17/yi-zhi-ding-yong-hu-qi-dong-he-jin-ru-docker-rong-qi/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/01/14/vmware-zhan-yong-443-duan-kou-dao-zhi-httpd-fu-wu-qi-wu-fa-zheng-chang-qi-dong/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+          <a href="/2022/01/17/yi-zhi-ding-yong-hu-qi-dong-he-jin-ru-docker-rong-qi/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1384,10 +1396,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-14</span>
+            <span class="post-time">2022-01-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/01/14/jie-jue-ssh-guo-yi-hui-jiu-qia-zhu-duan-kai-wen-ti/">解决ssh过一会就卡住断开问题</a>
+            <a class="post-title-link" href="/2022/01/17/alpine-yong-hu-chuang-jian-he-guan-li/">alpine用户创建和管理</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1403,26 +1415,25 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/01/14/jie-jue-ssh-guo-yi-hui-jiu-qia-zhu-duan-kai-wen-ti/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+              <a href="/2022/01/17/alpine-yong-hu-chuang-jian-he-guan-li/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            #vi /etc/ssh/ssh_configServerAliveInterval 60ServerAliveCountMax 3
-#vi /etc/ssh/sshd_config
-#找到以下两行#ClientAliveInterval 
+            
+Alpine Linux是一个社区开发的面向安全应用的轻量级Linux发行版,基于 uClibc 和 Busybox的操作系统，非常适合用来做docker镜像，基于Alpine Linux的最小Docker镜像，具有完整的包索引，大小仅为
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/01/14/jie-jue-ssh-guo-yi-hui-jiu-qia-zhu-duan-kai-wen-ti/">
+          <a href="/2022/01/17/alpine-yong-hu-chuang-jian-he-guan-li/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/01/14/jie-jue-ssh-guo-yi-hui-jiu-qia-zhu-duan-kai-wen-ti/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+          <a href="/2022/01/17/alpine-yong-hu-chuang-jian-he-guan-li/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1434,10 +1445,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-14</span>
+            <span class="post-time">2022-01-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/01/14/jenkins-zhong-wen-she-zhi/">Jenkins中文设置</a>
+            <a class="post-title-link" href="/2022/01/17/bash-sudo-wei-zhao-dao-ming-ling-dui-yu-linux-debian-centos-de-cuo-wu-he-jie-jue-fang-an/">“ -bash：sudo：未找到命令”对于Linux，Debian，CentOS的错误和解决方案</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1453,25 +1464,24 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/01/14/jenkins-zhong-wen-she-zhi/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+              <a href="/2022/01/17/bash-sudo-wei-zhao-dao-ming-ling-dui-yu-linux-debian-centos-de-cuo-wu-he-jie-jue-fang-an/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            https://blog.csdn.net/zh__quan/article/details/106230100
-
+            sudo  command is used to execute command as another user. This is generally used to run command as root. In some cases w
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/01/14/jenkins-zhong-wen-she-zhi/">
+          <a href="/2022/01/17/bash-sudo-wei-zhao-dao-ming-ling-dui-yu-linux-debian-centos-de-cuo-wu-he-jie-jue-fang-an/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/01/14/jenkins-zhong-wen-she-zhi/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+          <a href="/2022/01/17/bash-sudo-wei-zhao-dao-ming-ling-dui-yu-linux-debian-centos-de-cuo-wu-he-jie-jue-fang-an/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1483,10 +1493,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-14</span>
+            <span class="post-time">2022-01-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/01/14/guan-yu-office-dan-chuang-heng-fu-ti-shi-ni-de-xu-ke-zheng-bu-shi-zheng-ban-bing-qie-ni-ke-neng-shi-dao-ban-ruan-jian-de-shou-hai-zhe-de-jie-jue-fang-an-yi-office2019-wei-li/">关于Office弹窗+横幅提示“你的许可证不是正版，并且你可能是盗版软件的受害者...”的解决方案——以Office2019为例</a>
+            <a class="post-title-link" href="/2022/01/17/ubuntu18-04-geng-huan-guo-nei-yuan/">Ubuntu18.04更换国内源</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1502,24 +1512,33 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/01/14/guan-yu-office-dan-chuang-heng-fu-ti-shi-ni-de-xu-ke-zheng-bu-shi-zheng-ban-bing-qie-ni-ke-neng-shi-dao-ban-ruan-jian-de-shou-hai-zhe-de-jie-jue-fang-an-yi-office2019-wei-li/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+              <a href="/2022/01/17/ubuntu18-04-geng-huan-guo-nei-yuan/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            遭遇问题        前一段时间，博主电脑的Office2019软件忽然开始在每次打开时弹出“你的许可证不是正版，并且你可能是盗版软件的受害者。使用正版Office，避免干扰并保护你的文件安全。”的弹窗+横幅提示，因为博主要准备答辩暂且搁
+            打开/etc/apt/sources.list
+
+
+vi /etc/apt/sources.list
+将原有的数据注释掉，换上国内镜像
+
+阿里云源
+
+
+deb http://mirrors.aliyun.com/ubuntu/ bionic
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/01/14/guan-yu-office-dan-chuang-heng-fu-ti-shi-ni-de-xu-ke-zheng-bu-shi-zheng-ban-bing-qie-ni-ke-neng-shi-dao-ban-ruan-jian-de-shou-hai-zhe-de-jie-jue-fang-an-yi-office2019-wei-li/">
+          <a href="/2022/01/17/ubuntu18-04-geng-huan-guo-nei-yuan/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/01/14/guan-yu-office-dan-chuang-heng-fu-ti-shi-ni-de-xu-ke-zheng-bu-shi-zheng-ban-bing-qie-ni-ke-neng-shi-dao-ban-ruan-jian-de-shou-hai-zhe-de-jie-jue-fang-an-yi-office2019-wei-li/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+          <a href="/2022/01/17/ubuntu18-04-geng-huan-guo-nei-yuan/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1531,10 +1550,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-10</span>
+            <span class="post-time">2022-01-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/01/10/jenkins-cha-jian-geng-gai-guo-nei-yuan/">【Jenkins】插件更改国内源</a>
+            <a class="post-title-link" href="/2022/01/17/to-run-a-command-as-administrator-user-root-use-sudo-command-see-man-sudo-root-for-detai/">To run a command as administrator (user &#34;root&#34;), use &#34;sudo &lt;command&gt;&#34;. See &#34;man sudo_root&#34; for detai</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1550,25 +1569,25 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/01/10/jenkins-cha-jian-geng-gai-guo-nei-yuan/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+              <a href="/2022/01/17/to-run-a-command-as-administrator-user-root-use-sudo-command-see-man-sudo-root-for-detai/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            最近调试脚本，本机安装了Jenkins，但是安装插件时一直失败。更改升级站点也不生效，究其原因是因为default.json中插件下载地址还是https://updates.jenkins.io，    升级站点设置未生效。
-需要操作两个步
+            touch ~/.sudo_as_admin_successful
+
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/01/10/jenkins-cha-jian-geng-gai-guo-nei-yuan/">
+          <a href="/2022/01/17/to-run-a-command-as-administrator-user-root-use-sudo-command-see-man-sudo-root-for-detai/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/01/10/jenkins-cha-jian-geng-gai-guo-nei-yuan/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+          <a href="/2022/01/17/to-run-a-command-as-administrator-user-root-use-sudo-command-see-man-sudo-root-for-detai/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1580,10 +1599,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-10</span>
+            <span class="post-time">2022-01-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/01/10/mysql-lian-jie-shu-she-zhi-cao-zuo-fang-fa-too-many-connections/">mysql连接数设置操作方法(Too many connections)</a>
+            <a class="post-title-link" href="/2022/01/17/alpine-linux-an-zhuang-sudo-de-zheng-que-zi-shi/">alpine-linux安装sudo的正确姿势</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1599,26 +1618,24 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/01/10/mysql-lian-jie-shu-she-zhi-cao-zuo-fang-fa-too-many-connections/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+              <a href="/2022/01/17/alpine-linux-an-zhuang-sudo-de-zheng-que-zi-shi/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            mysql在使用过程中，发现连接数超了~~~~    
-[root@linux-node1 ~]# mysql -u glance -h 192.168.1.17 -pEnter password:    
-ERROR 1040 (0800
+            问题在alpine-linux 3.11.6下su进入root用户直接apk add sudo后，在普通用户下运行sudo xxx输入3次密码后报错：[username] is not in the sudoers file. This i
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/01/10/mysql-lian-jie-shu-she-zhi-cao-zuo-fang-fa-too-many-connections/">
+          <a href="/2022/01/17/alpine-linux-an-zhuang-sudo-de-zheng-que-zi-shi/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/01/10/mysql-lian-jie-shu-she-zhi-cao-zuo-fang-fa-too-many-connections/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+          <a href="/2022/01/17/alpine-linux-an-zhuang-sudo-de-zheng-que-zi-shi/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1630,10 +1647,10 @@ ERROR 1040 (0800
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-01-10</span>
+            <span class="post-time">2022-01-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/01/10/jitsi-da-jian/">jitsi搭建</a>
+            <a class="post-title-link" href="/2022/01/17/nginx-pei-zhi-jin-zhi-ip-fang-wen/">Nginx配置禁止IP访问</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1649,25 +1666,26 @@ ERROR 1040 (0800
           <div class="post-img-mobile">
             
               
-              <a href="/2022/01/10/jitsi-da-jian/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+              <a href="/2022/01/17/nginx-pei-zhi-jin-zhi-ip-fang-wen/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-quickstart
-
+            时间背景使用Nginx代理服务，请求先到前端的代理服务器，然后由代理服务器的nginx转发请求到后端的服务器。开始默认没有对IP访问做限制，现在要求禁止IP访问，
+大概是一个这样的架构：
+想要禁止IP访问，那么就直接修改后端的web服务器的
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/01/10/jitsi-da-jian/">
+          <a href="/2022/01/17/nginx-pei-zhi-jin-zhi-ip-fang-wen/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/01/10/jitsi-da-jian/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+          <a href="/2022/01/17/nginx-pei-zhi-jin-zhi-ip-fang-wen/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1679,10 +1697,10 @@ ERROR 1040 (0800
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-12-30</span>
+            <span class="post-time">2022-01-14</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/12/30/shi-yong-windows-yuan-cheng-zhuo-mian-lian-jie-ubuntu-20-04/">使用Windows远程桌面连接Ubuntu 20.04</a>
+            <a class="post-title-link" href="/2022/01/14/docker-qing-li/">Docker：清理Docker占用的磁盘空间</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1698,24 +1716,28 @@ ERROR 1040 (0800
           <div class="post-img-mobile">
             
               
-              <a href="/2021/12/30/shi-yong-windows-yuan-cheng-zhuo-mian-lian-jie-ubuntu-20-04/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+              <a href="/2022/01/14/docker-qing-li/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            安装xrdp，在terminal中输入：sudo apt install xrdp然后在terminal中输入：sudo vim /etc/xrdp/startwm.sh,并将最后两行test和exec用#注释掉，在最后一行添加gnome-
+            Docker：清理Docker占用的磁盘空间
+容器清理
+docker container prune : 仅删除停止运行的容器。
+docker rm -f $(docker ps -aq) : 删除所有容器（包括停止的、正在运行的）。
+do
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/12/30/shi-yong-windows-yuan-cheng-zhuo-mian-lian-jie-ubuntu-20-04/">
+          <a href="/2022/01/14/docker-qing-li/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/12/30/shi-yong-windows-yuan-cheng-zhuo-mian-lian-jie-ubuntu-20-04/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+          <a href="/2022/01/14/docker-qing-li/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1726,7 +1748,7 @@ ERROR 1040 (0800
 <!-- 翻页 -->
 
   <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/27/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/29/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/27/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/29/">下一页</a>
   </nav> -->
   <div class="page-nav">
     
@@ -1736,7 +1758,7 @@ ERROR 1040 (0800
       </a>
     
     <div class="page-info">
-        <div class="page-info-text">28 / 41</div>
+        <div class="page-info-text">28 / 42</div>
     </div>
     
       <a href="/page/29/"

@@ -664,11 +664,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fa fa-file-text-o"></i> 字数统计: 644 |
+            <i class="fa fa-file-text-o"></i> 字数统计: 1.3k |
           </span>
   
           <span class="min2read">
-            <i class="fa fa-clock-o"></i> 阅读时长: 3分钟 |
+            <i class="fa fa-clock-o"></i> 阅读时长: 5分钟 |
           </span>
   
           
@@ -783,7 +783,7 @@ SELECT name AS n, age AS a FROM user;
 -- 表别名
 SELECT t.name, t.age FROM user AS t;
 </code></pre>
-<p>    – 表结构<br>    如果想列出该数据库中的所有表，可：</p>
+<p>     – 表结构<br>    如果想列出该数据库中的所有表，可：</p>
 <pre><code>.tables
 
 如果想查看这些表的结构：
@@ -808,6 +808,38 @@ CREATE TABLE emperors( id integer primary key autoincrement, name text,dynasty t
   执行更新语句即可，以下哈希对应的密码是 123456
 
 update user set passwd=&#39;b4af39cca17a2231fead3c06908d352fd367c123fceb7256caeedf032b0d87c8a00a0e86a72f100362
+
+
+
+
+sqlite命令
+创建数据库：在控制台sqlite3 name
+
+.databases     　　　　　　　　　　　 查看数据库
+.tables            　　　　　　　　　 查看表格名
+databaseName .dump &gt; dumpName 　　  将数据库存在文本文件dumpName中，恢复就用databaseName &lt; dumpName;
+attach database &#39;one&#39; as &#39;other&#39;   将两个数据库绑定在一起；
+detach database &#39;name&#39;             分离数据库；
+.schema tableName                  查看表格详情；
+create table name;                 创建表;
+drop table name;                   删除表;
+ 
+ python3中的sqlite3模块
+ 
+sqlite3.connect(database [,timeout ,other optional arguments]) 打开数据库；如果指数据库存在则返回一个连接对象，如果不存在则会创建一个数据库；
+connection.cursor（）创建一个cursor;
+cursor.execute(sql) 执行一个sql语句，该语句可以被参数化；
+connection.execute(sql) 该例程是上面执行的由光标（cursor）对象提供的方法的快捷方式，它通过调用光标（cursor）方法创建了一个中间的光标对象，然后通过给定的参数调用光标的 execute 方法。
+cursor.executemany(sql,seq_of_parameters) 对​​seq_of_parameters​​ 中的所有参数或映射执行一个 SQL 命令connection.executemany(sql,seq_of_parameters) 快捷方式；
+cursor.executescript(sql_script) 该例程一旦接收到脚本，会执行多个 SQL 语句。它首先执行 COMMIT 语句，然后执行作为参数传入的 SQL 脚本。所有的 SQL 语句应该用分号（;）分隔
+connection.executescript(sql_script) 快捷方式；
+connection.total_changes() 返回自数据库连接打开以来被修改、插入或删除的数据库总行数；
+connection.commit() 交当前的事务。如果您未调用该方法，那么自您上一次调用 commit() 以来所做的任何动作对其他数据库连接来说是不可见的。
+connection.rollback() 回滚自上一次调用commit()以来对数据库所做的更改；
+connection.close() 关闭数据库连接。请注意，这不会自动调用 commit()。如果您之前未调用 commit() 方法，就直接关闭数据库连接，您所做的所有更改将全部丢失！
+conncction.fetchmany([size=cursor.arraysize[) 该方法获取查询结果集中的下一行组，返回一个列表。当没有更多的可用的行时，则返回一个空的列表。该方法尝试获取由 size 参数指定的尽可能多的行。
+cursor.fetchall() 该例程获取查询结果集中所有（剩余）的行，返回一个列表。当没有可用的行时，则返回一个空的列表。
+补充：连接MySql数据库需用MySQLdb模块来连接；Access数据库用DAO或ADO模块进行连接
 </code></pre>
 
       </div>
@@ -839,6 +871,25 @@ update user set passwd=&#39;b4af39cca17a2231fead3c06908d352fd367c123fceb7256caee
 <div class="post-nav">
 
 
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2022/07/27/linux-ubuntu-guan-ji-qu-xiao-guan-ji-chong-qi-ming-ling/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div class="title-text">Linux/Ubuntu 关机/取消关机/重启命令</div>
+      </div>
+      
+      <!-- <div class="content">
+        关机halt # 立刻关机
+poweroff # 立刻关机
+shutdown -h now # 立刻关机 (root用户
+      </div> -->
+    </a>
+  </div>
 
 
 

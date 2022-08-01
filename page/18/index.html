@@ -1235,10 +1235,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/shi-yong-docker-an-zhuang-maven-si-fu-nexus/">使用docker 安装maven私服 nexus</a>
+            <a class="post-title-link" href="/2022/04/24/docker-shan-chu-docker-pi-liang-shan-chu-jing-xiang/">docker 删除_docker 批量删除镜像</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1254,30 +1254,31 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/shi-yong-docker-an-zhuang-maven-si-fu-nexus/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/docker-shan-chu-docker-pi-liang-shan-chu-jing-xiang/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            一、下载nexus3 镜像文件
+            准备工作：查看运行中的容器
 
-docker pull sonatype/nexus3
-二、指定虚拟机与容器共享文件夹
+sudo docker container ls -a 
+sudo docker container ls -a -q
+sudo docker container ls
+准备工作：单独删除命令
 
-mkdir -p /usr/local/docker/nexus/nexus-data
-三、给共享文件夹分配可读写权
+docker 
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/shi-yong-docker-an-zhuang-maven-si-fu-nexus/">
+          <a href="/2022/04/24/docker-shan-chu-docker-pi-liang-shan-chu-jing-xiang/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/shi-yong-docker-an-zhuang-maven-si-fu-nexus/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/docker-shan-chu-docker-pi-liang-shan-chu-jing-xiang/" class="lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1289,10 +1290,10 @@ mkdir -p /usr/local/docker/nexus/nexus-data
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/nginx-tu-pian-jia-zai-su-du-ti-sheng/">nginx 图片加载速度提升</a>
+            <a class="post-title-link" href="/2022/04/24/zhi-zuo-yi-ge-pyhton2-7-ubuntu-jing-xiang-shu-xie-dockerfile-yun-xing-yi-ge-web-cheng-xu/">制作一个pyhton2.7 ubuntu 镜像，书写Dockerfile运行一个web程序</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1308,30 +1309,29 @@ mkdir -p /usr/local/docker/nexus/nexus-data
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/nginx-tu-pian-jia-zai-su-du-ti-sheng/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/zhi-zuo-yi-ge-pyhton2-7-ubuntu-jing-xiang-shu-xie-dockerfile-yun-xing-yi-ge-web-cheng-xu/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-              php 上传大文件失败的问题
-  https://www.cnblogs.com/cxx8181602/p/9282576.html
-  
-  阿里云带宽速度的提升
-  1M
-  
-  nginx配置解决vue单页面打包文件大，首次加载
+            运用ubuntu镜像运行一个容器
+docker run -it -d --name=python3.6demo ubuntu
+
+返回一个id
+
+65a616b14344fe6691f5198a68c35899fca02761e554787d
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/nginx-tu-pian-jia-zai-su-du-ti-sheng/">
+          <a href="/2022/04/24/zhi-zuo-yi-ge-pyhton2-7-ubuntu-jing-xiang-shu-xie-dockerfile-yun-xing-yi-ge-web-cheng-xu/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/nginx-tu-pian-jia-zai-su-du-ti-sheng/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/zhi-zuo-yi-ge-pyhton2-7-ubuntu-jing-xiang-shu-xie-dockerfile-yun-xing-yi-ge-web-cheng-xu/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1343,10 +1343,10 @@ mkdir -p /usr/local/docker/nexus/nexus-data
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/shell-jiao-ben-zhong-an-ri-qi-bian-li-wen-jian/">shell脚本中按日期遍历文件</a>
+            <a class="post-title-link" href="/2022/04/24/ubuntu-ssh-deng-ru-su-du-tai-man-de-jie-jue-ban-fa/">ubuntu ssh登入速度太慢的解决办法</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1362,30 +1362,30 @@ mkdir -p /usr/local/docker/nexus/nexus-data
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/shell-jiao-ben-zhong-an-ri-qi-bian-li-wen-jian/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/ubuntu-ssh-deng-ru-su-du-tai-man-de-jie-jue-ban-fa/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            #!/bin/sh
-datebeg=20120412
-beg_s=`date -d &quot;$datebeg&quot; +%s`
+            打开/etc/ssh/sshd_config文件
 
-for ((DAY=0;DAY&lt;=31;DAY++));
-do
-DAY1=`date -d @$
+sudo gedit /etc/ssh/sshd_config
+
+将GSSAPIAuthentication 设置未no，同时添加UsePAM no 、UseDNS no这两项
+
+# GS
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/shell-jiao-ben-zhong-an-ri-qi-bian-li-wen-jian/">
+          <a href="/2022/04/24/ubuntu-ssh-deng-ru-su-du-tai-man-de-jie-jue-ban-fa/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/shell-jiao-ben-zhong-an-ri-qi-bian-li-wen-jian/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/ubuntu-ssh-deng-ru-su-du-tai-man-de-jie-jue-ban-fa/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1397,10 +1397,10 @@ DAY1=`date -d @$
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/linux-dai-li-shang-wang/">linux 代理上网</a>
+            <a class="post-title-link" href="/2022/04/24/docker-an-zhuang-yi-ji-jing-xiang-yuan-she-zhi/">docker安装-以及镜像源设置</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1416,31 +1416,29 @@ DAY1=`date -d @$
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/linux-dai-li-shang-wang/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/docker-an-zhuang-yi-ji-jing-xiang-yuan-she-zhi/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            vim /etc/profile
+            首先至少要是centOS7的版本，这是要求
+可以用官方给的命令行全自动安装，如下：
 
-export http_proxy=http://172.17.1.101:808
-export https_proxy=http://172.17.1.101:808
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 
- 
-
-source /etc/p
+这个唯一也是最大的
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/linux-dai-li-shang-wang/">
+          <a href="/2022/04/24/docker-an-zhuang-yi-ji-jing-xiang-yuan-she-zhi/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/linux-dai-li-shang-wang/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/docker-an-zhuang-yi-ji-jing-xiang-yuan-she-zhi/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1452,10 +1450,10 @@ source /etc/p
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/error-an-http-request-took-too-long-to-complete-retry-with-verbose-to-obtain-debug-information/">ERROR: An HTTP request took too long to complete. Retry with --verbose to obtain debug information.</a>
+            <a class="post-title-link" href="/2022/04/24/cha-kan-linux-xi-tong-nei-cun-cpu-ci-pan-shi-yong-lu-he-xiang-xi-xin-xi/">查看Linux系统内存、CPU、磁盘使用率和详细信息</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1471,33 +1469,31 @@ source /etc/p
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/error-an-http-request-took-too-long-to-complete-retry-with-verbose-to-obtain-debug-information/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/cha-kan-linux-xi-tong-nei-cun-cpu-ci-pan-shi-yong-lu-he-xiang-xi-xin-xi/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            docker-compose 的问题
+            一、查看内存占用
+1、free
+# free -m
 
- 
+以MB为单位显示内存使用情况
 
-要改环境变量 
-
-xed ~/.profile
-export COMPOSE_HTTP_TIMEOUT=500
-export DOCKER_CLIENT_TIMEOUT=500
- source 
+[root@localhost ~]# free -m
+              total        used        free      
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/error-an-http-request-took-too-long-to-complete-retry-with-verbose-to-obtain-debug-information/">
+          <a href="/2022/04/24/cha-kan-linux-xi-tong-nei-cun-cpu-ci-pan-shi-yong-lu-he-xiang-xi-xin-xi/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/error-an-http-request-took-too-long-to-complete-retry-with-verbose-to-obtain-debug-information/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/cha-kan-linux-xi-tong-nei-cun-cpu-ci-pan-shi-yong-lu-he-xiang-xi-xin-xi/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1509,10 +1505,10 @@ export DOCKER_CLIENT_TIMEOUT=500
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/ru-he-zai-ubuntu-20-04-shang-an-zhuang-zabbix-agent/">如何在Ubuntu 20.04上安装Zabbix Agent？</a>
+            <a class="post-title-link" href="/2022/04/24/mysql-max-allowed-packet-she-zhi-ji-wen-ti/">MySQL max_allowed_packet设置及问题</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1528,26 +1524,30 @@ export DOCKER_CLIENT_TIMEOUT=500
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/ru-he-zai-ubuntu-20-04-shang-an-zhuang-zabbix-agent/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/mysql-max-allowed-packet-she-zhi-ji-wen-ti/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            Zabbix是一款针对您的IT基础设施的监控解决方案。您可以监控网络中的大部分设备和服务器上的大部分服务。要监控应用程序，您必须在网络中安装一个Zabbix服务器。
+            mysql根据配置文件会限制server接受的数据包大小。
 
-需要在服务器安装Zabbixx Agent，您需要通过Zabbix服务器
+有时候大的插入和更新会受max_allowed_packet 参数限制，导致写入或者更新失败。
+
+查看目前配置
+
+show VARIABLES like &#39;%max_al
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/ru-he-zai-ubuntu-20-04-shang-an-zhuang-zabbix-agent/">
+          <a href="/2022/04/24/mysql-max-allowed-packet-she-zhi-ji-wen-ti/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/ru-he-zai-ubuntu-20-04-shang-an-zhuang-zabbix-agent/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/mysql-max-allowed-packet-she-zhi-ji-wen-ti/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1559,10 +1559,10 @@ export DOCKER_CLIENT_TIMEOUT=500
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/docker-gou-jian-zhi-chi-zhong-wen-huan-jing-de-alpine-ji-da-xiao-you-hua/">Docker 构建支持中文环境的Alpine及大小优化</a>
+            <a class="post-title-link" href="/2022/04/24/jie-jue-ssh-she-zhi-mian-mi-deng-lu-que-zong-shi-yao-qiu-enter-passphrase-for-key-root-ssh-id-rsa/">解决SSH设置免密登录，却总是要求Enter passphrase for key ‘/root/.ssh/id_rsa‘:</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1578,28 +1578,27 @@ export DOCKER_CLIENT_TIMEOUT=500
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/docker-gou-jian-zhi-chi-zhong-wen-huan-jing-de-alpine-ji-da-xiao-you-hua/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/jie-jue-ssh-she-zhi-mian-mi-deng-lu-que-zong-shi-yao-qiu-enter-passphrase-for-key-root-ssh-id-rsa/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            因SpringBoot日志出现乱码，研究原因后发现是从docker官方仓库pull的镜像不支持中文。
+            执行如下命令试试：
+ssh-add -K ~/.ssh/id_rsa （参数K也可能是小写k，根据系统不同）
 
-构建内容参考了：https://www.clxz.top/2019/05/09/160241/
 
-那就自己构建一个环境，本文只说构建Al
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/docker-gou-jian-zhi-chi-zhong-wen-huan-jing-de-alpine-ji-da-xiao-you-hua/">
+          <a href="/2022/04/24/jie-jue-ssh-she-zhi-mian-mi-deng-lu-que-zong-shi-yao-qiu-enter-passphrase-for-key-root-ssh-id-rsa/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/docker-gou-jian-zhi-chi-zhong-wen-huan-jing-de-alpine-ji-da-xiao-you-hua/" class="lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/jie-jue-ssh-she-zhi-mian-mi-deng-lu-que-zong-shi-yao-qiu-enter-passphrase-for-key-root-ssh-id-rsa/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1611,10 +1610,10 @@ export DOCKER_CLIENT_TIMEOUT=500
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/nohup-ding-shi-ri-zhi-fen-ge-an-ri-qi-he-da-xiao/">nohup 定时日志分割（按日期和大小）</a>
+            <a class="post-title-link" href="/2022/04/24/bei-fen-mou-ge-mysql-ku/">备份某个mysql库</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1630,28 +1629,25 @@ export DOCKER_CLIENT_TIMEOUT=500
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/nohup-ding-shi-ri-zhi-fen-ge-an-ri-qi-he-da-xiao/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/bei-fen-mou-ge-mysql-ku/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            很多时候，用nohup后台启动生成日志时，如果不进行分割，文件会越来越大，导致日志文件打开很慢，不方便问题的ji&#39;shi定位和解决。
+            mysqldump -uroot -p  -h127.0.0.1 数据库名称 &gt; 路径.sql
 
-此文记录实际开发过程中，按照日期分割日志的操作步骤
-
-一、首先写一个可执行的shell脚本，本次
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/nohup-ding-shi-ri-zhi-fen-ge-an-ri-qi-he-da-xiao/">
+          <a href="/2022/04/24/bei-fen-mou-ge-mysql-ku/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/nohup-ding-shi-ri-zhi-fen-ge-an-ri-qi-he-da-xiao/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/bei-fen-mou-ge-mysql-ku/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1663,10 +1659,10 @@ export DOCKER_CLIENT_TIMEOUT=500
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/telnet-pi-liang-ce-shi-duan-kou-jiao-ben/">telnet批量测试端口脚本</a>
+            <a class="post-title-link" href="/2022/04/24/centos-shi-yong-chrony-zuo-shi-jian-tong-bu/">Centos使用chrony做时间同步</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1682,28 +1678,24 @@ export DOCKER_CLIENT_TIMEOUT=500
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/telnet-pi-liang-ce-shi-duan-kou-jiao-ben/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/centos-shi-yong-chrony-zuo-shi-jian-tong-bu/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            telnet.sh
-复制代码
-#!/bin/bash
-#功能，批量telnet端口，输入参数需要测试的IP:PORT列表文件：telnet_list.txt（文件名可以自定义，但是只能跟脚本放在同一目录）
-#使用方法： telnet.sh 
+            Chrony是一个开源的自由软件，在RHEL 7操作系统，已经是默认服务，默认配置文件在 /etc/chrony.conf 它能保持系统时间与时间服务器（NTP）同步，让时间始终保持同步。相对NTP时间同步软件，速度更快、配置和依赖都更简单
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/telnet-pi-liang-ce-shi-duan-kou-jiao-ben/">
+          <a href="/2022/04/24/centos-shi-yong-chrony-zuo-shi-jian-tong-bu/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/telnet-pi-liang-ce-shi-duan-kou-jiao-ben/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/centos-shi-yong-chrony-zuo-shi-jian-tong-bu/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1715,10 +1707,10 @@ export DOCKER_CLIENT_TIMEOUT=500
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
+            <span class="post-time">2022-04-24</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/elk-filebeat-shou-ji-docker-rong-qi-ri-zhi/">elk-filebeat收集docker容器日志</a>
+            <a class="post-title-link" href="/2022/04/24/docker-shan-chu-suo-you-wu-ming-cheng-de-jing-xiang-xuan-kong-jing-xiang/">Docker 删除所有无名称的镜像（悬空镜像）</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1734,31 +1726,26 @@ export DOCKER_CLIENT_TIMEOUT=500
           <div class="post-img-mobile">
             
               
-              <a href="/2022/04/21/elk-filebeat-shou-ji-docker-rong-qi-ri-zhi/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+              <a href="/2022/04/24/docker-shan-chu-suo-you-wu-ming-cheng-de-jing-xiang-xuan-kong-jing-xiang/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            1、使用docker-compose文件构建elk。文件如下：
+            我们在build镜像的过程中，可能会产生一些临时的不具有名称也没有作用的镜像他们的名称一般都是&lt;none&gt;,我们可以执行下面的命令将其清除掉：
 
-version: &#39;3&#39;
-services:
-  elk:
-    image: sebp/elk:640
-    ports:
-      - &quot;
+docker rmi $(docker images -f &quot;dangl
           </div>
         </div>
         <div class="post-more">
-          <a href="/2022/04/21/elk-filebeat-shou-ji-docker-rong-qi-ri-zhi/">
+          <a href="/2022/04/24/docker-shan-chu-suo-you-wu-ming-cheng-de-jing-xiang-xuan-kong-jing-xiang/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2022/04/21/elk-filebeat-shou-ji-docker-rong-qi-ri-zhi/" class="lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+          <a href="/2022/04/24/docker-shan-chu-suo-you-wu-ming-cheng-de-jing-xiang-xuan-kong-jing-xiang/" class="lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1769,7 +1756,7 @@ services:
 <!-- 翻页 -->
 
   <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/17/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/19/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/17/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/19/">下一页</a>
   </nav> -->
   <div class="page-nav">
     
@@ -1779,7 +1766,7 @@ services:
       </a>
     
     <div class="page-info">
-        <div class="page-info-text">18 / 41</div>
+        <div class="page-info-text">18 / 42</div>
     </div>
     
       <a href="/page/19/"

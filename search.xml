@@ -4,11 +4,167 @@
   
     
     <entry>
+      <title>mysql主从复制主要参数</title>
+      <link href="/2022/08/01/mysql-zhu-cong-fu-zhi-zhu-yao-can-shu/"/>
+      <url>/2022/08/01/mysql-zhu-cong-fu-zhi-zhu-yao-can-shu/</url>
+      
+        <content type="html"><![CDATA[<p>主从复制中的重点参数：</p><p>log-bin:搭建主从复制，必须开启二进制日志。</p><p>server-id：在同一组主从结构中的唯一标识（主从上参数不能一致）</p><p>server-uuid:数据库启动中，自动生成，每台不一样，存放于数据目录auto.cnf文件下</p><p>read only:设置从库只读状态，避免从库写操作，mysql5.7后新增super_read_only，开启参数，超管都无法进行写操作</p><p>binlog_format:二进制日志格式，必须使用row模式</p><p>log_slave_updates：把主库上获得数据变更信息记录到从库二进制日志文件中</p><p>binlog_error_action:mysql5.7.7之后默认为binlog_error_action=ABORT_server，不能写binlog文件时，退出</p><p>binlog-do-db:可选择性复制数据库，例binlog-do-db=zz,则zz库外，其他库都不复制</p><p>binlog-ignore-db:忽略某个库的复制，即除了某个库外，其他库都可复制</p><p>gtid-mode:gtid模式是否开启</p><p>enforce-gtid-consistency:确保gtid的一致性</p><p>gtid_next该参数为session级别变量，下一个gtid。默认是automatic</p><p>gtid_purged：丢弃的gtid</p><p>relay log:记录从库的I/O thread从主库读取而来的binlog内容</p><p>relicate_do_table:只复制指定的表，在从库上面使用</p><p>relicate_ignore_table:不复制指定的表，在从库上面使用</p><p>relicate_do_db:只复制指定的库，在从库上面使用</p><p>relicate_ignore_db:不复制指定的库，在从库上面使用</p><p>relicate-wild-do-table:使用通配符复制指定的表，如复制zz库下tt开头的表；–replicate-wild-do-table=zs.tt% 。</p><p>replicate-wild-ignore-table：使用通配符不复制指定的表</p><p>master_info_repository:把master_info（主从状态，配置信息）记录下来，默认记录到file里，建议使用表记录：例：值等于table</p><p>relaay_log_info_repository sql thread:应用二进制日志中的内容，并将binlog应用到位置记录到relay.info值也可以使用table（建议）</p><p>relay_log_recovery:设置值为1，当从库发生崩溃或重启时，会把未执行完的中继日志删除，并反馈给主库重新获取binlog，建议开启relay_log_recovery,默认关闭</p><p>relay_log_purge，清除已经执行过的relay_log，建议从库开启</p><p>slave_net_timeout,设置在多少秒没收到主库传来binlog后，认为网络超时，从库I/O thread重新连接主库。</p><p>slave_parallel_type:有两值database和logical_clock，5.7中引入基于组提交并行复制，通过设置参数slave_parallel_workers&gt;0 且slave_parallel_type=‘LOCAL_CLOCK’实现</p><p>slave_parallel_workers：设置多个线程来并发执行relay log中主库提交的事务，最大值为1024</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>彻底终结MySQL同步延迟问题</title>
+      <link href="/2022/08/01/che-di-zhong-jie-mysql-tong-bu-yan-chi-wen-ti/"/>
+      <url>/2022/08/01/che-di-zhong-jie-mysql-tong-bu-yan-chi-wen-ti/</url>
+      
+        <content type="html"><![CDATA[<p>在工作中会经常遇到一些MySQL主从同步延迟的问题，这些同步慢的问题，其实原因非常多，可能是因为主从的网络问题导致，可能是因为网络带宽问题导致，可能是因为大事务导致，也可能是因为单线程复制导致的延迟。最近遇到一个很典型的同步延迟问题，将分析过程写出来，希望对广大DBA在排查同步延迟问题有比较系统的方法论。</p><p>首先交代一下背景（不交代背景和场景的问题分析都是耍流氓）</p><p>最近有一组DB出现比较大的延迟，这组DB是专门用来存储监控数据，每分钟会使用load data的方式导入大量的数据。为了节省空间，将原来使用压缩表的innodb引擎转换成了TokuDB引擎，使用的版本和引擎如下：</p><p>MySQL Version： 5.7</p><p>Storage Engine： TokuDB</p><p>转换后，发现主从延迟逐渐增大，基本每天落后主机大概50个binlog左右，大概延迟7.5个小时左右的数据，主机每天大概产生160个binlog，binlog列表如下图所示：</p><p>由于对该业务非常熟悉，因此很快就定位到造成主从同步延迟的原因，并很快就解决了延迟的问题。这里不直接说解决办法，而是想描述一套完整的解决主从延迟问题的思考方式，和大家一起来系统的做一些思考。带着问题去思考延迟的根本原因和解决办法。我想，这也许会更有意义。授人以鱼，不如授人以渔。接下来我们就一起开脑洞。</p><p>首先，既然产生了主从延迟，就说明在从机上的消费速度赶不上主机binlog产生的速度。我们先来思考一下可能的原因，并根据现场的蛛丝马迹去验证猜想的正确性。其实所谓的问题排查，就是提出可能问题猜想，然后不断去证明的过程。不同的是，每个人的经验不同，排查的质量也不尽头相同，仅此而已。那就来从各个可能的方面开脑洞吧。</p><p>网络<br>网络可能导致主从延迟的问题，比如主机或者从机的带宽打满、主从之间网络延迟很大，有可能会导致主上的binlog没有全量传输到从机，造成延迟。</p><p>我的那组DB的IO线程已经将对应的binlog近乎实时的拉取到了从机DB上，基本排除网络导致的延迟。还可以结合网络质量相关监控来进一步确认是网络的问题。</p><p>机器性能<br>从机使用了烂机器？之前有遇到过有的业务从机使用了很烂的机器，导致的主从延迟。比如主机使用SSD而从机还是使用的SATA。从机用烂机器的观念需要改改，随着DB自动切换的需求越来越高，尤其是我所在的金融行业，从机至少不要比主机配置差。</p><p>从机高负载？有很多业务会在从机上做统计，把从机服务器搞成高负载，从而造成从机延迟很大的情况，这种使用top命令即可快速发现。</p><p>从机磁盘有问题？磁盘、raid卡、调度策略有问题的情况下，有的时候会出现单个IO延迟很高的情况，比如raid卡电池充放电的时候，在没有设置强行write back的情况下得会将write back模式修改为write through。使用iostat命令查看DB数据盘的IO情况，是否是单个IO的执行时间很长，块大小和磁盘队列情况等，可以比较一下DB盘的IO调度规则以及块大小的设置等。使用iostat查看IO运行情况：</p><p>从IO情况看也没什么问题，单个IO延迟很小，iops很低，写带宽也不大。调度规则（cat /sys/block/fioa/queue/scheduler）和块大小等和主机设置是一样的，排除磁盘的问题。</p><p>从运行指标看，机器负载很低，机器性能也可以排除。</p><p>大事务<br>是否是经常会有大事务？这个可能广大DBA们会遇到比较多，比如在RBR模式下，执行带有大量的delete操作，或者在MBR模式下删除的时候添加了不确定语句（类似limit），又或者一个表的alter操作等，都会导致延迟情况的发生。这种通过查看processlist相关信息以及使用mysqlbinlog查看binlog中的SQL就能快速进行确认。这个设想也被排除。</p><p>锁<br>锁冲突问题也可能导致从机的SQL线程执行慢，比如从机上有一些select  ….  for update的SQL，或者使用了MyISAM引擎等。此类问题，可以通过抓去processlist以及查看information_schema下面和锁以及事务相关的表来查看。</p><p>经过排查也并未发现锁的问题。</p><p>参数<br>参数部分使用如果是innodb引擎，可以根据自己的使用环境调整innodb_flush_log_at_trx_commit、sync_binlog参数来提升复制速度，那组DB使用的TokuDB，则可以优化tokudb_commit_sync、tokudb_fsync_log_period、sync_binlog等参数来做调整。这些参数调整后，复制的延迟情况会有一些作用。</p><p>备注：这种调整可能会影响数据的安全性，需要结合业务来考虑。</p><p>多线程<br>多线程问题可能是DBA们遇到最多的问题，之前在5.1和5.5版本，mysql的单线程复制瓶颈就广受诟病。从5.6开始mysql正式支持多线程复制。</p><p>很容易想到，如果是单线程同步的话，单个线程存在写入瓶颈，导致主从延迟。那就先调整为多线程试试效果。</p><p>可以通过show processlist查看是否有多个同步线程，也可以查看参数的方式查看是否使用多线程</p><pre><code>（show variables like &#39;%slave_parallel%&#39;）</code></pre><p>当你看到是上图这种结果的时候，恭喜你，你使用的是单线程。使用下面那行命令改造成多线程复制：</p><pre><code>STOP SLAVE SQL_THREAD;SET GLOBAL slave_parallel_type=&#39;LOGICAL_CLOCK&#39;;SET GLOBAL slave_parallel_workers=8;START SLAVE SQL_THREAD;</code></pre><p>改造后如下图所示：</p><p>我的环境如上图所示，本来就已经是多线程复制了，因此问题的根源也不在是否开启多线程复制上。但是当我使用show processlist查看复制状态的时候，大多数情况下发现只有1个SQL线程在执行，如下图所示：</p><p>通过上面的图可以发现，基本都是一个线程在执行，那么可以初步判定是多线程的威力没有得到很好的发挥，为了更有力地说明问题，想办法统计出来每个同步线程使用的比率。统计方法如下:</p><p>1、将线上从机相关统计打开（出于性能考虑默认是关闭的），打开方法可以如下如下SQL：</p><pre><code>UPDATE performance_schema.setup_consumers SET ENABLED = &#39;YES&#39; WHERE NAME LIKE &#39;events_transactions%&#39;;UPDATE performance_schema.setup_instruments SET ENABLED = &#39;YES&#39;, TIMED = &#39;YES&#39;WHERE NAME = &#39;transaction&#39;;</code></pre><p>2、创建一个查看各个同步线程使用量的视图，代码如下：</p><pre><code>USE test;CREATE VIEW rep_thread_count AS SELECT a.THREAD_ID AS THREAD_ID,a.COUNT_STAR AS COUNT_STAR FROM performance_schema.events_transactions_summary_by_thread_by_event_name a WHERE a.THREAD_ID in (SELECT b.THREAD_ID FROM performance_schema.replication_applier_status_by_worker b);</code></pre><p>3、一段时间后，统计各个同步线程的使用比率，SQL如下:</p><pre><code>SELECT SUM(COUNT_STAR) FROMrep_thread_count INTO @total;SELECT 100*(COUNT_STAR/@total) AS thread_usage FROMrep_thread_count;</code></pre><p>结果如下：</p><p>从上面的结果我们可以看出，绝大多数情况下，都是一个线程在跑，在监控这种存在大量数据导入的场景，肯定容易出现瓶颈。如果能提高各个线程并发执行的能力，可能很好地改善同步延迟的情况，那该如何来解决呢？</p><p>组提交<br>我们不妨从多线程同步的原理来思考，在5.7中，多线程复制的功能有很很大的改善，支持LOGICAL_CLOCK的方式，在这种方式下，并发执行的多个事务只要能在同一时刻commit，就说明线程之间没有锁冲突，那么master就可以将这一组的事务标记并在slave机器上安全的进行并发执行。因此，可以尽可能地使所有线程能在同一时刻提交，这样就能很大程度上提升从机的执行的并行度，从而减少从机的延迟。</p><p>有了这个猜想后，很自然想到了人为控制尽可能多地使所有线程在同一时刻提交，其实官方已经给我们提供了类似的参数，参数如下：</p><pre><code>binlog_group_commit_sync_delay</code></pre><p>#参数说明见：<a href="https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_group_commit_sync_delay">https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_group_commit_sync_delay</a></p><p>备注：这个参数会对延迟SQL的响应，对延迟非常敏感的环境需要特别注意，单位是微秒</p><pre><code>binlog_group_commit_sync_no_delay_count</code></pre><p>#参数说明见：<a href="https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_group_commit_sync_no_delay_count">https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_group_commit_sync_no_delay_count</a></p><p>备注：这个参数取到了一定的保护作用，在达到 </p><pre><code>binlog_group_commit_sync_no_delay_count设定的值的时候，不管是否达到了binlog_group_commit_sync_delay设置定的阀值，都立即进行提交。</code></pre><p>由于是监控的DB，主要是load数据，然后展示，1秒左右的导入延迟对业务没什么影响，因此将两个参数调整为：</p><pre><code>SET GLOBAL binlog_group_commit_sync_delay = 1000000;SET GLOBAL binlog_group_commit_sync_no_delay_count = 20;</code></pre><p>#备注，这两个参数请根据业务特性进行调整，以免造成线上故障。</p><p>为了防止导入SQL堆积，设置SET GLOBAL binlog_group_commit_sync_no_delay_count为20，在达到20个事务的时候不管是否达到了1秒都进行提交。减少对业务的影响。</p><p>设置完这两个参数后，发现并发复制瞬间提升了好多，很多时候8个线程都能跑满。于是将线程调整到16个。运行一段事件后，再次统计各个同步线程的使用比率，发现并发度提升了非常多，新的比率如下图所示：</p><p>通过show slave status查看，发现从机延迟越来越小，目前已经完全追上，并稳定运行了一周。</p><p>回顾总结<br>最后，简单总结一下：</p><p>在遇到主从延迟的问题的时候，可以从如下几个地方开脑洞，寻找蛛丝马迹，找到问题的根源，对症下药，药到病除，排查范围包括但不限于如下几方面：</p><p>网络方面</p><p>性能方面</p><p>配置方面（参数优化）</p><p>大事务</p><p>锁</p><p>多线程复制</p><p>组提交</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>有道云</title>
+      <link href="/2022/08/01/you-dao-yun/"/>
+      <url>/2022/08/01/you-dao-yun/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://note.youdao.com/web/#/file/WEB3add01bc1751e7d878be5f234214269b/note/WEBe14602a9d5692cd7f2a99671cec0e4bc/">https://note.youdao.com/web/#/file/WEB3add01bc1751e7d878be5f234214269b/note/WEBe14602a9d5692cd7f2a99671cec0e4bc/</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>开启MySQL远程访问权限 允许远程连接</title>
+      <link href="/2022/08/01/kai-qi-mysql-yuan-cheng-fang-wen-quan-xian-yun-xu-yuan-cheng-lian-jie/"/>
+      <url>/2022/08/01/kai-qi-mysql-yuan-cheng-fang-wen-quan-xian-yun-xu-yuan-cheng-lian-jie/</url>
+      
+        <content type="html"><![CDATA[<pre><code>1、登陆mysql数据库       mysql -u root -p   查看user表mysql&gt; use mysql;Database changedmysql&gt; select host,user,password from user;+--------------+------+-------------------------------------------+| host         | user | password                                  |+--------------+------+-------------------------------------------+| localhost    | root | *A731AEBFB621E354CD41BAF207D884A609E81F5E || 192.168.1.1 | root | *A731AEBFB621E354CD41BAF207D884A609E81F5E |+--------------+------+-------------------------------------------+2 rows in set (0.00 sec)    可以看到在user表中已创建的root用户。host字段表示登录的主机，其值可以用IP，也可用主机名，   (1)有时想用本地IP登录，那么可以将以上的Host值改为自己的Ip即可。2、实现远程连接(授权法)   将host字段的值改为%就表示在任何客户端机器上能以root用户登录到mysql服务器，建议在开发时设为%。     update user set host = ’%’ where user = ’root’;   将权限改为ALL PRIVILEGESmysql&gt; use mysql;Database changedmysql&gt; grant all privileges  on *.* to root@&#39;%&#39; identified by &quot;root&quot;;Query OK, 0 rows affected (0.00 sec)mysql&gt; select host,user,password from user;+--------------+------+-------------------------------------------+| host         | user | password                                  |+--------------+------+-------------------------------------------+| localhost    | root | *A731AEBFB621E354CD41BAF207D884A609E81F5E || 192.168.1.1 | root | *A731AEBFB621E354CD41BAF207D884A609E81F5E || %            | root | *A731AEBFB621E354CD41BAF207D884A609E81F5E |+--------------+------+-------------------------------------------+3 rows in set (0.00 sec)这样机器就可以以用户名root密码root远程访问该机器上的MySql.3、实现远程连接（改表法）use mysql;update user set host = &#39;%&#39; where user = &#39;root&#39;;这样在远端就可以通过root用户访问Mysql.</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数据库主从报Got fatal error 1236 from master when reading data from binary log: &#39;Could not open log file&#39;</title>
+      <link href="/2022/08/01/shu-ju-ku-zhu-cong-bao-got-fatal-error-1236-from-master-when-reading-data-from-binary-log-could-not-open-log-file/"/>
+      <url>/2022/08/01/shu-ju-ku-zhu-cong-bao-got-fatal-error-1236-from-master-when-reading-data-from-binary-log-could-not-open-log-file/</url>
+      
+        <content type="html"><![CDATA[<p>数据库主从不同步时报“Got fatal error 1236 from master when reading data from binary log: ‘Could not open log file’”解决方法。</p><p>查看问题点：</p><pre><code>mysql&gt; show slave status\G*************************** 1. row ***************************               Slave_IO_State:                  Master_Host: 192.168.109.132                  Master_User: replicater                  Master_Port: 3306                Connect_Retry: 60              Master_Log_File: dbmaster-bin.000002          Read_Master_Log_Pos: 120               Relay_Log_File: mysqld-relay-bin.000012                Relay_Log_Pos: 286        Relay_Master_Log_File: dbmaster-bin.000002             Slave_IO_Running: No            Slave_SQL_Running: Yes              Replicate_Do_DB:          Replicate_Ignore_DB:           Replicate_Do_Table:       Replicate_Ignore_Table:      Replicate_Wild_Do_Table:  Replicate_Wild_Ignore_Table:                   Last_Errno: 0                   Last_Error:                 Skip_Counter: 0          Exec_Master_Log_Pos: 120              Relay_Log_Space: 626              Until_Condition: None               Until_Log_File:                Until_Log_Pos: 0           Master_SSL_Allowed: No           Master_SSL_CA_File:           Master_SSL_CA_Path:              Master_SSL_Cert:            Master_SSL_Cipher:               Master_SSL_Key:        Seconds_Behind_Master: NULLMaster_SSL_Verify_Server_Cert: No                Last_IO_Errno: 1236                Last_IO_Error: Got fatal error 1236 from master when reading data from binary log: &#39;Could not open log file&#39;               Last_SQL_Errno: 0               Last_SQL_Error:  Replicate_Ignore_Server_Ids:             Master_Server_Id: 132                  Master_UUID: 03ab7a6c-33f3-11e9-b59b-000c2956d023             Master_Info_File: /data/mysql/data/master.info                    SQL_Delay: 0          SQL_Remaining_Delay: NULL      Slave_SQL_Running_State: Slave has read all relay log; waiting for the slave I/O thread to update it           Master_Retry_Count: 86400                  Master_Bind:      Last_IO_Error_Timestamp: 190220 09:00:13     Last_SQL_Error_Timestamp:               Master_SSL_Crl:           Master_SSL_Crlpath:           Retrieved_Gtid_Set:            Executed_Gtid_Set:                Auto_Position: 01 row in set (0.00 sec)很显然这是没能从master读到文件了的内容。解决方法：master端：mysql&gt; flush logs;Query OK, 0 rows affected (0.02 sec)mysql&gt; show master status;+---------------------+----------+--------------+------------------+-------------------+| File                | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |+---------------------+----------+--------------+------------------+-------------------+| dbmaster-bin.000005 |      120 |              |                  |                   |+---------------------+----------+--------------+------------------+-------------------+1 row in set (0.00 sec)记住file和position这两个选项slave端：mysql&gt; stop slave;Query OK, 0 rows affected (0.01 sec)mysql&gt; change master to master_log_file =&#39;dbmaster-bin.000005&#39;,master_log_pos=120;Query OK, 0 rows affected (0.01 sec)mysql&gt; start slave;Query OK, 0 rows affected (0.00 sec)再次查看状态就会发现成功了。</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>空白项目 · Teambition</title>
+      <link href="/2022/08/01/kong-bai-xiang-mu-teambition/"/>
+      <url>/2022/08/01/kong-bai-xiang-mu-teambition/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://account.teambition.com/login?next_url=https://www.teambition.com/project/623a9719a2cd87077f36d8a5/works/623a9719a2cd87077f36d8a6">https://account.teambition.com/login?next_url=https%3A%2F%2Fwww.teambition.com%2Fproject%2F623a9719a2cd87077f36d8a5%2Fworks%2F623a9719a2cd87077f36d8a6</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>云简网络</title>
+      <link href="/2022/08/01/yun-jian-wang-luo/"/>
+      <url>/2022/08/01/yun-jian-wang-luo/</url>
+      
+        <content type="html"><![CDATA[<p>云简网络</p><p><a href="https://oasis.h3c.com/oasis/stable/mix/login.html?lticket=LT-873979-gseYpGF7BGnJrmOjJHYZJnTnQpUfGe-lvzhou.h3c.com&amp;execution=e1s1#/net/network/sitecollection/site">https://oasis.h3c.com/oasis/stable/mix/login.html?lticket=LT-873979-gseYpGF7BGnJrmOjJHYZJnTnQpUfGe-lvzhou.h3c.com&amp;execution=e1s1#/net/network/sitecollection/site</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ubuntu增加swap交换空间</title>
+      <link href="/2022/08/01/ubuntu-zeng-jia-swap-jiao-huan-kong-jian/"/>
+      <url>/2022/08/01/ubuntu-zeng-jia-swap-jiao-huan-kong-jian/</url>
+      
+        <content type="html"><![CDATA[<p>交换空间swap，打个比方就是你的内存爆满了，系统就会临时把内存里一些暂时不用的数据放到硬盘上，这样内存就会空出来一部分放新的数据。如果需要用之前旧的数据，可以再把它从硬盘上搬回来。本质上交换空间就是硬盘上开辟的一块专门供内存交换数据使用的空间</p><p>当初服务器装机是默认只有1G的交换空间，结果跑起数据来，内存，交换都直接撑爆了。唯一的办法就是扩展交换空间了。</p><p>文章目录<br>一， 查看当前系统的swap大小<br>二，创建一个swap文件</p><ol><li>创建swap文件</li><li>转换swp文件</li></ol><p>三，激活swap文件<br>四，永久生效<br>一， 查看当前系统的swap大小<br>free -m</p><p>m 是以兆为单位， g是以GB为单位， 默认是kb</p><p>二，创建一个swap文件<br>swap交换空间其实就是硬盘上一个特定的文件，只不过这个文件只有内存在读写，只不过这个文件比较大些。</p><ol><li>创建swap文件<br>mkdir /home/roo/swapfile</li></ol><p>cd /home/roo/swapfile</p><p>sudo dd if=/dev/zero of=swap bs=1G count=64</p><p>mkdir /home/roo/swapfile 是先在/home/roo目录下创建了一个名为swapfile的文件夹<br>cd 进入swapfile文件夹， 然后创建一个大小为61G的，名为swap的空文件。</p><p>dd 命令解释(以下加粗的是本次使用到的参数)：</p><p>dd：用指定大小的块拷贝一个文件，并在拷贝的同时进行指定的转换。<br>注意：指定数字的地方若以下列字符结尾，则乘以相应的数字：b=512；c=1；k=1024；w=2</p><p>参数注释：<br>1 if=文件名：输入文件名，缺省为标准输入。即指定源文件。&lt; if=input file &gt;</p><p>2 of=文件名：输出文件名，缺省为标准输出。即指定目的文件。&lt; of=output file &gt;</p><p>3 ibs=bytes：一次读入bytes个字节，即指定一个块大小为bytes个字节。<br>obs=bytes：一次输出bytes个字节，即指定一个块大小为bytes个字节。<br>bs=bytes：同时设置读入/输出的块大小为bytes个字节。</p><p>4 cbs=bytes：一次转换bytes个字节，即指定转换缓冲区大小。</p><p>5 skip=blocks：从输入文件开头跳过blocks个块后再开始复制。</p><p>6 seek=blocks：从输出文件开头跳过blocks个块后再开始复制。<br>注意：通常只用当输出文件是磁盘或磁带时才有效，即备份到磁盘或磁带时才有效。</p><p>7 count=blocks：仅拷贝blocks个块，块大小等于ibs指定的字节数。</p><p>8 conv=conversion：用指定的参数转换文件。<br>ascii：转换ebcdic为ascii<br>ebcdic：转换ascii为ebcdic<br>ibm：转换ascii为alternate ebcdic<br>block：把每一行转换为长度为cbs，不足部分用空格填充<br>unblock：使每一行的长度都为cbs，不足部分用空格填充<br>lcase：把大写字符转换为小写字符<br>ucase：把小写字符转换为大写字符<br>swab：交换输入的每对字节<br>noerror：出错时不停止<br>notrunc：不截短输出文件<br>sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字符补齐。</p><ol start="2"><li>转换swp文件<br>将生成的文件转换成swap类型的文件</li></ol><p>sudo mkswap -f swap</p><p>三，激活swap文件<br>sudo swapon swap</p><p>卸载的话使用 swapoff</p><p>sudo swapoff swap</p><p>四，永久生效<br>虽然交换空间到此已经扩展成功了，但是电脑重启的话，还是会恢复默认的swap大小。<br>如果要一直使用这个swap，要把它写入/etc/fstab文件中.</p><p>/home/roo/swapfile/swap none swap defaults 0 0</p><p>重启后查看free</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>VMware vSphere 产品文档</title>
+      <link href="/2022/08/01/vmware-vsphere-chan-pin-wen-dang/"/>
+      <url>/2022/08/01/vmware-vsphere-chan-pin-wen-dang/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://docs.vmware.com/cn/VMware-vSphere/index.html">https://docs.vmware.com/cn/VMware-vSphere/index.html</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Debian更换软件源</title>
+      <link href="/2022/08/01/debian-geng-huan-ruan-jian-yuan/"/>
+      <url>/2022/08/01/debian-geng-huan-ruan-jian-yuan/</url>
+      
+        <content type="html"><![CDATA[<pre><code>中国科技大学镜像网地址https://mirrors.ustc.edu.cn/debian/#备份一下软件源sudo cp /etc/apt/sources.list /etc/apt/sources.list_bak一般情况下，将 /etc/apt/sources.list 文件中 Debian 默认的源地址 http://deb.debian.org/ 替换为 http://mirrors.ustc.edu.cn 即可。sudo sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list当然也可以直接编辑 /etc/apt/sources.list 文件（需要使用 sudo）。用以下命令打开配置文件sudo vi /etc/apt/sources.list加入如下内容即可deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free# deb-src http://mirrors.ustc.edu.cn/debian stable main contrib non-freedeb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free# deb-src http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free# deb http://mirrors.ustc.edu.cn/debian stable-proposed-updates main contrib non-free# deb-src http://mirrors.ustc.edu.cn/debian stable-proposed-updates main contrib non-free敲击i键进入插入模式，组合键ctrl+shift+v将复制内容粘贴至源文件中，敲击两次esc键进入命令模式，输入引号内键“：wq!&quot;保存并退出更改完 sources.list 文件后请运行 sudo apt-get update 更新索引以生效。更多镜像阿里云：http://mirrors.aliyun.com/搜狐：http://mirrors.sohu.com/网易：http://mirrors.163.com/</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Chrome 网上应用店 - 扩展程序</title>
+      <link href="/2022/07/27/chrome-wang-shang-ying-yong-dian-kuo-zhan-cheng-xu/"/>
+      <url>/2022/07/27/chrome-wang-shang-ying-yong-dian-kuo-zhan-cheng-xu/</url>
+      
+        <content type="html"><![CDATA[<p>Chrome 网上应用店 - 扩展程序</p><p><a href="https://chrome.google.com/webstore/category/extensions?hl=zh">https://chrome.google.com/webstore/category/extensions?hl=zh</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux/Ubuntu 关机/取消关机/重启命令</title>
+      <link href="/2022/07/27/linux-ubuntu-guan-ji-qu-xiao-guan-ji-chong-qi-ming-ling/"/>
+      <url>/2022/07/27/linux-ubuntu-guan-ji-qu-xiao-guan-ji-chong-qi-ming-ling/</url>
+      
+        <content type="html"><![CDATA[<h6 id="关机"><a href="#关机" class="headerlink" title="关机"></a>关机</h6><p>halt # 立刻关机</p><p>poweroff # 立刻关机</p><p>shutdown -h now # 立刻关机 (root用户使用)</p><p>shutdown -h 5 # 5分钟后自动关机</p><h6 id="取消关机"><a href="#取消关机" class="headerlink" title="取消关机"></a>取消关机</h6><p>shutdown -c</p><h6 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h6><p>reboot # 立即重启</p><p>shutdown -r now # 立即重启</p><p>shutdown -r 10 # 过10分钟自动重启 (root用户使用)</p><p>shutdown -r 20:35 # 在时间为20:35时候重启 (root用户使用</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SQL：sqlite3数据库常用操作</title>
       <link href="/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/"/>
       <url>/2022/07/26/sql-sqlite3-shu-ju-ku-chang-yong-cao-zuo/</url>
       
-        <content type="html"><![CDATA[<h5 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h5><pre><code>NULL - 空值INTERGER - 有符号整数类型REAL - 浮点数类型TEXT - 字符串（其编码取决于DB的编码）BLOB - 二进制表示(binary large object)，二进制大对象常用操作数据库的常用操作，基本都是四个：增、删、改、查</code></pre><h6 id="增"><a href="#增" class="headerlink" title="增"></a>增</h6><pre><code>-- 新增表CREATE TABLE IF NOT EXISTS &quot;user&quot; (    &quot;id&quot; INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,    &quot;name&quot; TEXT,    &quot;age&quot; INTEGER,    &quot;icon&quot; TEXT);-- 插入记录INSERT INTO user (name, age, icon) VALUES (&quot;Tom&quot;, 23, &quot;Tom_icon&quot;);INSERT INTO user (name, age, icon) VALUES (&quot;Jimi&quot;, 24, &quot;Jimi_icon&quot;);INSERT INTO user (name, age, icon) VALUES (&quot;Jack&quot;, 25, &quot;Jack_icon&quot;);INSERT INTO user (name, age, icon) VALUES (&quot;Mike&quot;, 26, &quot;Mike_icon&quot;);-- 新建表，从已有表导入记录CREATE TABLE IF NOT EXISTS new_user(    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,    name TEXT) INSERT INTO new_user(name) SELECT name FROM user; </code></pre><h6 id="删"><a href="#删" class="headerlink" title="删"></a>删</h6><pre><code>-- 新建一个临时表CREATE TABLE IF NOT EXISTS &quot;user_name&quot; (&quot;name&quot; TEXT);-- 删除表DROP TABLE IF EXISTS user_name;-- 删除记录DELETE FROM user WHERE id = 1;</code></pre><h6 id="改"><a href="#改" class="headerlink" title="改"></a>改</h6><pre><code>-- 修改表ALTER TABLE user RENAME TO new_user;ALTER TABLE new_user RENAME TO user;-- 表结尾增加一列ALTER TABLE &quot;user&quot; ADD COLUMN note TEXT;-- 修改记录UPDATE user SET name = &quot;杰克&quot; WHERE name = &quot;Jack&quot;;UPDATE user SET name = &quot;汤姆&quot; WHERE name = &quot;Tom&quot;;UPDATE user SET icon = &quot;iconxxx&quot; WHERE age &gt;= 25;</code></pre><h6 id="查"><a href="#查" class="headerlink" title="查"></a>查</h6><pre><code> -- 查询 * 表示所有 SELECT * FROM user;-- 查询部分字段SELECT name, age FROM user;-- 条件约束SELECT name FROM user WHERE age &gt;= 25;-- 模糊查询  使用like关键词 %零个或多个SELECT name, icon FROM user WHERE icon LIKE &quot;%icon%&quot;;-- 模糊查询   &quot;_&quot; 一个字符 SELECT name FROM user WHERE name LIKE &quot;汤_&quot;;-- 查询数量SELECT COUNT(*) FROM user;SELECT COUNT(name) FROM user;-- 排序  默认：ASC (ascend)  升序SELECT * FROM user ORDER BY age;-- 降序 DESC (desend) SELECT * FROM user ORDER BY age DESC;-- 分页查询 LIMIT， 查询5条SELECT * FROM user LIMIT 5;-- 前面跳过3条，查询5条SELECT * FROM user LIMIT 3, 5;-- 字段别名SELECT name AS n, age AS a FROM user;-- 表别名SELECT t.name, t.age FROM user AS t;</code></pre><p>    – 表结构<br>    如果想列出该数据库中的所有表，可：</p><pre><code>.tables如果想查看这些表的结构：select * from sqlite_master where type=&quot;table&quot;;默认情况下，不会出现红框中的表头，需要之前设置，命令为：.header on如果只想查看具体一张表的表结构，比如查看emperors表，命令为：select * from sqlite_master where type=&quot;table&quot; and name=&quot;emperors&quot;;另外，也可以这样：sqlite&gt; .schema emperors CREATE TABLE emperors( id integer primary key autoincrement, name text,dynasty text,start_year text);##sqlite3 /home/git/gogs/data/gogs.db  执行更新语句即可，以下哈希对应的密码是 123456update user set passwd=&#39;b4af39cca17a2231fead3c06908d352fd367c123fceb7256caeedf032b0d87c8a00a0e86a72f100362</code></pre>]]></content>
+        <content type="html"><![CDATA[<h5 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h5><pre><code>NULL - 空值INTERGER - 有符号整数类型REAL - 浮点数类型TEXT - 字符串（其编码取决于DB的编码）BLOB - 二进制表示(binary large object)，二进制大对象常用操作数据库的常用操作，基本都是四个：增、删、改、查</code></pre><h6 id="增"><a href="#增" class="headerlink" title="增"></a>增</h6><pre><code>-- 新增表CREATE TABLE IF NOT EXISTS &quot;user&quot; (    &quot;id&quot; INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,    &quot;name&quot; TEXT,    &quot;age&quot; INTEGER,    &quot;icon&quot; TEXT);-- 插入记录INSERT INTO user (name, age, icon) VALUES (&quot;Tom&quot;, 23, &quot;Tom_icon&quot;);INSERT INTO user (name, age, icon) VALUES (&quot;Jimi&quot;, 24, &quot;Jimi_icon&quot;);INSERT INTO user (name, age, icon) VALUES (&quot;Jack&quot;, 25, &quot;Jack_icon&quot;);INSERT INTO user (name, age, icon) VALUES (&quot;Mike&quot;, 26, &quot;Mike_icon&quot;);-- 新建表，从已有表导入记录CREATE TABLE IF NOT EXISTS new_user(    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,    name TEXT) INSERT INTO new_user(name) SELECT name FROM user; </code></pre><h6 id="删"><a href="#删" class="headerlink" title="删"></a>删</h6><pre><code>-- 新建一个临时表CREATE TABLE IF NOT EXISTS &quot;user_name&quot; (&quot;name&quot; TEXT);-- 删除表DROP TABLE IF EXISTS user_name;-- 删除记录DELETE FROM user WHERE id = 1;</code></pre><h6 id="改"><a href="#改" class="headerlink" title="改"></a>改</h6><pre><code>-- 修改表ALTER TABLE user RENAME TO new_user;ALTER TABLE new_user RENAME TO user;-- 表结尾增加一列ALTER TABLE &quot;user&quot; ADD COLUMN note TEXT;-- 修改记录UPDATE user SET name = &quot;杰克&quot; WHERE name = &quot;Jack&quot;;UPDATE user SET name = &quot;汤姆&quot; WHERE name = &quot;Tom&quot;;UPDATE user SET icon = &quot;iconxxx&quot; WHERE age &gt;= 25;</code></pre><h6 id="查"><a href="#查" class="headerlink" title="查"></a>查</h6><pre><code> -- 查询 * 表示所有 SELECT * FROM user;-- 查询部分字段SELECT name, age FROM user;-- 条件约束SELECT name FROM user WHERE age &gt;= 25;-- 模糊查询  使用like关键词 %零个或多个SELECT name, icon FROM user WHERE icon LIKE &quot;%icon%&quot;;-- 模糊查询   &quot;_&quot; 一个字符 SELECT name FROM user WHERE name LIKE &quot;汤_&quot;;-- 查询数量SELECT COUNT(*) FROM user;SELECT COUNT(name) FROM user;-- 排序  默认：ASC (ascend)  升序SELECT * FROM user ORDER BY age;-- 降序 DESC (desend) SELECT * FROM user ORDER BY age DESC;-- 分页查询 LIMIT， 查询5条SELECT * FROM user LIMIT 5;-- 前面跳过3条，查询5条SELECT * FROM user LIMIT 3, 5;-- 字段别名SELECT name AS n, age AS a FROM user;-- 表别名SELECT t.name, t.age FROM user AS t;</code></pre><p>     – 表结构<br>    如果想列出该数据库中的所有表，可：</p><pre><code>.tables如果想查看这些表的结构：select * from sqlite_master where type=&quot;table&quot;;默认情况下，不会出现红框中的表头，需要之前设置，命令为：.header on如果只想查看具体一张表的表结构，比如查看emperors表，命令为：select * from sqlite_master where type=&quot;table&quot; and name=&quot;emperors&quot;;另外，也可以这样：sqlite&gt; .schema emperors CREATE TABLE emperors( id integer primary key autoincrement, name text,dynasty text,start_year text);##sqlite3 /home/git/gogs/data/gogs.db  执行更新语句即可，以下哈希对应的密码是 123456update user set passwd=&#39;b4af39cca17a2231fead3c06908d352fd367c123fceb7256caeedf032b0d87c8a00a0e86a72f100362sqlite命令创建数据库：在控制台sqlite3 name.databases     　　　　　　　　　　　 查看数据库.tables            　　　　　　　　　 查看表格名databaseName .dump &gt; dumpName 　　  将数据库存在文本文件dumpName中，恢复就用databaseName &lt; dumpName;attach database &#39;one&#39; as &#39;other&#39;   将两个数据库绑定在一起；detach database &#39;name&#39;             分离数据库；.schema tableName                  查看表格详情；create table name;                 创建表;drop table name;                   删除表;  python3中的sqlite3模块 sqlite3.connect(database [,timeout ,other optional arguments]) 打开数据库；如果指数据库存在则返回一个连接对象，如果不存在则会创建一个数据库；connection.cursor（）创建一个cursor;cursor.execute(sql) 执行一个sql语句，该语句可以被参数化；connection.execute(sql) 该例程是上面执行的由光标（cursor）对象提供的方法的快捷方式，它通过调用光标（cursor）方法创建了一个中间的光标对象，然后通过给定的参数调用光标的 execute 方法。cursor.executemany(sql,seq_of_parameters) 对​​seq_of_parameters​​ 中的所有参数或映射执行一个 SQL 命令connection.executemany(sql,seq_of_parameters) 快捷方式；cursor.executescript(sql_script) 该例程一旦接收到脚本，会执行多个 SQL 语句。它首先执行 COMMIT 语句，然后执行作为参数传入的 SQL 脚本。所有的 SQL 语句应该用分号（;）分隔connection.executescript(sql_script) 快捷方式；connection.total_changes() 返回自数据库连接打开以来被修改、插入或删除的数据库总行数；connection.commit() 交当前的事务。如果您未调用该方法，那么自您上一次调用 commit() 以来所做的任何动作对其他数据库连接来说是不可见的。connection.rollback() 回滚自上一次调用commit()以来对数据库所做的更改；connection.close() 关闭数据库连接。请注意，这不会自动调用 commit()。如果您之前未调用 commit() 方法，就直接关闭数据库连接，您所做的所有更改将全部丢失！conncction.fetchmany([size=cursor.arraysize[) 该方法获取查询结果集中的下一行组，返回一个列表。当没有更多的可用的行时，则返回一个空的列表。该方法尝试获取由 size 参数指定的尽可能多的行。cursor.fetchall() 该例程获取查询结果集中所有（剩余）的行，返回一个列表。当没有可用的行时，则返回一个空的列表。补充：连接MySql数据库需用MySQLdb模块来连接；Access数据库用DAO或ADO模块进行连接</code></pre>]]></content>
       
       
       

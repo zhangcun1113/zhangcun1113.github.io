@@ -1235,10 +1235,10 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-09</span>
+            <span class="post-time">2021-12-16</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/09/ubuntu-an-zhuang-fa-song-you-jian-heirloom-mailx/">ubuntu 安装发送邮件 heirloom-mailx</a>
+            <a class="post-title-link" href="/2021/12/16/linux-ding-shi-ren-wu-crontab-mei-san-miao-zhi-xing-yi-ci-shell/">Linux定时任务crontab每三秒执行一次shell</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1254,26 +1254,25 @@
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/09/ubuntu-an-zhuang-fa-song-you-jian-heirloom-mailx/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+              <a href="/2021/12/16/linux-ding-shi-ren-wu-crontab-mei-san-miao-zhi-xing-yi-ci-shell/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            前言ubuntu使用heirloom-mailx命令发送邮件。遇到一些坑，记录一下安装和配置的过程。    
-安装安装命令：    
-sudo apt install heirloom-mailx我给俩服务器装这个，一个报错：Package
+            第一种方法：当然首先想到的是写一个触发的脚本，在触发脚本中使用死循环来解决此问题，如下：    
+cat kick.sh#!/bin/bashwhile : ;do/home/somedir/scripts.sh 2&gt;/dev/nul
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/09/ubuntu-an-zhuang-fa-song-you-jian-heirloom-mailx/">
+          <a href="/2021/12/16/linux-ding-shi-ren-wu-crontab-mei-san-miao-zhi-xing-yi-ci-shell/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/09/ubuntu-an-zhuang-fa-song-you-jian-heirloom-mailx/" class="lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+          <a href="/2021/12/16/linux-ding-shi-ren-wu-crontab-mei-san-miao-zhi-xing-yi-ci-shell/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1285,10 +1284,10 @@ sudo apt install heirloom-mailx我给俩服务器装这个，一个报错：Pack
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-09</span>
+            <span class="post-time">2021-12-16</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/09/xiang-jie-ji-chong-linux-cha-xun-wai-wang-chu-kou-ip-ming-ling-de-fang-fa/">详解几种Linux 查询外网出口IP命令的方法</a>
+            <a class="post-title-link" href="/2021/12/16/linux-crontab-mei-ge-1-xiao-shi-2-xiao-shi-de-zhi-xing-job-xie-fa/">【Linux】crontab 每隔1小时 2小时的执行job写法</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1304,24 +1303,30 @@ sudo apt install heirloom-mailx我给俩服务器装这个，一个报错：Pack
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/09/xiang-jie-ji-chong-linux-cha-xun-wai-wang-chu-kou-ip-ming-ling-de-fang-fa/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+              <a href="/2021/12/16/linux-crontab-mei-ge-1-xiao-shi-2-xiao-shi-de-zhi-xing-job-xie-fa/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            Curl 纯文本格式输出:curl icanhazip.comcurl ifconfig.mecurl curlmyip.comcurl ip.appspot.comcurl ipinfo.io/ipcurl ipecho.net/plai
+            crontab -l
+crontab -e
+每五分钟执行  */5 * * * *
+每小时执行     0 * * * *
+每2小时执行     0 */2 * * *
+每天执行        0 0 * * *
+每周执行       0 
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/09/xiang-jie-ji-chong-linux-cha-xun-wai-wang-chu-kou-ip-ming-ling-de-fang-fa/">
+          <a href="/2021/12/16/linux-crontab-mei-ge-1-xiao-shi-2-xiao-shi-de-zhi-xing-job-xie-fa/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/09/xiang-jie-ji-chong-linux-cha-xun-wai-wang-chu-kou-ip-ming-ling-de-fang-fa/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+          <a href="/2021/12/16/linux-crontab-mei-ge-1-xiao-shi-2-xiao-shi-de-zhi-xing-job-xie-fa/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1333,10 +1338,10 @@ sudo apt install heirloom-mailx我给俩服务器装这个，一个报错：Pack
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-09</span>
+            <span class="post-time">2021-12-14</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/09/nei-wang-chuan-tou-wu-xu-gong-wang-ip-de-gong-ju-holer/">内网穿透无需公网IP的工具Holer</a>
+            <a class="post-title-link" href="/2021/12/14/rabbitmq-qi-yong-ri-zhi-gen-zong-1/">rabbitmq 启用日志跟踪</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1352,26 +1357,26 @@ sudo apt install heirloom-mailx我给俩服务器装这个，一个报错：Pack
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/09/nei-wang-chuan-tou-wu-xu-gong-wang-ip-de-gong-ju-holer/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+              <a href="/2021/12/14/rabbitmq-qi-yong-ri-zhi-gen-zong-1/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            Holer是一个免费开源的内网穿透工具，它可以将局域网服务器代理到公网的内网穿透工具，支持转发基于TCP协议的报文。
-Holer地址：https://github.com/Wisdom-Projects/holer
-1.下载软件包并解压：软
+            docker run -d -p 5672:5672 -p 15672:15672 –name rabbitmq rabbitmq:management
+docker exec -it rabbitmq bash
+rabbitmq-plug
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/09/nei-wang-chuan-tou-wu-xu-gong-wang-ip-de-gong-ju-holer/">
+          <a href="/2021/12/14/rabbitmq-qi-yong-ri-zhi-gen-zong-1/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/09/nei-wang-chuan-tou-wu-xu-gong-wang-ip-de-gong-ju-holer/" class="lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+          <a href="/2021/12/14/rabbitmq-qi-yong-ri-zhi-gen-zong-1/" class="lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1383,10 +1388,10 @@ Holer地址：https://github.com/Wisdom-Projects/holer
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-09</span>
+            <span class="post-time">2021-12-04</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/09/shell-shell-jiao-ben-shi-xian-jian-kong-duan-kou-duan-kou-bu-cun-zai-zi-dong-chong-qi/">【shell】shell脚本实现监控端口，端口不存在自动重启</a>
+            <a class="post-title-link" href="/2021/12/04/cheng-xu-yuan-zai-wai-bao-gong-si-gong-zuo-zen-me-yang/">程序员在外包公司工作怎么样？</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1402,27 +1407,24 @@ Holer地址：https://github.com/Wisdom-Projects/holer
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/09/shell-shell-jiao-ben-shi-xian-jian-kong-duan-kou-duan-kou-bu-cun-zai-zi-dong-chong-qi/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+              <a href="/2021/12/04/cheng-xu-yuan-zai-wai-bao-gong-si-gong-zuo-zen-me-yang/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            服务总是自动挂掉，为解决运维人员不能及时重启，所以写个定时脚本，一分钟监控一次端口是否占用，不占用说明服务挂了，自动重启服务。
-脚本，以8080端口为例
-#vim  /usr/local/taskStartTomcat.sh
-#!/bin/
+            今天刚刚好是周六，本来是可以好好休息的，计划好要去哪里玩的，但是天有不测风云，突然说银行领导要来检查，今天周末大家必须和平时一样照常上班，天呐！大哭 图片 !也无奈，只能照常上班咯，谁让别人是地主呢？我经常看到帖子上说或者论坛上大家在讨论程
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/09/shell-shell-jiao-ben-shi-xian-jian-kong-duan-kou-duan-kou-bu-cun-zai-zi-dong-chong-qi/">
+          <a href="/2021/12/04/cheng-xu-yuan-zai-wai-bao-gong-si-gong-zuo-zen-me-yang/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/09/shell-shell-jiao-ben-shi-xian-jian-kong-duan-kou-duan-kou-bu-cun-zai-zi-dong-chong-qi/" class="lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+          <a href="/2021/12/04/cheng-xu-yuan-zai-wai-bao-gong-si-gong-zuo-zen-me-yang/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1434,10 +1436,10 @@ Holer地址：https://github.com/Wisdom-Projects/holer
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-05</span>
+            <span class="post-time">2021-11-29</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/05/dockerfile-ming-ling-xiang-jie/">Dockerfile命令详解</a>
+            <a class="post-title-link" href="/2021/11/29/linux-zhong-cha-kan-shi-fou-shi-gu-tai-ying-pan-ssd/">Linux中查看是否是固态硬盘（SSD）</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1453,26 +1455,24 @@ Holer地址：https://github.com/Wisdom-Projects/holer
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/05/dockerfile-ming-ling-xiang-jie/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+              <a href="/2021/11/29/linux-zhong-cha-kan-shi-fou-shi-gu-tai-ying-pan-ssd/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            使用docker就会避免不了的要做各种镜像，就会用到dockerfile，记录一下dockerfile的主要命令    
-1、主要组成部分    
-dockerfile执行build命令时，是从上倒下依次执行的，dockerfile的基本组
+            最近在准备测试，需要看看哪些机器挂载的是ssd硬盘，Google了一圈看到了许多方法，但都云里雾里的，不知道怎么确定。ssd硬盘貌似使用的也是scsi接口，所以根据盘符的名称也是判断不出来的。最后群里eric大神告知lsscsi工具，试了一
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/05/dockerfile-ming-ling-xiang-jie/">
+          <a href="/2021/11/29/linux-zhong-cha-kan-shi-fou-shi-gu-tai-ying-pan-ssd/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/05/dockerfile-ming-ling-xiang-jie/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+          <a href="/2021/11/29/linux-zhong-cha-kan-shi-fou-shi-gu-tai-ying-pan-ssd/" class="lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1484,10 +1484,10 @@ dockerfile执行build命令时，是从上倒下依次执行的，dockerfile的�
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-05</span>
+            <span class="post-time">2021-11-29</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/05/ni-shi-ta-men-qi-zhong-de-yi-ge/">你只是他们其中的一个</a>
+            <a class="post-title-link" href="/2021/11/29/testvideo/">胖嘟嘟</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1503,33 +1503,24 @@ dockerfile执行build命令时，是从上倒下依次执行的，dockerfile的�
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/05/ni-shi-ta-men-qi-zhong-de-yi-ge/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+              <a href="/2021/11/29/testvideo/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            条件太好的男生和漂亮的女生
-
-很多都是没有空窗期的    
-
-听明白了吗    
-有多少人和想和他们谈恋爱    
-他们谈过多少
-你只是他们其中的一个    
-
-你在那自作多情什么呢
+             
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/05/ni-shi-ta-men-qi-zhong-de-yi-ge/">
+          <a href="/2021/11/29/testvideo/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/05/ni-shi-ta-men-qi-zhong-de-yi-ge/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+          <a href="/2021/11/29/testvideo/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1541,10 +1532,10 @@ dockerfile执行build命令时，是从上倒下依次执行的，dockerfile的�
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-04</span>
+            <span class="post-time">2021-11-23</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/04/redis-she-zhi-mi-ma/">redis设置密码</a>
+            <a class="post-title-link" href="/2021/11/23/jenkins-jin-zhi-zi-dong-gou-jian-xia-you-xiang-mu/">jenkins 禁止自动构建下游项目</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1560,25 +1551,26 @@ dockerfile执行build命令时，是从上倒下依次执行的，dockerfile的�
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/04/redis-she-zhi-mi-ma/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+              <a href="/2021/11/23/jenkins-jin-zhi-zi-dong-gou-jian-xia-you-xiang-mu/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            redis安装过程    
-$ wget http://download.redis.io/releases/redis-5.0.3.tar.gz$ tar xzf redis-5.0.3.tar.gz$ cd redis-5.0.3$ m
+            使用jenkins过程中，发现当A项目被构建时，如果B项目依赖了A项目中某个模块的jar包也会被发起构建
+原因是因为jenkins会根据pom的依赖创建项目关系  如上边的情况  A项目就是B项目的上级项目
+想取消这种关系，不自动构建下级项
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/04/redis-she-zhi-mi-ma/">
+          <a href="/2021/11/23/jenkins-jin-zhi-zi-dong-gou-jian-xia-you-xiang-mu/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/04/redis-she-zhi-mi-ma/" class="lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+          <a href="/2021/11/23/jenkins-jin-zhi-zi-dong-gou-jian-xia-you-xiang-mu/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1590,10 +1582,10 @@ $ wget http://download.redis.io/releases/redis-5.0.3.tar.gz$ tar xzf redis-5.0.3
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-04</span>
+            <span class="post-time">2021-11-19</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/04/nginx-fu-zai-jun-heng-zhong-4-ceng-dai-li-he-7-ceng-dai-li-dui-bi/">Nginx负载均衡中4层代理和7层代理对比</a>
+            <a class="post-title-link" href="/2021/11/19/dockercompose-zhi-redis-cluster-ji-qun/">Dockercompose之redis-cluster集群</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1609,26 +1601,27 @@ $ wget http://download.redis.io/releases/redis-5.0.3.tar.gz$ tar xzf redis-5.0.3
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/04/nginx-fu-zai-jun-heng-zhong-4-ceng-dai-li-he-7-ceng-dai-li-dui-bi/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+              <a href="/2021/11/19/dockercompose-zhi-redis-cluster-ji-qun/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            1.4层代理和7层代理什么意思？
-这里的层是OSI 7层网络模型，OSI 模型是从上往下的，越底层越接近硬件，越往上越接近软件，这七层模型分别是物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。
-4层是指传输层的 tcp / ud
+            一、环境一台主机：10.210.13.21    
+主机系统：centos 7.9.2009;Docker version 20.10.5    
+docker-compose安装:    
+ sudo curl -L “https://g
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/04/nginx-fu-zai-jun-heng-zhong-4-ceng-dai-li-he-7-ceng-dai-li-dui-bi/">
+          <a href="/2021/11/19/dockercompose-zhi-redis-cluster-ji-qun/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/04/nginx-fu-zai-jun-heng-zhong-4-ceng-dai-li-he-7-ceng-dai-li-dui-bi/" class="lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+          <a href="/2021/11/19/dockercompose-zhi-redis-cluster-ji-qun/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1640,10 +1633,10 @@ $ wget http://download.redis.io/releases/redis-5.0.3.tar.gz$ tar xzf redis-5.0.3
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-04</span>
+            <span class="post-time">2021-11-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/04/nginx-si-ceng-qi-ceng-fu-zai-jun-heng-pei-zhi-shi-li/">nginx四层、七层负载均衡配置示例</a>
+            <a class="post-title-link" href="/2021/11/17/ubuntu-shang-an-zhuang-zabbix-agent/">Ubuntu  上安装zabbix-agent</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1659,26 +1652,25 @@ $ wget http://download.redis.io/releases/redis-5.0.3.tar.gz$ tar xzf redis-5.0.3
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/04/nginx-si-ceng-qi-ceng-fu-zai-jun-heng-pei-zhi-shi-li/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+              <a href="/2021/11/17/ubuntu-shang-an-zhuang-zabbix-agent/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            所谓四层就是基于IP+端口的负载均衡，通过虚拟IP+端口接收请求，然后再分配到真实的服务器；七层通过虚拟的URL或主机名接收请求，然后再分配到真实的服务器七层就是基于URL等应用层信息的负载均衡。    
-七层负载#定义    
-upstr
+            1.下载deb包
+wget http://repo.zabbix.com/zabbix/5.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.2-1%2Bubuntu14.04_all
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/04/nginx-si-ceng-qi-ceng-fu-zai-jun-heng-pei-zhi-shi-li/">
+          <a href="/2021/11/17/ubuntu-shang-an-zhuang-zabbix-agent/">
             <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/04/nginx-si-ceng-qi-ceng-fu-zai-jun-heng-pei-zhi-shi-li/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+          <a href="/2021/11/17/ubuntu-shang-an-zhuang-zabbix-agent/" class="lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1690,10 +1682,10 @@ upstr
         <div class="post-info">
           <div class="post-time">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="post-time">2021-11-04</span>
+            <span class="post-time">2021-11-17</span>
           </div>
           <div class="post-title">
-            <a class="post-title-link" href="/2021/11/04/ubuntu20-04-kai-ji-yun-xing-zi-ding-yi-jiao-ben/">Ubuntu20.04开机运行自定义脚本</a>
+            <a class="post-title-link" href="/2021/11/17/ubuntu-ce-shi-wang-su/">ubuntu测试网速</a>
           </div>
           <div class="post-meta">
             <div class="post-tags">
@@ -1709,25 +1701,30 @@ upstr
           <div class="post-img-mobile">
             
               
-              <a href="/2021/11/04/ubuntu20-04-kai-ji-yun-xing-zi-ding-yi-jiao-ben/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+              <a href="/2021/11/17/ubuntu-ce-shi-wang-su/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
             
           </div>
           <div class="post-content">
-            1.简介基于 Debian 的 Linux 系统默认支持 rc-local.service 服务，这个服务主要用来在系统启动时运行用户自定义的脚本命令等。
-2.配置要想使用 rc-local.service 服务在系统启动时运行用户自定义的
+            ubuntu测试网速
+1、sudo apt install speedtest-cli
+2、speedtest-cli
+查看实时带宽
+安装 sudo apt-get install bmon查看网络 bmon -p eth0
+
+输入g控制流
           </div>
         </div>
         <div class="post-more">
-          <a href="/2021/11/04/ubuntu20-04-kai-ji-yun-xing-zi-ding-yi-jiao-ben/">
+          <a href="/2021/11/17/ubuntu-ce-shi-wang-su/">
             <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
       <div class="post-img">
         
-          <a href="/2021/11/04/ubuntu20-04-kai-ji-yun-xing-zi-ding-yi-jiao-ben/" class="lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+          <a href="/2021/11/17/ubuntu-ce-shi-wang-su/" class="lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
         
@@ -1738,7 +1735,7 @@ upstr
 <!-- 翻页 -->
 
   <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/31/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/33/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/31/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/33/">下一页</a>
   </nav> -->
   <div class="page-nav">
     
@@ -1748,7 +1745,7 @@ upstr
       </a>
     
     <div class="page-info">
-        <div class="page-info-text">32 / 41</div>
+        <div class="page-info-text">32 / 42</div>
     </div>
     
       <a href="/page/33/"
